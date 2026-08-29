@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Database, Radar, Timer, Zap } from "lucide-react";
 import { DashHeader, DataTable, Panel, StatCard } from "@/components/dash/DashKit";
 import { usePageView } from "@/lib/use-analytics";
+import { trackCta } from "@/lib/analytics";
 
 export const Route = createFileRoute("/_authenticated/dashboard/miner")({
   head: () => ({
@@ -25,7 +26,7 @@ function MinerConsole() {
       <DashHeader
         title="Miner"
         subtitle="TRUTHPORT · caliber-truthport v0.4.1"
-        action={<button className="btn-base btn-ghost-metal">Re-publish YAML</button>}
+        action={<button className="btn-base btn-ghost-metal" onClick={() => trackCta("Console · Re-publish YAML")}>Re-publish YAML</button>}
       />
 
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">

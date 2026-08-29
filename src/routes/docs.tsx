@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { BookOpen, Braces, KeyRound, TerminalSquare } from "lucide-react";
 import { FeatureCard, PageHero, PageShell, Section } from "@/components/site/Page";
+import { trackCta } from "@/lib/analytics";
 
 export const Route = createFileRoute("/docs")({
   head: () => ({
@@ -39,7 +40,7 @@ function DocsPage() {
         em="four lines"
         lede="Resolve from the on-chain registry, pay with x402, and read the calibrated score alongside the answer."
       >
-        <Link to="/dashboard/registry" className="btn-base btn-solid">
+        <Link to="/dashboard/registry" onClick={() => trackCta("Docs · Registry console")} className="btn-base btn-solid">
           Registry explorer
         </Link>
       </PageHero>

@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Binary, Crosshair, Gauge, ShieldAlert, Sigma, TestTube2 } from "lucide-react";
 import { FeatureCard, PageHero, PageShell, Section } from "@/components/site/Page";
+import { trackCta } from "@/lib/analytics";
 
 export const Route = createFileRoute("/grader")({
   head: () => ({
@@ -37,7 +38,7 @@ function GraderPage() {
         em="cannot be gamed"
         lede="Brier score, calibration curves, and holdout partitions compiled to WASM — with adversarial tests shipped alongside."
       >
-        <Link to="/dashboard/grader" className="btn-base btn-solid">
+        <Link to="/dashboard/grader" onClick={() => trackCta("Grader · Grader console")} className="btn-base btn-solid">
           Grader console
         </Link>
         <Link to="/protocol" className="btn-base btn-ghost-metal">

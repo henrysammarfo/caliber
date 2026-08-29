@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Hash, Link2, Server, ShieldCheck } from "lucide-react";
 import { DashHeader, DataTable, Panel, StatCard } from "@/components/dash/DashKit";
 import { usePageView } from "@/lib/use-analytics";
+import { trackCta } from "@/lib/analytics";
 
 export const Route = createFileRoute("/_authenticated/dashboard/registry")({
   head: () => ({
@@ -25,7 +26,7 @@ function RegistryConsole() {
       <DashHeader
         title="Registry"
         subtitle="MinerRegistry · Base · 0x4b21…9de0"
-        action={<button className="btn-base btn-ghost-metal">Verify on-chain</button>}
+        action={<button className="btn-base btn-ghost-metal" onClick={() => trackCta("Console · Verify on-chain")}>Verify on-chain</button>}
       />
 
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">

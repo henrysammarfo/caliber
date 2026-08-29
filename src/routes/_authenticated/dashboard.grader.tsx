@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Crosshair, ShieldAlert, Sigma, TestTube2 } from "lucide-react";
 import { DashHeader, DataTable, Panel, StatCard } from "@/components/dash/DashKit";
 import { usePageView } from "@/lib/use-analytics";
+import { trackCta } from "@/lib/analytics";
 
 export const Route = createFileRoute("/_authenticated/dashboard/grader")({
   head: () => ({
@@ -33,7 +34,7 @@ function GraderConsole() {
       <DashHeader
         title="Grader"
         subtitle="GRADELOCK · gradelock.wasm · deterministic build 0x7c4e"
-        action={<button className="btn-base btn-solid">Run adversarial suite</button>}
+        action={<button className="btn-base btn-solid" onClick={() => trackCta("Console · Run adversarial suite")}>Run adversarial suite</button>}
       />
 
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">

@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Boxes, FileCode2, Gauge, Layers, Radar, ShieldCheck } from "lucide-react";
 import { FeatureCard, PageHero, PageShell, Section } from "@/components/site/Page";
+import { trackCta } from "@/lib/analytics";
 
 export const Route = createFileRoute("/protocol")({
   head: () => ({
@@ -39,7 +40,7 @@ function ProtocolPage() {
         em="quality layer"
         lede="Telegraph rewards ranked signal. CALIBER makes ranking measurable, adversarial-tested, and payable."
       >
-        <Link to="/miner" className="btn-base btn-solid">
+        <Link to="/miner" onClick={() => trackCta("Protocol · Miner")} className="btn-base btn-solid">
           Inspect the miner
         </Link>
         <Link to="/grader" className="btn-base btn-ghost-metal">

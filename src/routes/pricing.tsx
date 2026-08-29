@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Check } from "lucide-react";
 import { PageHero, PageShell, Section } from "@/components/site/Page";
+import { trackCta } from "@/lib/analytics";
 
 export const Route = createFileRoute("/pricing")({
   head: () => ({
@@ -74,6 +75,7 @@ function PricingPage() {
               </ul>
               <Link
                 to="/dashboard"
+                onClick={() => trackCta(`Pricing · ${t.cta}`, { tier: t.name })}
                 className={`mt-7 w-full ${t.solid ? "btn-base btn-solid" : "btn-base btn-ghost-metal"}`}
               >
                 {t.cta}

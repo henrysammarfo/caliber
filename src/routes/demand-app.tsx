@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Boxes, CircuitBoard, Coins, LineChart, Plug, Users } from "lucide-react";
 import { FeatureCard, PageHero, PageShell, Section } from "@/components/site/Page";
+import { trackCta } from "@/lib/analytics";
 
 export const Route = createFileRoute("/demand-app")({
   head: () => ({
@@ -30,7 +31,7 @@ function DemandAppPage() {
         em="loop"
         lede="Ranking only compounds when something pays for it. The demand app is designed so it cannot function without CALIBER's miner."
       >
-        <Link to="/roadmap" className="btn-base btn-solid">
+        <Link to="/roadmap" onClick={() => trackCta("Demand app · Roadmap")} className="btn-base btn-solid">
           See the season map
         </Link>
         <Link to="/pricing" className="btn-base btn-ghost-metal">

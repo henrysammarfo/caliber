@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { usePageView } from "@/lib/use-analytics";
+import { trackCta } from "@/lib/analytics";
 
 export const Route = createFileRoute("/_authenticated/dashboard/settings")({
   head: () => ({
@@ -47,7 +48,7 @@ function SettingsConsole() {
               <Label htmlFor="evalset">Labeled eval set</Label>
               <Input id="evalset" defaultValue="caliber-gold-v3" />
             </div>
-            <button className="btn-base btn-solid mt-2">Save miner config</button>
+            <button className="btn-base btn-solid mt-2" onClick={() => trackCta("Console · Save miner config")}>Save miner config</button>
           </div>
         </Panel>
 

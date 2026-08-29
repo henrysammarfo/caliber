@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Coins, Gauge, Radar, TrendingUp } from "lucide-react";
 import { DashHeader, DataTable, Panel, StatCard } from "@/components/dash/DashKit";
 import { usePageView } from "@/lib/use-analytics";
+import { trackCta } from "@/lib/analytics";
 
 export const Route = createFileRoute("/_authenticated/dashboard/")({
   head: () => ({
@@ -26,7 +27,7 @@ function OverviewPage() {
         title="Overview"
         subtitle="TRUTHPORT · vertical.verify · Base mainnet registry"
         action={
-          <Link to="/dashboard/payments" className="btn-base btn-solid">
+          <Link to="/dashboard/payments" onClick={() => trackCta("Console · View receipts")} className="btn-base btn-solid">
             View receipts
           </Link>
         }

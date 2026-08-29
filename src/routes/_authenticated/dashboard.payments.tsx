@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Coins, Receipt, TrendingUp, Wallet } from "lucide-react";
 import { DashHeader, DataTable, Panel, StatCard } from "@/components/dash/DashKit";
 import { usePageView } from "@/lib/use-analytics";
+import { trackCta } from "@/lib/analytics";
 
 export const Route = createFileRoute("/_authenticated/dashboard/payments")({
   head: () => ({
@@ -25,7 +26,7 @@ function PaymentsConsole() {
       <DashHeader
         title="Payments"
         subtitle="x402 settlement · USDC on Base"
-        action={<button className="btn-base btn-solid">Export receipts</button>}
+        action={<button className="btn-base btn-solid" onClick={() => trackCta("Console · Export receipts")}>Export receipts</button>}
       />
 
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">

@@ -5,6 +5,7 @@ import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { FeatureCard, Section } from "@/components/site/Page";
 import heroBg from "@/assets/hero-bg.jpg";
+import { trackCta } from "@/lib/analytics";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -69,12 +70,14 @@ function Index() {
               <div className="mt-[26px] flex flex-wrap justify-center gap-2.5">
                 <Link
                   to="/dashboard"
+                  onClick={() => trackCta("Home · Open the Console")}
                   className="btn-base btn-solid appear appear--btn h-[42px] px-[18px] [--d:0.96s]"
                 >
                   Open the Console
                 </Link>
                 <Link
                   to="/protocol"
+                  onClick={() => trackCta("Home · See the thesis")}
                   className="btn-base btn-ghost-metal appear appear--side h-[42px] px-[18px] [--d:1.1s]"
                 >
                   See the thesis
