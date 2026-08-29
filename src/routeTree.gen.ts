@@ -10,33 +10,249 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as DemandAppRouteImport } from './routes/demand-app'
+import { Route as DocsRouteImport } from './routes/docs'
+import { Route as FaqsRouteImport } from './routes/faqs'
+import { Route as GraderRouteImport } from './routes/grader'
+import { Route as MerchRouteImport } from './routes/merch'
+import { Route as MinerRouteImport } from './routes/miner'
+import { Route as PricingRouteImport } from './routes/pricing'
+import { Route as ProtocolRouteImport } from './routes/protocol'
+import { Route as RoadmapRouteImport } from './routes/roadmap'
+import { Route as DashboardIndexRouteImport } from './routes/dashboard.index'
+import { Route as DashboardActivityRouteImport } from './routes/dashboard.activity'
+import { Route as DashboardGraderRouteImport } from './routes/dashboard.grader'
+import { Route as DashboardMinerRouteImport } from './routes/dashboard.miner'
+import { Route as DashboardPaymentsRouteImport } from './routes/dashboard.payments'
+import { Route as DashboardRegistryRouteImport } from './routes/dashboard.registry'
+import { Route as DashboardSettingsRouteImport } from './routes/dashboard.settings'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DemandAppRoute = DemandAppRouteImport.update({
+  id: '/demand-app',
+  path: '/demand-app',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DocsRoute = DocsRouteImport.update({
+  id: '/docs',
+  path: '/docs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqsRoute = FaqsRouteImport.update({
+  id: '/faqs',
+  path: '/faqs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GraderRoute = GraderRouteImport.update({
+  id: '/grader',
+  path: '/grader',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MerchRoute = MerchRouteImport.update({
+  id: '/merch',
+  path: '/merch',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MinerRoute = MinerRouteImport.update({
+  id: '/miner',
+  path: '/miner',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PricingRoute = PricingRouteImport.update({
+  id: '/pricing',
+  path: '/pricing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProtocolRoute = ProtocolRouteImport.update({
+  id: '/protocol',
+  path: '/protocol',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RoadmapRoute = RoadmapRouteImport.update({
+  id: '/roadmap',
+  path: '/roadmap',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardIndexRoute = DashboardIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardActivityRoute = DashboardActivityRouteImport.update({
+  id: '/activity',
+  path: '/activity',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardGraderRoute = DashboardGraderRouteImport.update({
+  id: '/grader',
+  path: '/grader',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardMinerRoute = DashboardMinerRouteImport.update({
+  id: '/miner',
+  path: '/miner',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardPaymentsRoute = DashboardPaymentsRouteImport.update({
+  id: '/payments',
+  path: '/payments',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardRegistryRoute = DashboardRegistryRouteImport.update({
+  id: '/registry',
+  path: '/registry',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardSettingsRoute = DashboardSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => DashboardRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/dashboard': typeof DashboardRouteWithChildren
+  '/demand-app': typeof DemandAppRoute
+  '/docs': typeof DocsRoute
+  '/faqs': typeof FaqsRoute
+  '/grader': typeof GraderRoute
+  '/merch': typeof MerchRoute
+  '/miner': typeof MinerRoute
+  '/pricing': typeof PricingRoute
+  '/protocol': typeof ProtocolRoute
+  '/roadmap': typeof RoadmapRoute
+  '/dashboard/activity': typeof DashboardActivityRoute
+  '/dashboard/grader': typeof DashboardGraderRoute
+  '/dashboard/miner': typeof DashboardMinerRoute
+  '/dashboard/payments': typeof DashboardPaymentsRoute
+  '/dashboard/registry': typeof DashboardRegistryRoute
+  '/dashboard/settings': typeof DashboardSettingsRoute
+  '/dashboard/': typeof DashboardIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/demand-app': typeof DemandAppRoute
+  '/docs': typeof DocsRoute
+  '/faqs': typeof FaqsRoute
+  '/grader': typeof GraderRoute
+  '/merch': typeof MerchRoute
+  '/miner': typeof MinerRoute
+  '/pricing': typeof PricingRoute
+  '/protocol': typeof ProtocolRoute
+  '/roadmap': typeof RoadmapRoute
+  '/dashboard/activity': typeof DashboardActivityRoute
+  '/dashboard/grader': typeof DashboardGraderRoute
+  '/dashboard/miner': typeof DashboardMinerRoute
+  '/dashboard/payments': typeof DashboardPaymentsRoute
+  '/dashboard/registry': typeof DashboardRegistryRoute
+  '/dashboard/settings': typeof DashboardSettingsRoute
+  '/dashboard': typeof DashboardIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/dashboard': typeof DashboardRouteWithChildren
+  '/demand-app': typeof DemandAppRoute
+  '/docs': typeof DocsRoute
+  '/faqs': typeof FaqsRoute
+  '/grader': typeof GraderRoute
+  '/merch': typeof MerchRoute
+  '/miner': typeof MinerRoute
+  '/pricing': typeof PricingRoute
+  '/protocol': typeof ProtocolRoute
+  '/roadmap': typeof RoadmapRoute
+  '/dashboard/activity': typeof DashboardActivityRoute
+  '/dashboard/grader': typeof DashboardGraderRoute
+  '/dashboard/miner': typeof DashboardMinerRoute
+  '/dashboard/payments': typeof DashboardPaymentsRoute
+  '/dashboard/registry': typeof DashboardRegistryRoute
+  '/dashboard/settings': typeof DashboardSettingsRoute
+  '/dashboard/': typeof DashboardIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/dashboard'
+    | '/demand-app'
+    | '/docs'
+    | '/faqs'
+    | '/grader'
+    | '/merch'
+    | '/miner'
+    | '/pricing'
+    | '/protocol'
+    | '/roadmap'
+    | '/dashboard/activity'
+    | '/dashboard/grader'
+    | '/dashboard/miner'
+    | '/dashboard/payments'
+    | '/dashboard/registry'
+    | '/dashboard/settings'
+    | '/dashboard/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/demand-app'
+    | '/docs'
+    | '/faqs'
+    | '/grader'
+    | '/merch'
+    | '/miner'
+    | '/pricing'
+    | '/protocol'
+    | '/roadmap'
+    | '/dashboard/activity'
+    | '/dashboard/grader'
+    | '/dashboard/miner'
+    | '/dashboard/payments'
+    | '/dashboard/registry'
+    | '/dashboard/settings'
+    | '/dashboard'
+  id:
+    | '__root__'
+    | '/'
+    | '/dashboard'
+    | '/demand-app'
+    | '/docs'
+    | '/faqs'
+    | '/grader'
+    | '/merch'
+    | '/miner'
+    | '/pricing'
+    | '/protocol'
+    | '/roadmap'
+    | '/dashboard/activity'
+    | '/dashboard/grader'
+    | '/dashboard/miner'
+    | '/dashboard/payments'
+    | '/dashboard/registry'
+    | '/dashboard/settings'
+    | '/dashboard/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DashboardRoute: typeof DashboardRouteWithChildren
+  DemandAppRoute: typeof DemandAppRoute
+  DocsRoute: typeof DocsRoute
+  FaqsRoute: typeof FaqsRoute
+  GraderRoute: typeof GraderRoute
+  MerchRoute: typeof MerchRoute
+  MinerRoute: typeof MinerRoute
+  PricingRoute: typeof PricingRoute
+  ProtocolRoute: typeof ProtocolRoute
+  RoadmapRoute: typeof RoadmapRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +264,164 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/demand-app': {
+      id: '/demand-app'
+      path: '/demand-app'
+      fullPath: '/demand-app'
+      preLoaderRoute: typeof DemandAppRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/docs': {
+      id: '/docs'
+      path: '/docs'
+      fullPath: '/docs'
+      preLoaderRoute: typeof DocsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faqs': {
+      id: '/faqs'
+      path: '/faqs'
+      fullPath: '/faqs'
+      preLoaderRoute: typeof FaqsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/grader': {
+      id: '/grader'
+      path: '/grader'
+      fullPath: '/grader'
+      preLoaderRoute: typeof GraderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/merch': {
+      id: '/merch'
+      path: '/merch'
+      fullPath: '/merch'
+      preLoaderRoute: typeof MerchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/miner': {
+      id: '/miner'
+      path: '/miner'
+      fullPath: '/miner'
+      preLoaderRoute: typeof MinerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pricing': {
+      id: '/pricing'
+      path: '/pricing'
+      fullPath: '/pricing'
+      preLoaderRoute: typeof PricingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/protocol': {
+      id: '/protocol'
+      path: '/protocol'
+      fullPath: '/protocol'
+      preLoaderRoute: typeof ProtocolRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/roadmap': {
+      id: '/roadmap'
+      path: '/roadmap'
+      fullPath: '/roadmap'
+      preLoaderRoute: typeof RoadmapRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/': {
+      id: '/dashboard/'
+      path: '/'
+      fullPath: '/dashboard/'
+      preLoaderRoute: typeof DashboardIndexRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/activity': {
+      id: '/dashboard/activity'
+      path: '/activity'
+      fullPath: '/dashboard/activity'
+      preLoaderRoute: typeof DashboardActivityRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/grader': {
+      id: '/dashboard/grader'
+      path: '/grader'
+      fullPath: '/dashboard/grader'
+      preLoaderRoute: typeof DashboardGraderRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/miner': {
+      id: '/dashboard/miner'
+      path: '/miner'
+      fullPath: '/dashboard/miner'
+      preLoaderRoute: typeof DashboardMinerRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/payments': {
+      id: '/dashboard/payments'
+      path: '/payments'
+      fullPath: '/dashboard/payments'
+      preLoaderRoute: typeof DashboardPaymentsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/registry': {
+      id: '/dashboard/registry'
+      path: '/registry'
+      fullPath: '/dashboard/registry'
+      preLoaderRoute: typeof DashboardRegistryRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/settings': {
+      id: '/dashboard/settings'
+      path: '/settings'
+      fullPath: '/dashboard/settings'
+      preLoaderRoute: typeof DashboardSettingsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
   }
 }
 
+interface DashboardRouteChildren {
+  DashboardActivityRoute: typeof DashboardActivityRoute
+  DashboardGraderRoute: typeof DashboardGraderRoute
+  DashboardMinerRoute: typeof DashboardMinerRoute
+  DashboardPaymentsRoute: typeof DashboardPaymentsRoute
+  DashboardRegistryRoute: typeof DashboardRegistryRoute
+  DashboardSettingsRoute: typeof DashboardSettingsRoute
+  DashboardIndexRoute: typeof DashboardIndexRoute
+}
+
+const DashboardRouteChildren: DashboardRouteChildren = {
+  DashboardActivityRoute: DashboardActivityRoute,
+  DashboardGraderRoute: DashboardGraderRoute,
+  DashboardMinerRoute: DashboardMinerRoute,
+  DashboardPaymentsRoute: DashboardPaymentsRoute,
+  DashboardRegistryRoute: DashboardRegistryRoute,
+  DashboardSettingsRoute: DashboardSettingsRoute,
+  DashboardIndexRoute: DashboardIndexRoute,
+}
+
+const DashboardRouteWithChildren = DashboardRoute._addFileChildren(
+  DashboardRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DashboardRoute: DashboardRouteWithChildren,
+  DemandAppRoute: DemandAppRoute,
+  DocsRoute: DocsRoute,
+  FaqsRoute: FaqsRoute,
+  GraderRoute: GraderRoute,
+  MerchRoute: MerchRoute,
+  MinerRoute: MinerRoute,
+  PricingRoute: PricingRoute,
+  ProtocolRoute: ProtocolRoute,
+  RoadmapRoute: RoadmapRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
