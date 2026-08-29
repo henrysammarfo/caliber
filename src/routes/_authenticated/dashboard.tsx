@@ -34,6 +34,17 @@ const NAV = [
 
 function DashboardLayout() {
   useAppear();
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
+
+  async function signOut() {
+    await track("sign_out", { label: "console" });
+    await queryClient.cancelQueries();
+    queryClient.clear();
+    await supabase.auth.signOut();
+    navigate({ to: "/auth", replace: true });
+  }
+
   return (
     <div className="relative min-h-screen bg-background">
       <Grain />
