@@ -10,9 +10,12 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as DemandAppRouteImport } from './routes/demand-app'
+import { Route as DocsRouteImport } from './routes/docs'
 import { Route as FaqsRouteImport } from './routes/faqs'
 import { Route as GraderRouteImport } from './routes/grader'
+import { Route as MerchRouteImport } from './routes/merch'
 import { Route as MinerRouteImport } from './routes/miner'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as ProtocolRouteImport } from './routes/protocol'
@@ -23,9 +26,19 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DemandAppRoute = DemandAppRouteImport.update({
   id: '/demand-app',
   path: '/demand-app',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DocsRoute = DocsRouteImport.update({
+  id: '/docs',
+  path: '/docs',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FaqsRoute = FaqsRouteImport.update({
@@ -36,6 +49,11 @@ const FaqsRoute = FaqsRouteImport.update({
 const GraderRoute = GraderRouteImport.update({
   id: '/grader',
   path: '/grader',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MerchRoute = MerchRouteImport.update({
+  id: '/merch',
+  path: '/merch',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MinerRoute = MinerRouteImport.update({
@@ -61,9 +79,12 @@ const RoadmapRoute = RoadmapRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/dashboard': typeof DashboardRoute
   '/demand-app': typeof DemandAppRoute
+  '/docs': typeof DocsRoute
   '/faqs': typeof FaqsRoute
   '/grader': typeof GraderRoute
+  '/merch': typeof MerchRoute
   '/miner': typeof MinerRoute
   '/pricing': typeof PricingRoute
   '/protocol': typeof ProtocolRoute
@@ -71,9 +92,12 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/dashboard': typeof DashboardRoute
   '/demand-app': typeof DemandAppRoute
+  '/docs': typeof DocsRoute
   '/faqs': typeof FaqsRoute
   '/grader': typeof GraderRoute
+  '/merch': typeof MerchRoute
   '/miner': typeof MinerRoute
   '/pricing': typeof PricingRoute
   '/protocol': typeof ProtocolRoute
@@ -82,9 +106,12 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/dashboard': typeof DashboardRoute
   '/demand-app': typeof DemandAppRoute
+  '/docs': typeof DocsRoute
   '/faqs': typeof FaqsRoute
   '/grader': typeof GraderRoute
+  '/merch': typeof MerchRoute
   '/miner': typeof MinerRoute
   '/pricing': typeof PricingRoute
   '/protocol': typeof ProtocolRoute
@@ -94,9 +121,12 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/dashboard'
     | '/demand-app'
+    | '/docs'
     | '/faqs'
     | '/grader'
+    | '/merch'
     | '/miner'
     | '/pricing'
     | '/protocol'
@@ -104,9 +134,12 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/dashboard'
     | '/demand-app'
+    | '/docs'
     | '/faqs'
     | '/grader'
+    | '/merch'
     | '/miner'
     | '/pricing'
     | '/protocol'
@@ -114,9 +147,12 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/dashboard'
     | '/demand-app'
+    | '/docs'
     | '/faqs'
     | '/grader'
+    | '/merch'
     | '/miner'
     | '/pricing'
     | '/protocol'
@@ -125,9 +161,12 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DashboardRoute: typeof DashboardRoute
   DemandAppRoute: typeof DemandAppRoute
+  DocsRoute: typeof DocsRoute
   FaqsRoute: typeof FaqsRoute
   GraderRoute: typeof GraderRoute
+  MerchRoute: typeof MerchRoute
   MinerRoute: typeof MinerRoute
   PricingRoute: typeof PricingRoute
   ProtocolRoute: typeof ProtocolRoute
@@ -143,11 +182,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/demand-app': {
       id: '/demand-app'
       path: '/demand-app'
       fullPath: '/demand-app'
       preLoaderRoute: typeof DemandAppRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/docs': {
+      id: '/docs'
+      path: '/docs'
+      fullPath: '/docs'
+      preLoaderRoute: typeof DocsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/faqs': {
@@ -162,6 +215,13 @@ declare module '@tanstack/react-router' {
       path: '/grader'
       fullPath: '/grader'
       preLoaderRoute: typeof GraderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/merch': {
+      id: '/merch'
+      path: '/merch'
+      fullPath: '/merch'
+      preLoaderRoute: typeof MerchRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/miner': {
@@ -197,9 +257,12 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DashboardRoute: DashboardRoute,
   DemandAppRoute: DemandAppRoute,
+  DocsRoute: DocsRoute,
   FaqsRoute: FaqsRoute,
   GraderRoute: GraderRoute,
+  MerchRoute: MerchRoute,
   MinerRoute: MinerRoute,
   PricingRoute: PricingRoute,
   ProtocolRoute: ProtocolRoute,
