@@ -82,7 +82,7 @@ function AuthPage() {
         if (err) throw err;
         if (data.session) {
           await track("sign_in", { label: "email_signup" });
-          navigate({ to: "/dashboard", replace: true });
+          navigate({ to: destination, replace: true });
         } else {
           setMessage("Check your email to confirm your account, then sign in.");
         }
@@ -90,7 +90,7 @@ function AuthPage() {
         const { error: err } = await supabase.auth.signInWithPassword({ email, password });
         if (err) throw err;
         await track("sign_in", { label: "email_password" });
-        navigate({ to: "/dashboard", replace: true });
+        navigate({ to: destination, replace: true });
       }
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong.");
@@ -110,7 +110,7 @@ function AuthPage() {
     }
     if (result.redirected) return;
     await track("sign_in", { label: "google" });
-    navigate({ to: "/dashboard", replace: true });
+    navigate({ to: destination, replace: true });
   }
 
   return (
