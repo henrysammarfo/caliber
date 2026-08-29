@@ -23,7 +23,7 @@ export const Route = createFileRoute("/faqs")({
   component: FaqPage,
 });
 
-const FAQ = [
+const FAQ: [string, string][] = [
   ["What exactly does CALIBER own?", "A calibrated vertical of paid intelligence on Telegraph. The miner supplies signal, the WASM grader defines what good means, and the demand app makes ranking compound."],
   ["Why is a grader necessary?", "Telegraph supply is noise without a quality layer. Substring matching cannot separate a confident wrong answer from a calibrated right one; proper scoring can."],
   ["How is gaming prevented?", "Holdout partitions, per-intent normalisation, duplicate detection and a named adversarial test suite with published rank drops."],
