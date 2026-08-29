@@ -20,6 +20,10 @@ import { Route as MinerRouteImport } from './routes/miner'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as ProtocolRouteImport } from './routes/protocol'
 import { Route as RoadmapRouteImport } from './routes/roadmap'
+import { Route as DashboardIndexRouteImport } from './routes/dashboard.index'
+import { Route as DashboardGraderRouteImport } from './routes/dashboard.grader'
+import { Route as DashboardMinerRouteImport } from './routes/dashboard.miner'
+import { Route as DashboardRegistryRouteImport } from './routes/dashboard.registry'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -76,10 +80,30 @@ const RoadmapRoute = RoadmapRouteImport.update({
   path: '/roadmap',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardIndexRoute = DashboardIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardGraderRoute = DashboardGraderRouteImport.update({
+  id: '/grader',
+  path: '/grader',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardMinerRoute = DashboardMinerRouteImport.update({
+  id: '/miner',
+  path: '/miner',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardRegistryRoute = DashboardRegistryRouteImport.update({
+  id: '/registry',
+  path: '/registry',
+  getParentRoute: () => DashboardRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/dashboard': typeof DashboardRoute
+  '/dashboard': typeof DashboardRouteWithChildren
   '/demand-app': typeof DemandAppRoute
   '/docs': typeof DocsRoute
   '/faqs': typeof FaqsRoute
@@ -89,10 +113,13 @@ export interface FileRoutesByFullPath {
   '/pricing': typeof PricingRoute
   '/protocol': typeof ProtocolRoute
   '/roadmap': typeof RoadmapRoute
+  '/dashboard/grader': typeof DashboardGraderRoute
+  '/dashboard/miner': typeof DashboardMinerRoute
+  '/dashboard/registry': typeof DashboardRegistryRoute
+  '/dashboard/': typeof DashboardIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/dashboard': typeof DashboardRoute
   '/demand-app': typeof DemandAppRoute
   '/docs': typeof DocsRoute
   '/faqs': typeof FaqsRoute
@@ -102,11 +129,15 @@ export interface FileRoutesByTo {
   '/pricing': typeof PricingRoute
   '/protocol': typeof ProtocolRoute
   '/roadmap': typeof RoadmapRoute
+  '/dashboard/grader': typeof DashboardGraderRoute
+  '/dashboard/miner': typeof DashboardMinerRoute
+  '/dashboard/registry': typeof DashboardRegistryRoute
+  '/dashboard': typeof DashboardIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/dashboard': typeof DashboardRoute
+  '/dashboard': typeof DashboardRouteWithChildren
   '/demand-app': typeof DemandAppRoute
   '/docs': typeof DocsRoute
   '/faqs': typeof FaqsRoute
@@ -116,6 +147,10 @@ export interface FileRoutesById {
   '/pricing': typeof PricingRoute
   '/protocol': typeof ProtocolRoute
   '/roadmap': typeof RoadmapRoute
+  '/dashboard/grader': typeof DashboardGraderRoute
+  '/dashboard/miner': typeof DashboardMinerRoute
+  '/dashboard/registry': typeof DashboardRegistryRoute
+  '/dashboard/': typeof DashboardIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -131,10 +166,13 @@ export interface FileRouteTypes {
     | '/pricing'
     | '/protocol'
     | '/roadmap'
+    | '/dashboard/grader'
+    | '/dashboard/miner'
+    | '/dashboard/registry'
+    | '/dashboard/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/dashboard'
     | '/demand-app'
     | '/docs'
     | '/faqs'
@@ -144,6 +182,10 @@ export interface FileRouteTypes {
     | '/pricing'
     | '/protocol'
     | '/roadmap'
+    | '/dashboard/grader'
+    | '/dashboard/miner'
+    | '/dashboard/registry'
+    | '/dashboard'
   id:
     | '__root__'
     | '/'
@@ -157,11 +199,15 @@ export interface FileRouteTypes {
     | '/pricing'
     | '/protocol'
     | '/roadmap'
+    | '/dashboard/grader'
+    | '/dashboard/miner'
+    | '/dashboard/registry'
+    | '/dashboard/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  DashboardRoute: typeof DashboardRoute
+  DashboardRoute: typeof DashboardRouteWithChildren
   DemandAppRoute: typeof DemandAppRoute
   DocsRoute: typeof DocsRoute
   FaqsRoute: typeof FaqsRoute
@@ -252,12 +298,58 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RoadmapRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard/': {
+      id: '/dashboard/'
+      path: '/'
+      fullPath: '/dashboard/'
+      preLoaderRoute: typeof DashboardIndexRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/grader': {
+      id: '/dashboard/grader'
+      path: '/grader'
+      fullPath: '/dashboard/grader'
+      preLoaderRoute: typeof DashboardGraderRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/miner': {
+      id: '/dashboard/miner'
+      path: '/miner'
+      fullPath: '/dashboard/miner'
+      preLoaderRoute: typeof DashboardMinerRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/registry': {
+      id: '/dashboard/registry'
+      path: '/registry'
+      fullPath: '/dashboard/registry'
+      preLoaderRoute: typeof DashboardRegistryRouteImport
+      parentRoute: typeof DashboardRoute
+    }
   }
 }
 
+interface DashboardRouteChildren {
+  DashboardGraderRoute: typeof DashboardGraderRoute
+  DashboardMinerRoute: typeof DashboardMinerRoute
+  DashboardRegistryRoute: typeof DashboardRegistryRoute
+  DashboardIndexRoute: typeof DashboardIndexRoute
+}
+
+const DashboardRouteChildren: DashboardRouteChildren = {
+  DashboardGraderRoute: DashboardGraderRoute,
+  DashboardMinerRoute: DashboardMinerRoute,
+  DashboardRegistryRoute: DashboardRegistryRoute,
+  DashboardIndexRoute: DashboardIndexRoute,
+}
+
+const DashboardRouteWithChildren = DashboardRoute._addFileChildren(
+  DashboardRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  DashboardRoute: DashboardRoute,
+  DashboardRoute: DashboardRouteWithChildren,
   DemandAppRoute: DemandAppRoute,
   DocsRoute: DocsRoute,
   FaqsRoute: FaqsRoute,
