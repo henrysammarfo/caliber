@@ -10,33 +10,63 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as GraderRouteImport } from './routes/grader'
+import { Route as MinerRouteImport } from './routes/miner'
+import { Route as ProtocolRouteImport } from './routes/protocol'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GraderRoute = GraderRouteImport.update({
+  id: '/grader',
+  path: '/grader',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MinerRoute = MinerRouteImport.update({
+  id: '/miner',
+  path: '/miner',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProtocolRoute = ProtocolRouteImport.update({
+  id: '/protocol',
+  path: '/protocol',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/grader': typeof GraderRoute
+  '/miner': typeof MinerRoute
+  '/protocol': typeof ProtocolRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/grader': typeof GraderRoute
+  '/miner': typeof MinerRoute
+  '/protocol': typeof ProtocolRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/grader': typeof GraderRoute
+  '/miner': typeof MinerRoute
+  '/protocol': typeof ProtocolRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/grader' | '/miner' | '/protocol'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/grader' | '/miner' | '/protocol'
+  id: '__root__' | '/' | '/grader' | '/miner' | '/protocol'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  GraderRoute: typeof GraderRoute
+  MinerRoute: typeof MinerRoute
+  ProtocolRoute: typeof ProtocolRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +78,35 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/grader': {
+      id: '/grader'
+      path: '/grader'
+      fullPath: '/grader'
+      preLoaderRoute: typeof GraderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/miner': {
+      id: '/miner'
+      path: '/miner'
+      fullPath: '/miner'
+      preLoaderRoute: typeof MinerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/protocol': {
+      id: '/protocol'
+      path: '/protocol'
+      fullPath: '/protocol'
+      preLoaderRoute: typeof ProtocolRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  GraderRoute: GraderRoute,
+  MinerRoute: MinerRoute,
+  ProtocolRoute: ProtocolRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
