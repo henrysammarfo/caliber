@@ -24,6 +24,7 @@ import { Route as RoadmapRouteImport } from './routes/roadmap'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedDashboardIndexRouteImport } from './routes/_authenticated/dashboard.index'
 import { Route as AuthenticatedDashboardActivityRouteImport } from './routes/_authenticated/dashboard.activity'
+import { Route as AuthenticatedDashboardEngagementRouteImport } from './routes/_authenticated/dashboard.engagement'
 import { Route as AuthenticatedDashboardGraderRouteImport } from './routes/_authenticated/dashboard.grader'
 import { Route as AuthenticatedDashboardMinerRouteImport } from './routes/_authenticated/dashboard.miner'
 import { Route as AuthenticatedDashboardPaymentsRouteImport } from './routes/_authenticated/dashboard.payments'
@@ -106,6 +107,12 @@ const AuthenticatedDashboardActivityRoute =
     path: '/activity',
     getParentRoute: () => AuthenticatedDashboardRoute,
   } as any)
+const AuthenticatedDashboardEngagementRoute =
+  AuthenticatedDashboardEngagementRouteImport.update({
+    id: '/engagement',
+    path: '/engagement',
+    getParentRoute: () => AuthenticatedDashboardRoute,
+  } as any)
 const AuthenticatedDashboardGraderRoute =
   AuthenticatedDashboardGraderRouteImport.update({
     id: '/grader',
@@ -151,6 +158,7 @@ export interface FileRoutesByFullPath {
   '/roadmap': typeof RoadmapRoute
   '/dashboard': typeof AuthenticatedDashboardRouteWithChildren
   '/dashboard/activity': typeof AuthenticatedDashboardActivityRoute
+  '/dashboard/engagement': typeof AuthenticatedDashboardEngagementRoute
   '/dashboard/grader': typeof AuthenticatedDashboardGraderRoute
   '/dashboard/miner': typeof AuthenticatedDashboardMinerRoute
   '/dashboard/payments': typeof AuthenticatedDashboardPaymentsRoute
@@ -171,6 +179,7 @@ export interface FileRoutesByTo {
   '/protocol': typeof ProtocolRoute
   '/roadmap': typeof RoadmapRoute
   '/dashboard/activity': typeof AuthenticatedDashboardActivityRoute
+  '/dashboard/engagement': typeof AuthenticatedDashboardEngagementRoute
   '/dashboard/grader': typeof AuthenticatedDashboardGraderRoute
   '/dashboard/miner': typeof AuthenticatedDashboardMinerRoute
   '/dashboard/payments': typeof AuthenticatedDashboardPaymentsRoute
@@ -194,6 +203,7 @@ export interface FileRoutesById {
   '/roadmap': typeof RoadmapRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRouteWithChildren
   '/_authenticated/dashboard/activity': typeof AuthenticatedDashboardActivityRoute
+  '/_authenticated/dashboard/engagement': typeof AuthenticatedDashboardEngagementRoute
   '/_authenticated/dashboard/grader': typeof AuthenticatedDashboardGraderRoute
   '/_authenticated/dashboard/miner': typeof AuthenticatedDashboardMinerRoute
   '/_authenticated/dashboard/payments': typeof AuthenticatedDashboardPaymentsRoute
@@ -217,6 +227,7 @@ export interface FileRouteTypes {
     | '/roadmap'
     | '/dashboard'
     | '/dashboard/activity'
+    | '/dashboard/engagement'
     | '/dashboard/grader'
     | '/dashboard/miner'
     | '/dashboard/payments'
@@ -237,6 +248,7 @@ export interface FileRouteTypes {
     | '/protocol'
     | '/roadmap'
     | '/dashboard/activity'
+    | '/dashboard/engagement'
     | '/dashboard/grader'
     | '/dashboard/miner'
     | '/dashboard/payments'
@@ -259,6 +271,7 @@ export interface FileRouteTypes {
     | '/roadmap'
     | '/_authenticated/dashboard'
     | '/_authenticated/dashboard/activity'
+    | '/_authenticated/dashboard/engagement'
     | '/_authenticated/dashboard/grader'
     | '/_authenticated/dashboard/miner'
     | '/_authenticated/dashboard/payments'
@@ -389,6 +402,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDashboardActivityRouteImport
       parentRoute: typeof AuthenticatedDashboardRoute
     }
+    '/_authenticated/dashboard/engagement': {
+      id: '/_authenticated/dashboard/engagement'
+      path: '/engagement'
+      fullPath: '/dashboard/engagement'
+      preLoaderRoute: typeof AuthenticatedDashboardEngagementRouteImport
+      parentRoute: typeof AuthenticatedDashboardRoute
+    }
     '/_authenticated/dashboard/grader': {
       id: '/_authenticated/dashboard/grader'
       path: '/grader'
@@ -429,6 +449,7 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedDashboardRouteChildren {
   AuthenticatedDashboardActivityRoute: typeof AuthenticatedDashboardActivityRoute
+  AuthenticatedDashboardEngagementRoute: typeof AuthenticatedDashboardEngagementRoute
   AuthenticatedDashboardGraderRoute: typeof AuthenticatedDashboardGraderRoute
   AuthenticatedDashboardMinerRoute: typeof AuthenticatedDashboardMinerRoute
   AuthenticatedDashboardPaymentsRoute: typeof AuthenticatedDashboardPaymentsRoute
@@ -440,6 +461,8 @@ interface AuthenticatedDashboardRouteChildren {
 const AuthenticatedDashboardRouteChildren: AuthenticatedDashboardRouteChildren =
   {
     AuthenticatedDashboardActivityRoute: AuthenticatedDashboardActivityRoute,
+    AuthenticatedDashboardEngagementRoute:
+      AuthenticatedDashboardEngagementRoute,
     AuthenticatedDashboardGraderRoute: AuthenticatedDashboardGraderRoute,
     AuthenticatedDashboardMinerRoute: AuthenticatedDashboardMinerRoute,
     AuthenticatedDashboardPaymentsRoute: AuthenticatedDashboardPaymentsRoute,
