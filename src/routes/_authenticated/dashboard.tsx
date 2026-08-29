@@ -69,6 +69,15 @@ function DashboardLayout() {
           <Link to="/" className="btn-base btn-ghost-metal mt-8 hidden w-full lg:inline-flex">
             Back to site
           </Link>
+          <button
+            type="button"
+            onClick={signOut}
+            className="mt-2.5 hidden w-full items-center justify-center gap-2 rounded-md border border-transparent px-3 py-2.5 text-[13.5px] text-muted-ink transition-colors hover:bg-white/5 hover:text-foreground lg:inline-flex"
+          >
+            <LogOut className="h-4 w-4" strokeWidth={1.6} />
+            Sign out
+          </button>
+
         </aside>
         <main className="flex-1 px-5 py-8 lg:px-10 lg:py-10">
           <Outlet />
