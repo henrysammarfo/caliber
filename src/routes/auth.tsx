@@ -126,6 +126,18 @@ function AuthPage() {
             The CALIBER console is restricted to signed-in operators.
           </p>
 
+          {notice ? (
+            <p
+              role="status"
+              aria-live="polite"
+              className="mt-4 rounded-md border border-hair bg-white/5 px-3.5 py-2.5 text-[12.5px] text-foreground"
+            >
+              {notice}
+            </p>
+          ) : null}
+
+
+
           <button type="button" onClick={onGoogle} className="btn-base btn-ghost-metal mt-6 w-full">
             Continue with Google
           </button>
