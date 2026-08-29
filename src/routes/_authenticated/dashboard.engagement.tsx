@@ -67,7 +67,7 @@ function topOf(rows: EventRow[], key: (r: EventRow) => string | null, limit = 8)
 
 function toCsv(rows: EventRow[]) {
   const head = ["created_at", "event_name", "path", "label", "visitor_id", "user_id", "session_id"];
-  const escape = (v: unknown) => `"${String(v ?? "").replace(/"/g, '""')}"`;
+  const escape = (v: unknown) => `"${String(v ?? "").replace(/[\r\n]+/g, " ").replace(/"/g, '""')}"`;
   const body = rows.map((r) =>
     [
       r.created_at,
@@ -87,23 +87,43 @@ function toCsv(rows: EventRow[]) {
 function EngagementConsole() {
   usePageView("Engagement");
   const [days, setDays] = useState<number>(30);
+  const [exportNote, setExportNote] = useState<string | null>(null);
 
   const { data, isLoading, error } = useQuery({
     queryKey: ["analytics-events", days],
     queryFn: async () => {
-      const since = new Date(Date.now() - days * 24 * 60 * 60 * 1000).toISOString();
+      const until = new Date();
+      const since = new Date(until.getTime() - days * 24 * 60 * 60 * 1000);
       const { data, error } = await supabase
         .from("analytics_events")
         .select("event_name, path, label, visitor_id, user_id, metadata, created_at")
-        .gte("created_at", since)
+        .gte("created_at", since.toISOString())
+        .lte("created_at", until.toISOString())
         .order("created_at", { ascending: false })
         .limit(5000);
       if (error) throw error;
-      return (data ?? []) as EventRow[];
+      return {
+        since: since.toISOString(),
+        until: until.toISOString(),
+        rows: (data ?? []) as EventRow[],
+      };
     },
   });
 
-  const rows = useMemo(() => data ?? [], [data]);
+  // Single source of truth: charts, tables and the CSV all read `rows`,
+  // which is re-filtered against the exact window the query was issued for.
+  const range = useMemo(
+    () => ({
+      since: data?.since ?? new Date(Date.now() - days * 86400000).toISOString(),
+      until: data?.until ?? new Date().toISOString(),
+    }),
+    [data, days],
+  );
+
+  const rows = useMemo(
+    () => (data?.rows ?? []).filter((r) => r.created_at >= range.since && r.created_at <= range.until),
+    [data, range],
+  );
   const visits = rows.filter((r) => r.event_name === "route_visit");
   const ctas = rows.filter((r) => r.event_name === "cta_click");
   const menus = rows.filter((r) => r.event_name === "menu_open" || r.event_name === "menu_close");
@@ -136,15 +156,47 @@ function EngagementConsole() {
   const mix = topOf(rows, (r) => r.event_name, 6).map(([name, value]) => ({ name, value }));
 
   function exportCsv() {
-    trackCta("Console · Export engagement CSV", { days, rows: rows.length });
-    const blob = new Blob([toCsv(rows)], { type: "text/csv;charset=utf-8" });
+    setExportNote(null);
+    if (isLoading) {
+      setExportNote("Still loading events — try again in a moment.");
+      return;
+    }
+    if (error) {
+      setExportNote("Export blocked: the current view failed to load.");
+      return;
+    }
+    if (rows.length === 0) {
+      setExportNote(`No events in the last ${days} days to export.`);
+      return;
+    }
+    // Validation: every exported row must fall inside the active filter window
+    // and match the row count rendered on screen.
+    const outOfRange = rows.filter((r) => r.created_at < range.since || r.created_at > range.until);
+    if (outOfRange.length > 0) {
+      setExportNote("Export blocked: some rows fell outside the selected range. Refresh and retry.");
+      return;
+    }
+
+    const csv = toCsv(rows);
+    const lines = csv.split("\n").length - 1; // minus header
+    if (lines !== rows.length) {
+      setExportNote("Export blocked: row count did not match the filtered view.");
+      return;
+    }
+
+    trackCta("Console · Export engagement CSV", { days, rows: rows.length, since: range.since, until: range.until });
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `caliber-engagement-${days}d.csv`;
+    a.download = `caliber-engagement-${days}d-${range.until.slice(0, 10)}.csv`;
     a.click();
     URL.revokeObjectURL(url);
+    setExportNote(
+      `Exported ${rows.length} rows · ${range.since.slice(0, 10)} → ${range.until.slice(0, 10)} (last ${days} days).`,
+    );
   }
+
 
   return (
     <>
@@ -174,6 +226,14 @@ function EngagementConsole() {
           </div>
         }
       />
+
+      {exportNote ? (
+        <p className="mb-4 text-[12.5px] text-muted-ink" role="status" aria-live="polite">
+          {exportNote}
+        </p>
+      ) : null}
+
+
 
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <StatCard icon={Users} label="Unique visitors" value={String(uniques)} delta={`${sessions} sessions`} delay={0.1} />

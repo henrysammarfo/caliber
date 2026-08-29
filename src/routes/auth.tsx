@@ -8,7 +8,23 @@ import { supabase } from "@/integrations/supabase/client";
 import { lovable } from "@/integrations/lovable/index";
 import { track } from "@/lib/analytics";
 
+type AuthSearch = { reason?: string | undefined; from?: string | undefined };
+
+const REASON_NOTICE: Record<string, string> = {
+  timeout: "You were signed out after 30 minutes of inactivity. Sign in again to continue.",
+  expired: "Your session expired and could not be renewed. Please sign in again.",
+  revoked: "Your session ended on this device. Sign in again to reopen the console.",
+  signin: "The console is restricted — sign in to continue.",
+};
+
 export const Route = createFileRoute("/auth")({
+  validateSearch: (search: Record<string, unknown>): AuthSearch => ({
+    reason: typeof search["reason"] === "string" ? (search["reason"] as string) : undefined,
+    from:
+      typeof search["from"] === "string" && (search["from"] as string).startsWith("/")
+        ? (search["from"] as string)
+        : undefined,
+  }),
   head: () => ({
     meta: [
       { title: "Sign in — CALIBER Console" },
@@ -29,6 +45,9 @@ export const Route = createFileRoute("/auth")({
 function AuthPage() {
   useAppear();
   const navigate = useNavigate();
+  const { reason, from } = Route.useSearch();
+  const notice = reason ? (REASON_NOTICE[reason] ?? REASON_NOTICE["signin"]) : null;
+  const destination = from ?? "/dashboard";
   const [mode, setMode] = useState<"signin" | "signup">("signin");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -39,9 +58,11 @@ function AuthPage() {
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data }) => {
-      if (data.session) navigate({ to: "/dashboard", replace: true });
+      if (data.session) navigate({ to: destination, replace: true });
     });
-  }, [navigate]);
+  }, [navigate, destination]);
+
+
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -61,7 +82,7 @@ function AuthPage() {
         if (err) throw err;
         if (data.session) {
           await track("sign_in", { label: "email_signup" });
-          navigate({ to: "/dashboard", replace: true });
+          navigate({ to: destination, replace: true });
         } else {
           setMessage("Check your email to confirm your account, then sign in.");
         }
@@ -69,7 +90,7 @@ function AuthPage() {
         const { error: err } = await supabase.auth.signInWithPassword({ email, password });
         if (err) throw err;
         await track("sign_in", { label: "email_password" });
-        navigate({ to: "/dashboard", replace: true });
+        navigate({ to: destination, replace: true });
       }
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong.");
@@ -89,7 +110,7 @@ function AuthPage() {
     }
     if (result.redirected) return;
     await track("sign_in", { label: "google" });
-    navigate({ to: "/dashboard", replace: true });
+    navigate({ to: destination, replace: true });
   }
 
   return (
@@ -104,6 +125,18 @@ function AuthPage() {
           <p className="mt-1.5 text-[13.5px] text-muted-ink">
             The CALIBER console is restricted to signed-in operators.
           </p>
+
+          {notice ? (
+            <p
+              role="status"
+              aria-live="polite"
+              className="mt-4 rounded-md border border-hair bg-white/5 px-3.5 py-2.5 text-[12.5px] text-foreground"
+            >
+              {notice}
+            </p>
+          ) : null}
+
+
 
           <button type="button" onClick={onGoogle} className="btn-base btn-ghost-metal mt-6 w-full">
             Continue with Google
