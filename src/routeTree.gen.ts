@@ -10,13 +10,27 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DemandAppRouteImport } from './routes/demand-app'
+import { Route as FaqsRouteImport } from './routes/faqs'
 import { Route as GraderRouteImport } from './routes/grader'
 import { Route as MinerRouteImport } from './routes/miner'
+import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as ProtocolRouteImport } from './routes/protocol'
+import { Route as RoadmapRouteImport } from './routes/roadmap'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DemandAppRoute = DemandAppRouteImport.update({
+  id: '/demand-app',
+  path: '/demand-app',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqsRoute = FaqsRouteImport.update({
+  id: '/faqs',
+  path: '/faqs',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GraderRoute = GraderRouteImport.update({
@@ -29,44 +43,95 @@ const MinerRoute = MinerRouteImport.update({
   path: '/miner',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PricingRoute = PricingRouteImport.update({
+  id: '/pricing',
+  path: '/pricing',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProtocolRoute = ProtocolRouteImport.update({
   id: '/protocol',
   path: '/protocol',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RoadmapRoute = RoadmapRouteImport.update({
+  id: '/roadmap',
+  path: '/roadmap',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/demand-app': typeof DemandAppRoute
+  '/faqs': typeof FaqsRoute
   '/grader': typeof GraderRoute
   '/miner': typeof MinerRoute
+  '/pricing': typeof PricingRoute
   '/protocol': typeof ProtocolRoute
+  '/roadmap': typeof RoadmapRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/demand-app': typeof DemandAppRoute
+  '/faqs': typeof FaqsRoute
   '/grader': typeof GraderRoute
   '/miner': typeof MinerRoute
+  '/pricing': typeof PricingRoute
   '/protocol': typeof ProtocolRoute
+  '/roadmap': typeof RoadmapRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/demand-app': typeof DemandAppRoute
+  '/faqs': typeof FaqsRoute
   '/grader': typeof GraderRoute
   '/miner': typeof MinerRoute
+  '/pricing': typeof PricingRoute
   '/protocol': typeof ProtocolRoute
+  '/roadmap': typeof RoadmapRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/grader' | '/miner' | '/protocol'
+  fullPaths:
+    | '/'
+    | '/demand-app'
+    | '/faqs'
+    | '/grader'
+    | '/miner'
+    | '/pricing'
+    | '/protocol'
+    | '/roadmap'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/grader' | '/miner' | '/protocol'
-  id: '__root__' | '/' | '/grader' | '/miner' | '/protocol'
+  to:
+    | '/'
+    | '/demand-app'
+    | '/faqs'
+    | '/grader'
+    | '/miner'
+    | '/pricing'
+    | '/protocol'
+    | '/roadmap'
+  id:
+    | '__root__'
+    | '/'
+    | '/demand-app'
+    | '/faqs'
+    | '/grader'
+    | '/miner'
+    | '/pricing'
+    | '/protocol'
+    | '/roadmap'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DemandAppRoute: typeof DemandAppRoute
+  FaqsRoute: typeof FaqsRoute
   GraderRoute: typeof GraderRoute
   MinerRoute: typeof MinerRoute
+  PricingRoute: typeof PricingRoute
   ProtocolRoute: typeof ProtocolRoute
+  RoadmapRoute: typeof RoadmapRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -76,6 +141,20 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/demand-app': {
+      id: '/demand-app'
+      path: '/demand-app'
+      fullPath: '/demand-app'
+      preLoaderRoute: typeof DemandAppRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faqs': {
+      id: '/faqs'
+      path: '/faqs'
+      fullPath: '/faqs'
+      preLoaderRoute: typeof FaqsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/grader': {
@@ -92,6 +171,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MinerRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/pricing': {
+      id: '/pricing'
+      path: '/pricing'
+      fullPath: '/pricing'
+      preLoaderRoute: typeof PricingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/protocol': {
       id: '/protocol'
       path: '/protocol'
@@ -99,14 +185,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProtocolRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/roadmap': {
+      id: '/roadmap'
+      path: '/roadmap'
+      fullPath: '/roadmap'
+      preLoaderRoute: typeof RoadmapRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DemandAppRoute: DemandAppRoute,
+  FaqsRoute: FaqsRoute,
   GraderRoute: GraderRoute,
   MinerRoute: MinerRoute,
+  PricingRoute: PricingRoute,
   ProtocolRoute: ProtocolRoute,
+  RoadmapRoute: RoadmapRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
