@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Activity, AlertTriangle, GitCommitVertical, MessageSquare } from "lucide-react";
 import { DashHeader, Panel, StatCard } from "@/components/dash/DashKit";
+import { usePageView } from "@/lib/use-analytics";
 
 export const Route = createFileRoute("/_authenticated/dashboard/activity")({
   head: () => ({
@@ -27,6 +28,7 @@ const FEED = [
 ];
 
 function ActivityConsole() {
+  usePageView("Activity");
   return (
     <>
       <DashHeader title="Activity" subtitle="Proof trail for validators and judges" />

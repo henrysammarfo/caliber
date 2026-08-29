@@ -3,6 +3,7 @@ import { DashHeader, Panel } from "@/components/dash/DashKit";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
+import { usePageView } from "@/lib/use-analytics";
 
 export const Route = createFileRoute("/_authenticated/dashboard/settings")({
   head: () => ({
@@ -26,6 +27,7 @@ const TOGGLES = [
 ] as const;
 
 function SettingsConsole() {
+  usePageView("Settings");
   return (
     <>
       <DashHeader title="Settings" subtitle="Miner, grader and settlement configuration" />

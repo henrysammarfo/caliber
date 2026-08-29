@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Coins, Gauge, Radar, TrendingUp } from "lucide-react";
 import { DashHeader, DataTable, Panel, StatCard } from "@/components/dash/DashKit";
+import { usePageView } from "@/lib/use-analytics";
 
 export const Route = createFileRoute("/_authenticated/dashboard/")({
   head: () => ({
@@ -18,6 +19,7 @@ export const Route = createFileRoute("/_authenticated/dashboard/")({
 });
 
 function OverviewPage() {
+  usePageView("Overview");
   return (
     <>
       <DashHeader

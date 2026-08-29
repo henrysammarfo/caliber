@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Crosshair, ShieldAlert, Sigma, TestTube2 } from "lucide-react";
 import { DashHeader, DataTable, Panel, StatCard } from "@/components/dash/DashKit";
+import { usePageView } from "@/lib/use-analytics";
 
 export const Route = createFileRoute("/_authenticated/dashboard/grader")({
   head: () => ({
@@ -26,6 +27,7 @@ const BINS = [
 ];
 
 function GraderConsole() {
+  usePageView("Grader");
   return (
     <>
       <DashHeader
