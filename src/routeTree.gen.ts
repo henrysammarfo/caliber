@@ -21,9 +21,12 @@ import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as ProtocolRouteImport } from './routes/protocol'
 import { Route as RoadmapRouteImport } from './routes/roadmap'
 import { Route as DashboardIndexRouteImport } from './routes/dashboard.index'
+import { Route as DashboardActivityRouteImport } from './routes/dashboard.activity'
 import { Route as DashboardGraderRouteImport } from './routes/dashboard.grader'
 import { Route as DashboardMinerRouteImport } from './routes/dashboard.miner'
+import { Route as DashboardPaymentsRouteImport } from './routes/dashboard.payments'
 import { Route as DashboardRegistryRouteImport } from './routes/dashboard.registry'
+import { Route as DashboardSettingsRouteImport } from './routes/dashboard.settings'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -85,6 +88,11 @@ const DashboardIndexRoute = DashboardIndexRouteImport.update({
   path: '/',
   getParentRoute: () => DashboardRoute,
 } as any)
+const DashboardActivityRoute = DashboardActivityRouteImport.update({
+  id: '/activity',
+  path: '/activity',
+  getParentRoute: () => DashboardRoute,
+} as any)
 const DashboardGraderRoute = DashboardGraderRouteImport.update({
   id: '/grader',
   path: '/grader',
@@ -95,9 +103,19 @@ const DashboardMinerRoute = DashboardMinerRouteImport.update({
   path: '/miner',
   getParentRoute: () => DashboardRoute,
 } as any)
+const DashboardPaymentsRoute = DashboardPaymentsRouteImport.update({
+  id: '/payments',
+  path: '/payments',
+  getParentRoute: () => DashboardRoute,
+} as any)
 const DashboardRegistryRoute = DashboardRegistryRouteImport.update({
   id: '/registry',
   path: '/registry',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardSettingsRoute = DashboardSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
   getParentRoute: () => DashboardRoute,
 } as any)
 
@@ -113,9 +131,12 @@ export interface FileRoutesByFullPath {
   '/pricing': typeof PricingRoute
   '/protocol': typeof ProtocolRoute
   '/roadmap': typeof RoadmapRoute
+  '/dashboard/activity': typeof DashboardActivityRoute
   '/dashboard/grader': typeof DashboardGraderRoute
   '/dashboard/miner': typeof DashboardMinerRoute
+  '/dashboard/payments': typeof DashboardPaymentsRoute
   '/dashboard/registry': typeof DashboardRegistryRoute
+  '/dashboard/settings': typeof DashboardSettingsRoute
   '/dashboard/': typeof DashboardIndexRoute
 }
 export interface FileRoutesByTo {
@@ -129,9 +150,12 @@ export interface FileRoutesByTo {
   '/pricing': typeof PricingRoute
   '/protocol': typeof ProtocolRoute
   '/roadmap': typeof RoadmapRoute
+  '/dashboard/activity': typeof DashboardActivityRoute
   '/dashboard/grader': typeof DashboardGraderRoute
   '/dashboard/miner': typeof DashboardMinerRoute
+  '/dashboard/payments': typeof DashboardPaymentsRoute
   '/dashboard/registry': typeof DashboardRegistryRoute
+  '/dashboard/settings': typeof DashboardSettingsRoute
   '/dashboard': typeof DashboardIndexRoute
 }
 export interface FileRoutesById {
@@ -147,9 +171,12 @@ export interface FileRoutesById {
   '/pricing': typeof PricingRoute
   '/protocol': typeof ProtocolRoute
   '/roadmap': typeof RoadmapRoute
+  '/dashboard/activity': typeof DashboardActivityRoute
   '/dashboard/grader': typeof DashboardGraderRoute
   '/dashboard/miner': typeof DashboardMinerRoute
+  '/dashboard/payments': typeof DashboardPaymentsRoute
   '/dashboard/registry': typeof DashboardRegistryRoute
+  '/dashboard/settings': typeof DashboardSettingsRoute
   '/dashboard/': typeof DashboardIndexRoute
 }
 export interface FileRouteTypes {
@@ -166,9 +193,12 @@ export interface FileRouteTypes {
     | '/pricing'
     | '/protocol'
     | '/roadmap'
+    | '/dashboard/activity'
     | '/dashboard/grader'
     | '/dashboard/miner'
+    | '/dashboard/payments'
     | '/dashboard/registry'
+    | '/dashboard/settings'
     | '/dashboard/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -182,9 +212,12 @@ export interface FileRouteTypes {
     | '/pricing'
     | '/protocol'
     | '/roadmap'
+    | '/dashboard/activity'
     | '/dashboard/grader'
     | '/dashboard/miner'
+    | '/dashboard/payments'
     | '/dashboard/registry'
+    | '/dashboard/settings'
     | '/dashboard'
   id:
     | '__root__'
@@ -199,9 +232,12 @@ export interface FileRouteTypes {
     | '/pricing'
     | '/protocol'
     | '/roadmap'
+    | '/dashboard/activity'
     | '/dashboard/grader'
     | '/dashboard/miner'
+    | '/dashboard/payments'
     | '/dashboard/registry'
+    | '/dashboard/settings'
     | '/dashboard/'
   fileRoutesById: FileRoutesById
 }
@@ -305,6 +341,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardIndexRouteImport
       parentRoute: typeof DashboardRoute
     }
+    '/dashboard/activity': {
+      id: '/dashboard/activity'
+      path: '/activity'
+      fullPath: '/dashboard/activity'
+      preLoaderRoute: typeof DashboardActivityRouteImport
+      parentRoute: typeof DashboardRoute
+    }
     '/dashboard/grader': {
       id: '/dashboard/grader'
       path: '/grader'
@@ -319,6 +362,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardMinerRouteImport
       parentRoute: typeof DashboardRoute
     }
+    '/dashboard/payments': {
+      id: '/dashboard/payments'
+      path: '/payments'
+      fullPath: '/dashboard/payments'
+      preLoaderRoute: typeof DashboardPaymentsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
     '/dashboard/registry': {
       id: '/dashboard/registry'
       path: '/registry'
@@ -326,20 +376,33 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardRegistryRouteImport
       parentRoute: typeof DashboardRoute
     }
+    '/dashboard/settings': {
+      id: '/dashboard/settings'
+      path: '/settings'
+      fullPath: '/dashboard/settings'
+      preLoaderRoute: typeof DashboardSettingsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
   }
 }
 
 interface DashboardRouteChildren {
+  DashboardActivityRoute: typeof DashboardActivityRoute
   DashboardGraderRoute: typeof DashboardGraderRoute
   DashboardMinerRoute: typeof DashboardMinerRoute
+  DashboardPaymentsRoute: typeof DashboardPaymentsRoute
   DashboardRegistryRoute: typeof DashboardRegistryRoute
+  DashboardSettingsRoute: typeof DashboardSettingsRoute
   DashboardIndexRoute: typeof DashboardIndexRoute
 }
 
 const DashboardRouteChildren: DashboardRouteChildren = {
+  DashboardActivityRoute: DashboardActivityRoute,
   DashboardGraderRoute: DashboardGraderRoute,
   DashboardMinerRoute: DashboardMinerRoute,
+  DashboardPaymentsRoute: DashboardPaymentsRoute,
   DashboardRegistryRoute: DashboardRegistryRoute,
+  DashboardSettingsRoute: DashboardSettingsRoute,
   DashboardIndexRoute: DashboardIndexRoute,
 }
 
