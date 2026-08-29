@@ -67,7 +67,7 @@ function topOf(rows: EventRow[], key: (r: EventRow) => string | null, limit = 8)
 
 function toCsv(rows: EventRow[]) {
   const head = ["created_at", "event_name", "path", "label", "visitor_id", "user_id", "session_id"];
-  const escape = (v: unknown) => `"${String(v ?? "").replace(/"/g, '""')}"`;
+  const escape = (v: unknown) => `"${String(v ?? "").replace(/[\r\n]+/g, " ").replace(/"/g, '""')}"`;
   const body = rows.map((r) =>
     [
       r.created_at,
