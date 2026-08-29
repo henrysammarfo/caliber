@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Activity, AlertTriangle, GitCommitVertical, MessageSquare } from "lucide-react";
 import { DashHeader, Panel, StatCard } from "@/components/dash/DashKit";
 
-export const Route = createFileRoute("/dashboard/activity")({
+export const Route = createFileRoute("/_authenticated/dashboard/activity")({
   head: () => ({
     meta: [
       { title: "Activity — CALIBER Console" },

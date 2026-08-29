@@ -11,7 +11,7 @@ import {
 import { Logo } from "@/components/brand/Logo";
 import { Grain, useAppear } from "@/components/site/Chrome";
 
-export const Route = createFileRoute("/dashboard")({
+export const Route = createFileRoute("/_authenticated/dashboard")({
   component: DashboardLayout,
 });
 

@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Coins, Gauge, Radar, TrendingUp } from "lucide-react";
 import { DashHeader, DataTable, Panel, StatCard } from "@/components/dash/DashKit";
 
-export const Route = createFileRoute("/dashboard/")({
+export const Route = createFileRoute("/_authenticated/dashboard/")({
   head: () => ({
     meta: [
       { title: "Console Overview — CALIBER" },

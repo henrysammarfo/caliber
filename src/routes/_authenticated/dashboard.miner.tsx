@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Database, Radar, Timer, Zap } from "lucide-react";
 import { DashHeader, DataTable, Panel, StatCard } from "@/components/dash/DashKit";
 
-export const Route = createFileRoute("/dashboard/miner")({
+export const Route = createFileRoute("/_authenticated/dashboard/miner")({
   head: () => ({
     meta: [
       { title: "Miner — CALIBER Console" },
