@@ -1,6 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Logo } from "@/components/brand/Logo";
+import { supabase } from "@/integrations/supabase/client";
+import { track } from "@/lib/analytics";
 
 const NAV = [
   { label: "Protocol", to: "/protocol" },
@@ -12,6 +14,18 @@ const NAV = [
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const [signedIn, setSignedIn] = useState(false);
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data }) => setSignedIn(!!data.session));
+    const { data } = supabase.auth.onAuthStateChange((_e, session) => setSignedIn(!!session));
+    return () => data.subscription.unsubscribe();
+  }, []);
+
+  const toggleMenu = (next: boolean) => {
+    setOpen(next);
+    void track(next ? "menu_open" : "menu_close", { label: "site_header" });
+  };
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -30,7 +44,7 @@ export function SiteHeader() {
   return (
     <>
       <div
-        onClick={() => setOpen(false)}
+        onClick={() => toggleMenu(false)}
         aria-hidden="true"
         className={`fixed inset-0 z-40 bg-[rgba(8,8,8,0.42)] transition-opacity duration-300 lg:hidden ${
           open ? "visible opacity-100 backdrop-blur-2xl" : "invisible opacity-0"
@@ -52,7 +66,10 @@ export function SiteHeader() {
             <Link
               key={item.to}
               to={item.to}
-              onClick={() => setOpen(false)}
+              onClick={() => {
+                void track("cta_click", { label: `nav:${item.label}` });
+                setOpen(false);
+              }}
               className={`pill appear ${i % 2 === 0 ? "appear--scale" : "appear--soft"} ${
                 open ? "h-14 w-full text-[19px]" : ""
               }`}
@@ -64,10 +81,11 @@ export function SiteHeader() {
         </nav>
 
         <Link
-          to="/dashboard"
+          to={signedIn ? "/dashboard" : "/auth"}
+          onClick={() => void track("cta_click", { label: signedIn ? "open_console" : "sign_in" })}
           className="btn-base btn-solid appear appear--scale z-[80] hidden justify-self-end [--d:0.34s] lg:inline-flex"
         >
-          Open Console
+          {signedIn ? "Open Console" : "Sign in"}
         </Link>
 
         <button
@@ -75,7 +93,7 @@ export function SiteHeader() {
           aria-controls="site-nav"
           aria-expanded={open}
           aria-label={open ? "Close menu" : "Open menu"}
-          onClick={() => setOpen((v) => !v)}
+          onClick={() => toggleMenu(!open)}
           className="appear appear--scale z-[80] grid h-[42px] w-[42px] justify-self-end rounded-md border border-hair bg-[rgba(8,8,8,0.55)] transition-colors hover:border-white/30 hover:bg-white/5 [--d:0.34s] lg:hidden"
         >
           <span className="grid justify-items-center gap-[5px] self-center">
