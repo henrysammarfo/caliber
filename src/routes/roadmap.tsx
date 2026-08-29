@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { CheckCircle2, Circle, Flag } from "lucide-react";
 import { PageHero, PageShell, Section } from "@/components/site/Page";
+import { trackCta } from "@/lib/analytics";
 
 export const Route = createFileRoute("/roadmap")({
   head: () => ({
@@ -63,7 +64,7 @@ function RoadmapPage() {
         em="weekend toy"
         lede="Every phase depends on the last. Re-check the portal before submit; pools update from the live source."
       >
-        <Link to="/dashboard" className="btn-base btn-solid">
+        <Link to="/dashboard" onClick={() => trackCta("Roadmap · Open console")} className="btn-base btn-solid">
           Track progress
         </Link>
       </PageHero>

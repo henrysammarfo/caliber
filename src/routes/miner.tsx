@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Database, FileCode2, Link2, Radar, ScrollText, Wallet } from "lucide-react";
 import { FeatureCard, PageHero, PageShell, Section } from "@/components/site/Page";
+import { trackCta } from "@/lib/analytics";
 
 export const Route = createFileRoute("/miner")({
   head: () => ({
@@ -44,7 +45,7 @@ function MinerPage() {
         em="ground truth"
         lede="One sharp vertical, a labeled evaluation set, and a declaration that matches the chain byte for byte."
       >
-        <Link to="/dashboard/miner" className="btn-base btn-solid">
+        <Link to="/dashboard/miner" onClick={() => trackCta("Miner · Miner console")} className="btn-base btn-solid">
           Miner console
         </Link>
         <Link to="/docs" className="btn-base btn-ghost-metal">
