@@ -1,15 +1,20 @@
-import { createFileRoute, Link, Outlet } from "@tanstack/react-router";
+import { createFileRoute, Link, Outlet, useNavigate } from "@tanstack/react-router";
+import { useQueryClient } from "@tanstack/react-query";
 import {
   Activity,
+  BarChart3,
   Gauge,
   LayoutDashboard,
   Link2,
+  LogOut,
   Radar,
   Settings,
   Wallet,
 } from "lucide-react";
 import { Logo } from "@/components/brand/Logo";
 import { Grain, useAppear } from "@/components/site/Chrome";
+import { supabase } from "@/integrations/supabase/client";
+import { track } from "@/lib/analytics";
 
 export const Route = createFileRoute("/_authenticated/dashboard")({
   component: DashboardLayout,
@@ -21,9 +26,11 @@ const NAV = [
   { to: "/dashboard/grader", label: "Grader", icon: Gauge },
   { to: "/dashboard/registry", label: "Registry", icon: Link2 },
   { to: "/dashboard/payments", label: "Payments", icon: Wallet },
+  { to: "/dashboard/engagement", label: "Engagement", icon: BarChart3 },
   { to: "/dashboard/activity", label: "Activity", icon: Activity },
   { to: "/dashboard/settings", label: "Settings", icon: Settings },
 ] as const;
+
 
 function DashboardLayout() {
   useAppear();
