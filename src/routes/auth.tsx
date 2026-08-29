@@ -8,7 +8,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { lovable } from "@/integrations/lovable/index";
 import { track } from "@/lib/analytics";
 
-type AuthSearch = { reason?: string; from?: string };
+type AuthSearch = { reason?: string | undefined; from?: string | undefined };
 
 const REASON_NOTICE: Record<string, string> = {
   timeout: "You were signed out after 30 minutes of inactivity. Sign in again to continue.",
