@@ -8,7 +8,23 @@ import { supabase } from "@/integrations/supabase/client";
 import { lovable } from "@/integrations/lovable/index";
 import { track } from "@/lib/analytics";
 
+type AuthSearch = { reason?: string; from?: string };
+
+const REASON_NOTICE: Record<string, string> = {
+  timeout: "You were signed out after 30 minutes of inactivity. Sign in again to continue.",
+  expired: "Your session expired and could not be renewed. Please sign in again.",
+  revoked: "Your session ended on this device. Sign in again to reopen the console.",
+  signin: "The console is restricted — sign in to continue.",
+};
+
 export const Route = createFileRoute("/auth")({
+  validateSearch: (search: Record<string, unknown>): AuthSearch => ({
+    reason: typeof search["reason"] === "string" ? (search["reason"] as string) : undefined,
+    from:
+      typeof search["from"] === "string" && (search["from"] as string).startsWith("/")
+        ? (search["from"] as string)
+        : undefined,
+  }),
   head: () => ({
     meta: [
       { title: "Sign in — CALIBER Console" },
@@ -29,6 +45,9 @@ export const Route = createFileRoute("/auth")({
 function AuthPage() {
   useAppear();
   const navigate = useNavigate();
+  const { reason, from } = Route.useSearch();
+  const notice = reason ? (REASON_NOTICE[reason] ?? REASON_NOTICE["signin"]) : null;
+  const destination = from ?? "/dashboard";
   const [mode, setMode] = useState<"signin" | "signup">("signin");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -39,9 +58,11 @@ function AuthPage() {
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data }) => {
-      if (data.session) navigate({ to: "/dashboard", replace: true });
+      if (data.session) navigate({ to: destination, replace: true });
     });
-  }, [navigate]);
+  }, [navigate, destination]);
+
+
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
