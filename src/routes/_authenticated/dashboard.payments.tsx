@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Coins, Receipt, TrendingUp, Wallet } from "lucide-react";
 import { DashHeader, DataTable, Panel, StatCard } from "@/components/dash/DashKit";
 
-export const Route = createFileRoute("/dashboard/payments")({
+export const Route = createFileRoute("/_authenticated/dashboard/payments")({
   head: () => ({
     meta: [
       { title: "Payments — CALIBER Console" },

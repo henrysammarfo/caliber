@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Hash, Link2, Server, ShieldCheck } from "lucide-react";
 import { DashHeader, DataTable, Panel, StatCard } from "@/components/dash/DashKit";
 
-export const Route = createFileRoute("/dashboard/registry")({
+export const Route = createFileRoute("/_authenticated/dashboard/registry")({
   head: () => ({
     meta: [
       { title: "Registry — CALIBER Console" },

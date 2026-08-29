@@ -1,17 +1,22 @@
-import { createFileRoute, Link, Outlet } from "@tanstack/react-router";
+import { createFileRoute, Link, Outlet, useNavigate } from "@tanstack/react-router";
+import { useQueryClient } from "@tanstack/react-query";
 import {
   Activity,
+  BarChart3,
   Gauge,
   LayoutDashboard,
   Link2,
+  LogOut,
   Radar,
   Settings,
   Wallet,
 } from "lucide-react";
 import { Logo } from "@/components/brand/Logo";
 import { Grain, useAppear } from "@/components/site/Chrome";
+import { supabase } from "@/integrations/supabase/client";
+import { track } from "@/lib/analytics";
 
-export const Route = createFileRoute("/dashboard")({
+export const Route = createFileRoute("/_authenticated/dashboard")({
   component: DashboardLayout,
 });
 
@@ -21,12 +26,25 @@ const NAV = [
   { to: "/dashboard/grader", label: "Grader", icon: Gauge },
   { to: "/dashboard/registry", label: "Registry", icon: Link2 },
   { to: "/dashboard/payments", label: "Payments", icon: Wallet },
+  { to: "/dashboard/engagement", label: "Engagement", icon: BarChart3 },
   { to: "/dashboard/activity", label: "Activity", icon: Activity },
   { to: "/dashboard/settings", label: "Settings", icon: Settings },
 ] as const;
 
+
 function DashboardLayout() {
   useAppear();
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
+
+  async function signOut() {
+    await track("sign_out", { label: "console" });
+    await queryClient.cancelQueries();
+    queryClient.clear();
+    await supabase.auth.signOut();
+    navigate({ to: "/auth", replace: true });
+  }
+
   return (
     <div className="relative min-h-screen bg-background">
       <Grain />
@@ -51,6 +69,15 @@ function DashboardLayout() {
           <Link to="/" className="btn-base btn-ghost-metal mt-8 hidden w-full lg:inline-flex">
             Back to site
           </Link>
+          <button
+            type="button"
+            onClick={signOut}
+            className="mt-2.5 hidden w-full items-center justify-center gap-2 rounded-md border border-transparent px-3 py-2.5 text-[13.5px] text-muted-ink transition-colors hover:bg-white/5 hover:text-foreground lg:inline-flex"
+          >
+            <LogOut className="h-4 w-4" strokeWidth={1.6} />
+            Sign out
+          </button>
+
         </aside>
         <main className="flex-1 px-5 py-8 lg:px-10 lg:py-10">
           <Outlet />

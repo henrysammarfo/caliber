@@ -10,7 +10,8 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as AuthRouteImport } from './routes/auth'
 import { Route as DemandAppRouteImport } from './routes/demand-app'
 import { Route as DocsRouteImport } from './routes/docs'
 import { Route as FaqsRouteImport } from './routes/faqs'
@@ -20,22 +21,28 @@ import { Route as MinerRouteImport } from './routes/miner'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as ProtocolRouteImport } from './routes/protocol'
 import { Route as RoadmapRouteImport } from './routes/roadmap'
-import { Route as DashboardIndexRouteImport } from './routes/dashboard.index'
-import { Route as DashboardActivityRouteImport } from './routes/dashboard.activity'
-import { Route as DashboardGraderRouteImport } from './routes/dashboard.grader'
-import { Route as DashboardMinerRouteImport } from './routes/dashboard.miner'
-import { Route as DashboardPaymentsRouteImport } from './routes/dashboard.payments'
-import { Route as DashboardRegistryRouteImport } from './routes/dashboard.registry'
-import { Route as DashboardSettingsRouteImport } from './routes/dashboard.settings'
+import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedDashboardIndexRouteImport } from './routes/_authenticated/dashboard.index'
+import { Route as AuthenticatedDashboardActivityRouteImport } from './routes/_authenticated/dashboard.activity'
+import { Route as AuthenticatedDashboardEngagementRouteImport } from './routes/_authenticated/dashboard.engagement'
+import { Route as AuthenticatedDashboardGraderRouteImport } from './routes/_authenticated/dashboard.grader'
+import { Route as AuthenticatedDashboardMinerRouteImport } from './routes/_authenticated/dashboard.miner'
+import { Route as AuthenticatedDashboardPaymentsRouteImport } from './routes/_authenticated/dashboard.payments'
+import { Route as AuthenticatedDashboardRegistryRouteImport } from './routes/_authenticated/dashboard.registry'
+import { Route as AuthenticatedDashboardSettingsRouteImport } from './routes/_authenticated/dashboard.settings'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DashboardRoute = DashboardRouteImport.update({
-  id: '/dashboard',
-  path: '/dashboard',
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DemandAppRoute = DemandAppRouteImport.update({
@@ -83,45 +90,63 @@ const RoadmapRoute = RoadmapRouteImport.update({
   path: '/roadmap',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DashboardIndexRoute = DashboardIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => DashboardRoute,
+const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
-const DashboardActivityRoute = DashboardActivityRouteImport.update({
-  id: '/activity',
-  path: '/activity',
-  getParentRoute: () => DashboardRoute,
-} as any)
-const DashboardGraderRoute = DashboardGraderRouteImport.update({
-  id: '/grader',
-  path: '/grader',
-  getParentRoute: () => DashboardRoute,
-} as any)
-const DashboardMinerRoute = DashboardMinerRouteImport.update({
-  id: '/miner',
-  path: '/miner',
-  getParentRoute: () => DashboardRoute,
-} as any)
-const DashboardPaymentsRoute = DashboardPaymentsRouteImport.update({
-  id: '/payments',
-  path: '/payments',
-  getParentRoute: () => DashboardRoute,
-} as any)
-const DashboardRegistryRoute = DashboardRegistryRouteImport.update({
-  id: '/registry',
-  path: '/registry',
-  getParentRoute: () => DashboardRoute,
-} as any)
-const DashboardSettingsRoute = DashboardSettingsRouteImport.update({
-  id: '/settings',
-  path: '/settings',
-  getParentRoute: () => DashboardRoute,
-} as any)
+const AuthenticatedDashboardIndexRoute =
+  AuthenticatedDashboardIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => AuthenticatedDashboardRoute,
+  } as any)
+const AuthenticatedDashboardActivityRoute =
+  AuthenticatedDashboardActivityRouteImport.update({
+    id: '/activity',
+    path: '/activity',
+    getParentRoute: () => AuthenticatedDashboardRoute,
+  } as any)
+const AuthenticatedDashboardEngagementRoute =
+  AuthenticatedDashboardEngagementRouteImport.update({
+    id: '/engagement',
+    path: '/engagement',
+    getParentRoute: () => AuthenticatedDashboardRoute,
+  } as any)
+const AuthenticatedDashboardGraderRoute =
+  AuthenticatedDashboardGraderRouteImport.update({
+    id: '/grader',
+    path: '/grader',
+    getParentRoute: () => AuthenticatedDashboardRoute,
+  } as any)
+const AuthenticatedDashboardMinerRoute =
+  AuthenticatedDashboardMinerRouteImport.update({
+    id: '/miner',
+    path: '/miner',
+    getParentRoute: () => AuthenticatedDashboardRoute,
+  } as any)
+const AuthenticatedDashboardPaymentsRoute =
+  AuthenticatedDashboardPaymentsRouteImport.update({
+    id: '/payments',
+    path: '/payments',
+    getParentRoute: () => AuthenticatedDashboardRoute,
+  } as any)
+const AuthenticatedDashboardRegistryRoute =
+  AuthenticatedDashboardRegistryRouteImport.update({
+    id: '/registry',
+    path: '/registry',
+    getParentRoute: () => AuthenticatedDashboardRoute,
+  } as any)
+const AuthenticatedDashboardSettingsRoute =
+  AuthenticatedDashboardSettingsRouteImport.update({
+    id: '/settings',
+    path: '/settings',
+    getParentRoute: () => AuthenticatedDashboardRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/dashboard': typeof DashboardRouteWithChildren
+  '/auth': typeof AuthRoute
   '/demand-app': typeof DemandAppRoute
   '/docs': typeof DocsRoute
   '/faqs': typeof FaqsRoute
@@ -131,16 +156,19 @@ export interface FileRoutesByFullPath {
   '/pricing': typeof PricingRoute
   '/protocol': typeof ProtocolRoute
   '/roadmap': typeof RoadmapRoute
-  '/dashboard/activity': typeof DashboardActivityRoute
-  '/dashboard/grader': typeof DashboardGraderRoute
-  '/dashboard/miner': typeof DashboardMinerRoute
-  '/dashboard/payments': typeof DashboardPaymentsRoute
-  '/dashboard/registry': typeof DashboardRegistryRoute
-  '/dashboard/settings': typeof DashboardSettingsRoute
-  '/dashboard/': typeof DashboardIndexRoute
+  '/dashboard': typeof AuthenticatedDashboardRouteWithChildren
+  '/dashboard/activity': typeof AuthenticatedDashboardActivityRoute
+  '/dashboard/engagement': typeof AuthenticatedDashboardEngagementRoute
+  '/dashboard/grader': typeof AuthenticatedDashboardGraderRoute
+  '/dashboard/miner': typeof AuthenticatedDashboardMinerRoute
+  '/dashboard/payments': typeof AuthenticatedDashboardPaymentsRoute
+  '/dashboard/registry': typeof AuthenticatedDashboardRegistryRoute
+  '/dashboard/settings': typeof AuthenticatedDashboardSettingsRoute
+  '/dashboard/': typeof AuthenticatedDashboardIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
   '/demand-app': typeof DemandAppRoute
   '/docs': typeof DocsRoute
   '/faqs': typeof FaqsRoute
@@ -150,18 +178,20 @@ export interface FileRoutesByTo {
   '/pricing': typeof PricingRoute
   '/protocol': typeof ProtocolRoute
   '/roadmap': typeof RoadmapRoute
-  '/dashboard/activity': typeof DashboardActivityRoute
-  '/dashboard/grader': typeof DashboardGraderRoute
-  '/dashboard/miner': typeof DashboardMinerRoute
-  '/dashboard/payments': typeof DashboardPaymentsRoute
-  '/dashboard/registry': typeof DashboardRegistryRoute
-  '/dashboard/settings': typeof DashboardSettingsRoute
-  '/dashboard': typeof DashboardIndexRoute
+  '/dashboard/activity': typeof AuthenticatedDashboardActivityRoute
+  '/dashboard/engagement': typeof AuthenticatedDashboardEngagementRoute
+  '/dashboard/grader': typeof AuthenticatedDashboardGraderRoute
+  '/dashboard/miner': typeof AuthenticatedDashboardMinerRoute
+  '/dashboard/payments': typeof AuthenticatedDashboardPaymentsRoute
+  '/dashboard/registry': typeof AuthenticatedDashboardRegistryRoute
+  '/dashboard/settings': typeof AuthenticatedDashboardSettingsRoute
+  '/dashboard': typeof AuthenticatedDashboardIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/dashboard': typeof DashboardRouteWithChildren
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/auth': typeof AuthRoute
   '/demand-app': typeof DemandAppRoute
   '/docs': typeof DocsRoute
   '/faqs': typeof FaqsRoute
@@ -171,19 +201,21 @@ export interface FileRoutesById {
   '/pricing': typeof PricingRoute
   '/protocol': typeof ProtocolRoute
   '/roadmap': typeof RoadmapRoute
-  '/dashboard/activity': typeof DashboardActivityRoute
-  '/dashboard/grader': typeof DashboardGraderRoute
-  '/dashboard/miner': typeof DashboardMinerRoute
-  '/dashboard/payments': typeof DashboardPaymentsRoute
-  '/dashboard/registry': typeof DashboardRegistryRoute
-  '/dashboard/settings': typeof DashboardSettingsRoute
-  '/dashboard/': typeof DashboardIndexRoute
+  '/_authenticated/dashboard': typeof AuthenticatedDashboardRouteWithChildren
+  '/_authenticated/dashboard/activity': typeof AuthenticatedDashboardActivityRoute
+  '/_authenticated/dashboard/engagement': typeof AuthenticatedDashboardEngagementRoute
+  '/_authenticated/dashboard/grader': typeof AuthenticatedDashboardGraderRoute
+  '/_authenticated/dashboard/miner': typeof AuthenticatedDashboardMinerRoute
+  '/_authenticated/dashboard/payments': typeof AuthenticatedDashboardPaymentsRoute
+  '/_authenticated/dashboard/registry': typeof AuthenticatedDashboardRegistryRoute
+  '/_authenticated/dashboard/settings': typeof AuthenticatedDashboardSettingsRoute
+  '/_authenticated/dashboard/': typeof AuthenticatedDashboardIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/dashboard'
+    | '/auth'
     | '/demand-app'
     | '/docs'
     | '/faqs'
@@ -193,7 +225,9 @@ export interface FileRouteTypes {
     | '/pricing'
     | '/protocol'
     | '/roadmap'
+    | '/dashboard'
     | '/dashboard/activity'
+    | '/dashboard/engagement'
     | '/dashboard/grader'
     | '/dashboard/miner'
     | '/dashboard/payments'
@@ -203,6 +237,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/auth'
     | '/demand-app'
     | '/docs'
     | '/faqs'
@@ -213,6 +248,7 @@ export interface FileRouteTypes {
     | '/protocol'
     | '/roadmap'
     | '/dashboard/activity'
+    | '/dashboard/engagement'
     | '/dashboard/grader'
     | '/dashboard/miner'
     | '/dashboard/payments'
@@ -222,7 +258,8 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
-    | '/dashboard'
+    | '/_authenticated'
+    | '/auth'
     | '/demand-app'
     | '/docs'
     | '/faqs'
@@ -232,18 +269,21 @@ export interface FileRouteTypes {
     | '/pricing'
     | '/protocol'
     | '/roadmap'
-    | '/dashboard/activity'
-    | '/dashboard/grader'
-    | '/dashboard/miner'
-    | '/dashboard/payments'
-    | '/dashboard/registry'
-    | '/dashboard/settings'
-    | '/dashboard/'
+    | '/_authenticated/dashboard'
+    | '/_authenticated/dashboard/activity'
+    | '/_authenticated/dashboard/engagement'
+    | '/_authenticated/dashboard/grader'
+    | '/_authenticated/dashboard/miner'
+    | '/_authenticated/dashboard/payments'
+    | '/_authenticated/dashboard/registry'
+    | '/_authenticated/dashboard/settings'
+    | '/_authenticated/dashboard/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  DashboardRoute: typeof DashboardRouteWithChildren
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AuthRoute: typeof AuthRoute
   DemandAppRoute: typeof DemandAppRoute
   DocsRoute: typeof DocsRoute
   FaqsRoute: typeof FaqsRoute
@@ -264,11 +304,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/dashboard': {
-      id: '/dashboard'
-      path: '/dashboard'
-      fullPath: '/dashboard'
-      preLoaderRoute: typeof DashboardRouteImport
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/demand-app': {
@@ -334,85 +381,116 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RoadmapRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/dashboard/': {
-      id: '/dashboard/'
+    '/_authenticated/dashboard': {
+      id: '/_authenticated/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AuthenticatedDashboardRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/dashboard/': {
+      id: '/_authenticated/dashboard/'
       path: '/'
       fullPath: '/dashboard/'
-      preLoaderRoute: typeof DashboardIndexRouteImport
-      parentRoute: typeof DashboardRoute
+      preLoaderRoute: typeof AuthenticatedDashboardIndexRouteImport
+      parentRoute: typeof AuthenticatedDashboardRoute
     }
-    '/dashboard/activity': {
-      id: '/dashboard/activity'
+    '/_authenticated/dashboard/activity': {
+      id: '/_authenticated/dashboard/activity'
       path: '/activity'
       fullPath: '/dashboard/activity'
-      preLoaderRoute: typeof DashboardActivityRouteImport
-      parentRoute: typeof DashboardRoute
+      preLoaderRoute: typeof AuthenticatedDashboardActivityRouteImport
+      parentRoute: typeof AuthenticatedDashboardRoute
     }
-    '/dashboard/grader': {
-      id: '/dashboard/grader'
+    '/_authenticated/dashboard/engagement': {
+      id: '/_authenticated/dashboard/engagement'
+      path: '/engagement'
+      fullPath: '/dashboard/engagement'
+      preLoaderRoute: typeof AuthenticatedDashboardEngagementRouteImport
+      parentRoute: typeof AuthenticatedDashboardRoute
+    }
+    '/_authenticated/dashboard/grader': {
+      id: '/_authenticated/dashboard/grader'
       path: '/grader'
       fullPath: '/dashboard/grader'
-      preLoaderRoute: typeof DashboardGraderRouteImport
-      parentRoute: typeof DashboardRoute
+      preLoaderRoute: typeof AuthenticatedDashboardGraderRouteImport
+      parentRoute: typeof AuthenticatedDashboardRoute
     }
-    '/dashboard/miner': {
-      id: '/dashboard/miner'
+    '/_authenticated/dashboard/miner': {
+      id: '/_authenticated/dashboard/miner'
       path: '/miner'
       fullPath: '/dashboard/miner'
-      preLoaderRoute: typeof DashboardMinerRouteImport
-      parentRoute: typeof DashboardRoute
+      preLoaderRoute: typeof AuthenticatedDashboardMinerRouteImport
+      parentRoute: typeof AuthenticatedDashboardRoute
     }
-    '/dashboard/payments': {
-      id: '/dashboard/payments'
+    '/_authenticated/dashboard/payments': {
+      id: '/_authenticated/dashboard/payments'
       path: '/payments'
       fullPath: '/dashboard/payments'
-      preLoaderRoute: typeof DashboardPaymentsRouteImport
-      parentRoute: typeof DashboardRoute
+      preLoaderRoute: typeof AuthenticatedDashboardPaymentsRouteImport
+      parentRoute: typeof AuthenticatedDashboardRoute
     }
-    '/dashboard/registry': {
-      id: '/dashboard/registry'
+    '/_authenticated/dashboard/registry': {
+      id: '/_authenticated/dashboard/registry'
       path: '/registry'
       fullPath: '/dashboard/registry'
-      preLoaderRoute: typeof DashboardRegistryRouteImport
-      parentRoute: typeof DashboardRoute
+      preLoaderRoute: typeof AuthenticatedDashboardRegistryRouteImport
+      parentRoute: typeof AuthenticatedDashboardRoute
     }
-    '/dashboard/settings': {
-      id: '/dashboard/settings'
+    '/_authenticated/dashboard/settings': {
+      id: '/_authenticated/dashboard/settings'
       path: '/settings'
       fullPath: '/dashboard/settings'
-      preLoaderRoute: typeof DashboardSettingsRouteImport
-      parentRoute: typeof DashboardRoute
+      preLoaderRoute: typeof AuthenticatedDashboardSettingsRouteImport
+      parentRoute: typeof AuthenticatedDashboardRoute
     }
   }
 }
 
-interface DashboardRouteChildren {
-  DashboardActivityRoute: typeof DashboardActivityRoute
-  DashboardGraderRoute: typeof DashboardGraderRoute
-  DashboardMinerRoute: typeof DashboardMinerRoute
-  DashboardPaymentsRoute: typeof DashboardPaymentsRoute
-  DashboardRegistryRoute: typeof DashboardRegistryRoute
-  DashboardSettingsRoute: typeof DashboardSettingsRoute
-  DashboardIndexRoute: typeof DashboardIndexRoute
+interface AuthenticatedDashboardRouteChildren {
+  AuthenticatedDashboardActivityRoute: typeof AuthenticatedDashboardActivityRoute
+  AuthenticatedDashboardEngagementRoute: typeof AuthenticatedDashboardEngagementRoute
+  AuthenticatedDashboardGraderRoute: typeof AuthenticatedDashboardGraderRoute
+  AuthenticatedDashboardMinerRoute: typeof AuthenticatedDashboardMinerRoute
+  AuthenticatedDashboardPaymentsRoute: typeof AuthenticatedDashboardPaymentsRoute
+  AuthenticatedDashboardRegistryRoute: typeof AuthenticatedDashboardRegistryRoute
+  AuthenticatedDashboardSettingsRoute: typeof AuthenticatedDashboardSettingsRoute
+  AuthenticatedDashboardIndexRoute: typeof AuthenticatedDashboardIndexRoute
 }
 
-const DashboardRouteChildren: DashboardRouteChildren = {
-  DashboardActivityRoute: DashboardActivityRoute,
-  DashboardGraderRoute: DashboardGraderRoute,
-  DashboardMinerRoute: DashboardMinerRoute,
-  DashboardPaymentsRoute: DashboardPaymentsRoute,
-  DashboardRegistryRoute: DashboardRegistryRoute,
-  DashboardSettingsRoute: DashboardSettingsRoute,
-  DashboardIndexRoute: DashboardIndexRoute,
+const AuthenticatedDashboardRouteChildren: AuthenticatedDashboardRouteChildren =
+  {
+    AuthenticatedDashboardActivityRoute: AuthenticatedDashboardActivityRoute,
+    AuthenticatedDashboardEngagementRoute:
+      AuthenticatedDashboardEngagementRoute,
+    AuthenticatedDashboardGraderRoute: AuthenticatedDashboardGraderRoute,
+    AuthenticatedDashboardMinerRoute: AuthenticatedDashboardMinerRoute,
+    AuthenticatedDashboardPaymentsRoute: AuthenticatedDashboardPaymentsRoute,
+    AuthenticatedDashboardRegistryRoute: AuthenticatedDashboardRegistryRoute,
+    AuthenticatedDashboardSettingsRoute: AuthenticatedDashboardSettingsRoute,
+    AuthenticatedDashboardIndexRoute: AuthenticatedDashboardIndexRoute,
+  }
+
+const AuthenticatedDashboardRouteWithChildren =
+  AuthenticatedDashboardRoute._addFileChildren(
+    AuthenticatedDashboardRouteChildren,
+  )
+
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRouteWithChildren
 }
 
-const DashboardRouteWithChildren = DashboardRoute._addFileChildren(
-  DashboardRouteChildren,
-)
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedDashboardRoute: AuthenticatedDashboardRouteWithChildren,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  DashboardRoute: DashboardRouteWithChildren,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AuthRoute: AuthRoute,
   DemandAppRoute: DemandAppRoute,
   DocsRoute: DocsRoute,
   FaqsRoute: FaqsRoute,
