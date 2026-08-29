@@ -112,7 +112,7 @@ function EngagementConsole() {
 
   // Single source of truth: charts, tables and the CSV all read `rows`,
   // which is re-filtered against the exact window the query was issued for.
-  const window = useMemo(
+  const range = useMemo(
     () => ({
       since: data?.since ?? new Date(Date.now() - days * 86400000).toISOString(),
       until: data?.until ?? new Date().toISOString(),
@@ -121,8 +121,8 @@ function EngagementConsole() {
   );
 
   const rows = useMemo(
-    () => (data?.rows ?? []).filter((r) => r.created_at >= window.since && r.created_at <= window.until),
-    [data, window],
+    () => (data?.rows ?? []).filter((r) => r.created_at >= range.since && r.created_at <= range.until),
+    [data, range],
   );
   const visits = rows.filter((r) => r.event_name === "route_visit");
   const ctas = rows.filter((r) => r.event_name === "cta_click");
@@ -171,7 +171,7 @@ function EngagementConsole() {
     }
     // Validation: every exported row must fall inside the active filter window
     // and match the row count rendered on screen.
-    const outOfRange = rows.filter((r) => r.created_at < window.since || r.created_at > window.until);
+    const outOfRange = rows.filter((r) => r.created_at < range.since || r.created_at > range.until);
     if (outOfRange.length > 0) {
       setExportNote("Export blocked: some rows fell outside the selected range. Refresh and retry.");
       return;
@@ -184,16 +184,16 @@ function EngagementConsole() {
       return;
     }
 
-    trackCta("Console · Export engagement CSV", { days, rows: rows.length, since: window.since, until: window.until });
+    trackCta("Console · Export engagement CSV", { days, rows: rows.length, since: range.since, until: range.until });
     const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `caliber-engagement-${days}d-${window.until.slice(0, 10)}.csv`;
+    a.download = `caliber-engagement-${days}d-${range.until.slice(0, 10)}.csv`;
     a.click();
     URL.revokeObjectURL(url);
     setExportNote(
-      `Exported ${rows.length} rows · ${window.since.slice(0, 10)} → ${window.until.slice(0, 10)} (last ${days} days).`,
+      `Exported ${rows.length} rows · ${range.since.slice(0, 10)} → ${range.until.slice(0, 10)} (last ${days} days).`,
     );
   }
 
