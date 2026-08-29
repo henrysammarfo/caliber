@@ -227,6 +227,14 @@ function EngagementConsole() {
         }
       />
 
+      {exportNote ? (
+        <p className="mb-4 text-[12.5px] text-muted-ink" role="status" aria-live="polite">
+          {exportNote}
+        </p>
+      ) : null}
+
+
+
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <StatCard icon={Users} label="Unique visitors" value={String(uniques)} delta={`${sessions} sessions`} delay={0.1} />
         <StatCard icon={RouteIcon} label="Route visits" value={String(visits.length)} delta="Client-side navigations" delay={0.2} />
