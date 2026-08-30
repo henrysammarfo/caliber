@@ -7,7 +7,7 @@ export const PROTOCOL_STATUS = {
   vertical: {
     locked: true,
     signalType: "text_authenticity",
-    intents: ["ai_text_detection", "text_authenticity_check", "content_verification"] as const,
+    intents: ["AI_TEXT_DETECTION"] as const,
     name: "AI text authenticity",
   },
   holdout: {
@@ -31,12 +31,12 @@ export const PROTOCOL_STATUS = {
   yaml: {
     path: "protocol/yaml/caliber-truthport.yaml",
     version: "1",
-    id: 92001,
+    id: 20260830,
     slug: "caliber-truthport-text-auth",
-    sha256: "c9f96c3b395ac0637229a557d52d3ea929f3381ba311ba43bc4b3559680bd2a7",
+    sha256: "982dffe99f1cc53817bb5e646ac30ee6e919dee8f405f0535ec0efa63490bfac",
     baseUrl: "https://caliber-teamtitanlink.vercel.app",
     baseUrlLive: true,
-    shaNote: "sha256 of LF miner.yaml + protocol/caliber-truthport.yaml (byte-identical). Hosted at /miner.yaml and /protocol/caliber-truthport.yaml",
+    shaNote: "sha256 of LF miner.yaml + protocol/caliber-truthport.yaml (byte-identical). Hosted at /miner.yaml and /protocol/caliber-truthport.yaml. Template-aligned to veritarach AI_TEXT_DETECTION peer (minimal + docs).",
     schemaValidDraft: true,
   },
   productionUrls: {
@@ -53,22 +53,22 @@ export const PROTOCOL_STATUS = {
     network: "Base Sepolia",
     chainId: 84532,
     diamondDocs: "0x122396E8602BEed349434AA6E83123E7dD97F5A0",
-    txHash: "0x8f6fa5b6a00efffe9af3b9adad7340f218ab03fd688a3fbd33d481ce4f09e22c",
-    registrationId: 50,
+    txHash: "0xd28d7a8d24d43d1b5815f53a7be4b2eb3e2f0982c3f760ad78cea24f8b330efa",
+    registrationId: 51,
     feeAddress: "0x9ADd0ac311e9E528800afc3F4A04e9cDe52C9cE0",
-    explorerUrl: "https://sepolia.basescan.org/tx/0x8f6fa5b6a00efffe9af3b9adad7340f218ab03fd688a3fbd33d481ce4f09e22c",
+    explorerUrl: "https://sepolia.basescan.org/tx/0xd28d7a8d24d43d1b5815f53a7be4b2eb3e2f0982c3f760ad78cea24f8b330efa",
     minPriceUsdc: 10000,
-    yamlUrl: "https://caliber-teamtitanlink.vercel.app/miner.yaml",
+    yamlUrl: "https://raw.githubusercontent.com/henrysammarfo/caliber/25f16bbb8d710d6309b33ae6dbfcc3807735ee6f/public/protocol/caliber-truthport.yaml",
     yamlHash: "0xc9f96c3b395ac0637229a557d52d3ea929f3381ba311ba43bc4b3559680bd2a7",
-    yamlSubnetId: 92001,
+    yamlSubnetId: 20260830,
     yamlKind: "miner",
-    deregisterTxHash: "0xfc2411a7a3b9d8eff316c7d3ab5a0cb63fda23d2393cdb6614ca62bb7584d8af",
-    priorRegistrationIds: [44, 45, 46, 47, 48, 49],
+    deregisterTxHash: "0x19f9c361cf9b2eda29bec0973d749c867f20472d9ba9fee41115b0af0891cbf8",
+    priorRegistrationIds: [44, 45, 46, 47, 48, 49, 50],
     priorTxHashes: [
       "0xb45f13bf81e4b779fc8667389283768faade0bbd46601fd2197b769e24351f2b",
       "0xa3870195ef1d5578e40f204ad8ab74b82e73c033474617e1cd89e81463f60a5d",
     ],
-    note: "Re-registered 2026-08-30: yamlUrl=/miner.yaml. registrationId 50. Still NOT in dispatcher /integrations after 8m poll (125). Do not claim activated.",
+    note: "YAML rewritten 2026-08-30 to veritarach-style (id 20260830, AI_TEXT_DETECTION only). Awaiting deregister 51 + re-register with new hash. Do not claim activated until /integrations lists caliber-truthport-text-auth.",
   },
   x402: {
     exercised: true,
@@ -80,7 +80,7 @@ export const PROTOCOL_STATUS = {
     explorerUrl:
       "https://sepolia.basescan.org/tx/0xde146c9da2983692932fd7f787035e1063f6b3506a7badb9313a8286190493cf",
     asOf: "2026-08-30",
-    note: "Rail verified on /v1/x402-test. Miner-specific /v1/92001/detect NOT run as paid receipt this turn — CALIBER still absent from /integrations after reg 50 + 8m poll.",
+    note: "Rail verified on /v1/x402-test. Miner-specific paid /detect receipt blocked until CALIBER appears in /integrations (yaml id now 20260830).",
   },
   wasm: {
     built: true,
@@ -103,11 +103,13 @@ export const PROTOCOL_STATUS = {
 
 export const YAML_PREVIEW = `version: "1"
 kind: miner
-id: 92001
+id: 20260830
 slug: caliber-truthport-text-auth
 protocol: generic
 name: CALIBER TRUTHPORT Text Authenticity
 base_url: https://caliber-teamtitanlink.vercel.app
+docs:
+  repository: https://github.com/henrysammarfo/caliber
 auth:
   type: none
 endpoints:
@@ -116,15 +118,9 @@ endpoints:
     method: POST
 semantics:
   signal_mapping:
-    type: text_authenticity
     confidence_field: confidence
     label_field: isAI
   supported_intents:
-    - ai_text_detection
-    - text_authenticity_check
-    - content_verification
-on_chain:
-  transform: direct
-  min_price_usdc: 0.01
-# sha256 (live bytes id 92001 kind miner): ${PROTOCOL_STATUS.yaml.sha256}
+    - AI_TEXT_DETECTION
+# sha256 (live bytes id 20260830 kind miner): ${PROTOCOL_STATUS.yaml.sha256}
 `;

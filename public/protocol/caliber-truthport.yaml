@@ -1,6 +1,6 @@
 version: "1"
 kind: miner
-id: 92001
+id: 20260830
 slug: caliber-truthport-text-auth
 protocol: generic
 name: CALIBER TRUTHPORT Text Authenticity
@@ -10,52 +10,21 @@ description: >
   the HTTP detect surface for Telegraph routing and x402 gating.
 base_url: https://caliber-teamtitanlink.vercel.app
 
+docs:
+  repository: https://github.com/henrysammarfo/caliber
+
 auth:
   type: none
-
-rate_limit_per_sec: 5
-cache_ttl_sec: 0
-circuit_threshold: 5
-circuit_cooldown_seconds: 30
 
 endpoints:
   - path: /detect
     external_path: /detect
     method: POST
-    description: Score text for AI-likeness (confidence in [0,1], isAI threshold 0.5).
-
-input_schema:
-  type: object
-  properties:
-    text:
-      type: string
-      maxLength: 50000
-    texts:
-      type: array
-      maxItems: 64
-      items:
-        type: string
-        maxLength: 50000
-
-output_schema:
-  type: object
-  properties:
-    confidence:
-      type: number
-      minimum: 0
-      maximum: 1
-    isAI:
-      type: boolean
-    explanation:
-      type: string
-    model:
-      type: string
+    description: Classify text as AI-generated or human-written with a confidence score.
 
 semantics:
   signal_mapping:
     confidence_field: confidence
     label_field: isAI
-    reason_field: explanation
   supported_intents:
     - AI_TEXT_DETECTION
-    - CONTENT_VERIFICATION
