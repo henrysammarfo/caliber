@@ -1,0 +1,25 @@
+{
+  "asOf": "2026-08-30T21:48:40.194Z",
+  "wallet": "0x9ADd0ac311e9E528800afc3F4A04e9cDe52C9cE0",
+  "diamond": "0x5a2324aA18613FAD4e44bDF0d6c73Ec1f6D87ff8",
+  "consoleDiamond": "0x5a2324aA18613FAD4e44bDF0d6c73Ec1f6D87ff8",
+  "docsDiamond": "0x122396E8602BEed349434AA6E83123E7dD97F5A0",
+  "yamlUrl": "https://gateway.pinata.cloud/ipfs/QmVTkdLFe6sxJpXqBkPeHzBGwy392q9ezDRP7WgEobxYS6",
+  "yamlHash": "0x5d9c3d2d95589a699b84a50f3e46ed42facb3c479f159bd2c8cbb1eeca03fe3c",
+  "feeAddress": "0x9ADd0ac311e9E528800afc3F4A04e9cDe52C9cE0",
+  "minPriceUsdc": 10000,
+  "intents": [
+    "AI_TEXT_DETECTION"
+  ],
+  "simulate": {
+    "ok": true,
+    "result": "387"
+  },
+  "register": {
+    "registrationId": 387,
+    "txHash": "0x93b2bb04abc052f2e1d2f3f9ed2042dc52484792099dd4c1a926206b34d88b63",
+    "status": "success",
+    "blockNumber": 46179118,
+    "explorerUrl": "https://sepolia.basescan.org/tx/0x93b2bb04abc052f2e1d2f3f9ed2042dc52484792099dd4c1a926206b34d88b63"
+  }
+}

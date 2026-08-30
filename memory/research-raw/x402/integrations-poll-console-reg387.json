@@ -1,0 +1,20 @@
+﻿{
+    "asOf":  "2026-08-30T22:15:10.8244449Z",
+    "caliber":  {
+                    "activation_status":  "active",
+                    "id":  "20260830",
+                    "consoleDiamond":  "0x5a2324aA18613FAD4e44bDF0d6c73Ec1f6D87ff8",
+                    "yaml_url":  "https://gateway.pinata.cloud/ipfs/QmVTkdLFe6sxJpXqBkPeHzBGwy392q9ezDRP7WgEobxYS6",
+                    "consoleMinerTx":  "0x93b2bb04abc052f2e1d2f3f9ed2042dc52484792099dd4c1a926206b34d88b63",
+                    "wallet_address":  "0x9add0ac311e9e528800afc3f4a04e9cde52c9ce0",
+                    "docsDiamond":  "0x122396E8602BEed349434AA6E83123E7dD97F5A0",
+                    "registered_at":  "2026-08-30T21:56:22Z",
+                    "docsReg55":  55,
+                    "slug":  "caliber-truthport-text-auth",
+                    "consoleMinerRegId":  387,
+                    "scored":  false,
+                    "base_url":  "https://caliber-teamtitanlink.vercel.app"
+                },
+    "count":  126,
+    "listed":  true
+}

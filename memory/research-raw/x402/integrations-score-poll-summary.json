@@ -1,0 +1,78 @@
+{
+  "finishedAt": "2026-08-30T22:44:50.175Z",
+  "source": "79044 _poll-scores-10m.mjs",
+  "polls": [
+    {
+      "at": "2026-08-30T22:27:02.493Z",
+      "status": 200,
+      "count": 126,
+      "ours": {
+        "id": "20260830",
+        "slug": "caliber-truthport-text-auth",
+        "activation_status": "active",
+        "scored": false,
+        "scores": null,
+        "registered_at": "2026-08-30T21:56:22Z"
+      },
+      "scoredFlag": false
+    },
+    {
+      "at": "2026-08-30T22:29:59.830Z",
+      "status": 200,
+      "count": 126,
+      "ours": {
+        "id": "20260830",
+        "slug": "caliber-truthport-text-auth",
+        "activation_status": "active",
+        "scored": false,
+        "scores": null,
+        "registered_at": "2026-08-30T21:56:22Z"
+      },
+      "scoredFlag": false
+    },
+    {
+      "at": "2026-08-30T22:32:07.792Z",
+      "status": 200,
+      "count": 126,
+      "ours": {
+        "id": "20260830",
+        "slug": "caliber-truthport-text-auth",
+        "activation_status": "active",
+        "scored": false,
+        "scores": null,
+        "registered_at": "2026-08-30T21:56:22Z"
+      },
+      "scoredFlag": false
+    },
+    {
+      "at": "2026-08-30T22:34:13.951Z",
+      "status": 200,
+      "count": 126,
+      "ours": {
+        "id": "20260830",
+        "slug": "caliber-truthport-text-auth",
+        "activation_status": "active",
+        "scored": false,
+        "scores": null,
+        "registered_at": "2026-08-30T21:56:22Z"
+      },
+      "scoredFlag": false
+    },
+    {
+      "at": "2026-08-30T22:36:16.561Z",
+      "status": 200,
+      "count": 126,
+      "ours": {
+        "id": "20260830",
+        "slug": "caliber-truthport-text-auth",
+        "activation_status": "active",
+        "scored": false,
+        "scores": null,
+        "registered_at": "2026-08-30T21:56:22Z"
+      },
+      "scoredFlag": false
+    }
+  ],
+  "scoredYet": false,
+  "note": "Polls 0-4: listed active scored:false scores:null. Poll 5: EHOSTUNREACH mid-request. No scores[] on AI_TEXT_DETECTION within ~10m window."
+}

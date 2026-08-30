@@ -1,0 +1,47 @@
+{
+  "gate": "C",
+  "protocol": "x402",
+  "network": "eip155:84532",
+  "payerAddress": "0x9ADd0ac311e9E528800afc3F4A04e9cDe52C9cE0",
+  "feeAddressDocs": "0x9ADd0ac311e9E528800afc3F4A04e9cDe52C9cE0",
+  "dispatcherBase": "http://13.237.89.59:7044/miner-dispatcher",
+  "startedAt": "2026-08-30T22:22:49.061Z",
+  "finishedAt": "2026-08-30T22:23:15.446Z",
+  "success": true,
+  "pathUsed": "http://13.237.89.59:7044/miner-dispatcher/v1/20260830/detect",
+  "httpStatus": 200,
+  "paymentResponse": {
+    "success": true,
+    "payer": "0x9add0ac311e9e528800afc3f4a04e9cde52c9ce0",
+    "transaction": "0x6d7db1bd06299567966c3f64b5a0a04e4e3f68c10aad3d30d34345004385f890",
+    "network": "eip155:84532"
+  },
+  "responseBody": {
+    "confidence": 0.37291,
+    "isAI": false,
+    "label": "human_written",
+    "model": "caliber-truthport-v2",
+    "reason": "human_written p(AI)=0.373; low sentence-length burstiness; high hapax (lexical diversity); short passage — confidence shrunk toward chance. Model caliber-truthport-v2; not legal proof of authorship.",
+    "verdict": "human_written",
+    "version": "2.0.0"
+  },
+  "attempts": [
+    {
+      "url": "http://13.237.89.59:7044/miner-dispatcher/v1/20260830/predict",
+      "status": 402,
+      "error": null,
+      "paymentResponse": null
+    },
+    {
+      "url": "http://13.237.89.59:7044/miner-dispatcher/v1/20260830/detect",
+      "status": 200,
+      "error": null,
+      "paymentResponse": {
+        "success": true,
+        "payer": "0x9add0ac311e9e528800afc3f4a04e9cde52c9ce0",
+        "transaction": "0x6d7db1bd06299567966c3f64b5a0a04e4e3f68c10aad3d30d34345004385f890",
+        "network": "eip155:84532"
+      }
+    }
+  ]
+}

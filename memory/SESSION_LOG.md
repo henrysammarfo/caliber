@@ -304,3 +304,41 @@ Discord activation; post-list signal_mapping/`text` param; WASM submit.
 ### Blocker
 Integrations listing still the gate (dispatcher poll timed out from this host at LOCK-IN; retry needed).
 
+## 2026-08-30 ~20:00 - Script track registerWasm + integrations poll
+
+### Done
+- Console ABI: registerWasm(bytes32 wasmHash, string wasmUrl, string intent) + WasmRegistered (chunk 1319).
+- Keccak256 gradelock.wasm = 0x8d295d467f4002271feb29bc089471453972419b0d02b15da3c3c737b36bb416 (local=Pinata=Vercel). /api/hash-remote was 502.
+- Docs Diamond 0x122396 rejects registerWasm (Function does not exist). Console Diamond 0x5a2324 accepts.
+- registerWasm Pinata URL + AI_TEXT_DETECTION -> registrationId 2126, tx 0x43d0c770beab5c453aaac2f86dc426d4d0f90f092ee3315f5778c8cd0bf6a572, block 46175866.
+- Dispatcher poll: integrations 200 count 93 - miner NOT listed (no caliber-truthport / 20260830 / QmVTkd).
+- Updated protocol-status, CURRENT_STATE, FACT_CHECK.
+
+### Miner listed
+No.
+
+### Next
+Discord activation for Reg 55; Stage 1/2 WASM eval; X after lock.
+
+
+## 2026-08-30 — Console Diamond registerMiner (hypothesis confirm)
+
+- Console Diamond from integrate JS: `0x5a2324aA18613FAD4e44bDF0d6c73Ec1f6D87ff8` (not GitBook `0x122396…`).
+- Facets: console = registerMiner + registerWasm; docs = registerMiner only (registerWasm Function does not exist).
+- Prior miner regs (incl. 55) were on docs Diamond; WASM 2126 was on console — mismatch hypothesis CONFIRMED.
+- Re-ran registerMiner on console with reg-55 args (Pinata QmVTkd…, hash 0x5d9c3d2d…, fee 0x9ADd…, 10000, AI_TEXT_DETECTION) → id **387**, tx 0x93b2bb04…, block 46179118.
+- Dispatcher `/miner-dispatcher/integrations` then listed `caliber-truthport-text-auth` (id 20260830, active, scored false).
+- Evidence: `memory/research-raw/x402/reregister-result-console-diamond.json`, `integrations-poll-console-reg387.json`.
+
+## 2026-08-30 22:32 — Gate C miner-specific x402 + listed status
+
+- Paid x402 POST `/miner-dispatcher/v1/20260830/detect` → **200**; receipt `memory/artifacts/x402-receipt-truthport.json`
+- Payment tx `0x6d7db1bd06299567966c3f64b5a0a04e4e3f68c10aad3d30d34345004385f890` (Base Sepolia)
+- Body: confidence 0.37291, isAI false, label human_written, model caliber-truthport-v2
+- `/v1/20260830/predict` returned 402 even with payment wrapper (detect path worked)
+- Unauthenticated POST all id/slug predict+detect → **402** (no free scoring path)
+- `protocol-status.ts`: listed true, console diamond, reg **387**, wasm **2126**, miner-specific x402 path
+- Polling `/integrations` every 2m up to 10m for `scored:true` / scores[] on AI_TEXT_DETECTION
+
+- Score poll (~10m, 5 successful samples + final): still `scored:false`, `scores:null`; listed active id 20260830. Poll 5 hit EHOSTUNREACH briefly; final fetch ok.
+

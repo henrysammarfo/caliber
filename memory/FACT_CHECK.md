@@ -206,7 +206,38 @@
 | registerMiner **55** | **VERIFIED on-chain** | tx 0xda07a128…7d07af29; dereg 53 |
 | /gradelock.wasm hosted | **VERIFIED** | 200 application/wasm; sha256 266be7d6… |
 | WASM Pinata upload | **VERIFIED** | CID QmWVPgXS5FNWUP48JBb2P6prGn8w4qe5zvF9GcNHiWBsWX |
-| registerWasm on-chain | **NOT DONE** | needs Henry wallet console |
-| CALIBER in dispatcher /integrations | **UNVERIFIED (poll timeout)** | dispatcher 13.237.89.59 timed out 20s from agent host |
+| registerWasm on-chain | **VERIFIED (2026-08-30)** | id **2126**; tx 0x43d0c770beab5c453aaac2f86dc426d4d0f90f092ee3315f5778c8cd0bf6a572; Diamond 0x5a2324 (console); keccak 0x8d295d46 Pinata URL |
+| CALIBER in dispatcher /integrations | **FALSE (poll 20:06Z)** | 200 OK count 93; no 20260830 / QmVTkd / caliber-truthport |
 | veritarach AI_TEXT rank ~2 | **VERIFIED** | leaderboard-2026-08-30 dump |
 
+### 2026-08-30 Script track (registerWasm)
+
+| Claim | Status | Evidence |
+|---|---|---|
+| Truthport v2 live | **VERIFIED** | prod smoke + CURRENT_STATE |
+| registerMiner 55 Pinata YAML | **VERIFIED on-chain** | tx 0xda07a128; CID QmVTkd |
+| Console ABI registerWasm(bytes32,string,string) | **VERIFIED** | integrate wasm page chunk 1319 |
+| WASM hash keccak256 file bytes | **VERIFIED** | match prior console hash 0x8d295d46 |
+| Docs Diamond 0x122396 has registerWasm | **FALSE** | simulate: Function does not exist |
+| Console Diamond 0x5a2324 has registerWasm | **VERIFIED** | simulate OK + successful tx |
+| registerWasm id 2126 | **VERIFIED on-chain** | WasmRegistered; tx 0x43d0c770 block 46175866 |
+| Miner listed in /integrations | **FALSE** | poll dump integrations-poll-wasm-reg.json |
+
+
+## Dual Diamond (console vs docs) — VERIFIED 2026-08-30
+
+| Claim | Status | Evidence |
+|---|---|---|
+| Console Diamond (integrate JS) | **VERIFIED** | `0x5a2324aA18613FAD4e44bDF0d6c73Ec1f6D87ff8` from wasm/shared chunk `r=` export; console ABI includes registerMiner + registerWasm |
+| Docs / GitBook Diamond | **VERIFIED in docs** | `0x122396E8602BEed349434AA6E83123E7dD97F5A0` miner-registry-facet.md |
+| Console has registerMiner + registerWasm | **VERIFIED** | simulate both OK on console Diamond |
+| Docs has registerMiner only | **VERIFIED** | registerMiner simulate OK; registerWasm → Diamond: Function does not exist |
+| Prior miner regs 44–55 | **on docs Diamond** | `_reregister-miner.mjs` DIAMOND=0x122396…; reg 55 tx 0xda07a128… |
+| registerWasm id 2126 | **on console Diamond** | tx 0x43d0c770… |
+| registerMiner on console (same YAML as reg 55) | **VERIFIED** | registrationId **387**; tx 0x93b2bb04abc052f2e1d2f3f9ed2042dc52484792099dd4c1a926206b34d88b63; block 46179118; yamlHash 0x5d9c3d2d… |
+| Dispatcher lists caliber after console reg | **VERIFIED** | `/miner-dispatcher/integrations` count 126; slug `caliber-truthport-text-auth` id 20260830 active; Pinata QmVTkd…; `integrations-poll-console-reg387.json` |
+| integrate.telegraphprotocol.com/api/integrations | **404** | not public at that path (2026-08-30) |
+
+| Miner-specific x402 paid /v1/20260830/detect | **VERIFIED** | HTTP 200; payment tx 0x6d7db1bd…; receipt `memory/artifacts/x402-receipt-truthport.json`; body confidence 0.37291 / human_written |
+| Free (unauth) dispatcher predict/detect | **VERIFIED none** | All four URLs HTTP 402 Payment Required amount 10000 |
+| protocol-status listed/reg387/wasm2126/x402 miner | **UPDATED** | `src/lib/protocol-status.ts` 2026-08-30T22:23Z session |

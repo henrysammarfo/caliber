@@ -21,8 +21,10 @@ const repoRoot = path.resolve(protocolRoot, "..");
 
 const DISPATCHER = "http://13.237.89.59:7044/miner-dispatcher";
 const DEFAULT_URLS = [
+  `${DISPATCHER}/v1/20260830/detect`,
+  `${DISPATCHER}/v1/20260830/predict`,
   `${DISPATCHER}/v1/caliber-truthport-text-auth/detect`,
-  `${DISPATCHER}/v1/92001/detect`,
+  `${DISPATCHER}/v1/caliber-truthport-text-auth/predict`,
   `${DISPATCHER}/v1/x402-test`,
 ];
 
