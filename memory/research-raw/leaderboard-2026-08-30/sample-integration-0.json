@@ -1,0 +1,283 @@
+﻿{
+    "id":  "20260821",
+    "slug":  "amanat-weather-risk",
+    "kind":  "miner",
+    "protocol":  "generic",
+    "name":  "Amanat Weather Risk",
+    "description":  "Parametric weather-risk signals for autonomous systems. Every answer carries a plain-language summary and the scalars behind it â temperature, wind, gusts, precipitation and a storm-risk score â so the same response can be graded by a Telegraph scoring module and acted on by a smart contract through an ERC-8183 job. Backed by Open-Meteo; no API key, no rate-limit surprises.\n",
+    "endpoints":  [
+                      {
+                          "path":  "/forecast",
+                          "method":  "POST",
+                          "description":  "Weather and storm-risk forecast for a place, at an hour offset. Takes lat/lon or a plain-language question."
+                      }
+                  ],
+    "input_schema":  {
+                         "properties":  {
+                                            "hours":  {
+                                                          "description":  "Hours ahead of now. 0 is the current hour. Read from the question when absent.",
+                                                          "maximum":  168,
+                                                          "minimum":  0,
+                                                          "type":  "integer"
+                                                      },
+                                            "lat":  {
+                                                        "description":  "Latitude in decimal degrees. Requires lon.",
+                                                        "maximum":  90,
+                                                        "minimum":  -90,
+                                                        "type":  "number"
+                                                    },
+                                            "lon":  {
+                                                        "description":  "Longitude in decimal degrees. Requires lat.",
+                                                        "maximum":  180,
+                                                        "minimum":  -180,
+                                                        "type":  "number"
+                                                    },
+                                            "question":  {
+                                                             "description":  "A plain-language weather question naming a place, e.g. \u0027Will Riyadh exceed 40 degrees in the next 24 hours?\u0027. Used when lat and lon are absent.",
+                                                             "type":  "string"
+                                                         }
+                                        },
+                         "type":  "object"
+                     },
+    "output_schema":  {
+                          "properties":  {
+                                             "attestation":  {
+                                                                 "canonical":  null,
+                                                                 "description":  "Ed25519 signature over the settle fields - algorithm",
+                                                                 "key_persistent. Verify with Node crypto.verify; the key is also at /.well-known/amanat.json.":  null,
+                                                                 "public_key":  null,
+                                                                 "sha256":  null,
+                                                                 "signature":  null,
+                                                                 "signed_fields":  null,
+                                                                 "type":  "object"
+                                                             },
+                                             "attribution":  {
+                                                                 "GDACS.":  null,
+                                                                 "description":  "Data sources and licence - Open-Meteo CC BY 4.0",
+                                                                 "type":  "object"
+                                                             },
+                                             "breach":  {
+                                                            "description":  "True when risk is at or above the 0.75 payout threshold.",
+                                                            "type":  "boolean"
+                                                        },
+                                             "cloud_pct":  {
+                                                               "description":  "Cloud cover in percent for that hour.",
+                                                               "type":  "number"
+                                                           },
+                                             "condition":  {
+                                                               "description":  "WMO present-weather condition for that hour",
+                                                               "e.g. Overcast or Thunderstorm. Null when the code is unrecognised.":  null,
+                                                               "type":  "string"
+                                                           },
+                                             "cyclone_alert":  {
+                                                                   "Orange or Red.":  null,
+                                                                   "description":  "GDACS alert level for that cyclone - Green",
+                                                                   "type":  "string"
+                                                               },
+                                             "cyclone_km":  {
+                                                                "0 when none within 500 km. The on-chain form of cyclone_km_now.":  null,
+                                                                "description":  "Distance in km to the nearest active cyclone now",
+                                                                "type":  "integer"
+                                                            },
+                                             "cyclone_km_now":  {
+                                                                    "description":  "Distance in km to that cyclone\u0027s current position. Its position at the forecast hour is not published",
+                                                                    "so this is where it is now.":  null,
+                                                                    "type":  "integer"
+                                                                },
+                                             "cyclone_max_wind_kmh":  {
+                                                                          "description":  "That cyclone\u0027s maximum sustained wind in km/h.",
+                                                                          "type":  "integer"
+                                                                      },
+                                             "cyclone_name":  {
+                                                                  "description":  "Name of the nearest active tropical cyclone within 500 km",
+                                                                  "from GDACS. Null when none.":  null,
+                                                                  "type":  "string"
+                                                              },
+                                             "days":  {
+                                                          "condition":  null,
+                                                          "description":  "Today and tomorrow as a report prints them - date",
+                                                          "high_c":  null,
+                                                          "label":  null,
+                                                          "low_c":  null,
+                                                          "precip_prob_pct":  null,
+                                                          "type":  "array",
+                                                          "wind_max_kmh.":  null
+                                                      },
+                                             "dew_point_c":  {
+                                                                 "description":  "Dew point in degrees Celsius for that hour.",
+                                                                 "type":  "number"
+                                                             },
+                                             "feels_like_c":  {
+                                                                  "description":  "Apparent temperature in degrees Celsius for that hour.",
+                                                                  "type":  "number"
+                                                              },
+                                             "gust_kmh":  {
+                                                              "description":  "Wind gust speed in km/h.",
+                                                              "type":  "number"
+                                                          },
+                                             "humidity_pct":  {
+                                                                  "description":  "Relative humidity in percent for that hour.",
+                                                                  "type":  "number"
+                                                              },
+                                             "place":  {
+                                                           "as resolved from the question. Null when coordinates were given.":  null,
+                                                           "description":  "The place the reading is for",
+                                                           "type":  "string"
+                                                       },
+                                             "precip_mm":  {
+                                                               "description":  "Precipitation in mm for the hour.",
+                                                               "type":  "number"
+                                                           },
+                                             "precip_prob_pct":  {
+                                                                     "description":  "Probability of precipitation in percent for that hour.",
+                                                                     "type":  "number"
+                                                                 },
+                                             "risk":  {
+                                                          "description":  "Storm risk between 0 and 1. The worst of wind",
+                                                          "gusts":  null,
+                                                          "precipitation":  null,
+                                                          "type":  "number",
+                                                          "wave height and cyclone proximity.":  null
+                                                      },
+                                             "risk_band":  {
+                                                               "breach_probability. Null when the ensemble could not be read.":  null,
+                                                               "description":  "The same risk across ECMWF ensemble members at that hour - model",
+                                                               "max":  null,
+                                                               "members":  null,
+                                                               "p10":  null,
+                                                               "p50":  null,
+                                                               "p90":  null,
+                                                               "type":  "object"
+                                                           },
+                                             "sea_level_m":  {
+                                                                 "description":  "Sea level above mean sea level in metres for that hour",
+                                                                 "from the Open-Meteo marine model. Reported":  null,
+                                                                 "not scored. Null over land.":  null,
+                                                                 "tide and surge together":  null,
+                                                                 "type":  "number"
+                                                             },
+                                             "source":  {
+                                                            "type":  "string"
+                                                        },
+                                             "summary":  {
+                                                             "and the storm risk.":  null,
+                                                             "description":  "Plain-language forecast. Opens by restating the question",
+                                                             "gusts":  null,
+                                                             "precipitation":  null,
+                                                             "sea state and any named cyclone nearby":  null,
+                                                             "the condition and daily range":  null,
+                                                             "then gives temperature":  null,
+                                                             "type":  "string",
+                                                             "wind":  null
+                                                         },
+                                             "temp_c":  {
+                                                            "description":  "Temperature in degrees Celsius.",
+                                                            "type":  "number"
+                                                        },
+                                             "temp_max_c":  {
+                                                                "description":  "Highest temperature that day in degrees Celsius.",
+                                                                "type":  "number"
+                                                            },
+                                             "temp_min_c":  {
+                                                                "description":  "Lowest temperature that day in degrees Celsius.",
+                                                                "type":  "number"
+                                                            },
+                                             "valid_at":  {
+                                                              "description":  "UTC timestamp the forecast applies to.",
+                                                              "type":  "string"
+                                                          },
+                                             "wave_cm":  {
+                                                             "0 over land or when unread. The on-chain form of wave_m.":  null,
+                                                             "description":  "Significant wave height in centimetres",
+                                                             "type":  "integer"
+                                                         },
+                                             "wave_m":  {
+                                                            "description":  "Significant wave height in metres for that hour",
+                                                            "from the Open-Meteo marine model. Null over land or when the sea state could not be read.":  null,
+                                                            "type":  "number"
+                                                        },
+                                             "weather_code":  {
+                                                                  "description":  "WMO 4677 present-weather code for that hour.",
+                                                                  "type":  "integer"
+                                                              },
+                                             "wind_dir":  {
+                                                              "description":  "Wind direction as a compass point",
+                                                              "e.g. south-west.":  null,
+                                                              "type":  "string"
+                                                          },
+                                             "wind_dir_deg":  {
+                                                                  "description":  "Wind direction in degrees",
+                                                                  "meteorological (from).":  null,
+                                                                  "type":  "number"
+                                                              },
+                                             "wind_kmh":  {
+                                                              "description":  "Sustained wind speed in km/h.",
+                                                              "type":  "number"
+                                                          },
+                                             "window_hours":  {
+                                                                  "description":  "When the question named a window (\"in the next 24 hours\")",
+                                                                  "its width in hours; valid_at is then the worst hour inside it. 0 when an exact hour was asked.":  null,
+                                                                  "type":  "integer"
+                                                              }
+                                         },
+                          "type":  "object"
+                      },
+    "signal_mapping":  {
+                           "confidence_field":  "risk",
+                           "label_field":  "summary",
+                           "reason_field":  "summary"
+                       },
+    "supported_intents":  [
+                              "WEATHER_FORECAST",
+                              "WEATHER_CHECK",
+                              "STORM_ALERT"
+                          ],
+    "docs":  {
+                 "website":  "https://github.com/PugarHuda/amanat",
+                 "documentation":  "https://github.com/PugarHuda/amanat/blob/main/miner/README.md",
+                 "repository":  "https://github.com/PugarHuda/amanat"
+             },
+    "limitations":  [
+                        {
+                            "code":  "ACCOUNT_QUOTA",
+                            "message":  "Open-Meteo free tier allows 10000 requests per day",
+                            "property":  "rate",
+                            "value_num":  10000,
+                            "window_seconds":  86400
+                        }
+                    ],
+    "base_url":  "https://amanat-miner.vercel.app",
+    "wallet_address":  "0x39d2bae5eaeda9283535ddc98f1991c81ed5cd7e",
+    "fee_address":  "0x3aaa5b87bd13be841e824e62cc4c66004420b7c3",
+    "activation_status":  "active",
+    "min_price_usdc":  10000,
+    "yaml_url":  "https://raw.githubusercontent.com/PugarHuda/amanat/f38069e82ead79f4c0ccabe10ec4bc49182506f9/miner/amanat-miner.yaml",
+    "registered_at":  "2026-08-28T16:04:24Z",
+    "total_requests_served":  389,
+    "scored":  true,
+    "last_scored_epoch":  294,
+    "last_scored_at":  "2026-08-30T10:02:44Z",
+    "scores":  [
+                   {
+                       "intent_id":  "STORM_ALERT",
+                       "epoch_id":  294,
+                       "rank":  4,
+                       "score":  0.007951215,
+                       "scored_at":  "2026-08-30T09:53:22.945689Z"
+                   },
+                   {
+                       "intent_id":  "WEATHER_CHECK",
+                       "epoch_id":  294,
+                       "rank":  6,
+                       "score":  0.014199455,
+                       "scored_at":  "2026-08-30T10:02:44.491497Z"
+                   },
+                   {
+                       "intent_id":  "WEATHER_FORECAST",
+                       "epoch_id":  294,
+                       "rank":  11,
+                       "score":  0.005859544,
+                       "scored_at":  "2026-08-30T09:55:20.675767Z"
+                   }
+               ]
+}

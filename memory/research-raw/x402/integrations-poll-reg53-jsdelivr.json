@@ -1,0 +1,55 @@
+{
+  "polls": [
+    {
+      "round": 1,
+      "at": "2026-08-30T18:27:28.363Z",
+      "status": 200,
+      "count": 124,
+      "caliberHits": 0,
+      "has20260830": false,
+      "hasSlug": false,
+      "ms": 82155
+    },
+    {
+      "round": 2,
+      "at": "2026-08-30T18:28:41.899Z",
+      "status": 200,
+      "count": 124,
+      "caliberHits": 0,
+      "has20260830": false,
+      "hasSlug": false,
+      "ms": 13530
+    },
+    {
+      "round": 3,
+      "at": "2026-08-30T18:29:45.449Z",
+      "status": 200,
+      "count": 124,
+      "caliberHits": 0,
+      "has20260830": false,
+      "hasSlug": false,
+      "ms": 3536
+    },
+    {
+      "round": 4,
+      "at": "2026-08-30T18:30:53.320Z",
+      "status": 200,
+      "count": 124,
+      "caliberHits": 0,
+      "has20260830": false,
+      "hasSlug": false,
+      "ms": 7854
+    },
+    {
+      "round": 5,
+      "at": "2026-08-30T18:31:58.505Z",
+      "status": 200,
+      "count": 124,
+      "caliberHits": 0,
+      "has20260830": false,
+      "hasSlug": false,
+      "ms": 5169
+    }
+  ],
+  "listed": false
+}

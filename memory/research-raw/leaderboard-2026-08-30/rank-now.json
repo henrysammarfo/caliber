@@ -1,0 +1,142 @@
+{
+  "fetched_at": "2026-08-30T23:13:28.414Z",
+  "source": "http://13.237.89.59:7044/miner-dispatcher/integrations",
+  "epoch_note": "AI_TEXT scores from peers show epoch_id 295",
+  "AI_TEXT_DETECTION_ranks": {
+    "livecert": 1,
+    "itsai": 3,
+    "veritarach": 2,
+    "caliber": null
+  },
+  "caliber": {
+    "id": "20260830",
+    "slug": "caliber-truthport-text-auth",
+    "activation_status": "active",
+    "scored": false,
+    "registered_at": "2026-08-30T21:56:22Z",
+    "scores": [],
+    "AI_TEXT_DETECTION": null
+  },
+  "peers": {
+    "livecert": {
+      "id": "4433",
+      "slug": "livecert",
+      "activation_status": "active",
+      "scored": true,
+      "registered_at": "2026-08-30T06:01:01Z",
+      "scores": [
+        {
+          "intent_id": "AI_TEXT_DETECTION",
+          "epoch_id": 295,
+          "rank": 1,
+          "score": 2.1754384e-10,
+          "scored_at": "2026-08-30T19:03:11.223033Z"
+        },
+        {
+          "intent_id": "IP_GEOLOCATION",
+          "epoch_id": 295,
+          "rank": 1,
+          "score": 0.9955636,
+          "scored_at": "2026-08-30T18:54:34.591952Z"
+        },
+        {
+          "intent_id": "STORM_ALERT",
+          "epoch_id": 295,
+          "rank": 1,
+          "score": 0.011410189,
+          "scored_at": "2026-08-30T18:56:33.925007Z"
+        },
+        {
+          "intent_id": "SSL_VERIFICATION",
+          "epoch_id": 295,
+          "rank": 2,
+          "score": 0.009769076,
+          "scored_at": "2026-08-30T19:09:06.947494Z"
+        },
+        {
+          "intent_id": "ACADEMIC_SEARCH",
+          "epoch_id": 295,
+          "rank": 4,
+          "score": 0.011029269,
+          "scored_at": "2026-08-30T19:12:53.816457Z"
+        },
+        {
+          "intent_id": "LANGUAGE_TRANSLATION",
+          "epoch_id": 295,
+          "rank": 4,
+          "score": 1.8290729e-10,
+          "scored_at": "2026-08-30T19:02:58.944618Z"
+        },
+        {
+          "intent_id": "WEATHER_FORECAST",
+          "epoch_id": 295,
+          "rank": 10,
+          "score": 0,
+          "scored_at": "2026-08-30T18:59:37.35616Z"
+        }
+      ],
+      "AI_TEXT_DETECTION": {
+        "intent_id": "AI_TEXT_DETECTION",
+        "epoch_id": 295,
+        "rank": 1,
+        "score": 2.1754384e-10,
+        "scored_at": "2026-08-30T19:03:11.223033Z"
+      }
+    },
+    "itsai": {
+      "id": "32",
+      "slug": "bittensor-sn32-itsai",
+      "activation_status": "active",
+      "scored": true,
+      "registered_at": "2026-08-25T12:29:14Z",
+      "scores": [
+        {
+          "intent_id": "AI_TEXT_DETECTION",
+          "epoch_id": 295,
+          "rank": 3,
+          "score": 1.0752688e-10,
+          "scored_at": "2026-08-30T19:03:11.223033Z"
+        }
+      ],
+      "AI_TEXT_DETECTION": {
+        "intent_id": "AI_TEXT_DETECTION",
+        "epoch_id": 295,
+        "rank": 3,
+        "score": 1.0752688e-10,
+        "scored_at": "2026-08-30T19:03:11.223033Z"
+      }
+    },
+    "veritarach": {
+      "id": "708425",
+      "slug": "veritarach-ai-text-detector",
+      "activation_status": "active",
+      "scored": true,
+      "registered_at": "2026-08-15T16:09:44Z",
+      "scores": [
+        {
+          "intent_id": "AI_TEXT_DETECTION",
+          "epoch_id": 295,
+          "rank": 2,
+          "score": 1.7272726e-10,
+          "scored_at": "2026-08-30T19:03:11.223033Z"
+        }
+      ],
+      "AI_TEXT_DETECTION": {
+        "intent_id": "AI_TEXT_DETECTION",
+        "epoch_id": 295,
+        "rank": 2,
+        "score": 1.7272726e-10,
+        "scored_at": "2026-08-30T19:03:11.223033Z"
+      }
+    },
+    "caliber": {
+      "id": "20260830",
+      "slug": "caliber-truthport-text-auth",
+      "activation_status": "active",
+      "scored": false,
+      "registered_at": "2026-08-30T21:56:22Z",
+      "scores": [],
+      "AI_TEXT_DETECTION": null
+    }
+  }
+}

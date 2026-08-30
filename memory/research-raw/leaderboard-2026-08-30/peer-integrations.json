@@ -1,0 +1,549 @@
+[
+  {
+    "id": "4433",
+    "slug": "livecert",
+    "kind": "miner",
+    "protocol": "generic",
+    "name": "LiveCert Operational Signals",
+    "yaml_url": "https://gateway.pinata.cloud/ipfs/QmbKp37VmaLBQriGcX45HSQEBByXJLUPoV7C6rFSbUp2Ug",
+    "base_url": "https://miner-wine.vercel.app",
+    "supported_intents": [
+      "SSL_VERIFICATION",
+      "STORM_ALERT",
+      "WEATHER_FORECAST",
+      "IP_GEOLOCATION",
+      "LANGUAGE_TRANSLATION",
+      "ACADEMIC_SEARCH",
+      "AI_TEXT_DETECTION"
+    ],
+    "endpoints": [
+      {
+        "path": "/ssl-check",
+        "method": "GET",
+        "description": "Live TLS certificate check for one domain. Accepts a bare hostname, a full URL, or host:port.\n"
+      },
+      {
+        "path": "/storm-alert",
+        "method": "GET",
+        "description": "Severe-weather risk for a location over the next 48 hours. Accepts a place name or \"lat,lon\".\n"
+      },
+      {
+        "path": "/papers",
+        "method": "GET",
+        "description": "Finds peer-reviewed papers on a topic, optionally within a date range, via OpenAlex. Returns title, authors, year and citation count for each.\n"
+      },
+      {
+        "path": "/translate",
+        "method": "GET",
+        "description": "Translates quoted text into a named target language. Returns the translation itself, in the target script.\n"
+      },
+      {
+        "path": "/ip-geolocate",
+        "method": "GET",
+        "description": "Live IP geolocation. Accepts an IPv4 or IPv6 address, or a whole question containing one.\n"
+      },
+      {
+        "path": "/weather-forecast",
+        "method": "GET",
+        "description": "Future conditions for a location over a stated window (default 24h, max 168h). Accepts a place name or \"lat,lon\", plus an optional hours parameter.\n"
+      },
+      {
+        "path": "/ai-detect",
+        "method": "GET",
+        "description": "Statistical authorship analysis of a supplied passage. Measures sentence-length burstiness, type-token ratio, repeated word pairs and formulaic connectives, and reports what they indicate with a calibrated confidence that is capped at 0.6. Authorship detection is not reliable enough to treat as proof and the answer says so; when no passage long enough to analyse is supplied it says that instead of guessing.\n"
+      }
+    ],
+    "activation_status": "active",
+    "scored": true,
+    "last_scored_at": "2026-08-30T18:54:34Z",
+    "scores": [
+      {
+        "intent_id": "IP_GEOLOCATION",
+        "epoch_id": 295,
+        "rank": 1,
+        "score": 0.9955636,
+        "scored_at": "2026-08-30T18:54:34.591952Z"
+      }
+    ],
+    "docs": {
+      "repository": "https://github.com/Harshyadav442277/miner"
+    },
+    "signal_mapping": {
+      "confidence_field": "confidence",
+      "label_field": "verdict",
+      "reason_field": "reason"
+    },
+    "min_price_usdc": 10000,
+    "has_input_schema": true,
+    "has_output_schema": true
+  },
+  {
+    "id": "202",
+    "slug": "tavily",
+    "kind": "miner",
+    "protocol": "generic",
+    "name": "Tavily Web Search",
+    "yaml_url": "http://127.0.0.1:8099/tavily.yaml",
+    "base_url": "https://api.tavily.com",
+    "supported_intents": [
+      "WEB_SEARCH",
+      "RESEARCH_QUERY",
+      "FACT_CHECK",
+      "NEWS_SEARCH"
+    ],
+    "endpoints": [
+      {
+        "path": "/search",
+        "method": "POST",
+        "description": "Web search returning a synthesized answer and ranked source results."
+      },
+      {
+        "path": "/extract",
+        "method": "POST",
+        "description": "Extract clean article content from one or more URLs."
+      }
+    ],
+    "activation_status": "active",
+    "scored": true,
+    "last_scored_at": "2026-08-30T10:03:35Z",
+    "scores": [
+      {
+        "intent_id": "FACT_CHECK",
+        "epoch_id": 294,
+        "rank": 1,
+        "score": 2.5612323e-9,
+        "scored_at": "2026-08-30T09:53:22.70184Z"
+      },
+      {
+        "intent_id": "NEWS_SEARCH",
+        "epoch_id": 294,
+        "rank": 1,
+        "score": 0.009120938,
+        "scored_at": "2026-08-30T09:59:48.350884Z"
+      },
+      {
+        "intent_id": "RESEARCH_QUERY",
+        "epoch_id": 294,
+        "rank": 3,
+        "score": 0,
+        "scored_at": "2026-08-30T10:03:35.657539Z"
+      },
+      {
+        "intent_id": "WEB_SEARCH",
+        "epoch_id": 294,
+        "rank": 3,
+        "score": 0.012304544,
+        "scored_at": "2026-08-30T09:59:49.785977Z"
+      }
+    ],
+    "docs": {
+      "website": "https://tavily.com",
+      "documentation": "https://docs.tavily.com"
+    },
+    "signal_mapping": {
+      "label_field": "answer",
+      "reason_field": "results"
+    },
+    "min_price_usdc": 10000,
+    "has_input_schema": true,
+    "has_output_schema": true
+  },
+  {
+    "id": "32",
+    "slug": "bittensor-sn32-itsai",
+    "kind": "miner",
+    "protocol": "bittensor",
+    "name": "ItsAI Text Detector (Bittensor SN32)",
+    "yaml_url": "https://gateway.pinata.cloud/ipfs/Qmcq2f5DhqvhvC3M8umLLPjh692BfJuQWzoZa7EQiGFh5E",
+    "base_url": "https://api.its-ai.org/api",
+    "supported_intents": [
+      "AI_TEXT_DETECTION"
+    ],
+    "endpoints": [
+      {
+        "path": "/detect",
+        "method": "POST",
+        "description": "Detect whether a piece of text is AI-generated."
+      }
+    ],
+    "activation_status": "active",
+    "scored": true,
+    "last_scored_at": "2026-08-30T09:53:09Z",
+    "scores": [
+      {
+        "intent_id": "AI_TEXT_DETECTION",
+        "epoch_id": 294,
+        "rank": 3,
+        "score": 8.4615384e-11,
+        "scored_at": "2026-08-30T09:53:09.417223Z"
+      }
+    ],
+    "docs": {
+      "website": "https://its-ai.org",
+      "documentation": "https://docs.its-ai.org",
+      "repository": "https://github.com/its-ai/subnet-32"
+    },
+    "signal_mapping": {
+      "confidence_field": "answer",
+      "label_field": "answer",
+      "reason_field": "status"
+    },
+    "min_price_usdc": 10000,
+    "has_input_schema": false,
+    "has_output_schema": false,
+    "limitations": [
+      {
+        "code": "MAX_PARAM_VALUE",
+        "message": "Text samples under 200 characters are rejected by the upstream API.",
+        "param": "text",
+        "property": "length",
+        "value_num": 200,
+        "operator": "gte"
+      }
+    ]
+  },
+  {
+    "id": "91001",
+    "slug": "sarzops-transaction-risk",
+    "kind": "miner",
+    "protocol": "generic",
+    "name": "SarzOps Fraud Intelligence",
+    "yaml_url": "ipfs://bafkreid2ceaib7bff3auo3zyxgycfdwhnfux2emu3coceuneszc4sc4aby",
+    "base_url": "https://telegraph-intelligence-stack-production.up.railway.app",
+    "supported_intents": [
+      "FRAUD_DETECTION",
+      "RESEARCH_QUERY"
+    ],
+    "endpoints": [
+      {
+        "path": "/fraud",
+        "method": "POST",
+        "description": "Assess a fraud question: given a natural-language question about a fraud, scam, scheme, malicious actor, mechanism, incident, or enforcement outcome, return a concise, sourced factual answer (FRAUD_DETECTION).\n"
+      },
+      {
+        "path": "/research",
+        "method": "POST",
+        "description": "Answer a research question about a fraud, scam, scheme, actor, incident, or enforcement outcome (who, what, when, how much, what happened) with a concise, sourced factual answer (RESEARCH_QUERY).\n"
+      }
+    ],
+    "activation_status": "active",
+    "scored": true,
+    "last_scored_at": "2026-08-30T10:03:35Z",
+    "scores": [
+      {
+        "intent_id": "RESEARCH_QUERY",
+        "epoch_id": 294,
+        "rank": 1,
+        "score": 0.002094446,
+        "scored_at": "2026-08-30T10:03:35.657539Z"
+      },
+      {
+        "intent_id": "FRAUD_DETECTION",
+        "epoch_id": 294,
+        "rank": 13,
+        "score": 0,
+        "scored_at": "2026-08-30T10:03:32.361724Z"
+      }
+    ],
+    "signal_mapping": {
+      "label_field": "signal",
+      "reason_field": "source"
+    },
+    "min_price_usdc": 10000,
+    "has_input_schema": true,
+    "has_output_schema": true,
+    "limitations": [
+      {
+        "code": "MAX_BODY_SIZE",
+        "message": "Request bodies must not exceed 64 KiB.",
+        "property": "size_bytes",
+        "value_num": 65536,
+        "operator": "lte"
+      }
+    ]
+  },
+  {
+    "id": "34",
+    "slug": "bittensor-sn34-bitmind",
+    "kind": "miner",
+    "protocol": "bittensor",
+    "name": "BitMind Deepfake Detector (Bittensor SN34)",
+    "yaml_url": "http://127.0.0.1:8099/bittensor-sn34-bitmind.yaml",
+    "base_url": "https://api.bitmind.ai",
+    "supported_intents": [
+      "DEEPFAKE_DETECTION",
+      "MEDIA_AUTHENTICITY_CHECK",
+      "IMAGE_VERIFICATION",
+      "VIDEO_VERIFICATION"
+    ],
+    "endpoints": [
+      {
+        "path": "/detect-image",
+        "method": "POST",
+        "description": "Detect whether an image is a deepfake (JSON body with an 'image' field)."
+      },
+      {
+        "path": "/detect-video",
+        "method": "POST",
+        "description": "Detect whether a video is a deepfake (multipart upload or video URL)."
+      },
+      {
+        "path": "/preprocess-video",
+        "method": "POST",
+        "description": "Pre-process a video for deepfake analysis."
+      },
+      {
+        "path": "/get-video-upload-url",
+        "method": "POST",
+        "description": "Get a pre-signed URL for uploading a video for analysis."
+      }
+    ],
+    "activation_status": "active",
+    "scored": true,
+    "last_scored_at": "2026-08-30T10:09:21Z",
+    "scores": [
+      {
+        "intent_id": "DEEPFAKE_DETECTION",
+        "epoch_id": 294,
+        "rank": 1,
+        "score": 0,
+        "scored_at": "2026-08-30T10:04:26.174379Z"
+      },
+      {
+        "intent_id": "MEDIA_AUTHENTICITY_CHECK",
+        "epoch_id": 294,
+        "rank": 1,
+        "score": 0,
+        "scored_at": "2026-08-30T10:09:21.20467Z"
+      },
+      {
+        "intent_id": "VIDEO_VERIFICATION",
+        "epoch_id": 294,
+        "rank": 1,
+        "score": 0,
+        "scored_at": "2026-08-30T09:51:51.500964Z"
+      },
+      {
+        "intent_id": "IMAGE_VERIFICATION",
+        "epoch_id": 294,
+        "rank": 2,
+        "score": 0,
+        "scored_at": "2026-08-30T09:58:55.699428Z"
+      }
+    ],
+    "docs": {
+      "website": "https://www.bitmind.ai",
+      "documentation": "https://docs.bitmind.ai",
+      "repository": "https://github.com/BitMind-AI/bitmind-subnet",
+      "twitter": "@BitMindAI"
+    },
+    "signal_mapping": {
+      "confidence_field": "confidence",
+      "label_field": "isAI"
+    },
+    "min_price_usdc": 10000,
+    "has_input_schema": true,
+    "has_output_schema": true,
+    "limitations": [
+      {
+        "code": "MAX_BODY_SIZE",
+        "message": "Maximum request body size is 10MB",
+        "property": "size_bytes",
+        "value_bytes": 10485760
+      },
+      {
+        "code": "MAX_IMAGE_SIZE",
+        "message": "Maximum image size is 5MB (base64-encoded PNG, JPEG, or WebP)",
+        "param": "image",
+        "property": "size_bytes",
+        "value_bytes": 5242880,
+        "operator": "gte"
+      },
+      {
+        "code": "RATE_LIMIT",
+        "message": "Rate limited to 5 requests per second"
+      }
+    ]
+  },
+  {
+    "id": "112",
+    "slug": "faceplus",
+    "kind": "miner",
+    "protocol": "generic",
+    "name": "Megvii Face++",
+    "yaml_url": "http://127.0.0.1:8099/faceplus.yaml",
+    "base_url": "https://api-us.faceplusplus.com",
+    "supported_intents": [
+      "IMAGE_VERIFICATION",
+      "CONTENT_VERIFICATION"
+    ],
+    "endpoints": [
+      {
+        "path": "/detect",
+        "method": "POST",
+        "description": "Detect faces in an image; returns face rectangles, tokens, and optional attributes."
+      }
+    ],
+    "activation_status": "active",
+    "scored": true,
+    "last_scored_at": "2026-08-30T18:53:46Z",
+    "scores": [
+      {
+        "intent_id": "CONTENT_VERIFICATION",
+        "epoch_id": 295,
+        "rank": 1,
+        "score": 0,
+        "scored_at": "2026-08-30T18:53:46.285742Z"
+      }
+    ],
+    "docs": {
+      "website": "https://www.faceplusplus.com",
+      "documentation": "https://console.faceplusplus.com/documents/5679127"
+    },
+    "signal_mapping": {
+      "label_field": "faces"
+    },
+    "min_price_usdc": 10000,
+    "has_input_schema": true,
+    "has_output_schema": true
+  },
+  {
+    "id": "20260828",
+    "slug": "preflight-ssl-verification",
+    "kind": "miner",
+    "protocol": "generic",
+    "name": "PREFLIGHT Infrastructure Signals",
+    "yaml_url": "https://raw.githubusercontent.com/shreshth006/Preflight/e8f69124bca5e6b47b24db6981d177b80ba4e8dc/telegraph/miner.yaml",
+    "base_url": "https://preflight-ssl-verification.vercel.app",
+    "supported_intents": [
+      "SSL_VERIFICATION",
+      "URL_SCAN",
+      "WALLET_BALANCE_CHECK",
+      "ONCHAIN_TX_LOOKUP",
+      "TVL_LOOKUP",
+      "CRYPTO_PRICE",
+      "CURRENCY_EXCHANGE",
+      "IP_GEOLOCATION",
+      "ACADEMIC_SEARCH"
+    ],
+    "endpoints": [
+      {
+        "path": "/ssl-check",
+        "method": "GET",
+        "description": "Live TLS certificate verification for a hostname, HTTPS URL, or host:port."
+      },
+      {
+        "path": "/url-scan",
+        "method": "GET",
+        "description": "Safety scan of a URL. Follows redirects, verifies TLS, inspects security headers and reports a risk score with explicit findings. Questions about a bounded set of documented malware-domain incidents can be answered from attributed historical reference facts when no live URL is supplied.\n"
+      },
+      {
+        "path": "/gas-price",
+        "method": "GET",
+        "description": "Current gas price for an EVM chain, with EIP-1559 base fee, suggested priority fee and the cost of a standard native transfer.\n"
+      },
+      {
+        "path": "/wallet-balance",
+        "method": "GET",
+        "description": "Native token balance for an EVM address, with nonce and account type including EIP-7702 delegated accounts.\n"
+      },
+      {
+        "path": "/tx-lookup",
+        "method": "GET",
+        "description": "Status and effect of a transaction hash, with block, confirmations, value, gas used and fee paid.\n"
+      },
+      {
+        "path": "/crypto-price",
+        "method": "GET",
+        "description": "Current USD spot price for a cryptocurrency, by ticker or name, aggregated by DefiLlama with the observation timestamp.\n"
+      },
+      {
+        "path": "/tvl",
+        "method": "GET",
+        "description": "Total value locked for a DeFi protocol or chain, mirrored from DefiLlama."
+      },
+      {
+        "path": "/fx-rate",
+        "method": "GET",
+        "description": "Mid-market foreign exchange rate between two currencies, named as ISO 4217 codes or common names, with the inverse rate and an optional converted amount.\n"
+      },
+      {
+        "path": "/ip-geolocation",
+        "method": "GET",
+        "description": "Geolocation of an IPv4 or IPv6 address, with city, region, country, coordinates, timezone, ISP and autonomous system. Private and reserved ranges are reported as such rather than as a lookup failure.\n"
+      },
+      {
+        "path": "/stock-price",
+        "method": "GET",
+        "description": "Current equity quote by ticker or company name, with the previous close, the day's change and the listing venue.\n"
+      },
+      {
+        "path": "/papers",
+        "method": "GET",
+        "description": "Peer-reviewed papers for a research question, optionally constrained by publication dates, result count and citation or recency ordering, from OpenAlex.\n"
+      }
+    ],
+    "activation_status": "active",
+    "scored": true,
+    "last_scored_at": "2026-08-30T18:54:34Z",
+    "scores": [
+      {
+        "intent_id": "IP_GEOLOCATION",
+        "epoch_id": 295,
+        "rank": 2,
+        "score": 0.9946201,
+        "scored_at": "2026-08-30T18:54:34.591952Z"
+      }
+    ],
+    "docs": {
+      "documentation": "https://github.com/shreshth006/Preflight/blob/main/docs/TELEGRAPH-INTEGRATION.md",
+      "repository": "https://github.com/shreshth006/Preflight"
+    },
+    "signal_mapping": {
+      "confidence_field": "confidence",
+      "label_field": "verdict",
+      "reason_field": "reason"
+    },
+    "min_price_usdc": 10000,
+    "has_input_schema": true,
+    "has_output_schema": true
+  },
+  {
+    "id": "708425",
+    "slug": "veritarach-ai-text-detector",
+    "kind": "miner",
+    "protocol": "generic",
+    "name": "Veritarach AI Text Detector",
+    "yaml_url": "https://gateway.pinata.cloud/ipfs/QmStgms5GJXxTpd1gqsgQAKYwm4KZWfBe5fwYcpECLjMBB",
+    "base_url": "https://157-230-241-156.sslip.io",
+    "supported_intents": [
+      "AI_TEXT_DETECTION"
+    ],
+    "endpoints": [
+      {
+        "path": "/predict",
+        "method": "POST",
+        "description": "Classify text as ai_generated or human_written with a confidence score."
+      }
+    ],
+    "activation_status": "active",
+    "scored": true,
+    "last_scored_at": "2026-08-30T09:53:09Z",
+    "scores": [
+      {
+        "intent_id": "AI_TEXT_DETECTION",
+        "epoch_id": 294,
+        "rank": 2,
+        "score": 1.8348623e-10,
+        "scored_at": "2026-08-30T09:53:09.417223Z"
+      }
+    ],
+    "signal_mapping": {
+      "confidence_field": "confidence",
+      "label_field": "label"
+    },
+    "min_price_usdc": 10000,
+    "has_input_schema": false,
+    "has_output_schema": false
+  }
+]

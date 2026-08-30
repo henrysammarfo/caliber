@@ -1,0 +1,30 @@
+version: "1"
+kind: miner
+id: 20260830
+slug: caliber-truthport-text-auth
+protocol: generic
+name: CALIBER TRUTHPORT Text Authenticity
+description: >
+  Deterministic text authenticity miner: calibrated P(AI) from surface linguistic
+  features. Production calibration uses labeled holdout (RAID primary). Registers
+  the HTTP detect surface for Telegraph routing and x402 gating.
+base_url: https://caliber-teamtitanlink.vercel.app
+
+docs:
+  repository: https://github.com/henrysammarfo/caliber
+
+auth:
+  type: none
+
+endpoints:
+  - path: /detect
+    external_path: /detect
+    method: POST
+    description: Classify text as AI-generated or human-written with a confidence score.
+
+semantics:
+  signal_mapping:
+    confidence_field: confidence
+    label_field: isAI
+  supported_intents:
+    - AI_TEXT_DETECTION

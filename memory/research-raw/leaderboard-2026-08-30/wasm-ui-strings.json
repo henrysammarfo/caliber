@@ -1,0 +1,14 @@
+[
+  ",L.name.replace(/\\.wasm$/,",
+  "WASM REGISTRATION",
+  "wallet-info",
+  "wallet-status-row",
+  "wallet-status-text",
+  "Connected \\xb7 Base Sepolia",
+  "wallet-info-row",
+  "wallet-disconnected",
+  "Registering the scoring module on Base Sepolia.",
+  "registerWasm",
+  "Register WASM Module",
+  "wasm"
+]

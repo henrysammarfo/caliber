@@ -1,0 +1,25 @@
+{
+  "asOf": "2026-08-30T16:08:43.713Z",
+  "wallet": "0x9ADd0ac311e9E528800afc3F4A04e9cDe52C9cE0",
+  "diamond": "0x122396E8602BEed349434AA6E83123E7dD97F5A0",
+  "yamlUrl": "https://raw.githubusercontent.com/henrysammarfo/caliber/c10e58f49eb95b97580416bac767e4477ded78bb/public/protocol/caliber-truthport.yaml",
+  "yamlHash": "0x982dffe99f1cc53817bb5e646ac30ee6e919dee8f405f0535ec0efa63490bfac",
+  "feeAddress": "0x9ADd0ac311e9E528800afc3F4A04e9cDe52C9cE0",
+  "minPriceUsdc": 10000,
+  "intents": [
+    "AI_TEXT_DETECTION"
+  ],
+  "deregister": {
+    "registrationId": 51,
+    "txHash": "0xcf11e92d3ba38b899b7a2298e35d74f9cac7eef286b7657bd7ae827535f54a90",
+    "status": "success",
+    "blockNumber": 46168920
+  },
+  "register": {
+    "registrationId": 52,
+    "txHash": "0xe0c01e9f2d4497dd1fb84ff452a1a84d871368e7bd9b915dd426d310db300320",
+    "status": "success",
+    "blockNumber": 46168921,
+    "explorerUrl": "https://sepolia.basescan.org/tx/0xe0c01e9f2d4497dd1fb84ff452a1a84d871368e7bd9b915dd426d310db300320"
+  }
+}

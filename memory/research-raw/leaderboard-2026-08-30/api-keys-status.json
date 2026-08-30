@@ -1,0 +1,6 @@
+﻿{
+  "asOf": "2026-08-30",
+  "tinyfish": {"attempted": false, "reason": "TINYFISH_API_KEY absent from caliber/.env; aftercut/.env.local has placeholder only (len=11, prefix=[SEN])"},
+  "tavily": {"attempted": false, "reason": "TAVILY_API_KEY absent from caliber/.env"},
+  "substitutes": ["direct curl integrate HTML/JS", "WebFetch", "WebSearch", "dispatcher /integrations + openapi", "prior gitbook dump miner-registry-facet"]
+}

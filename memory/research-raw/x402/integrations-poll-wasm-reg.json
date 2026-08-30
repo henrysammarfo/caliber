@@ -1,0 +1,86 @@
+{
+  "asOf": "2026-08-30T20:06:25.363Z",
+  "listed": false,
+  "results": [
+    {
+      "url": "http://13.237.89.59:7044/miner-dispatcher/integrations",
+      "status": 200,
+      "len": 227508,
+      "topKeys": null,
+      "arrLen": 93,
+      "matchedCount": 0,
+      "matched": [],
+      "stringHits": {
+        "20260830": false,
+        "caliber": false,
+        "truthport": false,
+        "QmVTkd": false,
+        "QmWVPg": false,
+        "GRADELOCK": false,
+        "gradelock": false,
+        "teamtitan": false,
+        "9ADd0ac": false,
+        "caliber-truthport": false
+      }
+    },
+    {
+      "url": "http://13.237.89.59:7044/integrations",
+      "status": 404,
+      "len": 19,
+      "parseErr": "not json",
+      "stringHits": {
+        "20260830": false,
+        "caliber": false,
+        "truthport": false,
+        "QmVTkd": false,
+        "QmWVPg": false,
+        "GRADELOCK": false,
+        "gradelock": false,
+        "teamtitan": false,
+        "9ADd0ac": false,
+        "caliber-truthport": false
+      }
+    },
+    {
+      "url": "http://13.237.89.59:7044/miner-dispatcher/healthz",
+      "status": 200,
+      "len": 15,
+      "topKeys": [
+        "status"
+      ],
+      "arrLen": 0,
+      "matchedCount": 0,
+      "matched": [],
+      "stringHits": {
+        "20260830": false,
+        "caliber": false,
+        "truthport": false,
+        "QmVTkd": false,
+        "QmWVPg": false,
+        "GRADELOCK": false,
+        "gradelock": false,
+        "teamtitan": false,
+        "9ADd0ac": false,
+        "caliber-truthport": false
+      }
+    },
+    {
+      "url": "https://integrate.telegraphprotocol.com/api/integrations",
+      "status": 404,
+      "len": 15700,
+      "parseErr": "not json",
+      "stringHits": {
+        "20260830": false,
+        "caliber": false,
+        "truthport": false,
+        "QmVTkd": false,
+        "QmWVPg": false,
+        "GRADELOCK": false,
+        "gradelock": false,
+        "teamtitan": false,
+        "9ADd0ac": false,
+        "caliber-truthport": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,130 @@
+[
+  {
+    "id": "4433",
+    "slug": "livecert",
+    "yaml_url": "https://gateway.pinata.cloud/ipfs/QmbKp37VmaLBQriGcX45HSQEBByXJLUPoV7C6rFSbUp2Ug",
+    "base_url": "https://miner-wine.vercel.app",
+    "endpoints": [
+      {
+        "path": "/ssl-check",
+        "method": "GET",
+        "description": "Live TLS certificate check for one domain. Accepts a bare hostname, a full URL, or host:port.\n"
+      },
+      {
+        "path": "/storm-alert",
+        "method": "GET",
+        "description": "Severe-weather risk for a location over the next 48 hours. Accepts a place name or \"lat,lon\".\n"
+      },
+      {
+        "path": "/papers",
+        "method": "GET",
+        "description": "Finds peer-reviewed papers on a topic, optionally within a date range, via OpenAlex. Returns title, authors, year and citation count for each.\n"
+      },
+      {
+        "path": "/translate",
+        "method": "GET",
+        "description": "Translates quoted text into a named target language. Returns the translation itself, in the target script.\n"
+      },
+      {
+        "path": "/ip-geolocate",
+        "method": "GET",
+        "description": "Live IP geolocation. Accepts an IPv4 or IPv6 address, or a whole question containing one.\n"
+      },
+      {
+        "path": "/weather-forecast",
+        "method": "GET",
+        "description": "Future conditions for a location over a stated window (default 24h, max 168h). Accepts a place name or \"lat,lon\", plus an optional hours parameter.\n"
+      },
+      {
+        "path": "/ai-detect",
+        "method": "GET",
+        "description": "Statistical authorship analysis of a supplied passage. Measures sentence-length burstiness, type-token ratio, repeated word pairs and formulaic connectives, and reports what they indicate with a calibrated confidence that is capped at 0.6. Authorship detection is not reliable enough to treat as proof and the answer says so; when no passage long enough to analyse is supplied it says that instead of guessing.\n"
+      }
+    ],
+    "supported_intents": [
+      "SSL_VERIFICATION",
+      "STORM_ALERT",
+      "WEATHER_FORECAST",
+      "IP_GEOLOCATION",
+      "LANGUAGE_TRANSLATION",
+      "ACADEMIC_SEARCH",
+      "AI_TEXT_DETECTION"
+    ],
+    "signal_mapping": {
+      "confidence_field": "confidence",
+      "label_field": "verdict",
+      "reason_field": "reason"
+    },
+    "scores": [
+      {
+        "intent_id": "IP_GEOLOCATION",
+        "epoch_id": 295,
+        "rank": 1,
+        "score": 0.9955636,
+        "scored_at": "2026-08-30T18:54:34.591952Z"
+      }
+    ],
+    "activation_status": "active"
+  },
+  {
+    "id": "32",
+    "slug": "bittensor-sn32-itsai",
+    "yaml_url": "https://gateway.pinata.cloud/ipfs/Qmcq2f5DhqvhvC3M8umLLPjh692BfJuQWzoZa7EQiGFh5E",
+    "base_url": "https://api.its-ai.org/api",
+    "endpoints": [
+      {
+        "path": "/detect",
+        "method": "POST",
+        "description": "Detect whether a piece of text is AI-generated."
+      }
+    ],
+    "supported_intents": [
+      "AI_TEXT_DETECTION"
+    ],
+    "signal_mapping": {
+      "confidence_field": "answer",
+      "label_field": "answer",
+      "reason_field": "status"
+    },
+    "scores": [
+      {
+        "intent_id": "AI_TEXT_DETECTION",
+        "epoch_id": 294,
+        "rank": 3,
+        "score": 8.4615384e-11,
+        "scored_at": "2026-08-30T09:53:09.417223Z"
+      }
+    ],
+    "activation_status": "active"
+  },
+  {
+    "id": "708425",
+    "slug": "veritarach-ai-text-detector",
+    "yaml_url": "https://gateway.pinata.cloud/ipfs/QmStgms5GJXxTpd1gqsgQAKYwm4KZWfBe5fwYcpECLjMBB",
+    "base_url": "https://157-230-241-156.sslip.io",
+    "endpoints": [
+      {
+        "path": "/predict",
+        "method": "POST",
+        "description": "Classify text as ai_generated or human_written with a confidence score."
+      }
+    ],
+    "supported_intents": [
+      "AI_TEXT_DETECTION"
+    ],
+    "signal_mapping": {
+      "confidence_field": "confidence",
+      "label_field": "label"
+    },
+    "scores": [
+      {
+        "intent_id": "AI_TEXT_DETECTION",
+        "epoch_id": 294,
+        "rank": 2,
+        "score": 1.8348623e-10,
+        "scored_at": "2026-08-30T09:53:09.417223Z"
+      }
+    ],
+    "activation_status": "active"
+  }
+]

@@ -1,0 +1,19 @@
+[
+  "install it after registering (Dashboard → API Key), signed with your registering wallet.",
+  "Combined with the Base URL from Connection settings.",
+  "connection",
+  "uploading",
+  "/api/upload",
+  "Upload failed. Please try again.",
+  "Pinned to IPFS successfully.",
+  "upload-layout",
+  "upload-main",
+  "upload-card",
+  "upload-card-header",
+  "Validate & Upload to IPFS",
+  "Upload Successful",
+  "IPFS HASH",
+  "IPFS URL",
+  "Paste or upload a YAML file to continue.",
+  ",result:m,onResult:x,onBack:()=>d(1),onNext:()=>d(3)}),3===c&&(0,a.jsx)(ev.A,{yaml:_,pinataResult:m,intents:p.semantics_intents,minPriceUsdc:p.onchain_min_price_usdc,onBack:m?()=>d(2):()=>e.push("
+]

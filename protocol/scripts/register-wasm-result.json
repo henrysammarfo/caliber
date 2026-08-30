@@ -1,0 +1,23 @@
+{
+  "asOf": "2026-08-30T20:00:14.846Z",
+  "wallet": "0x9ADd0ac311e9E528800afc3F4A04e9cDe52C9cE0",
+  "diamond": "0x5a2324aA18613FAD4e44bDF0d6c73Ec1f6D87ff8",
+  "intent": "AI_TEXT_DETECTION",
+  "wasmUrl": "https://gateway.pinata.cloud/ipfs/QmWVPgXS5FNWUP48JBb2P6prGn8w4qe5zvF9GcNHiWBsWX",
+  "wasmHash": "0x8d295d467f4002271feb29bc089471453972419b0d02b15da3c3c737b36bb416",
+  "hashes": {
+    "prior": "0x8d295d467f4002271feb29bc089471453972419b0d02b15da3c3c737b36bb416",
+    "local": "0x8d295d467f4002271feb29bc089471453972419b0d02b15da3c3c737b36bb416",
+    "pinata": "0x8d295d467f4002271feb29bc089471453972419b0d02b15da3c3c737b36bb416",
+    "vercel": "0x8d295d467f4002271feb29bc089471453972419b0d02b15da3c3c737b36bb416",
+    "pinataErr": null,
+    "vercelErr": null
+  },
+  "register": {
+    "txHash": "0x43d0c770beab5c453aaac2f86dc426d4d0f90f092ee3315f5778c8cd0bf6a572",
+    "status": "success",
+    "blockNumber": 46175866,
+    "registrationId": "2126",
+    "intentId": "0xaeee3c31e4d6c6dad8f7c261f862f42117f17633f8984fbad74a7bc7b833abf8"
+  }
+}
