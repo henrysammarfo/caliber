@@ -245,3 +245,62 @@
 
 ### Blocker for Henry
 Push for raw.githubusercontent.com YAML **or** Discord ask why registrationId **50** / vercel miner.yaml rejected.
+
+## 2026-08-30 ~15:40 — commit+push + GitHub raw re-register (reg 51, still unlisted)
+
+### Done
+- Committed+pushed `25f16bbb8d710d6309b33ae6dbfcc3807735ee6f` (H1 protocol; deleted tracked `.env`; no PRIVATE_KEY in added lines).
+- Repo was **private** → raw URL 404; set **public** so Telegraph can fetch YAML.
+- Verified raw URL 200 + sha256 `c9f96c3b395ac0637229a557d52d3ea929f3381ba311ba43bc4b3559680bd2a7`.
+- Deregistered **50**; registered **51** with yamlUrl=GitHub raw protocol YAML; intents AI_TEXT_DETECTION + CONTENT_VERIFICATION; fee 0x9ADd…9cE0; minPrice 10000.
+  - dereg tx `0x19f9c361cf9b2eda29bec0973d749c867f20472d9ba9fee41115b0af0891cbf8`
+  - reg tx `0xd28d7a8d24d43d1b5815f53a7be4b2eb3e2f0982c3f760ad78cea24f8b330efa`
+- Polled `/integrations` ~10m (60s interval): still **125**, no 92001 / caliber-truthport-text-auth.
+- Skipped paid `/v1/92001/detect` (unlisted); no `x402-receipt-truthport.json`.
+- Updated protocol-status, CURRENT_STATE, FACT_CHECK, roadmap (Aug 31 Track 1/2).
+
+### Blocker
+Discord: why reg **51** / raw GitHub YAML still not in integrations.
+
+## 2026-08-30 ~18:00 — veritarach-style YAML rewrite + regs 52/53 (still unlisted)
+
+### Done
+- Downloaded Preflight same-day activate YAML; saved AI_TEXT peers (veritarach Pinata, itsai Pinata).
+- Rewrote miner YAML: id **20260830**, intent **AI_TEXT_DETECTION** only, docs.repository, no schemas/rate_limit (veritarach clone + Preflight docs).
+- Synced public/protocol + protocol/yaml + public/miner.yaml; sha256 `982dffe99f1cc53817bb5e646ac30ee6e919dee8f405f0535ec0efa63490bfac`.
+- Commit+push `c10e58f` (yaml + protocol-status only). Raw GitHub 200 + hash match; jsDelivr 200.
+- Deregistered **51**; registered **52** GitHub raw — 12m poll: count 124, **not listed**.
+- Deregistered **52**; registered **53** jsDelivr yamlUrl — 5m poll: still **not listed**.
+- Updated CURRENT_STATE, FACT_CHECK (Aug 31 urgency), PORTAL_RULES note.
+
+### Blocker
+Discord ask required — silent off-chain reject; no `/rejected` API.
+
+## 2026-08-30 ~18:45 — LOCK-IN leaderboard research
+
+### Done
+- Dump under `memory/research-raw/leaderboard-2026-08-30/` + `SUMMARY.md`.
+- Dispatcher `/integrations` (124): extracted peers; downloaded livecert + veritarach YAML; AI_TEXT ranks (veritarach r2, itsai r3; livecert no AI_TEXT score).
+- integrate console: `/register` wizard (validate+Pinata `/api/upload` → `registerMiner`); `/wasm` (`upload-wasm`/`hash-remote` → `registerWasm`). Home leaderboard widget still empty.
+- TinyFish/Tavily **skipped** — keys not in caliber `.env`.
+- Critical YAML diffs vs livecert documented; activation blocker unchanged (not listing-shape vs veritarach).
+
+### Next
+Discord activation; post-list signal_mapping/`text` param; WASM submit.
+
+## 2026-08-30 ~19:30 — LOCK-IN deploy (Truthport v2)
+
+### Done
+- Synced LF byte-identical YAML → public/protocol + public/miner.yaml + protocol/yaml; sha256 `5d9c3d2d95589a699b84a50f3e46ed42facb3c479f159bd2c8cbb1eeca03fe3c`.
+- Left protocol/truthport v1 for CI smoke (6/6 pass); frontend src/lib/miner is live SoT.
+- `npm run build` OK; vercel `--prod --scope teamtitanlink` → dpl_ETuGisRLzQXQbzTKrnY3Y7zxFisf.
+- Smoke: POST /predict + GET /ai-detect return label/confidence/reason (v2).
+- Pinata YAML upload → CID QmVTkdLFe6sxJpXqBkPeHzBGwy392q9ezDRP7WgEobxYS6 (hash match).
+- Dereg **53** → registerMiner **55** (Pinata gateway URL); fee 0x9ADd…; minPrice 10000; AI_TEXT_DETECTION.
+- WASM copied to public/gradelock.wasm (hosted 200); upload-wasm Pinata CID QmWVPgXS5FNWUP48JBb2P6prGn8w4qe5zvF9GcNHiWBsWX; hash-remote OK; registerWasm wallet still pending.
+- TAVILY/TINYFISH keys written to gitignored .env (not echoed).
+- Doctrine: ignore deadline-as-kill; first-place dual; veritarach #2 AI_TEXT rival.
+
+### Blocker
+Integrations listing still the gate (dispatcher poll timed out from this host at LOCK-IN; retry needed).
+

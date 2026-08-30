@@ -11,17 +11,21 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as AiDetectRouteImport } from './routes/ai-detect'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as DemandAppRouteImport } from './routes/demand-app'
+import { Route as DetectRouteImport } from './routes/detect'
 import { Route as DocsRouteImport } from './routes/docs'
 import { Route as FaqsRouteImport } from './routes/faqs'
 import { Route as GraderRouteImport } from './routes/grader'
 import { Route as MerchRouteImport } from './routes/merch'
 import { Route as MinerRouteImport } from './routes/miner'
+import { Route as PredictRouteImport } from './routes/predict'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as ProtocolRouteImport } from './routes/protocol'
 import { Route as RoadmapRouteImport } from './routes/roadmap'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as MinerYamlRouteImport } from './routes/miner.yaml'
 import { Route as AuthenticatedDashboardIndexRouteImport } from './routes/_authenticated/dashboard.index'
 import { Route as AuthenticatedDashboardActivityRouteImport } from './routes/_authenticated/dashboard.activity'
 import { Route as AuthenticatedDashboardEngagementRouteImport } from './routes/_authenticated/dashboard.engagement'
@@ -40,6 +44,11 @@ const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
   id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AiDetectRoute = AiDetectRouteImport.update({
+  id: '/ai-detect',
+  path: '/ai-detect',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthRoute = AuthRouteImport.update({
   id: '/auth',
   path: '/auth',
@@ -48,6 +57,11 @@ const AuthRoute = AuthRouteImport.update({
 const DemandAppRoute = DemandAppRouteImport.update({
   id: '/demand-app',
   path: '/demand-app',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DetectRoute = DetectRouteImport.update({
+  id: '/detect',
+  path: '/detect',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DocsRoute = DocsRouteImport.update({
@@ -75,6 +89,11 @@ const MinerRoute = MinerRouteImport.update({
   path: '/miner',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PredictRoute = PredictRouteImport.update({
+  id: '/predict',
+  path: '/predict',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PricingRoute = PricingRouteImport.update({
   id: '/pricing',
   path: '/pricing',
@@ -94,6 +113,11 @@ const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
   getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const MinerYamlRoute = MinerYamlRouteImport.update({
+  id: '/yaml',
+  path: '/yaml',
+  getParentRoute: () => MinerRoute,
 } as any)
 const AuthenticatedDashboardIndexRoute =
   AuthenticatedDashboardIndexRouteImport.update({
@@ -146,17 +170,21 @@ const AuthenticatedDashboardSettingsRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/ai-detect': typeof AiDetectRoute
   '/auth': typeof AuthRoute
   '/demand-app': typeof DemandAppRoute
+  '/detect': typeof DetectRoute
   '/docs': typeof DocsRoute
   '/faqs': typeof FaqsRoute
   '/grader': typeof GraderRoute
   '/merch': typeof MerchRoute
-  '/miner': typeof MinerRoute
+  '/miner': typeof MinerRouteWithChildren
+  '/predict': typeof PredictRoute
   '/pricing': typeof PricingRoute
   '/protocol': typeof ProtocolRoute
   '/roadmap': typeof RoadmapRoute
   '/dashboard': typeof AuthenticatedDashboardRouteWithChildren
+  '/miner/yaml': typeof MinerYamlRoute
   '/dashboard/activity': typeof AuthenticatedDashboardActivityRoute
   '/dashboard/engagement': typeof AuthenticatedDashboardEngagementRoute
   '/dashboard/grader': typeof AuthenticatedDashboardGraderRoute
@@ -168,16 +196,20 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/ai-detect': typeof AiDetectRoute
   '/auth': typeof AuthRoute
   '/demand-app': typeof DemandAppRoute
+  '/detect': typeof DetectRoute
   '/docs': typeof DocsRoute
   '/faqs': typeof FaqsRoute
   '/grader': typeof GraderRoute
   '/merch': typeof MerchRoute
-  '/miner': typeof MinerRoute
+  '/miner': typeof MinerRouteWithChildren
+  '/predict': typeof PredictRoute
   '/pricing': typeof PricingRoute
   '/protocol': typeof ProtocolRoute
   '/roadmap': typeof RoadmapRoute
+  '/miner/yaml': typeof MinerYamlRoute
   '/dashboard/activity': typeof AuthenticatedDashboardActivityRoute
   '/dashboard/engagement': typeof AuthenticatedDashboardEngagementRoute
   '/dashboard/grader': typeof AuthenticatedDashboardGraderRoute
@@ -191,17 +223,21 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/ai-detect': typeof AiDetectRoute
   '/auth': typeof AuthRoute
   '/demand-app': typeof DemandAppRoute
+  '/detect': typeof DetectRoute
   '/docs': typeof DocsRoute
   '/faqs': typeof FaqsRoute
   '/grader': typeof GraderRoute
   '/merch': typeof MerchRoute
-  '/miner': typeof MinerRoute
+  '/miner': typeof MinerRouteWithChildren
+  '/predict': typeof PredictRoute
   '/pricing': typeof PricingRoute
   '/protocol': typeof ProtocolRoute
   '/roadmap': typeof RoadmapRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRouteWithChildren
+  '/miner/yaml': typeof MinerYamlRoute
   '/_authenticated/dashboard/activity': typeof AuthenticatedDashboardActivityRoute
   '/_authenticated/dashboard/engagement': typeof AuthenticatedDashboardEngagementRoute
   '/_authenticated/dashboard/grader': typeof AuthenticatedDashboardGraderRoute
@@ -215,17 +251,21 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/ai-detect'
     | '/auth'
     | '/demand-app'
+    | '/detect'
     | '/docs'
     | '/faqs'
     | '/grader'
     | '/merch'
     | '/miner'
+    | '/predict'
     | '/pricing'
     | '/protocol'
     | '/roadmap'
     | '/dashboard'
+    | '/miner/yaml'
     | '/dashboard/activity'
     | '/dashboard/engagement'
     | '/dashboard/grader'
@@ -237,16 +277,20 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/ai-detect'
     | '/auth'
     | '/demand-app'
+    | '/detect'
     | '/docs'
     | '/faqs'
     | '/grader'
     | '/merch'
     | '/miner'
+    | '/predict'
     | '/pricing'
     | '/protocol'
     | '/roadmap'
+    | '/miner/yaml'
     | '/dashboard/activity'
     | '/dashboard/engagement'
     | '/dashboard/grader'
@@ -259,17 +303,21 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/_authenticated'
+    | '/ai-detect'
     | '/auth'
     | '/demand-app'
+    | '/detect'
     | '/docs'
     | '/faqs'
     | '/grader'
     | '/merch'
     | '/miner'
+    | '/predict'
     | '/pricing'
     | '/protocol'
     | '/roadmap'
     | '/_authenticated/dashboard'
+    | '/miner/yaml'
     | '/_authenticated/dashboard/activity'
     | '/_authenticated/dashboard/engagement'
     | '/_authenticated/dashboard/grader'
@@ -283,13 +331,16 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AiDetectRoute: typeof AiDetectRoute
   AuthRoute: typeof AuthRoute
   DemandAppRoute: typeof DemandAppRoute
+  DetectRoute: typeof DetectRoute
   DocsRoute: typeof DocsRoute
   FaqsRoute: typeof FaqsRoute
   GraderRoute: typeof GraderRoute
   MerchRoute: typeof MerchRoute
-  MinerRoute: typeof MinerRoute
+  MinerRoute: typeof MinerRouteWithChildren
+  PredictRoute: typeof PredictRoute
   PricingRoute: typeof PricingRoute
   ProtocolRoute: typeof ProtocolRoute
   RoadmapRoute: typeof RoadmapRoute
@@ -311,6 +362,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/ai-detect': {
+      id: '/ai-detect'
+      path: '/ai-detect'
+      fullPath: '/ai-detect'
+      preLoaderRoute: typeof AiDetectRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/auth': {
       id: '/auth'
       path: '/auth'
@@ -323,6 +381,13 @@ declare module '@tanstack/react-router' {
       path: '/demand-app'
       fullPath: '/demand-app'
       preLoaderRoute: typeof DemandAppRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/detect': {
+      id: '/detect'
+      path: '/detect'
+      fullPath: '/detect'
+      preLoaderRoute: typeof DetectRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/docs': {
@@ -360,6 +425,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MinerRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/predict': {
+      id: '/predict'
+      path: '/predict'
+      fullPath: '/predict'
+      preLoaderRoute: typeof PredictRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/pricing': {
       id: '/pricing'
       path: '/pricing'
@@ -387,6 +459,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/dashboard'
       preLoaderRoute: typeof AuthenticatedDashboardRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/miner/yaml': {
+      id: '/miner/yaml'
+      path: '/yaml'
+      fullPath: '/miner/yaml'
+      preLoaderRoute: typeof MinerYamlRouteImport
+      parentRoute: typeof MinerRoute
     }
     '/_authenticated/dashboard/': {
       id: '/_authenticated/dashboard/'
@@ -487,16 +566,29 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
 const AuthenticatedRouteRouteWithChildren =
   AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
 
+interface MinerRouteChildren {
+  MinerYamlRoute: typeof MinerYamlRoute
+}
+
+const MinerRouteChildren: MinerRouteChildren = {
+  MinerYamlRoute: MinerYamlRoute,
+}
+
+const MinerRouteWithChildren = MinerRoute._addFileChildren(MinerRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AiDetectRoute: AiDetectRoute,
   AuthRoute: AuthRoute,
   DemandAppRoute: DemandAppRoute,
+  DetectRoute: DetectRoute,
   DocsRoute: DocsRoute,
   FaqsRoute: FaqsRoute,
   GraderRoute: GraderRoute,
   MerchRoute: MerchRoute,
-  MinerRoute: MinerRoute,
+  MinerRoute: MinerRouteWithChildren,
+  PredictRoute: PredictRoute,
   PricingRoute: PricingRoute,
   ProtocolRoute: ProtocolRoute,
   RoadmapRoute: RoadmapRoute,

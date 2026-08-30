@@ -9,27 +9,29 @@ const nonEmptyText = z
 export const DetectRequestSchema = z
   .object({
     text: nonEmptyText.optional(),
+    query: nonEmptyText.optional(),
     texts: z.array(nonEmptyText).min(1).max(64).optional(),
   })
   .strict()
-  .refine((v) => (v.text !== undefined) !== (v.texts !== undefined), {
-    message: "provide exactly one of text or texts",
+  .superRefine((v, ctx) => {
+    const hasBatch = v.texts !== undefined;
+    const hasSingle = v.text !== undefined || v.query !== undefined;
+    if (hasBatch === hasSingle) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: "provide exactly one of: text|query, or texts[]",
+      });
+    }
   });
 
 export type DetectRequest = z.infer<typeof DetectRequestSchema>;
 
 export const DetectionResultSchema = z.object({
   confidence: z.number().min(0).max(1),
+  label: z.enum(["ai_generated", "human_written"]),
+  reason: z.string(),
+  verdict: z.enum(["ai_generated", "human_written"]),
   isAI: z.boolean(),
-  explanation: z.string(),
   model: z.literal(MODEL_ID),
+  version: z.literal("2.0.0"),
 });
-
-export const DetectResponseSchema = z.union([
-  DetectionResultSchema,
-  z.object({
-    results: z.array(DetectionResultSchema),
-  }),
-]);
-
-export type DetectResponse = z.infer<typeof DetectResponseSchema>;

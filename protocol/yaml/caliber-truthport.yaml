@@ -5,26 +5,110 @@ slug: caliber-truthport-text-auth
 protocol: generic
 name: CALIBER TRUTHPORT Text Authenticity
 description: >
-  Deterministic text authenticity miner: calibrated P(AI) from surface linguistic
-  features. Production calibration uses labeled holdout (RAID primary). Registers
-  the HTTP detect surface for Telegraph routing and x402 gating.
+  Production stylometry ensemble for AI_TEXT_DETECTION. Returns calibrated
+  P(AI), label (ai_generated|human_written), and reason. Dual POST /predict
+  and GET /ai-detect surfaces match Telegraph peer contracts. Not legal proof
+  of authorship — proper-scoring friendly probabilities for ranking.
+
 base_url: https://caliber-teamtitanlink.vercel.app
 
 docs:
   repository: https://github.com/henrysammarfo/caliber
+  website: https://caliber-teamtitanlink.vercel.app
 
 auth:
   type: none
 
+rate_limit_per_sec: 20
+cache_ttl_sec: 0
+circuit_threshold: 5
+circuit_cooldown_seconds: 30
+
 endpoints:
+  - path: /predict
+    external_path: /predict
+    method: POST
+    description: Classify text as ai_generated or human_written with calibrated confidence.
+    intents: [AI_TEXT_DETECTION]
+    params:
+      body:
+        required:
+          - name: text
+            type: string
+            intents: ["*"]
+            description: Passage to analyse for AI authorship.
+        optional:
+          - name: query
+            type: string
+            intents: ["*"]
+            description: Alias for text when the engine fills query.
   - path: /detect
     external_path: /detect
     method: POST
-    description: Classify text as AI-generated or human-written with a confidence score.
+    description: Alias of /predict for CALIBER clients.
+    intents: [AI_TEXT_DETECTION]
+    params:
+      body:
+        required:
+          - name: text
+            type: string
+            intents: ["*"]
+            description: Passage to analyse for AI authorship.
+  - path: /ai-detect
+    external_path: /ai-detect
+    method: GET
+    description: Livecert-compatible GET authorship analysis.
+    intents: [AI_TEXT_DETECTION]
+    params:
+      query:
+        required:
+          - name: text
+            type: string
+            intents: ["*"]
+            description: Passage to analyse for AI authorship.
+        optional:
+          - name: query
+            type: string
+            intents: ["*"]
+            description: Alias for text.
+
+input_schema:
+  type: object
+  properties:
+    text:
+      type: string
+      maxLength: 50000
+      description: Passage whose authorship is analysed. Engine fills declared params only.
+    query:
+      type: string
+      maxLength: 50000
+      description: Alias for text.
+
+output_schema:
+  type: object
+  properties:
+    confidence:
+      type: number
+      minimum: 0
+      maximum: 1
+    label:
+      type: string
+      description: ai_generated or human_written
+    reason:
+      type: string
+    verdict:
+      type: string
+    isAI:
+      type: boolean
+    model:
+      type: string
+    version:
+      type: string
 
 semantics:
   signal_mapping:
     confidence_field: confidence
-    label_field: isAI
+    label_field: label
+    reason_field: reason
   supported_intents:
     - AI_TEXT_DETECTION

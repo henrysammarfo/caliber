@@ -1,4 +1,4 @@
-/** Deterministic text features for AI-likeness scoring. */
+/** Multi-signal surface features for AI authorship scoring. */
 
 export interface TextFeatures {
   lengthNorm: number;
@@ -12,228 +12,93 @@ export interface TextFeatures {
   contractionDensity: number;
   avgSentenceLen: number;
   uniquePunctRatio: number;
+  /** v2 */
+  connectiveDensity: number;
+  pronounDensity: number;
+  digitDensity: number;
+  uppercaseWordRatio: number;
+  sentenceCountNorm: number;
+  hapaxRatio: number;
+  meanWordLen: number;
+  questionDensity: number;
+  exclaimDensity: number;
 }
 
-const FUNCTION_WORDS = new Set([
-  "the",
-  "a",
-  "an",
-  "and",
-  "or",
-  "but",
-  "in",
-  "on",
-  "at",
-  "to",
-  "for",
-  "of",
-  "with",
-  "by",
-  "from",
-  "as",
-  "is",
-  "are",
-  "was",
-  "were",
-  "be",
-  "been",
-  "being",
-  "have",
-  "has",
-  "had",
-  "do",
-  "does",
-  "did",
-  "will",
-  "would",
-  "could",
-  "should",
-  "may",
-  "might",
-  "must",
-  "can",
-  "this",
-  "that",
-  "these",
-  "those",
-  "it",
-  "its",
-  "they",
-  "them",
-  "their",
-  "we",
-  "our",
-  "you",
-  "your",
-  "i",
-  "me",
-  "my",
-  "he",
-  "she",
-  "his",
-  "her",
-  "not",
-  "no",
-  "if",
-  "than",
-  "then",
-  "so",
-  "because",
-  "about",
-  "into",
-  "through",
-  "during",
-  "before",
-  "after",
-  "above",
-  "below",
-  "between",
-  "under",
-  "again",
-  "further",
-  "once",
-  "here",
-  "there",
-  "when",
-  "where",
-  "why",
-  "how",
-  "all",
-  "each",
-  "few",
-  "more",
-  "most",
-  "other",
-  "some",
-  "such",
-  "only",
-  "own",
-  "same",
-  "than",
-  "too",
-  "very",
-  "just",
-  "also",
-]);
+const FUNCTION_WORDS = new Set(
+  `the a an and or but if then else when while for of to in on at by with from as is are was were be been being have has had do does did will would can could should may might must this that these those it its i you he she we they my your his her our their not no nor so yet`.split(
+    /\s+/,
+  ),
+);
 
-const HEDGE_RE =
-  /\b(moreover|furthermore|additionally|in conclusion|it is important to note|delve|tapestry|landscape of|in today's|overall|ultimately|notably|essentially|fundamentally|comprehensive|multifaceted|robust|leverage|utilize|facilitate|enhance|optimize|streamline|cutting-edge|state-of-the-art|holistic|paradigm|synergy)\b/gi;
+const HEDGES =
+  /\b(additionally|furthermore|moreover|in conclusion|overall|it is important to note|in today's world|delve|tapestry|landscape|crucial|notably|essentially|fundamentally|comprehensive|robust|leverage|utilize|facilitate|underscore|pivotal|multifaceted|empower|streamline)\b/gi;
 
-const CONTRACTION_RE =
-  /\b(don't|doesn't|didn't|can't|couldn't|won't|wouldn't|isn't|aren't|wasn't|weren't|haven't|hasn't|hadn't|I'm|I've|I'd|I'll|you're|you've|you'd|you'll|we're|we've|we'd|we'll|they're|they've|they'd|they'll|it's|that's|what's|who's|there's|here's|let's)\b/gi;
+const CONNECTIVES =
+  /\b(however|therefore|thus|hence|consequently|meanwhile|nevertheless|accordingly|similarly|conversely|specifically|particularly)\b/gi;
 
 export function extractFeatures(text: string): TextFeatures {
   const trimmed = text.trim();
-  const len = trimmed.length;
-  if (len === 0) {
-    return {
-      lengthNorm: 0,
-      typeTokenRatio: 0,
-      punctuationDensity: 0,
-      burstiness: 0,
-      functionWordRatio: 0,
-      repetition: 0,
-      markdownListDensity: 0,
-      hedgeDensity: 0,
-      contractionDensity: 0,
-      avgSentenceLen: 0,
-      uniquePunctRatio: 0,
-    };
+  const len = Math.max(trimmed.length, 1);
+  const words = trimmed.toLowerCase().match(/[a-z0-9']+/g) ?? [];
+  const wordCount = Math.max(words.length, 1);
+  const unique = new Set(words);
+  const sentences = trimmed.split(/[.!?]+/).map((s) => s.trim()).filter(Boolean);
+  const sentenceCount = Math.max(sentences.length, 1);
+  const sentenceLens = sentences.map((s) => (s.match(/[a-z0-9']+/gi) ?? []).length || 1);
+  const mean = sentenceLens.reduce((a, b) => a + b, 0) / sentenceCount;
+  const variance =
+    sentenceLens.reduce((a, b) => a + (b - mean) ** 2, 0) / sentenceCount;
+  const burstiness = Math.min(1, Math.sqrt(variance) / (mean + 1e-6));
+
+  const punct = (trimmed.match(/[.,;:!?()[\]"'`-]/g) ?? []).length;
+  const uniquePunct = new Set(trimmed.match(/[.,;:!?()[\]"'`-]/g) ?? []).size;
+  const functionHits = words.filter((w) => FUNCTION_WORDS.has(w)).length;
+  const contractions = (trimmed.match(/\b\w+'\w+\b/g) ?? []).length;
+  const hedges = trimmed.match(HEDGES)?.length ?? 0;
+  const connectives = trimmed.match(CONNECTIVES)?.length ?? 0;
+  const listMarks = (trimmed.match(/^\s*([-*•]|\d+[.)])\s+/gm) ?? []).length;
+  const mdHeaders = (trimmed.match(/^#{1,6}\s/gm) ?? []).length;
+
+  let bigramRep = 0;
+  const bigrams = new Map<string, number>();
+  for (let i = 0; i < words.length - 1; i++) {
+    const bg = `${words[i]} ${words[i + 1]}`;
+    bigrams.set(bg, (bigrams.get(bg) ?? 0) + 1);
+  }
+  for (const c of bigrams.values()) {
+    if (c > 1) bigramRep += c - 1;
   }
 
-  const tokens = tokenize(trimmed);
-  const lowerTokens = tokens.map((t) => t.toLowerCase());
-  const unique = new Set(lowerTokens);
-  const typeTokenRatio = tokens.length === 0 ? 0 : unique.size / tokens.length;
-
-  let punctCount = 0;
-  const punctKinds = new Set<string>();
-  for (const ch of trimmed) {
-    if (/[.,;:!?'"()[\]{}…]/.test(ch)) {
-      punctCount += 1;
-      punctKinds.add(ch);
-    }
-  }
-  const punctuationDensity = punctCount / len;
-  const uniquePunctRatio = punctCount === 0 ? 0 : punctKinds.size / punctCount;
-
-  const sentences = splitSentences(trimmed);
-  const sentLens = sentences.map((s) => s.trim().split(/\s+/).filter(Boolean).length);
-  const avgSentenceLen =
-    sentLens.length === 0 ? 0 : sentLens.reduce((a, b) => a + b, 0) / sentLens.length;
-  const burstiness = coefficientOfVariation(sentLens);
-
-  let funcCount = 0;
-  for (const t of lowerTokens) {
-    if (FUNCTION_WORDS.has(t)) funcCount += 1;
-  }
-  const functionWordRatio = tokens.length === 0 ? 0 : funcCount / tokens.length;
-
-  const repetition = maxBigramRepetition(lowerTokens);
-
-  const lines = trimmed.split(/\r?\n/);
-  let listLines = 0;
-  for (const line of lines) {
-    if (/^\s*([-*•]|\d+[.)])\s+/.test(line)) listLines += 1;
-  }
-  const markdownListDensity = lines.length === 0 ? 0 : listLines / lines.length;
-
-  const hedgeMatches = trimmed.match(HEDGE_RE);
-  const hedgeDensity = (hedgeMatches?.length ?? 0) / Math.max(1, tokens.length);
-
-  const contractionMatches = trimmed.match(CONTRACTION_RE);
-  const contractionDensity =
-    (contractionMatches?.length ?? 0) / Math.max(1, tokens.length);
-
-  const lengthNorm = Math.min(1, len / 2000);
+  const hapax = [...unique].filter((w) => words.filter((x) => x === w).length === 1).length;
+  const pronouns = words.filter((w) =>
+    ["i", "you", "he", "she", "we", "they", "me", "him", "her", "us", "them", "my", "your"].includes(w),
+  ).length;
+  const digits = (trimmed.match(/\d/g) ?? []).length;
+  const upperWords = (trimmed.match(/\b[A-Z]{2,}\b/g) ?? []).length;
+  const meanWordLen = words.reduce((a, w) => a + w.length, 0) / wordCount;
+  const questions = (trimmed.match(/\?/g) ?? []).length;
+  const exclaims = (trimmed.match(/!/g) ?? []).length;
 
   return {
-    lengthNorm,
-    typeTokenRatio,
-    punctuationDensity,
-    burstiness,
-    functionWordRatio,
-    repetition,
-    markdownListDensity,
-    hedgeDensity,
-    contractionDensity,
-    avgSentenceLen: Math.min(1, avgSentenceLen / 40),
-    uniquePunctRatio,
+    lengthNorm: Math.min(1, len / 4000),
+    typeTokenRatio: unique.size / wordCount,
+    punctuationDensity: punct / len,
+    burstiness: Math.min(1, burstiness),
+    functionWordRatio: functionHits / wordCount,
+    repetition: Math.min(1, bigramRep / Math.max(words.length - 1, 1)),
+    markdownListDensity: Math.min(1, (listMarks + mdHeaders) / sentenceCount),
+    hedgeDensity: Math.min(1, hedges / wordCount),
+    contractionDensity: Math.min(1, contractions / wordCount),
+    avgSentenceLen: Math.min(1, mean / 40),
+    uniquePunctRatio: uniquePunct / Math.max(punct, 1),
+    connectiveDensity: Math.min(1, connectives / wordCount),
+    pronounDensity: pronouns / wordCount,
+    digitDensity: digits / len,
+    uppercaseWordRatio: upperWords / wordCount,
+    sentenceCountNorm: Math.min(1, sentenceCount / 40),
+    hapaxRatio: hapax / unique.size,
+    meanWordLen: Math.min(1, meanWordLen / 12),
+    questionDensity: Math.min(1, questions / sentenceCount),
+    exclaimDensity: Math.min(1, exclaims / sentenceCount),
   };
-}
-
-function tokenize(text: string): string[] {
-  return text.match(/[A-Za-z0-9']+/g) ?? [];
-}
-
-function splitSentences(text: string): string[] {
-  const parts = text.split(/(?<=[.!?])\s+/);
-  return parts.filter((p) => p.trim().length > 0);
-}
-
-function coefficientOfVariation(values: number[]): number {
-  if (values.length < 2) return 0;
-  const mean = values.reduce((a, b) => a + b, 0) / values.length;
-  if (mean === 0) return 0;
-  let varSum = 0;
-  for (const v of values) {
-    const d = v - mean;
-    varSum += d * d;
-  }
-  const std = Math.sqrt(varSum / values.length);
-  return Math.min(2, std / mean);
-}
-
-function maxBigramRepetition(tokens: string[]): number {
-  if (tokens.length < 4) return 0;
-  const counts = new Map<string, number>();
-  for (let i = 0; i < tokens.length - 1; i++) {
-    const key = `${tokens[i]} ${tokens[i + 1]}`;
-    counts.set(key, (counts.get(key) ?? 0) + 1);
-  }
-  let max = 0;
-  for (const c of counts.values()) {
-    if (c > max) max = c;
-  }
-  return Math.min(1, (max - 1) / Math.max(1, tokens.length / 4));
 }

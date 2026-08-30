@@ -35,3 +35,7 @@ Sep 7 remains end of Track 3 / overall build window messaging — **Miner+Script
 3. Intent `AI_TEXT_DETECTION` needs peer miners + later Track 3 demand for prize eligibility.
 4. GRADELOCK Script track: ranking accuracy + gaming resistance still central.
 5. Quality flywheel evidence > pretty demo.
+
+## Session note 2026-08-30 evening / late
+
+Track **1 (Miners)** and **2 (Script Authors)** still close **Aug 31** — **URGENT (<1 day)**. YAML rewritten to veritarach-style id **20260830**; on-chain regs **52** (GitHub raw) and **53** (jsDelivr) both succeeded but **still absent** from dispatcher `/integrations` after multi-minute polls. Do not treat as Track 1 activated until listing shows `20260830` / `caliber-truthport-text-auth`.

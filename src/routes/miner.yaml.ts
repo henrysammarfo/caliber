@@ -6,7 +6,7 @@ import { join } from "node:path";
  * Serve miner YAML with Content-Type application/yaml (matches live proofgate miners).
  * Public static /protocol/caliber-truthport.yaml remains as backup.
  */
-export const Route = createFileRoute("/miner.yaml")({
+export const Route = createFileRoute("/miner/yaml")({
   server: {
     handlers: {
       GET: async () => {

@@ -44,7 +44,12 @@
 | WASM eval scripts by Script Authors | **VERIFIED** | Portal + protocol site |
 | Full WASM host API surface for graders | **PARTIAL** (still) | Official GitBook ABI missing; community `telegraph-wasm-check` only ? do not treat as final |
 | integrate.telegraphprotocol.com enters hackathon | **VERIFIED** | Console copy |
-| Live leaderboard has data | **VERIFIED empty** | Console: ?No leaderboard data yet? |
+| Live leaderboard has data | **VERIFIED empty (console widget)** | integrate `/`: “No leaderboard data yet” (2026-08-30) |
+| Dispatcher has scored miners | **VERIFIED** | `/integrations` scores[] e.g. veritarach AI_TEXT r2; livecert IP_GEO r1 |
+| Console Connect API path | **VERIFIED** | `/register` (not `/connect`); steps Connection→`/api/validate`+`/api/upload` Pinata→`registerMiner` |
+| Console WASM path | **VERIFIED** | `/wasm`; `/api/upload-wasm` + `/api/hash-remote` → `registerWasm` Base Sepolia |
+| livecert #1 on AI_TEXT | **FALSE vs dispatcher dump** | livecert has AI_TEXT intent but **no** AI_TEXT score; IP_GEO r1; AI_TEXT scored: veritarach r2, itsai r3 only |
+| YAML schemas required for activation | **FALSE** | veritarach (no schemas) active+scored; livecert/preflight have schemas |
 
 ---
 
@@ -155,3 +160,53 @@
 | `registerMiner` registrationId **50** | **VERIFIED on-chain** | tx `0x8f6fa5b6a00efffe9af3b9adad7340f218ab03fd688a3fbd33d481ce4f09e22c`; prior 49 deregistered |
 | CALIBER in dispatcher `/integrations` after reg 50 | **FALSE (as of 8m poll)** | 8 rounds × 60s; count 125; no 92001 |
 | Paid miner detect receipt truthport | **NOT DONE** | Skipped while unlisted |
+
+### 2026-08-30 (GitHub raw YAML / reg 51)
+| Claim | Status | Evidence |
+|---|---|---|
+| Commit `25f16bbb8d710d6309b33ae6dbfcc3807735ee6f` on origin/main | **VERIFIED** | git push |
+| Tracked `.env` removed from git | **VERIFIED** | commit deletes `.env`; `.env*` gitignored |
+| Repo public (for raw.githubusercontent.com) | **VERIFIED** | `gh repo edit --visibility public` |
+| Raw YAML URL HTTP 200 + sha256 match local | **VERIFIED** | `c9f96c3b…0bd2a7` |
+| `registerMiner` registrationId **51** | **VERIFIED on-chain** | tx `0xd28d7a8d…330efa`; deregistered 50 |
+| CALIBER in dispatcher `/integrations` after reg 51 | **FALSE (as of 10m poll)** | ~8 polls; count 125; no 92001 |
+| Paid miner detect receipt truthport | **NOT DONE** | Skipped while unlisted |
+| Track 1/2 close Aug 31 (Miner+Script) | **VERIFIED** | `memory/PORTAL_RULES_2026-08-30.md` from portal Rules |
+
+### 2026-08-30 (template rewrite / regs 52–53) — **Aug 31 urgency**
+
+| Claim | Status | Evidence |
+|---|---|---|
+| Track **1 Miners** + **2 Script Authors** close **Aug 31, 2026** (not Sep 7) | **VERIFIED** | Portal Rules paste `PORTAL_RULES_2026-08-30.md`; Track 3 apps Aug 31–Sep 7 only |
+| Sep 7 = Track 3 / overall apps window (not Miner close) | **VERIFIED** | Same portal rules |
+| Miner prize pool $2k (1st $1k / 2nd $600 / 3rd $400) | **VERIFIED** | Portal Rules |
+| Live `AI_TEXT_DETECTION` peers (3) | **VERIFIED** | integrations: veritarach `708425`, itsai `32`, livecert `4433` (multi-intent) |
+| Closest peer YAML shape = veritarach (minimal, auth none, POST, no schemas) | **VERIFIED** | Pinata `QmStgms5GJXxTpd1gqsgQAKYwm4KZWfBe5fwYcpECLjMBB` |
+| Same-day activate template Preflight id `20260828` | **VERIFIED** | raw GitHub Preflight miner.yaml downloaded |
+| Free numeric ids `20260830` / `92002` / `92001` | **VERIFIED free** | not in live integrations id set |
+| YAML rewritten id **20260830**, intent **AI_TEXT_DETECTION** only, sha256 `982dffe9…90bfac` | **VERIFIED** | commit `c10e58f`; triple sync public+protocol+miner.yaml |
+| GitHub raw YAML HTTP 200 + hash match | **VERIFIED** | `…/c10e58f…/public/protocol/caliber-truthport.yaml` |
+| jsDelivr YAML HTTP 200 | **VERIFIED** | `cdn.jsdelivr.net/gh/henrysammarfo/caliber@c10e58f…` |
+| `registerMiner` **52** (GitHub raw) | **VERIFIED on-chain** | tx `0xe0c01e9f…00320`; deregistered 51 |
+| CALIBER in `/integrations` after reg 52 | **FALSE (12m poll)** | 12×60s; count 124; no 20260830 / caliber slug |
+| `registerMiner` **53** (jsDelivr yamlUrl) | **VERIFIED on-chain** | tx `0x5f332267…019e08`; deregistered 52 |
+| CALIBER in `/integrations` after reg 53 | **FALSE (5m poll)** | count 124; still absent |
+| Dispatcher `/rejected` API | **FALSE / 404** | cannot read reject reason |
+| Paid miner detect receipt | **NOT DONE** | blocked while unlisted |
+
+### 2026-08-30 LOCK-IN (Truthport v2 / reg 55)
+
+| Claim | Status | Evidence |
+|---|---|---|
+| YAML sha256 `5d9c3d2d…fe3c` LF triple-sync | **VERIFIED** | public/miner.yaml = public/protocol = protocol/yaml |
+| Prod deploy caliber-teamtitanlink | **VERIFIED** | dpl_ETuGisRLzQXQbzTKrnY3Y7zxFisf; aliases smoky + teamtitanlink |
+| POST /predict returns label+confidence+reason | **VERIFIED** | live smoke 200 |
+| GET /ai-detect returns label+confidence+reason | **VERIFIED** | live smoke 200 |
+| Pinata YAML CID QmVTkd…xYS6 | **VERIFIED** | /api/upload; gateway sha256 match |
+| registerMiner **55** | **VERIFIED on-chain** | tx 0xda07a128…7d07af29; dereg 53 |
+| /gradelock.wasm hosted | **VERIFIED** | 200 application/wasm; sha256 266be7d6… |
+| WASM Pinata upload | **VERIFIED** | CID QmWVPgXS5FNWUP48JBb2P6prGn8w4qe5zvF9GcNHiWBsWX |
+| registerWasm on-chain | **NOT DONE** | needs Henry wallet console |
+| CALIBER in dispatcher /integrations | **UNVERIFIED (poll timeout)** | dispatcher 13.237.89.59 timed out 20s from agent host |
+| veritarach AI_TEXT rank ~2 | **VERIFIED** | leaderboard-2026-08-30 dump |
+

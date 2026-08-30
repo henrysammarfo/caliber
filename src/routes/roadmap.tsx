@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+﻿import { createFileRoute, Link } from "@tanstack/react-router";
 import { CheckCircle2, Circle, Flag } from "lucide-react";
 import { PageHero, PageShell, Section } from "@/components/site/Page";
 import { trackCta } from "@/lib/analytics";
@@ -23,7 +23,7 @@ export const Route = createFileRoute("/roadmap")({
 const PHASES = [
   {
     phase: "H1",
-    when: "Sep 7 · 23:59 UTC",
+    when: "Miner/Script Aug 31; Apps Sep 7",
     pool: "$5k",
     ship: "Miner + Script · YAML · registry · x402",
     items: PROTOCOL_STATUS.checklist.map((c) => ({ done: c.done, t: c.label })),
@@ -58,7 +58,7 @@ function RoadmapPage() {
         eyebrow="Telegraph Season I"
         title="A season thesis, not a"
         em="weekend toy"
-        lede="Every phase depends on the last. Deadline from live portal HTML: Sep 7, 2026 · 23:59 UTC."
+        lede="Every phase depends on the last. Track 1/2 (Miner+Script) close Aug 31, 2026; Track 3 apps Aug 31-Sep 7 (portal rules)."
       >
         <Link to="/dashboard" onClick={() => trackCta("Roadmap · Open console")} className="btn-base btn-solid">
           Track progress

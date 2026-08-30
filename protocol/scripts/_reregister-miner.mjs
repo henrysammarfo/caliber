@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Deregister registrationId 46 then registerMiner with live-aligned YAML.
  * PRIVATE_KEY from repo-root .env only. Never prints the key.
  */
@@ -20,12 +20,13 @@ const repoRoot = path.resolve(__dirname, "../..");
 
 const DIAMOND = "0x122396E8602BEed349434AA6E83123E7dD97F5A0";
 const YAML_URL =
-  "https://caliber-teamtitanlink.vercel.app/miner.yaml";
-// Filled by caller / after hash-yaml â€” override via env YAML_HASH if set
+  process.env.YAML_URL ||
+  "https://raw.githubusercontent.com/henrysammarfo/caliber/c10e58f49eb95b97580416bac767e4477ded78bb/public/protocol/caliber-truthport.yaml";
+// Filled by caller / after hash-yaml — override via env YAML_HASH if set
 const FEE = "0x9ADd0ac311e9E528800afc3F4A04e9cDe52C9cE0";
 const MIN_PRICE = 10000n;
-const INTENTS = ["AI_TEXT_DETECTION", "CONTENT_VERIFICATION"];
-const OLD_REG_ID = BigInt(process.env.OLD_REG_ID || "49");
+const INTENTS = ["AI_TEXT_DETECTION"];
+const OLD_REG_ID = BigInt(process.env.OLD_REG_ID || "51");
 
 const abi = parseAbi([
   "function deregisterMiner(uint256 registrationId)",

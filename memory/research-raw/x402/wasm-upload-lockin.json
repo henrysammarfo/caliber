@@ -1,0 +1,12 @@
+﻿{
+  "asOf": "2026-08-30T19:34:41.5646130+00:00",
+  "sha256": "266be7d6c07641439b0c7610e44f495f11b841a22687cb45645317a256d4d4a3",
+  "hashRemote": "0x8d295d467f4002271feb29bc089471453972419b0d02b15da3c3c737b36bb416",
+  "pinata": {
+    "hash": "QmWVPgXS5FNWUP48JBb2P6prGn8w4qe5zvF9GcNHiWBsWX",
+    "url": "ipfs://QmWVPgXS5FNWUP48JBb2P6prGn8w4qe5zvF9GcNHiWBsWX",
+    "gateway": "https://gateway.pinata.cloud/ipfs/QmWVPgXS5FNWUP48JBb2P6prGn8w4qe5zvF9GcNHiWBsWX"
+  },
+  "hosted": "https://caliber-teamtitanlink.vercel.app/gradelock.wasm",
+  "curl": "curl -X POST https://integrate.telegraphprotocol.com/api/upload-wasm -F file=@protocol/gradelock/build/gradelock.wasm"
+}

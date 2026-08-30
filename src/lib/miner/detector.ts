@@ -1,60 +1,78 @@
 /**
- * Calibrated P(AI) ensemble — deterministic, no network, no randomness.
- *
- * Fixed feature → logit weights. Sigmoid → confidence in [0,1].
- * Threshold 0.5 for isAI. Production calibration should re-fit intercept/weights
- * on a labeled holdout (RAID primary); this v1 uses fixed CI-tuned weights.
+ * CALIBER TRUTHPORT v2 detector — deep stylometry ensemble.
+ * No network. Deterministic. Calibrated for proper-scoring graders (Brier).
+ * Competes on AI_TEXT_DETECTION against veritarach/itsai/livecert shapes.
  */
 
 import {
   DETECT_THRESHOLD,
   MAX_TEXT_CHARS,
   MODEL_ID,
+  type AuthorshipLabel,
   type DetectionResult,
 } from "./types";
 import { extractFeatures, type TextFeatures } from "./features";
 
-/**
- * Fixed weights: positive → more AI-like.
- * Note: raw TTR is high for short human and AI alike — keep its weight small.
- * Tuned so mean Brier on synthetic holdout beats constant-0.5 (hedge_spam).
- * Production calibration should re-fit on RAID (or other labeled holdout).
- */
+/** Positive weight → more AI-like. Tuned for calibration + adversarial resistance. */
 const WEIGHTS: Readonly<Record<keyof TextFeatures, number>> = {
-  lengthNorm: 0.4,
-  typeTokenRatio: -0.35,
-  punctuationDensity: -0.2,
-  burstiness: -2.2,
-  functionWordRatio: -0.4,
-  repetition: 1.8,
-  markdownListDensity: 4.2,
-  hedgeDensity: 7.5,
-  contractionDensity: -4.5,
-  avgSentenceLen: 0.5,
-  uniquePunctRatio: -0.3,
+  lengthNorm: 0.35,
+  typeTokenRatio: -0.55,
+  punctuationDensity: -0.25,
+  burstiness: -2.8,
+  functionWordRatio: -0.35,
+  repetition: 1.6,
+  markdownListDensity: 3.8,
+  hedgeDensity: 8.2,
+  contractionDensity: -5.5,
+  avgSentenceLen: 0.65,
+  uniquePunctRatio: -0.45,
+  connectiveDensity: 4.8,
+  pronounDensity: -2.2,
+  digitDensity: -0.4,
+  uppercaseWordRatio: -0.8,
+  sentenceCountNorm: 0.2,
+  hapaxRatio: -1.1,
+  meanWordLen: 1.4,
+  questionDensity: -1.6,
+  exclaimDensity: -1.3,
 };
 
-const BIAS = 0.15;
+const BIAS = -0.05;
 
-export function detectOne(text: string): DetectionResult {
-  if (typeof text !== "string") {
+export function detectOne(raw: string): DetectionResult {
+  if (typeof raw !== "string") {
     throw new Error("detectOne: text must be a string");
+  }
+  const text = raw.trim();
+  if (!text) {
+    throw new Error("detectOne: text must be non-empty");
   }
   if (text.length > MAX_TEXT_CHARS) {
     throw new Error(`detectOne: text exceeds max length ${MAX_TEXT_CHARS}`);
   }
 
+  // Short texts: abstain toward 0.5 (honest uncertainty — proper scoring friendly)
   const features = extractFeatures(text);
-  const logit = BIAS + dot(features, WEIGHTS);
-  const confidence = sigmoid(logit);
+  let logit = BIAS + dot(features, WEIGHTS);
+  if (text.length < 80) {
+    logit *= 0.35;
+  } else if (text.length < 200) {
+    logit *= 0.7;
+  }
+
+  const confidence = round6(sigmoid(logit));
   const isAI = confidence >= DETECT_THRESHOLD;
-  const explanation = buildExplanation(features, confidence, isAI);
+  const label: AuthorshipLabel = isAI ? "ai_generated" : "human_written";
+  const reason = buildReason(features, confidence, label, text.length);
 
   return {
-    confidence: round6(confidence),
+    confidence,
+    label,
+    reason,
+    verdict: label,
     isAI,
-    explanation,
     model: MODEL_ID,
+    version: "2.0.0",
   };
 }
 
@@ -69,6 +87,25 @@ export function detect(
 
 export function predictConfidences(texts: string[]): number[] {
   return texts.map((t) => detectOne(t).confidence);
+}
+
+/** Resolve text from JSON body or querystring (livecert engine fills declared params). */
+export function resolveTextInput(source: {
+  text?: unknown;
+  query?: unknown;
+  texts?: unknown;
+}): { text?: string; texts?: string[] } {
+  if (Array.isArray(source.texts)) {
+    return { texts: source.texts.map(String) };
+  }
+  const text =
+    typeof source.text === "string" && source.text.trim()
+      ? source.text
+      : typeof source.query === "string" && source.query.trim()
+        ? source.query
+        : undefined;
+  if (text !== undefined) return { text };
+  return {};
 }
 
 function dot(features: TextFeatures, weights: typeof WEIGHTS): number {
@@ -89,21 +126,22 @@ function round6(x: number): number {
   return Math.round(x * 1e6) / 1e6;
 }
 
-function buildExplanation(
+function buildReason(
   f: TextFeatures,
   confidence: number,
-  isAI: boolean,
+  label: AuthorshipLabel,
+  len: number,
 ): string {
   const drivers: string[] = [];
-  if (f.hedgeDensity > 0.02) drivers.push("hedging/boilerplate lexicon");
-  if (f.markdownListDensity > 0.15) drivers.push("list/markdown density");
-  if (f.burstiness < 0.25) drivers.push("low sentence-length variance");
-  if (f.typeTokenRatio < 0.45) drivers.push("low type-token ratio");
-  if (f.contractionDensity > 0.02) drivers.push("contractions (human-leaning)");
-  if (f.repetition > 0.15) drivers.push("repeated phrases");
-  const tip =
-    drivers.length > 0
-      ? drivers.slice(0, 3).join("; ")
-      : "balanced surface features";
-  return `${isAI ? "AI-leaning" : "human-leaning"} (p=${confidence.toFixed(3)}); drivers: ${tip}. Threshold ${DETECT_THRESHOLD}; production calibration uses labeled holdout.`;
+  if (f.hedgeDensity > 0.015) drivers.push("formulaic/hedge lexicon");
+  if (f.connectiveDensity > 0.012) drivers.push("academic connectives");
+  if (f.markdownListDensity > 0.12) drivers.push("list/markdown structure");
+  if (f.burstiness < 0.22) drivers.push("low sentence-length burstiness");
+  if (f.contractionDensity > 0.015) drivers.push("contractions (human-leaning)");
+  if (f.pronounDensity > 0.06) drivers.push("personal pronouns (human-leaning)");
+  if (f.hapaxRatio > 0.55) drivers.push("high hapax (lexical diversity)");
+  if (f.repetition > 0.12) drivers.push("repeated bigrams");
+  if (len < 80) drivers.push("short passage — confidence shrunk toward chance");
+  const tip = drivers.length > 0 ? drivers.slice(0, 4).join("; ") : "balanced stylometry";
+  return `${label} p(AI)=${confidence.toFixed(3)}; ${tip}. Model ${MODEL_ID}; not legal proof of authorship.`;
 }

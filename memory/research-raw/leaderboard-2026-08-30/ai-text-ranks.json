@@ -1,0 +1,43 @@
+[
+  {
+    "slug": "veritarach-ai-text-detector",
+    "id": "708425",
+    "rank": 2,
+    "score": 1.8348623e-10,
+    "epoch": 294,
+    "endpoint": {
+      "path": "/predict",
+      "method": "POST",
+      "description": "Classify text as ai_generated or human_written with a confidence score."
+    },
+    "yaml": "https://gateway.pinata.cloud/ipfs/QmStgms5GJXxTpd1gqsgQAKYwm4KZWfBe5fwYcpECLjMBB",
+    "mapping": {
+      "confidence_field": "confidence",
+      "label_field": "label"
+    },
+    "intents": [
+      "AI_TEXT_DETECTION"
+    ]
+  },
+  {
+    "slug": "bittensor-sn32-itsai",
+    "id": "32",
+    "rank": 3,
+    "score": 8.4615384e-11,
+    "epoch": 294,
+    "endpoint": {
+      "path": "/detect",
+      "method": "POST",
+      "description": "Detect whether a piece of text is AI-generated."
+    },
+    "yaml": "https://gateway.pinata.cloud/ipfs/Qmcq2f5DhqvhvC3M8umLLPjh692BfJuQWzoZa7EQiGFh5E",
+    "mapping": {
+      "confidence_field": "answer",
+      "label_field": "answer",
+      "reason_field": "status"
+    },
+    "intents": [
+      "AI_TEXT_DETECTION"
+    ]
+  }
+]
