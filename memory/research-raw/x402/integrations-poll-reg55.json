@@ -1,0 +1,7 @@
+﻿{
+  "asOf": "2026-08-30T19:39:49.3316552+00:00",
+  "listed": false,
+  "note": "dispatcher http://13.237.89.59:7044/miner-dispatcher/integrations timed out (20s+) from agent host during LOCK-IN; cannot confirm listing. Retry from network that can reach dispatcher.",
+  "regId": 55,
+  "yamlCid": "QmVTkdLFe6sxJpXqBkPeHzBGwy392q9ezDRP7WgEobxYS6"
+}

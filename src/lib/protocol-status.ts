@@ -46,7 +46,7 @@ export const PROTOCOL_STATUS = {
     yamlMiner: "https://caliber-teamtitanlink.vercel.app/miner.yaml",
     detect: "https://caliber-teamtitanlink.vercel.app/detect",
     vercelProjectId: "prj_PmiIcdoclM1fipuWCNjWIIjaYzT5",
-    vercelDeploymentId: "dpl_ETuGisRLzQXQbzTKrnY3Y7zxFisf",
+    vercelDeploymentId: "dpl_4wsUAy6bW5YSFgzfGcyLZHzeNBaM",
     gradelockWasm: "https://caliber-teamtitanlink.vercel.app/gradelock.wasm",
   },
   registry: {
