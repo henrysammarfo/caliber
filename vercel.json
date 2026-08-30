@@ -1,0 +1,16 @@
+{
+  "headers": [
+    {
+      "source": "/miner.yaml",
+      "headers": [
+        { "key": "Content-Type", "value": "application/yaml; charset=utf-8" }
+      ]
+    },
+    {
+      "source": "/protocol/(.*).yaml",
+      "headers": [
+        { "key": "Content-Type", "value": "application/yaml; charset=utf-8" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+---
+description: Honesty, marketing claims, and security language for CALIBER UI and docs
+globs: src/**/*.{tsx,ts,md}
+alwaysApply: false
+---
+
+# Honesty + security copy
+
+## Do
+
+- Match UI status to real artifacts (registry tx, x402 receipt, labeled set path, WASM binary).
+- Use “resistance to gaming” with linked adversarial tests.
+- Prefer “calibrated / proper scoring / Brier” with methodology over absolute claims.
+- Keep marketing and app console separate in tone: product truth over theater.
+
+## Don’t
+
+- Invent labeled-set sizes, agreement scores, request counts, or checksums.
+- Mark roadmap items done without on-chain/API evidence.
+- Use invented YAML fields (`vertical.verify`) — only GitBook canonical schema.
+- Claim “unhackable,” “cannot be gamed,” or “even nation-state attackers can’t.”
+- Ship Cosplay dashboards to Discord/judges as if live.
+
+## Example
+
+```tsx
+// ❌ BAD
+<meta>4,128 labeled rows</meta> // when no dataset exists
+
+// ✅ GOOD
+<meta>Labeled holdout: pending lock — see memory/VERTICAL_CANDIDATES.md</meta>
+```

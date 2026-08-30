@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Coins, Receipt, TrendingUp, Wallet } from "lucide-react";
 import { DashHeader, DataTable, Panel, StatCard } from "@/components/dash/DashKit";
 import { usePageView } from "@/lib/use-analytics";
-import { trackCta } from "@/lib/analytics";
+import { PROTOCOL_STATUS } from "@/lib/protocol-status";
 
 export const Route = createFileRoute("/_authenticated/dashboard/payments")({
   head: () => ({
@@ -10,10 +10,10 @@ export const Route = createFileRoute("/_authenticated/dashboard/payments")({
       { title: "Payments — CALIBER Console" },
       {
         name: "description",
-        content: "x402 settlement view: paid fetch volume, receipts, price floor and payout history.",
+        content: "x402 settlement status. Paid rail exercised on Telegraph dispatcher.",
       },
       { property: "og:title", content: "Payments — CALIBER Console" },
-      { property: "og:description", content: "x402 receipts, settled volume and payouts." },
+      { property: "og:description", content: "x402 status — rail exercised; miner proxy pending." },
     ],
   }),
   component: PaymentsConsole,
@@ -21,32 +21,57 @@ export const Route = createFileRoute("/_authenticated/dashboard/payments")({
 
 function PaymentsConsole() {
   usePageView("Payments");
+  const x = PROTOCOL_STATUS.x402;
+  const txShort = x.txHash ? `${x.txHash.slice(0, 10)}…${x.txHash.slice(-6)}` : "—";
   return (
     <>
-      <DashHeader
-        title="Payments"
-        subtitle="x402 settlement · USDC on Base"
-        action={<button className="btn-base btn-solid" onClick={() => trackCta("Console · Export receipts")}>Export receipts</button>}
-      />
+      <DashHeader title="Payments" subtitle="x402 settlement · Base Sepolia" />
 
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        <StatCard icon={Coins} label="Settled (7d)" value="367.8 USDC" delta="18,402 paid fetches" delay={0.1} />
-        <StatCard icon={Wallet} label="Price floor" value="0.02 USDC" delta="Per graded response" delay={0.2} />
-        <StatCard icon={Receipt} label="Receipts issued" value="18,402" delta="100% verifiable" delay={0.3} />
-        <StatCard icon={TrendingUp} label="Failed settlements" value="3" delta="Retried and cleared" delay={0.4} />
+        <StatCard
+          icon={Coins}
+          label="Last settle"
+          value={x.exercised ? "0.01 USDC" : "—"}
+          delta={x.asOf ? `as of ${x.asOf}` : "no receipt"}
+          delay={0.1}
+        />
+        <StatCard
+          icon={Wallet}
+          label="Price floor"
+          value={`${x.floorUsdc} USDC`}
+          delta="On-chain minPriceUsdc"
+          delay={0.2}
+        />
+        <StatCard
+          icon={Receipt}
+          label="Path exercised"
+          value={x.exercised ? "Yes" : "No"}
+          delta={x.exercised ? "dispatcher /v1/x402-test" : "pending"}
+          delay={0.3}
+        />
+        <StatCard
+          icon={TrendingUp}
+          label="Miner proxy"
+          value="Pending"
+          delta="YAML id 91001 collision"
+          delay={0.4}
+        />
       </div>
 
       <div className="mt-5 grid gap-4">
-        <Panel title="Recent receipts">
+        <Panel title="Receipts">
+          <p className="text-[13.5px] text-muted-ink">
+            {x.exercised
+              ? "Telegraph dispatcher x402 rail verified. Residual risk: facilitator trust — see memory/THREAT_MODEL.md."
+              : "Empty until 402 → pay → PAYMENT-SIGNATURE against a live facilitator."}
+          </p>
           <DataTable
-            head={["Receipt", "Consumer", "Amount", "Tx"]}
-            rows={[
-              ["rcpt_31f8", "agent-fleet-04", "0.02 USDC", "0x9a12…88b1"],
-              ["rcpt_31f7", "demand-app-stub", "0.02 USDC", "0x9a11…4c77"],
-              ["rcpt_31f6", "agent-fleet-01", "0.02 USDC", "0x9a0f…2d10"],
-              ["rcpt_31f5", "eval-harness", "0.02 USDC", "0x9a0e…b3aa"],
-              ["rcpt_31f4", "agent-fleet-04", "0.02 USDC", "0x9a0c…7f52"],
-            ]}
+            head={["Receipt", "Path", "Amount", "Tx"]}
+            rows={
+              x.exercised
+                ? [[x.receiptPath ?? "saved", "/v1/x402-test", "0.01 USDC", txShort]]
+                : [["—", "—", "—", "—"]]
+            }
           />
         </Panel>
       </div>

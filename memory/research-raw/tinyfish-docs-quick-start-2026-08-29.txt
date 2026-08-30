@@ -1,0 +1,308 @@
+﻿> ## Documentation Index
+> Fetch the complete documentation index at: https://docs.tinyfish.ai/llms.txt
+> Use this file to discover all available pages before exploring further.
+
+# Quick Start
+
+> Get your first web automation running in under 5 minutes
+
+In this guide you'll run a single automation that visits a live store, reads the
+page like a person would, and returns the first two product names and prices as
+structured JSON — no selectors, no scraping rules, just a goal in plain English.
+
+```json Expected result theme={null}
+{
+  "products": [
+    { "name": "Bulbasaur", "price": "£63.00" },
+    { "name": "Ivysaur", "price": "£87.00" }
+  ]
+}
+```
+
+Pick the language you'll build in (Python, TypeScript, the CLI, or raw cURL) and
+follow the same five steps.
+
+<Steps>
+  <Step title="Sign in to TinyFish">
+    [Sign up](https://agent.tinyfish.ai/sign-up) for a new account, or
+    [log in](https://agent.tinyfish.ai/sign-in) if you already have one. New
+    accounts start with \$8 of free usage, so you can run this example right
+    away. If a billing error does come up, see
+    [Troubleshooting](#troubleshooting) for how to fix it.
+  </Step>
+
+  <Step title="Get your API key">
+    1. Go to the [API Keys page](https://agent.tinyfish.ai/api-keys)
+    2. Click "Create API Key"
+    3. Save the key to your shell environment so the SDKs and CLI can read it automatically
+
+    <Warning>API keys are shown only once, at creation. Store them securely and never commit them to version control.</Warning>
+
+    ```bash theme={null}
+    export TINYFISH_API_KEY=sk-tinyfish-*****
+    ```
+  </Step>
+
+  <Step title="Install the SDK">
+    Install the package for your language. The SDKs and CLI read
+    `TINYFISH_API_KEY` from your environment, so there's nothing else to configure.
+
+    <CodeGroup>
+      ```bash Python theme={null}
+      # A virtual environment keeps the install isolated and works on
+      # macOS Homebrew Python, which blocks system-wide pip (PEP 668).
+      python3 -m venv .venv && source .venv/bin/activate
+      pip install tinyfish
+      ```
+
+      ```bash TypeScript theme={null}
+      npm i @tiny-fish/sdk
+      # The SDK is ESM-only. Add "type": "module" so tsx loads it correctly.
+      npm pkg set type=module
+      ```
+
+      ```bash CLI theme={null}
+      npm install -g @tiny-fish/cli
+      ```
+
+      ```bash cURL theme={null}
+      # No install needed — cURL ships with macOS and most Linux distros.
+      curl --version
+      ```
+    </CodeGroup>
+  </Step>
+
+  <Step title="Write your automation">
+    Create a file with the minimal code to navigate to the store and extract
+    product data using natural language. (cURL users can skip straight to the
+    next step.)
+
+    <CodeGroup>
+      ```python Python theme={null}
+      # first_automation.py
+      from tinyfish import TinyFish, CompleteEvent
+
+      client = TinyFish()  # Reads TINYFISH_API_KEY from environment
+
+      # Stream the automation and print the structured result
+      with client.agent.stream(
+          url="https://scrapeme.live/shop",  # Target website to automate
+          goal="Extract the first 2 product names and prices. Return as JSON.",
+      ) as stream:
+          for event in stream:
+              if isinstance(event, CompleteEvent):
+                  print(event.result_json)
+      ```
+
+      ```typescript TypeScript theme={null}
+      // first-automation.ts
+      import { TinyFish } from "@tiny-fish/sdk";
+
+      async function main() {
+        const client = new TinyFish();  // Reads TINYFISH_API_KEY from environment
+
+        const stream = await client.agent.stream({
+          url: "https://scrapeme.live/shop",  // Target website to automate
+          goal: "Extract the first 2 product names and prices",  // Natural language instruction
+        });
+
+        for await (const event of stream) {
+          if (event.type === "COMPLETE") {
+            console.log(event.result);
+          }
+        }
+      }
+
+      main();
+      ```
+
+      ```bash CLI theme={null}
+      # No file to write — the CLI takes the goal and URL as arguments (see the next step).
+      ```
+
+      ```bash cURL theme={null}
+      # No file to write — send the goal and URL as a JSON body (see the next step).
+      ```
+    </CodeGroup>
+
+    <Tip>
+      The `goal` is a plain-English instruction. See the [Prompting Guide](/prompting-guide) and [Structured Output](/key-concepts/structured-output) to reliably get JSON shaped exactly how you want it.
+    </Tip>
+  </Step>
+
+  <Step title="Run it">
+    Execute your automation. Each tab runs against the same goal and URL.
+
+    <CodeGroup>
+      ```bash Python theme={null}
+      python first_automation.py
+      ```
+
+      ```bash TypeScript theme={null}
+      npx tsx first-automation.ts
+      ```
+
+      ```bash CLI theme={null}
+      tinyfish agent run "Extract the first 2 product names and prices" \
+        --url https://scrapeme.live/shop --pretty
+      ```
+
+      ```bash cURL theme={null}
+      curl -N -X POST https://agent.tinyfish.ai/v1/automation/run-sse \
+        -H "X-API-Key: $TINYFISH_API_KEY" \
+        -H "Content-Type: application/json" \
+        -d '{
+          "url": "https://scrapeme.live/shop",
+          "goal": "Extract the first 2 product names and prices"
+        }'
+      ```
+    </CodeGroup>
+  </Step>
+
+  <Step title="Verify the output">
+    What you see depends on how you ran the automation.
+
+    **Python, TypeScript, and cURL** stream raw [Server-Sent Events](/key-concepts/runs) as the agent works. The final `COMPLETE` event carries your result:
+
+    ```bash theme={null}
+    {'type': 'STARTED', 'run_id': 'abc123'}
+    {'type': 'STREAMING_URL', 'run_id': 'abc123', 'streaming_url': 'https://tf-abc123.fra0-tinyfish.unikraft.app/stream/0'}
+    {'type': 'PROGRESS', 'run_id': 'abc123', 'purpose': 'Visit the page to extract product information'}
+    {'type': 'PROGRESS', 'run_id': 'abc123', 'purpose': 'Check for product information on the page'}
+    {'type': 'COMPLETE', 'run_id': 'abc123', 'status': 'COMPLETED', 'result': {
+      "products": [
+        { "name": "Bulbasaur", "price": "£63.00" },
+        { "name": "Ivysaur", "price": "£87.00" }
+      ]
+    }}
+    ```
+
+    **The CLI** consumes the same events but the `--pretty` flag renders them as a readable summary instead of raw JSON:
+
+    ```
+    ▶ Run started
+    • Visit the page to extract product information
+    • Check for product information on the page
+    ✓ Completed
+
+    {"products": [{"name": "Bulbasaur", "price": "£63.00"}, {"name": "Ivysaur", "price": "£87.00"}]}
+
+    View run: https://agent.tinyfish.ai/runs/abc123
+    ```
+
+    Either way, the `result` is the same structured payload — pick whichever format fits your workflow.
+  </Step>
+</Steps>
+
+## Check your wallet balance
+
+If your account is on TinyFish's wallet billing, automations draw from your wallet balance. Check your balance, auto-reload state, and rates any time:
+
+<CodeGroup>
+  ```python Python theme={null}
+  from tinyfish import TinyFish
+
+  client = TinyFish()  # Reads TINYFISH_API_KEY from environment
+
+  wallet = client.wallet.get()
+  print(f"{wallet.available_balance} {wallet.currency}")
+  ```
+
+  ```typescript TypeScript theme={null}
+  import { TinyFish } from "@tiny-fish/sdk";
+
+  const client = new TinyFish();  // Reads TINYFISH_API_KEY from environment
+
+  const wallet = await client.wallet.get();
+  console.log(`${wallet.available_balance} ${wallet.currency}`);
+  ```
+
+  ```bash CLI theme={null}
+  tinyfish wallet status --pretty
+  ```
+</CodeGroup>
+
+<Note>
+  Accounts are on either wallet billing or a legacy subscription/credits plan. If yours is on the legacy plan, `GET /v1/wallet` returns a 404 with `error.code: "FEATURE_NOT_AVAILABLE"` — check your account at [agent.tinyfish.ai/api-keys](https://agent.tinyfish.ai/api-keys) instead.
+</Note>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Missing dependency or command not found" icon="box">
+    The package isn't installed for the language you're running.
+
+    * **Python** — `ModuleNotFoundError: No module named 'tinyfish'` → `pip install tinyfish`
+    * **TypeScript** — `Cannot find module '@tiny-fish/sdk'` → `npm i @tiny-fish/sdk`
+    * **CLI** — `command not found: tinyfish` → `npm install -g @tiny-fish/cli`
+  </Accordion>
+
+  <Accordion title="pip install fails on macOS" icon="python">
+    Homebrew Python (3.11+) blocks system-wide `pip install` by default (PEP 668), so you'll see `error: externally-managed-environment`. Create a virtual environment first, then install:
+
+    ```bash theme={null}
+    python3 -m venv .venv
+    source .venv/bin/activate
+    pip install tinyfish
+    python first_automation.py
+    ```
+
+    You only need to run the first two lines once per project. After that, just `source .venv/bin/activate` to re-enter the environment.
+  </Accordion>
+
+  <Accordion title="tsx fails with ERR_PACKAGE_PATH_NOT_EXPORTED" icon="js">
+    `@tiny-fish/sdk` ships as ESM only, but `tsx` defaults to CommonJS, so you'll see `Error [ERR_PACKAGE_PATH_NOT_EXPORTED]: No "exports" main defined`. Tell Node to treat your project as ESM by adding `"type": "module"` to `package.json`:
+
+    ```bash theme={null}
+    npm pkg set type=module
+    ```
+
+    Then re-run `npx tsx first-automation.ts`.
+  </Accordion>
+
+  <Accordion title="Invalid or missing API key" icon="key">
+    Requests fail with a `401` or an authentication error.
+
+    * Confirm the key is set: `echo $TINYFISH_API_KEY` should print a value starting with `sk-tinyfish-`. If it's empty, re-run the `export` command from the "Get your API key" step above.
+    * If the key is wrong or lost, generate a new one on the [API Keys page](https://agent.tinyfish.ai/api-keys) — keys are shown only once on creation, so you can't recover an old one.
+  </Accordion>
+
+  <Accordion title="Insufficient credits" icon="credit-card">
+    The run is rejected because your account doesn't have enough balance to start it. Accounts are on either wallet billing or a legacy subscription/credits plan.
+
+    * **Wallet accounts:** check your balance with `GET /v1/wallet` (or `client.wallet.get()`, `tinyfish wallet status`) and add funds on the [wallet page](https://agent.tinyfish.ai/wallet) — minimum top-up is \$10.
+    * **Legacy subscription/credit accounts:** top up credits, or switch to a workspace that has them, then retry.
+    * Not sure which you're on? `GET /v1/wallet` returns 404 `FEATURE_NOT_AVAILABLE` if your account isn't wallet-enabled.
+    * See [Error Codes](/error-codes) for the full error shape.
+  </Accordion>
+</AccordionGroup>
+
+## Next Steps
+
+Where you go next depends on what you're trying to build.
+
+| Your goal                       | Start here                                                                             |
+| ------------------------------- | -------------------------------------------------------------------------------------- |
+| Building an app on the API      | [Agent API Reference](/agent-api/reference)                                            |
+| Need stable, predictable output | [Structured Output](/key-concepts/structured-output)                                   |
+| Real-world scraping examples    | [Examples](/examples/scraping)                                                         |
+| Hard sites or bot protection    | [Anti-Bot Guide](/anti-bot-guide) · [Browser Profiles](/key-concepts/browser-profiles) |
+
+<CardGroup cols={2}>
+  <Card title="Agent API Reference" icon="code" href="/agent-api/reference">
+    Streaming, async runs, and endpoint selection
+  </Card>
+
+  <Card title="Structured Output" icon="brackets-curly" href="/key-concepts/structured-output">
+    Get consistent JSON shaped to your schema
+  </Card>
+
+  <Card title="Examples" icon="lightbulb" href="/examples/scraping">
+    Copy-paste ready code for real use cases
+  </Card>
+
+  <Card title="Anti-Bot Guide" icon="shield-halved" href="/anti-bot-guide">
+    Handle protected and high-friction sites
+  </Card>
+</CardGroup>
+

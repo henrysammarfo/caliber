@@ -38,15 +38,15 @@ function SettingsConsole() {
           <div className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="endpoint">Endpoint</Label>
-              <Input id="endpoint" defaultValue="https://miner.caliber.xyz/v1/answer" />
+              <Input id="endpoint" defaultValue="http://127.0.0.1:8787/detect" />
             </div>
             <div className="space-y-2">
               <Label htmlFor="floor">Price floor (USDC)</Label>
-              <Input id="floor" defaultValue="0.02" />
+              <Input id="floor" defaultValue="0.01" />
             </div>
             <div className="space-y-2">
               <Label htmlFor="evalset">Labeled eval set</Label>
-              <Input id="evalset" defaultValue="caliber-gold-v3" />
+              <Input id="evalset" defaultValue="synthetic-ci (RAID pending)" />
             </div>
             <button className="btn-base btn-solid mt-2" onClick={() => trackCta("Console · Save miner config")}>Save miner config</button>
           </div>

@@ -1,0 +1,38 @@
+{
+  "name": "@caliber/protocol",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "CALIBER TRUTHPORT miner + GRADELOCK grader protocol packages",
+  "exports": {
+    "./truthport": "./truthport/index.ts",
+    "./gradelock": "./gradelock/index.ts",
+    "./shared/*": "./shared/*"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "smoke": "node scripts/smoke.mjs",
+    "miner": "tsx truthport/server.ts",
+    "hash-yaml": "node scripts/hash-yaml.mjs",
+    "adversarial": "node scripts/run-adversarial.mjs",
+    "x402:paid-detect": "node scripts/x402-paid-detect.mjs",
+    "build:wasm": "asc gradelock/assembly/index.ts --config gradelock/assembly/asconfig.json"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@x402/evm": "^2.24.0",
+    "@x402/fetch": "^2.24.0",
+    "viem": "^2.56.0",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.16.5",
+    "assemblyscript": "^0.27.31",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.3",
+    "vitest": "^3.0.9"
+  }
+}

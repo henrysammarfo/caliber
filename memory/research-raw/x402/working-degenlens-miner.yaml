@@ -1,0 +1,222 @@
+version: "1"
+kind: miner
+id: 10002
+slug: degenlens-onchain
+protocol: generic
+name: DegenLens On-Chain Intelligence
+description: >
+  Live, evidence-backed blockchain intelligence. ONCHAIN_TX_LOOKUP returns the
+  status, parties, value, block, gas, fee, and token-transfer effects of a
+  specific EVM transaction. WALLET_BALANCE_CHECK returns the current native and
+  token balances of a specific address or ENS name. FRAUD_DETECTION screens a
+  specific address or transaction for observable transfer-risk patterns,
+  answers reviewed named fraud cases with authoritative source metadata, and
+  returns a bounded risk tier without claiming that fraud occurred. Supported
+  chains are ethereum, base, polygon, arbitrum, optimism, bsc, avalanche,
+  solana, tron, and bitcoin where the requested operation is available.
+
+base_url: https://degenlensv1.up.railway.app
+
+docs:
+  website: https://degenlensv1.up.railway.app
+  documentation: https://degenlensv1.up.railway.app/docs
+  repository: https://github.com/drained69/DegenLens
+
+auth:
+  type: none
+
+rate_limit_per_sec: 8
+# Transaction results are immutable, but wallet balances and risk observations
+# are not. Do not let the node cache one endpoint's live state for another.
+cache_ttl_sec: 0
+circuit_threshold: 5
+circuit_cooldown_seconds: 30
+
+input_schema:
+  type: object
+  description: >
+    Supply the identifier required by the selected endpoint. Explicit fields
+    take precedence over values extracted from query.
+  properties:
+    tx_hash:
+      type: string
+      pattern: "^0x[a-fA-F0-9]{64}$"
+      description: Canonical EVM transaction hash.
+    address:
+      type: string
+      description: EVM address, ENS name, or supported native-chain address.
+    query:
+      type: string
+      description: Original natural-language question.
+    chain:
+      type: string
+      enum: [ethereum, base, polygon, arbitrum, optimism, bsc, avalanche, solana, tron, bitcoin]
+      default: ethereum
+    hours:
+      type: integer
+      minimum: 1
+      maximum: 720
+      default: 24
+
+output_schema:
+  type: object
+  required: [confidence, verdict, reasoning, data_source]
+  properties:
+    confidence:
+      type: number
+      minimum: 0
+      maximum: 1
+      description: Confidence in the returned observation, not certainty of fraud.
+    verdict:
+      type: string
+      description: Primary status or decision label.
+    reasoning:
+      type: string
+      description: Concise canonical answer containing the primary facts.
+    data_source:
+      type: string
+      enum: [live, demo, unavailable, registry, derived]
+    tx_hash: { type: string }
+    status: { type: string }
+    block_number: { type: [integer, "null"] }
+    from_address: { type: [string, "null"] }
+    to_address: { type: [string, "null"] }
+    value_wei: { type: string }
+    gas_used: { type: [integer, "null"] }
+    fee_wei: { type: [string, "null"] }
+    address: { type: string }
+    native_balance_wei: { type: [string, "null"] }
+    native_balance: { type: [number, "null"] }
+    native_balance_exact: { type: [string, "null"] }
+    token_balances: { type: array }
+    risk_score:
+      type: number
+      minimum: 0
+      maximum: 1
+    risk_tier:
+      type: string
+      enum: [insufficient_data, low_risk, elevated_risk, high_risk]
+    is_suspicious: { type: boolean }
+    risk_signals: { type: array }
+    coverage_complete: { type: boolean }
+    mode: { type: string }
+    case: { type: string }
+    answer: { type: string }
+    source: { type: object }
+
+endpoints:
+  - path: /transaction/lookup
+    external_path: /transaction/lookup
+    method: GET
+    description: >
+      ONCHAIN_TX_LOOKUP. Look up one specific EVM transaction by its complete
+      0x-prefixed 64-hex-character hash. Returns confirmed, reverted, pending,
+      or not_found plus sender, recipient, native value, block, gas used,
+      effective gas price, total fee, method identifier, and decoded ERC-20
+      transfers. Use only when the question supplies an actual transaction
+      hash. This is not a wallet-balance or fraud endpoint.
+    intents: [ONCHAIN_TX_LOOKUP]
+    params:
+      query:
+        required:
+          - name: tx_hash
+            type: string
+            intents: ["*"]
+            description: "Required complete EVM transaction hash: 0x followed by exactly 64 hexadecimal characters."
+            example: "0x70a2cdd2de8fccbc87f04aae988c5a7aa72b2fa776cce7dccb692e7169bf2431"
+        optional:
+          - name: chain
+            type: string
+            intents: ["*"]
+            description: "One of: ethereum, base, polygon, arbitrum, optimism, bsc, avalanche. Omit or send an empty value to use ethereum."
+            example: ethereum
+          - name: query
+            type: string
+            intents: ["*"]
+            description: Original natural-language transaction question, passed through verbatim.
+            example: "Did transaction 0x70a2cdd2de8fccbc87f04aae988c5a7aa72b2fa776cce7dccb692e7169bf2431 succeed on ethereum?"
+
+  - path: /wallet/balance
+    external_path: /wallet/balance
+    method: GET
+    description: >
+      WALLET_BALANCE_CHECK. Return the current native-coin and token balances of
+      one specific blockchain address or ENS name on a named chain. The address
+      is required. Returns exact native base units, human-readable native amount,
+      asset symbol, block height, and token balances. An unreadable provider
+      returns unavailable, never a fabricated zero. This endpoint answers what
+      an account currently holds; it does not assess fraud.
+    intents: [WALLET_BALANCE_CHECK]
+    params:
+      query:
+        required:
+          - name: address
+            type: string
+            intents: ["*"]
+            description: "Required account: 0x followed by exactly 40 hexadecimal characters, an ENS name ending .eth, or a valid Solana, Tron, or Bitcoin address."
+            example: "0x974caa59e49682cda0ad2bbe82983419a2ecc400"
+        optional:
+          - name: chain
+            type: string
+            intents: ["*"]
+            description: "One of: ethereum, base, polygon, arbitrum, optimism, bsc, avalanche, solana, tron, bitcoin. Omit or send an empty value to use ethereum."
+            example: ethereum
+          - name: query
+            type: string
+            intents: ["*"]
+            description: Original natural-language balance question, passed through verbatim.
+            example: "How much ETH does 0x974caa59e49682cda0ad2bbe82983419a2ecc400 hold?"
+
+  - path: /anomaly/check
+    external_path: /anomaly/check
+    method: GET
+    description: >
+      FRAUD_DETECTION. Assess how likely the specific entity, transaction, or
+      action named in the required natural-language query is to be fraudulent.
+      For an on-chain address, screen round-trip returns, transfer velocity,
+      counterparty concentration, dust fan-in, and repeated identical amounts.
+      For a transaction hash, screen its sender and return transaction context.
+      Reviewed named cases receive a concise source-backed factual answer;
+      unknown off-chain subjects are reported out_of_coverage rather than
+      guessed. Returns a bounded risk_score, risk_tier, concise verdict, and
+      measurements for on-chain subjects.
+    intents: [FRAUD_DETECTION]
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ["*"]
+            description: "Required complete fraud question naming the entity, address, transaction, or action to assess."
+            example: "How likely is 0x974caa59e49682cda0ad2bbe82983419a2ecc400 to be fraudulent on ethereum?"
+        optional:
+          - name: address
+            type: string
+            intents: ["*"]
+            description: Explicit address or ENS name. Takes precedence over an address extracted from query.
+            example: "0x974caa59e49682cda0ad2bbe82983419a2ecc400"
+          - name: tx_hash
+            type: string
+            intents: ["*"]
+            description: "Explicit transaction subject: 0x followed by exactly 64 hexadecimal characters. The sender is screened."
+            example: "0x70a2cdd2de8fccbc87f04aae988c5a7aa72b2fa776cce7dccb692e7169bf2431"
+          - name: chain
+            type: string
+            intents: ["*"]
+            description: "One of: ethereum, base, polygon, arbitrum, optimism, bsc, avalanche, solana, tron, bitcoin. Omit or send an empty value to use ethereum."
+            example: ethereum
+          - name: hours
+            type: integer
+            intents: ["*"]
+            description: Lookback window from 1 to 720 hours. Defaults to 24.
+            example: 24
+
+semantics:
+  signal_mapping:
+    confidence_field: confidence
+    label_field: verdict
+    reason_field: reasoning
+  supported_intents:
+    - ONCHAIN_TX_LOOKUP
+    - WALLET_BALANCE_CHECK
+    - FRAUD_DETECTION

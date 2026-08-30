@@ -1,0 +1,23 @@
+{
+  "targets": {
+    "release": {
+      "outFile": "../build/gradelock.wasm",
+      "textFile": "../build/gradelock.wat",
+      "optimizeLevel": 3,
+      "shrinkLevel": 1,
+      "converge": true,
+      "noAssert": true
+    },
+    "debug": {
+      "outFile": "../build/gradelock-debug.wasm",
+      "textFile": "../build/gradelock-debug.wat",
+      "debug": true
+    }
+  },
+  "options": {
+    "bindings": "raw",
+    "exportRuntime": false,
+    "runtime": "stub",
+    "exportStart": false
+  }
+}

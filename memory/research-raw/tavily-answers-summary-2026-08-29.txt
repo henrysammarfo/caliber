@@ -1,0 +1,6 @@
+﻿PORTAL_ANSWER:
+The Telegraph Protocol hackathon Season I 2026 has a $15,000 USD prize pool, three tracks, and ends on September 7, 2026. The Miner Track focuses on providing intelligence, while the Script Author Track ranks quality. The deadline is September 7, 2026.
+
+SCORING_ANSWER:
+The Brier score is a proper scoring rule for evaluating probabilistic predictions, minimizing it encourages well-calibrated forecasts. It measures accuracy by comparing predicted probabilities to actual outcomes. The best score is 0, indicating perfect calibration.
+

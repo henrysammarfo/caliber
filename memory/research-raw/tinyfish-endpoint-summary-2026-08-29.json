@@ -1,0 +1,15 @@
+﻿{
+  "date": "2026-08-29",
+  "auth": "X-API-Key header (not Bearer for Search/Fetch/Agent run)",
+  "working": [
+    {"method":"GET","url":"https://api.search.tinyfish.ai?query=...","status":200,"file":"tinyfish-search-get-xkey-2026-08-29.json"},
+    {"method":"POST","url":"https://api.fetch.tinyfish.ai/","body":{"urls":["https://hackathon.telegraphprotocol.com/"],"format":"markdown"},"status":200,"file":"tinyfish-fetch-portal-xkey-2026-08-29.json"},
+    {"method":"POST","url":"https://agent.tinyfish.ai/v1/automation/run","status":200,"files":["tinyfish-agent-automation-xkey-2026-08-29.json","tinyfish-automation-run-xkey-2026-08-29.json"]}
+  ],
+  "failed": [
+    {"url":"https://api.tinyfish.ai/*","note":"DNS NXDOMAIN"},
+    {"url":"https://api.tinyfish.ai/v1/search","note":"host unresolved"},
+    {"url":"https://agent.tinyfish.ai/v1/search","Bearer":401,"x-api-key":405},
+    {"url":"Bearer on search/automation","status":401}
+  ]
+}

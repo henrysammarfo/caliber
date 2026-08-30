@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { CheckCircle2, Circle, Flag } from "lucide-react";
 import { PageHero, PageShell, Section } from "@/components/site/Page";
 import { trackCta } from "@/lib/analytics";
+import { PROTOCOL_STATUS } from "@/lib/protocol-status";
 
 export const Route = createFileRoute("/roadmap")({
   head: () => ({
@@ -10,10 +11,10 @@ export const Route = createFileRoute("/roadmap")({
       {
         name: "description",
         content:
-          "CALIBER's Telegraph Season I roadmap: H1 miner and registry, H2 hardened grader and pull-through, H3 mainnet consumption.",
+          "CALIBER Telegraph Season I roadmap: H1 miner and grader, H2 hardening, H3 mainnet — honest done/open status.",
       },
       { property: "og:title", content: "Roadmap — CALIBER" },
-      { property: "og:description", content: "H1 to H3: miner, grader, demand app." },
+      { property: "og:description", content: "H1 to H3 with live checklist status." },
     ],
   }),
   component: RoadmapPage,
@@ -22,15 +23,10 @@ export const Route = createFileRoute("/roadmap")({
 const PHASES = [
   {
     phase: "H1",
-    when: "Sep 7 · 12:00 UTC",
+    when: "Sep 7 · 23:59 UTC",
     pool: "$5k",
-    ship: "Miner and script · YAML · Base registry · x402",
-    items: [
-      { done: true, t: "Lock vertical and labeled eval set" },
-      { done: true, t: "YAML miner + MinerRegistry entry" },
-      { done: false, t: "GRADELOCK WASM + gaming tests" },
-      { done: false, t: "Build thread, video, submission" },
-    ],
+    ship: "Miner + Script · YAML · registry · x402",
+    items: PROTOCOL_STATUS.checklist.map((c) => ({ done: c.done, t: c.label })),
   },
   {
     phase: "H2",
@@ -38,9 +34,9 @@ const PHASES = [
     pool: "$10k",
     ship: "Harden grader · apps pull the miner · public proof",
     items: [
-      { done: false, t: "Grader hardening pass" },
+      { done: false, t: "Grader hardening on RAID holdout" },
       { done: false, t: "First external app pulls the miner" },
-      { done: false, t: "Demand app stub shipped" },
+      { done: false, t: "Demand app that only works via miner" },
     ],
   },
   {
@@ -62,7 +58,7 @@ function RoadmapPage() {
         eyebrow="Telegraph Season I"
         title="A season thesis, not a"
         em="weekend toy"
-        lede="Every phase depends on the last. Re-check the portal before submit; pools update from the live source."
+        lede="Every phase depends on the last. Deadline from live portal HTML: Sep 7, 2026 · 23:59 UTC."
       >
         <Link to="/dashboard" onClick={() => trackCta("Roadmap · Open console")} className="btn-base btn-solid">
           Track progress
@@ -96,33 +92,6 @@ function RoadmapPage() {
               </ul>
             </article>
           ))}
-        </div>
-      </Section>
-
-      <Section kicker="Pass bars" title="How each phase is judged.">
-        <div className="panel overflow-hidden">
-          <table className="w-full text-left text-[13.5px]">
-            <thead className="border-b border-hair-soft text-[11.5px] tracking-[0.06em] text-stat uppercase">
-              <tr>
-                <th className="px-5 py-3 font-normal">Metric</th>
-                <th className="px-5 py-3 font-normal">Pass</th>
-              </tr>
-            </thead>
-            <tbody>
-              {[
-                ["Ranking quality", "Grader agreement vs the labeled set, defined in the README"],
-                ["Gaming resistance", "Adversarial miner rank drop documented"],
-                ["Paid path", "x402 transaction artifact"],
-                ["Registry", "On-chain fields match the YAML"],
-                ["Season", "Demand app that cannot work without the miner"],
-              ].map(([k, v]) => (
-                <tr key={k} className="border-b border-hair-soft last:border-0">
-                  <td className="px-5 py-3.5">{k}</td>
-                  <td className="px-5 py-3.5 text-muted-ink">{v}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
         </div>
       </Section>
     </PageShell>

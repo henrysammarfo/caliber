@@ -1,0 +1,26 @@
+{
+  "asOf": "2026-08-30T15:18:47.919Z",
+  "wallet": "0x9ADd0ac311e9E528800afc3F4A04e9cDe52C9cE0",
+  "diamond": "0x122396E8602BEed349434AA6E83123E7dD97F5A0",
+  "yamlUrl": "https://caliber-teamtitanlink.vercel.app/miner.yaml",
+  "yamlHash": "0xc9f96c3b395ac0637229a557d52d3ea929f3381ba311ba43bc4b3559680bd2a7",
+  "feeAddress": "0x9ADd0ac311e9E528800afc3F4A04e9cDe52C9cE0",
+  "minPriceUsdc": 10000,
+  "intents": [
+    "AI_TEXT_DETECTION",
+    "CONTENT_VERIFICATION"
+  ],
+  "deregister": {
+    "registrationId": 49,
+    "txHash": "0xfc2411a7a3b9d8eff316c7d3ab5a0cb63fda23d2393cdb6614ca62bb7584d8af",
+    "status": "success",
+    "blockNumber": 46167422
+  },
+  "register": {
+    "registrationId": 50,
+    "txHash": "0x8f6fa5b6a00efffe9af3b9adad7340f218ab03fd688a3fbd33d481ce4f09e22c",
+    "status": "success",
+    "blockNumber": 46167423,
+    "explorerUrl": "https://sepolia.basescan.org/tx/0x8f6fa5b6a00efffe9af3b9adad7340f218ab03fd688a3fbd33d481ce4f09e22c"
+  }
+}

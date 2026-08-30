@@ -1,0 +1,94 @@
+{
+  "polls": [
+    {
+      "round": 1,
+      "at": "2026-08-30T15:20:12.391Z",
+      "status": 200,
+      "count": 125,
+      "caliberHits": 0,
+      "has92001": false,
+      "hasSlug": false,
+      "sample": [],
+      "ms": 3985
+    },
+    {
+      "round": 2,
+      "at": "2026-08-30T15:21:15.532Z",
+      "status": 200,
+      "count": 125,
+      "caliberHits": 0,
+      "has92001": false,
+      "hasSlug": false,
+      "sample": [],
+      "ms": 3134
+    },
+    {
+      "round": 3,
+      "at": "2026-08-30T15:22:19.752Z",
+      "status": 200,
+      "count": 125,
+      "caliberHits": 0,
+      "has92001": false,
+      "hasSlug": false,
+      "sample": [],
+      "ms": 4216
+    },
+    {
+      "round": 4,
+      "at": "2026-08-30T15:23:24.367Z",
+      "status": 200,
+      "count": 125,
+      "caliberHits": 0,
+      "has92001": false,
+      "hasSlug": false,
+      "sample": [],
+      "ms": 4615
+    },
+    {
+      "round": 5,
+      "at": "2026-08-30T15:24:30.564Z",
+      "status": 200,
+      "count": 125,
+      "caliberHits": 0,
+      "has92001": false,
+      "hasSlug": false,
+      "sample": [],
+      "ms": 6190
+    },
+    {
+      "round": 6,
+      "at": "2026-08-30T15:25:36.735Z",
+      "status": 200,
+      "count": 125,
+      "caliberHits": 0,
+      "has92001": false,
+      "hasSlug": false,
+      "sample": [],
+      "ms": 6164
+    },
+    {
+      "round": 7,
+      "at": "2026-08-30T15:27:07.197Z",
+      "status": 200,
+      "count": 125,
+      "caliberHits": 0,
+      "has92001": false,
+      "hasSlug": false,
+      "sample": [],
+      "ms": 30458
+    },
+    {
+      "round": 8,
+      "at": "2026-08-30T15:28:10.035Z",
+      "status": 200,
+      "count": 125,
+      "caliberHits": 0,
+      "has92001": false,
+      "hasSlug": false,
+      "sample": [],
+      "ms": 2833
+    }
+  ],
+  "lastCount": 125,
+  "listed": false
+}

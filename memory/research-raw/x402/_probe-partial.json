@@ -1,0 +1,165 @@
+{
+  "probes": {
+    "/integrations": {
+      "status": 200,
+      "contentType": "application/json",
+      "bytes": 407409,
+      "snippet": "[{\"id\":\"20260821\",\"slug\":\"amanat-weather-risk\",\"kind\":\"miner\",\"protocol\":\"generic\",\"name\":\"Amanat Weather Risk\",\"description\":\"Parametric weather-risk signals for autonomous systems. Every answer carr"
+    },
+    "/healthz": {
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "bytes": 15,
+      "snippet": "{\"status\":\"ok\"}"
+    },
+    "/openapi.json": {
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "bytes": 2004024,
+      "snippet": "{\n  \"info\": {\n    \"description\": \"Telegraph is the on-chain signal layer for Bittensor.\\nThis API provides access to AI inference subnets via x402 micropayments.\\n\\n## Authentication\\nNo API keys requ"
+    },
+    "/rejected": {
+      "status": 404,
+      "contentType": "text/plain",
+      "bytes": 18,
+      "snippet": "404 page not found"
+    },
+    "/pending": {
+      "status": 404,
+      "contentType": "text/plain",
+      "bytes": 18,
+      "snippet": "404 page not found"
+    },
+    "/miners": {
+      "status": 404,
+      "contentType": "text/plain",
+      "bytes": 18,
+      "snippet": "404 page not found"
+    },
+    "/registry": {
+      "status": 404,
+      "contentType": "text/plain",
+      "bytes": 18,
+      "snippet": "404 page not found"
+    },
+    "/v1/rejected": {
+      "status": 301,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 48,
+      "snippet": "<a href=\"/v1/rejected/\">Moved Permanently</a>.\n\n"
+    },
+    "/v1/pending": {
+      "status": 301,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 47,
+      "snippet": "<a href=\"/v1/pending/\">Moved Permanently</a>.\n\n"
+    },
+    "/v1/miners": {
+      "status": 301,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 46,
+      "snippet": "<a href=\"/v1/miners/\">Moved Permanently</a>.\n\n"
+    },
+    "/v1/registry": {
+      "status": 301,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 48,
+      "snippet": "<a href=\"/v1/registry/\">Moved Permanently</a>.\n\n"
+    },
+    "/admin/rejected": {
+      "status": 404,
+      "contentType": "text/plain",
+      "bytes": 18,
+      "snippet": "404 page not found"
+    },
+    "/admin/pending": {
+      "status": 404,
+      "contentType": "text/plain",
+      "bytes": 18,
+      "snippet": "404 page not found"
+    },
+    "/internal/rejected": {
+      "status": 404,
+      "contentType": "text/plain",
+      "bytes": 18,
+      "snippet": "404 page not found"
+    },
+    "/internal/pending": {
+      "status": 404,
+      "contentType": "text/plain",
+      "bytes": 18,
+      "snippet": "404 page not found"
+    },
+    "/miner-registry/rejected": {
+      "status": 404,
+      "contentType": "text/plain",
+      "bytes": 18,
+      "snippet": "404 page not found"
+    },
+    "/miner-registry/pending": {
+      "status": 404,
+      "contentType": "text/plain",
+      "bytes": 18,
+      "snippet": "404 page not found"
+    },
+    "/registrations": {
+      "status": 404,
+      "contentType": "text/plain",
+      "bytes": 18,
+      "snippet": "404 page not found"
+    },
+    "/registrations/rejected": {
+      "status": 404,
+      "contentType": "text/plain",
+      "bytes": 18,
+      "snippet": "404 page not found"
+    },
+    "/registrations/pending": {
+      "status": 404,
+      "contentType": "text/plain",
+      "bytes": 18,
+      "snippet": "404 page not found"
+    },
+    "/status": {
+      "status": 404,
+      "contentType": "text/plain",
+      "bytes": 18,
+      "snippet": "404 page not found"
+    },
+    "/activation": {
+      "status": 404,
+      "contentType": "text/plain",
+      "bytes": 18,
+      "snippet": "404 page not found"
+    },
+    "/activations": {
+      "status": 404,
+      "contentType": "text/plain",
+      "bytes": 18,
+      "snippet": "404 page not found"
+    },
+    "/failed": {
+      "status": 404,
+      "contentType": "text/plain",
+      "bytes": 18,
+      "snippet": "404 page not found"
+    },
+    "/errors": {
+      "status": 404,
+      "contentType": "text/plain",
+      "bytes": 18,
+      "snippet": "404 page not found"
+    }
+  },
+  "interestingOpenapi": [
+    "/v1/10002/health/operator/{slug}",
+    "/v1/10002/health/registry",
+    "/v1/101/miner/bayern-winprob",
+    "/v1/1188/miner.py",
+    "/v1/501/api/v1/miner/risk-assessment",
+    "/v1/9007/miner/onchain-tx-lookup"
+  ],
+  "nonV1": [],
+  "ourHash": "69f4d780f931eb5c07e7ebe6b3558f51b24d4da2a7fa944c0cf3c477de99095e",
+  "hashMatch": true
+}

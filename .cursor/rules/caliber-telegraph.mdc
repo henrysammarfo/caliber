@@ -1,0 +1,38 @@
+---
+description: CALIBER Telegraph Season I binding doctrine — always apply in this repo
+alwaysApply: true
+---
+
+# CALIBER / Telegraph doctrine
+
+## Identity
+
+CALIBER = Telegraph Season I product: **TRUTHPORT** (Miner) + **GRADELOCK** (WASM Script) + **DEMAND APP** (H2/H3). Thesis spans H1→H3. Not a weekend wrapper.
+
+## Before coding
+
+1. Read `memory/CURRENT_STATE.md` and `memory/FACT_CHECK.md`.
+2. Prefer live portal/GitBook over Bible if they conflict; update FACT_CHECK.
+3. Research with Tavily then TinyFish (`X-API-Key`); dump under `memory/research-raw/`.
+4. Unverified claims stay labeled. No invented prizes, deadlines, APIs, or metrics.
+
+## SDK exceed (mandatory for H1)
+
+- YAML Standard `version: "1"` end-to-end (canonical intents/signal types only)
+- `registerMiner` on Base registry Diamond; URL + SHA-256 + floor + intents
+- x402 paid path with receipt artifact
+- WASM grader beyond hello-world: proper scoring + adversarial tests
+- Document agent-framework integration path
+- X progress posts
+
+## Production bar
+
+Ship full systems, not stubs/samples. If something is not live, mark it planned — never fake telemetry (row counts, agreement scores, request volume).
+
+## Security
+
+Never claim unhackable. Document residual risk. Secrets only in env vars. Do not commit `.env` or paste keys into git/docs.
+
+## Prior work
+
+No FENN / Sibyl TAKEN injection unless Henry asks. Residencies parked.

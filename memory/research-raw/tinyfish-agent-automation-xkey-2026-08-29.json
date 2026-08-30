@@ -1,0 +1,6 @@
+﻿{
+    "status":  200,
+    "url":  "https://agent.tinyfish.ai/v1/automation/run",
+    "auth":  "xkey",
+    "body":  "{\"run_id\":\"919ff455-8aaa-4ee2-950f-e6aab91302e1\",\"status\":\"COMPLETED\",\"started_at\":\"2026-08-29T21:12:15.689Z\",\"finished_at\":\"2026-08-29T21:12:27.411Z\",\"num_of_steps\":3,\"result\":{\"result\":\"The deadline for the Telegraph Hackathon (Season I) is September 7, 2026, at 23:59 UTC, which marks the close of submissions.\"},\"error\":null}"
+}

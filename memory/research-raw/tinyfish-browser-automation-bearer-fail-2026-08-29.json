@@ -1,0 +1,7 @@
+﻿{
+    "status":  401,
+    "url":  "https://api.browser.tinyfish.ai/v1/automation",
+    "auth":  "bearer",
+    "error":  "The remote server returned an error: (401) Unauthorized.",
+    "body":  ""
+}

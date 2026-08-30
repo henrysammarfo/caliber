@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Database, FileCode2, Link2, Radar, ScrollText, Wallet } from "lucide-react";
 import { FeatureCard, PageHero, PageShell, Section } from "@/components/site/Page";
 import { trackCta } from "@/lib/analytics";
+import { PROTOCOL_STATUS, YAML_PREVIEW } from "@/lib/protocol-status";
 
 export const Route = createFileRoute("/miner")({
   head: () => ({
@@ -10,31 +11,17 @@ export const Route = createFileRoute("/miner")({
       {
         name: "description",
         content:
-          "TRUTHPORT is CALIBER's vertical Telegraph miner: labeled ground truth, YAML Standard declaration, Base registry, and x402 paid fetch.",
+          "TRUTHPORT is CALIBER's AI text-authenticity Telegraph miner: labeled holdout path, YAML Standard draft, Base registry (planned), and x402 paid fetch.",
       },
       { property: "og:title", content: "TRUTHPORT Miner — CALIBER" },
       {
         property: "og:description",
-        content: "A vertical miner with real labeled ground truth and a paid fetch path.",
+        content: "Vertical miner for text_authenticity with a schema-valid YAML draft and local detect API.",
       },
     ],
   }),
   component: MinerPage,
 });
-
-const YAML = `name: caliber-truthport
-version: 0.4.1
-intents:
-  - vertical.lookup
-  - vertical.verify
-endpoint: https://miner.caliber.xyz/v1/answer
-checksum: sha256:9f2c…41ab
-payment:
-  scheme: x402
-  floor: 0.02 USDC
-eval:
-  labeled_set: caliber-gold-v3
-  size: 4128`;
 
 function MinerPage() {
   return (
@@ -43,7 +30,7 @@ function MinerPage() {
         eyebrow="TRUTHPORT"
         title="A miner with real"
         em="ground truth"
-        lede="One sharp vertical, a labeled evaluation set, and a declaration that matches the chain byte for byte."
+        lede="Locked vertical: AI text authenticity. Local detector ships today; on-chain registry and public HTTPS are next."
       >
         <Link to="/dashboard/miner" onClick={() => trackCta("Miner · Miner console")} className="btn-base btn-solid">
           Miner console
@@ -55,18 +42,52 @@ function MinerPage() {
 
       <Section kicker="Capabilities" title="What ships in H1.">
         <div className="grid gap-4 md:grid-cols-3">
-          <FeatureCard icon={Radar} title="Vertical focus" body="A single intent surface chosen for label availability, not breadth." meta="Locked in build" />
-          <FeatureCard icon={Database} title="Labeled eval set" body="Ground truth assembled from research dumps with provenance recorded per row." meta="4,128 rows" />
-          <FeatureCard icon={FileCode2} title="YAML Standard" body="End-to-end declaration: intents, endpoint, checksum, price floor." meta="Spec-complete" />
-          <FeatureCard icon={Link2} title="Base registry" body="MinerRegistry entry mirrors the YAML fields; drift is a failed check." meta="On-chain" />
-          <FeatureCard icon={Wallet} title="x402 paid fetch" body="Every consumer request settles with a verifiable receipt artifact." meta="Receipted" />
-          <FeatureCard icon={ScrollText} title="Agent integration" body="Documented adapters so agent frameworks can call the miner directly." meta="Documented" />
+          <FeatureCard
+            icon={Radar}
+            title="Vertical focus"
+            body="Canonical signal text_authenticity with ai_text_detection intents — not a homepage deepfake clone."
+            meta="Locked"
+          />
+          <FeatureCard
+            icon={Database}
+            title="Labeled eval path"
+            body={PROTOCOL_STATUS.holdout.note}
+            meta={`${PROTOCOL_STATUS.holdout.rows} CI rows · RAID pending`}
+          />
+          <FeatureCard
+            icon={FileCode2}
+            title="YAML Standard"
+            body="Telegraph version 1 draft with bearer auth, /detect, and direct on-chain transform."
+            meta="Draft · hash ready"
+          />
+          <FeatureCard
+            icon={Link2}
+            title="Base registry"
+            body="registerMiner planned on Base Sepolia once wallet + public YAML URL exist."
+            meta="Not registered"
+          />
+          <FeatureCard
+            icon={Wallet}
+            title="x402 paid fetch"
+            body={
+              PROTOCOL_STATUS.x402.exercised
+                ? `Floor ${PROTOCOL_STATUS.x402.floorUsdc} USDC. Rail exercised via dispatcher /v1/x402-test (miner proxy pending free YAML id).`
+                : `Floor ${PROTOCOL_STATUS.x402.floorUsdc} USDC in YAML. Paid path not exercised yet.`
+            }
+            meta="Pending wallet"
+          />
+          <FeatureCard
+            icon={ScrollText}
+            title="Agent integration"
+            body="POST /detect JSON contract documented in protocol/README for agent frameworks."
+            meta="Documented"
+          />
         </div>
       </Section>
 
-      <Section kicker="Declaration" title="miner.yaml">
+      <Section kicker="Declaration" title="caliber-truthport.yaml">
         <pre className="panel overflow-x-auto p-6 font-mono text-[12.5px] leading-relaxed text-stat">
-          {YAML}
+          {YAML_PREVIEW}
         </pre>
       </Section>
     </PageShell>

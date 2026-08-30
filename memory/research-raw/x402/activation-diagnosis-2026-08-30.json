@@ -1,0 +1,119 @@
+{
+  "asOf": "2026-08-30T14:51:00Z",
+  "subject": {
+    "minerId": 92001,
+    "slug": "caliber-truthport-text-auth",
+    "yamlUrl": "https://caliber-teamtitanlink.vercel.app/protocol/caliber-truthport.yaml",
+    "diamond": "0x122396E8602BEed349434AA6E83123E7dD97F5A0",
+    "priorRegistrationId": 46,
+    "currentRegistrationId": 48
+  },
+  "probes": {
+    "/integrations": { "status": 200, "bytes": 382637, "count": 125 },
+    "/healthz": { "status": 200, "body": "{\"status\":\"ok\"}" },
+    "/openapi.json": { "status": 200, "bytes": 1681277 },
+    "/rejected": { "status": 404 },
+    "/pending": { "status": 404 },
+    "/miners": { "status": 404 },
+    "/registry": { "status": 404 },
+    "/v1/rejected": { "status": 404 },
+    "/v1/pending": { "status": 404 },
+    "/v1/miners": { "status": 404 },
+    "/v1/registry": { "status": 404 },
+    "openapiNonV1Paths": ["/integrations", "/healthz", "/openapi.json"],
+    "note": "No public rejected/pending surface; cannot confirm reject vs pending via HTTP."
+  },
+  "integrations": {
+    "count": 125,
+    "caliberHits": 0,
+    "has92001": false,
+    "kinds": { "miner": 125 },
+    "activationStatuses": { "active": 125 },
+    "signal_mapping.typePresent": "0/125 (all omit type)",
+    "intentCase": "ALL live intents UPPERCASE (e.g. AI_TEXT_DETECTION, WEATHER_FORECAST)",
+    "newestSameDay": {
+      "slug": "preflight-ssl-verification",
+      "registered_at": "2026-08-30T12:20:42Z",
+      "yaml_url": "https://raw.githubusercontent.com/shreshth006/Preflight/cab46dd7662d2c3d9f738ea6692e016d18d83922/telegraph/miner.yaml"
+    },
+    "workingYamlUrlsSample": [
+      "https://raw.githubusercontent.com/PugarHuda/amanat/f38069e82ead79f4c0ccabe10ec4bc49182506f9/miner/amanat-miner.yaml",
+      "https://gateway.pinata.cloud/ipfs/Qmcq2f5DhqvhvC3M8umLLPjh692BfJuQWzoZa7EQiGFh5E",
+      "https://proofgate-six.vercel.app/miner.yaml"
+    ]
+  },
+  "yamlDiff": {
+    "workingReferences": ["sarzops", "itsai", "veritarach", "amanat", "preflight", "verity"],
+    "allWorkingKind": "miner",
+    "gitbookKindStale": "subnet|validator",
+    "signal_mapping.type": {
+      "working": "OMITTED in all sampled live YAMLs and 125/125 integrations payloads",
+      "oursBefore": "text_authenticity (GitBook-canonical)",
+      "oursAfter": "OMITTED to match live"
+    },
+    "supported_intents": {
+      "workingPattern": "UPPERCASE (AI_TEXT_DETECTION, FRAUD_DETECTION, ...)",
+      "oursBefore": ["ai_text_detection", "text_authenticity_check", "content_verification"],
+      "oursAfter": ["AI_TEXT_DETECTION", "CONTENT_VERIFICATION"],
+      "dropped": "TEXT_AUTHENTICITY_CHECK — never observed in live /integrations intent set"
+    },
+    "keysMissingFromOursVsAllWorkingTopLevel": [],
+    "auth": { "working": "none or header; integrations API strips auth", "ours": "none" },
+    "contentTypeLive": "text/yaml; charset=utf-8",
+    "contentTypeWorkingVercel": "application/yaml; charset=utf-8 (proofgate)",
+    "detectUpstream": { "POST /detect": 200, "sampleConfidence": 0.366485 }
+  },
+  "onChain": {
+    "reg46_tx": {
+      "hash": "0xbed2fd2c72cce57838c654de729b8d1ae88bf8096bdc29ac60df460ae0ed6c20",
+      "registrationId": 46,
+      "yamlUrl": "https://caliber-teamtitanlink.vercel.app/protocol/caliber-truthport.yaml",
+      "yamlHash": "0x69f4d780f931eb5c07e7ebe6b3558f51b24d4da2a7fa944c0cf3c477de99095e",
+      "status": "success",
+      "note": "Decoded via event data (string,bytes32); getMiner ABI decode unstable in viem"
+    },
+    "reg47": {
+      "deregister46": "0x5ab5f2d5a77c39adfe485b2084c29e7ff137816a3e4c28ca3af08e76c650eedc",
+      "register": "0xafdd42057e4e903785d5c8574d30410bf60cc674aff8ebf22a9165cdc7e16b6c",
+      "registrationId": 47,
+      "yamlHash": "0x7ad4819b81a3ec83cb06163d7d71c63ae2ebba6926de4ca1eec88487a2c16f06",
+      "status": "success then superseded"
+    },
+    "reg48_current": {
+      "deregister47": "0x1b086258cb602518843f23a697f3bd54a490340d823d9201dbdf8566cbc65598",
+      "register": "0x162d8c07fc4a3e93305d030b9f0e7a71bf2cee68459bce28167a39eeecb96a42",
+      "registrationId": 48,
+      "yamlUrl": "https://caliber-teamtitanlink.vercel.app/protocol/caliber-truthport.yaml",
+      "yamlHash": "0x666eaf831cd3546fce00bd27d39e1fe3ce76ca44590fb2749f577c5062b38749",
+      "intents": ["AI_TEXT_DETECTION", "CONTENT_VERIFICATION"],
+      "status": "success",
+      "explorer": "https://sepolia.basescan.org/tx/0x162d8c07fc4a3e93305d030b9f0e7a71bf2cee68459bce28167a39eeecb96a42"
+    },
+    "liveYamlSha256MatchesOnChain": true
+  },
+  "polls": {
+    "postReg47_epochWindow_~11min": { "rounds": 10, "countStayed": 125, "caliberListed": false },
+    "postReg48_brief_~3min": { "file": "integrations-poll-caliber.json", "caliberListed": false, "count": 125 }
+  },
+  "integrateConsole": {
+    "url": "https://integrate.telegraphprotocol.com",
+    "tinyfish": "SKIPPED — TINYFISH_API_KEY not present in repo .env",
+    "webSearchSnippet": "Register Now / Connect API wizard; no public rejected-list API documented"
+  },
+  "fixesApplied": [
+    "kind already miner (matches 125/125)",
+    "removed semantics.signal_mapping.type (live omit)",
+    "intents UPPERCASE; dropped TEXT_AUTHENTICITY_CHECK (unobserved live)",
+    "stripped comments / on_chain.description; removed input_schema.required",
+    "redeployed Vercel prod; deregistered 46→47→48; rehashed"
+  ],
+  "activationClaim": false,
+  "rootCauseHypothesis": [
+    "PRIMARY: Off-chain silent reject or listener miss — on-chain registerMiner succeeds and live YAML hash matches, but /integrations stays at 125 with no 92001/caliber after multi-epoch waits. No /rejected|/pending HTTP to confirm.",
+    "SECONDARY (mitigated): Prior YAML used GitBook-lowercase intents + signal_mapping.type; live activated miners use UPPERCASE intents and omit type. Patched; still not listed → insufficient alone.",
+    "SECONDARY: Possible node fetch/validation failure specific to this YAML bytes (schema detail) without public error channel — Discord/integrate console needed.",
+    "UNLIKELY: Hash mismatch (ruled out via event decode + live sha256).",
+    "UNLIKELY: kind:subnet (already miner).",
+    "UNLIKELY: pure epoch delay alone (waited >10 min for reg47; same-day preflight activated)."
+  ]
+}

@@ -1,0 +1,92 @@
+﻿{
+    "query":  "Ghostbuster AI text detection dataset HuggingFace license download labels",
+    "follow_up_questions":  null,
+    "answer":  "The Ghostbuster AI text detection dataset is available on Hugging Face under CC By 3.0 license. It includes human and AI-generated essays for detecting AI text. The dataset labels include human and various AI-generated classes.",
+    "images":  [
+
+               ],
+    "results":  [
+                    {
+                        "url":  "https://huggingface.co/datasets/polsci/ghostbuster-essay-cleaned/blob/main/README.md",
+                        "title":  "README.md Â· polsci/ghostbuster-essay-cleaned at main",
+                        "content":  "### Source Data\n\nThe original data-set can be downloaded from . See the paper cited below for more information.\n\n## Dataset Structure\n\n### Data Fields\n\ntext: Value(dtype=\u0027string\u0027, id=None)  \nlabel: ClassLabel(names=[\u0027claude\u0027, \u0027gpt\u0027, \u0027gpt\\_prompt1\u0027, \u0027gpt\\_prompt2\u0027, \u0027gpt\\_semantic\u0027, \u0027gpt\\_writing\u0027, \u0027human\u0027], id=None)  \nID: Value(dtype=\u0027int64\u0027, id=None)  \nfilename: Value(dtype=\u0027string\u0027, id=None)  \nprompt: Value(dtype=\u0027string\u0027, id=None)\n\n### Data Splits\n\ntrain: 4858 examples  \ntest: 2100 examples\n\n### Dataset Author/Creator\n\nThe paper authors are Vivek Verma, Eve Fleisig, Nicholas Tomlin and Dan Klein. See the paper cited below for more information. I\u0027m not one of the authors. I\u0027m uploading to Huggingface to make the data-set available for teaching and research.\n\n### Licensing Information [...] Hugging Face\u0027s logo\n\n# Datasets: --- polsci / ghostbuster-essay-cleaned like 0\n\npolsci\u0027s picture\n\n# Ghostbuster Essay Dataset (human-authored vs LLM-authored essays, cleaned)\n\n## Dataset Description\n\nEssay dataset used in the paper \"Ghostbuster: Detecting Text Ghostwritten by Large Language Models\" (see citation below). Empty or very short texts removed. The original data was txt files in folders for each label. The filenames allow you to match generated texts across the various prompts. I have included the prompt corresponding to each text, but see the paper for an authoritative source on how the texts were generated and the meaning of each label. Note: The splits have been added. These are not a feature of the source data.\n\n### Source Data [...] ### Licensing Information\n\nThis data is licensed by its authors under the CC By 3.0 Attribution 3.0 Unported. See  for details.\n\n### Citation Information\n\nIf you use this dataset, please cite:\n\n@misc{verma2024ghostbusterdetectingtextghostwritten,\ntitle={Ghostbuster: Detecting Text Ghostwritten by Large Language Models},\nauthor={Vivek Verma and Eve Fleisig and Nicholas Tomlin and Dan Klein},\nyear={2024},\neprint={2305.15047},\narchivePrefix={arXiv},\nprimaryClass={cs.CL},\nurl={\n}",
+                        "score":  0.8145405,
+                        "raw_content":  null,
+                        "id":  "63a8ac-00"
+                    },
+                    {
+                        "url":  "https://huggingface.co/datasets/artem9k/ai-text-detection-pile",
+                        "title":  "artem9k/ai-text-detection-pile Â· Datasets at Hugging Face",
+                        "content":  "#### ogmatrixllm/glyph-v1.1\n\n#### MonkeyDAnh/my-awesome-ai-detector-roberta-base-v4-human-vs-machine-finetune\n\n#### ShivamVN/My-Ai-Text-Detector\n\n#### vediumsameer/paperguard-ai-detector\n\n#### alianassmaaa/multimodal-deepfake-detector\n\n#### srikanthgali/paradetect-deberta-v3-lora\n\n## Spaces using artem9k/ai-text-detection-pile 2 [...] #### AI-Generated Text\n\n| Model | Dataset | Num Samples | Link |\n ---  --- |\n| GPT2 | OpenAI gpt2-output-dataset | 260k | Link |\n| GPT3 | pairwise-davinci | 44k | TODO |\n| GPT3 | synthetic-instruct-davinci-pairwise | 30k | Link |\n| GPTJ | synthetic-instruct-gptj-pairwise | 44k | Link |\n| ChatGPT | Scraped from twitter | 5k \n| ChatGPT | HC3 (ChatGPT Responses) | 27k | Link |\n| ChatGPT | ChatGPT Prompts/emergentmind | 500 | Link |\n| Total | 340k  - |\n\n### Supported Tasks and Leaderboards\n\nText Classification, AI Text Detection.\n\n### Languages\n\nEnglish.\n\n### Data Fields\n\nTEXT: The text of the sample.\nSOURCE: either \"human\" or \"ai\"\n\n## Models trained or fine-tuned on artem9k/ai-text-detection-pile\n\n#### ogmatrixllm/glyph-v1.1 [...] # Dataset Card for AI Text Dectection Pile\n\n### Dataset Summary\n\nThis is a large scale dataset intended for AI Text Detection tasks, geared toward long-form text and essays. It contains samples of both human text and AI-generated text from GPT2, GPT3, ChatGPT, GPTJ.\n\nHere is the (tentative) breakdown:\n\n#### Human Text\n\n| Dataset | Num Samples | Link |\n --- \n| Reddit WritingPromps | 570k | Link |\n| OpenAI Webtext | 260k | Link |\n| HC3 (Human Responses) | 58k | Link |\n| ivypanda-essays | TODO | TODO |\n| Total | 990k \n\n#### AI-Generated Text",
+                        "score":  0.5931622,
+                        "raw_content":  null,
+                        "id":  "7a322a-01"
+                    },
+                    {
+                        "url":  "https://huggingface.co/collections/nbroad/detect-ai-generated-text",
+                        "title":  "Detect AI Generated Text - a nbroad Collection - Hugging Face",
+                        "content":  "A collection of papers about detecting text generated by AI. Ghostbuster: Detecting Text Ghostwritten by Large Language Models Paper",
+                        "score":  0.54956865,
+                        "raw_content":  null,
+                        "id":  "ef162a-02"
+                    },
+                    {
+                        "url":  "https://huggingface.co/papers/2305.15047",
+                        "title":  "Paper page - Ghostbuster: Detecting Text Ghostwritten by Large Language Models",
+                        "content":  "Hugging Face\u0027s logo\n\n# Ghostbuster: Detecting Text Ghostwritten by Large Language Models\n\n## Abstract\n\nGhostbuster, a system using a series of weaker language models and a structured search, detects AI-generated text with high accuracy across various domains without needing token probabilities from the target model. [...] We introduce Ghostbuster, a state-of-the-art system for detecting\nAI-generated text. Our method works by passing documents through a series of\nweaker language models, running a structured search over possible combinations\nof their features, and then training a classifier on the selected features to\npredict whether documents are AI-generated. Crucially, Ghostbuster does not\nrequire access to token probabilities from the target model, making it useful\nfor detecting text generated by black-box models or unknown model versions. In\nconjunction with our model, we release three new datasets of human- and\nAI-generated text as detection benchmarks in the domains of student essays,\ncreative writing, and news articles. We compare Ghostbuster to a variety of [...] ### Community\n\nThis is a tedxt\n\nÂ· Sign up or log in to comment\n\nGet this paper in your agent:\n\n`hf papers read 2305.15047`\n`curl -LsSf  | bash`\n\n## Models citing this paper 0\n\nNo model linking this paper\n\n## Datasets citing this paper 3\n\n#### polsci/ghostbuster-essay-cleaned\n\n#### artnitolog/llm-generated-texts\n\n#### datademon4/ghostbuster-essay-cleaned\n\n### Spaces citing this paper 1\n\n## Collections including this paper 5\n\n#### Detect AI Generated Text\n\n#### AI-Generated Text Detection\n\n#### LLM Detection\n\n#### paper4read",
+                        "score":  0.5191075,
+                        "raw_content":  null,
+                        "id":  "6e7c9d-03"
+                    },
+                    {
+                        "url":  "https://aclanthology.org/2024.naacl-long.95",
+                        "title":  "Ghostbuster: Detecting Text Ghostwritten by Large Language Models - ACL Anthology",
+                        "content":  "We introduce Ghostbuster, a state-of-the-art system for detecting AI-generated text.Our method works by passing documents through a series of weaker language models, running a structured search over possible combinations of their features, and then training a classifier on the selected features to predict whether documents are AI-generated.Crucially, Ghostbuster does not require access to token probabilities from the target model, making it useful for detecting text generated by black-box or unknown models.In conjunction with our model, we release three new datasets of human- and AI-generated text as detection benchmarks in the domains of student essays, creative writing, and news articles. We compare Ghostbuster to several existing detectors, including DetectGPT and GPTZero, as well as a [...] and then training a classifier on the selected features to predict whether documents are AI-generated.Crucially, Ghostbuster does not require access to token probabilities from the target model, making it useful for detecting text generated by black-box or unknown models.In conjunction with our model, we release three new datasets of human- and AI-generated text as detection benchmarks in the domains of student essays, creative writing, and news articles. We compare Ghostbuster to several existing detectors, including DetectGPT and GPTZero, as well as a new RoBERTa baseline. Ghostbuster achieves 99.0 F1 when evaluated across domains, which is 5.9 F1 higher than the best preexisting model. It also outperforms all previous approaches in generalization across writing domains (+7.5 F1), [...] features, and then training a classifier on the selected features to predict whether documents are AI-generated.Crucially, Ghostbuster does not require access to token probabilities from the target model, making it useful for detecting text generated by black-box or unknown models.In conjunction with our model, we release three new datasets of human- and AI-generated text as detection benchmarks in the domains of student essays, creative writing, and news articles. We compare Ghostbuster to several existing detectors, including DetectGPT and GPTZero, as well as a new RoBERTa baseline. Ghostbuster achieves 99.0 F1 when evaluated across domains, which is 5.9 F1 higher than the best preexisting model. It also outperforms all previous approaches in generalization across writing domains (+7.5",
+                        "score":  0.5170594,
+                        "raw_content":  null,
+                        "id":  "146272-04"
+                    },
+                    {
+                        "url":  "https://bair.berkeley.edu/blog/2023/11/14/ghostbuster",
+                        "title":  "Ghostbuster: Detecting Text Ghostwritten by Large Language ...",
+                        "content":  "Ghostbuster is a state-of-the-art AI-generated text detection model, with 99.0 F1 performance across tested domains, representing substantial",
+                        "score":  0.51691306,
+                        "raw_content":  null,
+                        "id":  "8ab369-05"
+                    },
+                    {
+                        "url":  "https://huggingface.co/SuperAnnotate/ai-detector",
+                        "title":  "SuperAnnotate/ai-detector Â· Hugging Face",
+                        "content":  "## Model Details\n\n### Model Description\n\n### Model Sources\n\n### Training Data\n\nThe training dataset for this version includes 44k pairs of text-label samples, split equally between two parts:\n\nCustom Generation: The first half of the dataset was generated using custom specially designed prompts and human version sourced from three domains:\n\nTexts were generated by 14 different models across four major LLM families (GPT, LLaMA, Anthropic, and Mistral). Each sample consists of a single prompt paired with one human-written and one generated response, though prompts were excluded from training inputs. [...] RAID Train Data Stratified Subset: The second half is a carefully selected stratified subset from the RAID train dataset, ensuring equal representation across domains, model types, and attack methods. Each example pairs a human-authored text with a corresponding machine-generated response (produced by a single model with specific parameters and attacks applied).\n\nThis balanced dataset structure maintains approximately equal proportions of human and generated text samples, ensuring that each prompt aligns with one authentic and one generated answer.\n\nFurthermore, key n-grams (n ranging from 2 to 5) that exhibited the highest correlation with target labels were identified and subsequently removed from the training data utilizing the chi-squared test.\n\n### Peculiarity [...] text_example = preprocessing_text(text_example)\ntokens = tokenizer.encode_plus(\ntext_example,\nadd_special_tokens=True,\nmax_length=512,\npadding=\u0027longest\u0027,\ntruncation=True,\nreturn_token_type_ids=True,\nreturn_tensors=\"pt\"\n)\n_, logits = model(tokens)\nproba = F.sigmoid(logits).squeeze(1).item()\nprint(proba)`",
+                        "score":  0.51296157,
+                        "raw_content":  null,
+                        "id":  "ae01e9-06"
+                    },
+                    {
+                        "url":  "https://www.kaggle.com/code/guslovesmath/hugging-face-ai-text-detection",
+                        "title":  "Hugging Face - AI Text Detection - Kaggle",
+                        "content":  "This Notebook has been released under the Apache 2.0 open source license. Continue exploring. Input. 1 file.",
+                        "score":  0.51296157,
+                        "raw_content":  null,
+                        "id":  "320033-07"
+                    },
+                    {
+                        "url":  "https://huggingface.co/desklib/ai-text-detector-v1.01",
+                        "title":  "desklib/ai-text-detector-v1.01 Â· Hugging Face",
+                        "content":  "# desklib/ai-text-detector-v1.01\n\n## Overview\n\nThis AI-generated text detection model, developed by Desklib, is designed to classify English text as either human-written or AI-generated. It currently leads the RAID Benchmark for AI Detection. This model is a fine-tuned version of microsoft/deberta-v3-large, leveraging a transformer-based architecture to achieve high accuracy. It is robust and handles various adversarial attacks across different domains remarkably well. This model is particularly useful for applications in content moderation, academic integrity, journalism, and anywhere the authenticity of text is paramount. [...] text_ai = \"AI detection refers to the process of identifying whether a given piece of content, such as text, images, or audio, has been generated by artificial intelligence. This is achieved using various machine learning techniques, including perplexity analysis, entropy measurements, linguistic pattern recognition, and neural network classifiers trained on human and AI-generated data. Advanced AI detection tools assess writing style, coherence, and statistical properties to determine the likelihood of AI involvement. These tools are widely used in academia, journalism, and content moderation to ensure originality, prevent misinformation, and maintain ethical standards. As AI-generated content becomes increasingly sophisticated, AI detection methods continue to evolve, integrating deep [...] print(f\"Predicted label: {\u0027AI Generated\u0027 if predicted_label == 1 else \u0027Not AI Generated\u0027}\")\nif __name__ == \"__main__\":\nmain()`",
+                        "score":  0.464392,
+                        "raw_content":  null,
+                        "id":  "3e7df3-08"
+                    },
+                    {
+                        "url":  "https://arxiv.org/html/2305.15047v3",
+                        "title":  "Ghostbuster: Detecting Text Ghostwritten by Large Language Models",
+                        "content":  "## 3 Datasets\n\nWe collected three new datasets for benchmarking detection of AI-generated text across the domains of creative writing, news, and student essays. For each of the three datasets, we collected ChatGPT-generated text corresponding to the human-authored text. All training datasets were generated using gpt-3.5-turbo. [...] In conjunction with our model, we release three new datasets of human- and AI-generated text as detection benchmarks in the domains of student essays, creative writing, and news articles. We compare Ghostbuster to several existing detectors, including DetectGPT and GPTZero, as well as a new RoBERTa baseline. Ghostbuster achieves 99.0 F1 when evaluated across domains, which is 5.9 F1 higher than the best preexisting model. It also outperforms all previous approaches in generalization across writing domains (+7.5 F1), prompting strategies (+2.1 F1), and language models (+4.4 F1). We also analyze our systemâs robustness to a variety of perturbations and paraphrasing attacks, and evaluate its performance on documents by non-native English speakers. [...] We introduce Ghostbuster, a state-of-the-art system for detecting AI-generated text.\nOur method works by passing documents through a series of weaker language models, running a structured search over possible combinations of their features, and then training a classifier on the selected features to predict whether documents are AI-generated.\nCrucially, Ghostbuster does not require access to token probabilities from the target model, making it useful for detecting text generated by black-box or unknown models.",
+                        "score":  0.4292146,
+                        "raw_content":  null,
+                        "id":  "c3bc9b-09"
+                    }
+                ],
+    "response_time":  2.89,
+    "request_id":  "acb4d952-a4aa-47dc-8a07-7c2a158365a5"
+}

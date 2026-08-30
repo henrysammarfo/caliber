@@ -1,0 +1,7 @@
+﻿{
+    "status":  308,
+    "url":  "https://agent.tinyfish.ai/",
+    "method":  "GET",
+    "error":  "The remote server returned an error: (308) Permanent Redirect.",
+    "body":  "Redirecting...\n"
+}

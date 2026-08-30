@@ -1,0 +1,29 @@
+{
+  "gate": "C",
+  "protocol": "x402",
+  "network": "eip155:84532",
+  "payerAddress": "0x9ADd0ac311e9E528800afc3F4A04e9cDe52C9cE0",
+  "feeAddressDocs": "0x9ADd0ac311e9E528800afc3F4A04e9cDe52C9cE0",
+  "dispatcherBase": "http://13.237.89.59:7044/miner-dispatcher",
+  "startedAt": "2026-08-30T02:32:14.575Z",
+  "finishedAt": "2026-08-30T02:32:27.721Z",
+  "success": false,
+  "pathUsed": null,
+  "httpStatus": null,
+  "paymentResponse": null,
+  "responseBody": null,
+  "attempts": [
+    {
+      "url": "http://13.237.89.59:7044/miner-dispatcher/v1/92001/detect",
+      "status": 404,
+      "error": null,
+      "paymentResponse": null
+    },
+    {
+      "url": "http://13.237.89.59:7044/miner-dispatcher/v1/caliber-truthport-text-auth/detect",
+      "status": 404,
+      "error": null,
+      "paymentResponse": null
+    }
+  ]
+}

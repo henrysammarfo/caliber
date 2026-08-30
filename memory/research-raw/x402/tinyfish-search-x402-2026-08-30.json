@@ -1,0 +1,76 @@
+{
+  "status": 200,
+  "body": {
+    "query": "Telegraph miner-dispatcher x402 Base Sepolia API URL subnet",
+    "results": [
+      {
+        "position": 1,
+        "site_name": "docs.cdp.coinbase.com",
+        "snippet": "Searches for active x402 resources using a text query and optional filters. Supports both text-based and vector-based search depending on availability.",
+        "title": "Search x402 resources",
+        "url": "https://docs.cdp.coinbase.com/api-reference/v2/rest-api/x402-facilitator/search-x402-resources"
+      },
+      {
+        "date": "Feb 16, 2026",
+        "position": 2,
+        "site_name": "simplescraper.io",
+        "snippet": "The everything guide to understanding x402 and building pay-as-you-go API endpoints for AI agents. Select Base Sepolia as the network ・ ...",
+        "title": "How to x402: The Complete Guide to the AI Agent Payment ...",
+        "url": "https://simplescraper.io/blog/x402-payment-protocol"
+      },
+      {
+        "position": 3,
+        "site_name": "github.com",
+        "snippet": "If you set both RPC_URL_BASE_SEPOLIA and RPC_URL_BASE , then both Base Sepolia and Base Mainnet are supported. If an RPC URL for a network is missing, that ...",
+        "title": "second-state/x402-facilitator",
+        "url": "https://github.com/second-state/x402-facilitator"
+      },
+      {
+        "position": 4,
+        "site_name": "docs.x402.org",
+        "snippet": "This page explains which blockchain networks and tokens are supported by x402, and how to extend support to additional networks. 4532 (Base Sepolia),",
+        "title": "Networks & Token Support",
+        "url": "https://docs.x402.org/core-concepts/network-and-token-support"
+      },
+      {
+        "position": 5,
+        "site_name": "chainlist.org",
+        "snippet": "Find the best Base Sepolia Testnet RPC to connect to your wallets and Web3 middleware providers.",
+        "title": "Base Sepolia Testnet RPC and Chain settings",
+        "url": "https://chainlist.org/chain/84532"
+      },
+      {
+        "date": "Aug 17, 2026",
+        "position": 6,
+        "site_name": "eco.com",
+        "snippet": "x402 is an open HTTP 402 payment protocol that lets servers charge AI agents and machines for API calls using stablecoins.",
+        "title": "x402 Protocol Explained | Support - Eco",
+        "url": "https://eco.com/support/en/articles/14839402-x402-protocol-explained"
+      },
+      {
+        "position": 7,
+        "site_name": "docs.taceo.io",
+        "snippet": "All Confidential x402 infrastructure is currently deployed on Base Sepolia (chain ID 84532). This is a testnet environment intended for development and ...",
+        "title": "Network & contracts",
+        "url": "https://docs.taceo.io/docs/finance-solutions/x402/network-and-contracts/"
+      },
+      {
+        "date": "Aug 1, 2026",
+        "position": 8,
+        "site_name": "lobehub.com",
+        "snippet": "x402-client is a developer-focused library and CLI for making and receiving USDC payments over HTTP on Coinbase's Base network (mainnet and ...",
+        "title": "x402-client | Skills Marketplace",
+        "url": "https://lobehub.com/skills/openclaw-skills-x402-client"
+      },
+      {
+        "position": 9,
+        "site_name": "docs.base.org",
+        "snippet": "Select Base Sepolia. Click a button to automatically add a Base network to MetaMask: Add Base Mainnet Add Base Sepolia Add Base Vibenet. To add a network ...",
+        "title": "Connect to Base - Base Documentation",
+        "url": "https://docs.base.org/base-chain/quickstart/connecting-to-base"
+      }
+    ],
+    "total_results": 9,
+    "page": 0
+  }
+}

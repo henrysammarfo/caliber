@@ -1,0 +1,93 @@
+﻿> ## Documentation Index
+> Fetch the complete documentation index at: https://docs.tinyfish.ai/llms.txt
+> Use this file to discover all available pages before exploring further.
+
+# TinyFish Developer Documentation
+
+> Choose the right TinyFish API, authenticate quickly, and start integrating faster
+
+TinyFish gives you four public API surfaces: Agent, Search, Fetch, and Browser. This docs site is organized to help you pick the right one quickly, authenticate once, and move straight to the examples or reference you need.
+
+Search and Fetch are free. Agent and Browser draw from your wallet as they run.
+
+## Start Here
+
+<CardGroup cols={4}>
+  <Card title="Quick Start" icon="rocket" href="/quick-start">
+    Run your first integration in minutes
+  </Card>
+
+  <Card title="Authentication" icon="key" href="/authentication">
+    Set up API keys and MCP auth
+  </Card>
+
+  <Card title="For Coding Agents" icon="robot" href="/for-coding-agents">
+    Single-page context for Claude, Codex, and Cursor
+  </Card>
+
+  <Card title="Error Codes" icon="triangle-exclamation" href="/error-codes">
+    Debug auth, rate limits, and run failures
+  </Card>
+</CardGroup>
+
+## Choose the Right API
+
+<CardGroup cols={2}>
+  <Card title="Agent API" icon="sparkles" href="/agent-api">
+    Use natural-language goals to automate workflows on real sites
+  </Card>
+
+  <Card title="Search API" icon="magnifying-glass" href="/search-api">
+    Get structured ranked web results for a query
+  </Card>
+
+  <Card title="Fetch API" icon="bolt" href="/fetch-api">
+    Fetch URLs and extract clean page content
+  </Card>
+
+  <Card title="Browser API" icon="browser" href="/browser-api">
+    Create a remote browser session for direct Playwright/CDP control
+  </Card>
+</CardGroup>
+
+## Canonical Endpoints
+
+| Product | Canonical endpoint                            |
+| ------- | --------------------------------------------- |
+| Agent   | `https://agent.tinyfish.ai/v1/automation/...` |
+| Search  | `GET https://api.search.tinyfish.ai`          |
+| Fetch   | `POST https://api.fetch.tinyfish.ai`          |
+| Browser | `POST https://api.browser.tinyfish.ai`        |
+
+## Learn the Basics
+
+<CardGroup cols={3}>
+  <Card title="Agent Endpoints" icon="plug" href="/key-concepts/endpoints">
+    Pick `/run`, `/run-async`, or `/run-sse`
+  </Card>
+
+  <Card title="Runs" icon="play" href="/key-concepts/runs">
+    Understand lifecycle, polling, and statuses
+  </Card>
+
+  <Card title="Goals" icon="bullseye" href="/key-concepts/goals">
+    Write instructions that produce reliable results
+  </Card>
+
+  <Card title="Browser Context Profiles" icon="window" href="/key-concepts/browser-context-profiles">
+    Keep logged-in state across runs
+  </Card>
+
+  <Card title="Browser Profiles" icon="shield" href="/key-concepts/browser-profiles">
+    Choose lite vs stealth
+  </Card>
+
+  <Card title="Proxies" icon="globe" href="/key-concepts/proxies">
+    Route runs through supported countries
+  </Card>
+
+  <Card title="MCP Integration" icon="robot" href="/mcp-integration">
+    Connect TinyFish to Claude and other assistants
+  </Card>
+</CardGroup>
+

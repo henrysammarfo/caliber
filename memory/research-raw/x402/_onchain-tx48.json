@@ -1,0 +1,8 @@
+{
+  "registrationId": 48,
+  "yamlUrl": "https://caliber-teamtitanlink.vercel.app/protocol/caliber-truthport.yaml",
+  "yamlHash": "0x666eaf831cd3546fce00bd27d39e1fe3ce76ca44590fb2749f577c5062b38749",
+  "status": "success",
+  "block": 46166476,
+  "explorer": "https://sepolia.basescan.org/tx/0x162d8c07fc4a3e93305d030b9f0e7a71bf2cee68459bce28167a39eeecb96a42"
+}

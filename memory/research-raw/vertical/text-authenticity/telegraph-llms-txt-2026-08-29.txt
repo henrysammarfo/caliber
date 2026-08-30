@@ -1,0 +1,47 @@
+﻿# Telegraph
+
+## Telegraph
+
+- [What is Telegraph](https://telegraph-2.gitbook.io/telegraph/getting-started/readme.md): Telegraph is a permissionless messaging protocol that commoditizes AI inference and delivers intelligent signals to global markets on-chain.
+- [Core Concepts](https://telegraph-2.gitbook.io/telegraph/getting-started/core-concepts.md): Telegraph is built on four core pillars: Agents that request intelligence, Miners that compete to supply it, Signals that deliver verified answers, and Machina that links token value directly to real
+- [Message Data](https://telegraph-2.gitbook.io/telegraph/getting-started/core-concepts/message-data.md): What's in a message?
+- [Time Based Thresholds](https://telegraph-2.gitbook.io/telegraph/getting-started/core-concepts/time-based-thresholds.md)
+- [Bridging Fees](https://telegraph-2.gitbook.io/telegraph/getting-started/bridging-fees.md)
+- [Fee Distribution](https://telegraph-2.gitbook.io/telegraph/getting-started/bridging-fees/fee-distribution.md)
+- [Fee Table by Chain](https://telegraph-2.gitbook.io/telegraph/getting-started/bridging-fees/fee-table-by-chain.md): See individual chain fee matrix on following pages!
+- [Ethereum](https://telegraph-2.gitbook.io/telegraph/getting-started/bridging-fees/fee-table-by-chain/ethereum.md)
+- [BSC](https://telegraph-2.gitbook.io/telegraph/getting-started/bridging-fees/fee-table-by-chain/bsc.md)
+- [AVAX](https://telegraph-2.gitbook.io/telegraph/getting-started/bridging-fees/fee-table-by-chain/avax.md)
+- [MATIC (Polygon)](https://telegraph-2.gitbook.io/telegraph/getting-started/bridging-fees/fee-table-by-chain/matic-polygon.md)
+- [What's in a node](https://telegraph-2.gitbook.io/telegraph/node-overview/whats-in-a-node.md)
+- [Transactions](https://telegraph-2.gitbook.io/telegraph/node-overview/transactions.md)
+- [Networks](https://telegraph-2.gitbook.io/telegraph/node-overview/networks.md)
+- [Validators](https://telegraph-2.gitbook.io/telegraph/node-overview/validators.md)
+- [Telegraph Miners: The Earnings Model](https://telegraph-2.gitbook.io/telegraph/node-overview/telegraph-miners-the-earnings-model.md)
+- [Registering a Telegraph Node](https://telegraph-2.gitbook.io/telegraph/node-overview/registering-a-telegraph-node.md): This page guides you through setting up and registering a new Telegraph Node. Please follow these instructions exactly to avoid common error so your node is registered and operational.
+- [Local Setup](https://telegraph-2.gitbook.io/telegraph/setup/local-setup.md): Run a complete Telegraph validator node using local-telegraph.sh and local chains for development and testing.
+- [Testnet & Production Setup](https://telegraph-2.gitbook.io/telegraph/setup/testnet-production-setup.md): Set up a Telegraph validator node for testnet or production using the standalone script: one script, no repo required, interactive config.
+- [Node Signing Modes](https://telegraph-2.gitbook.io/telegraph/setup/testnet-production-setup/signing-modes.md): How Telegraph validator nodes sign transactions and HTTP requests — Clef (external daemon) vs. raw private key (env var / Docker secret).
+- [Docker Setup](https://telegraph-2.gitbook.io/telegraph/setup/docker-setup.md): Run a Telegraph validator node using Docker Compose — no source code or compilation required.
+- [Dapp Integration](https://telegraph-2.gitbook.io/telegraph/setup/dapp-integration.md): Integrate dApps and smart contracts with Telegraph's Diamond (Port) for cross-chain messaging and subnet inference.
+- [Overview](https://telegraph-2.gitbook.io/telegraph/inference-sources/integrated-subnets.md): Overview of intelligence sources available through Telegraph, including Bittensor subnets and other inference providers. Access via HTTP or smart contracts.
+- [Integration for Developers](https://telegraph-2.gitbook.io/telegraph/inference-sources/subnet-integration-for-devs.md): Technical implementation: OnChainData encoding, per-endpoint request/response indices, and subnet inference specs.
+- [EVM Chains](https://telegraph-2.gitbook.io/telegraph/examples-and-tutorials/evm-chains.md): Tutorials on how to interact with the Telegraph network from the Ethereum blockchain. Includes Diamond (Port) integration examples.
+- [Gas Deposit](https://telegraph-2.gitbook.io/telegraph/examples-and-tutorials/evm-chains/gas-deposit.md): Deposit gas on the Diamond (Port) so the node can be reimbursed when relaying messages or submitting subnet responses.
+- [Cross-Chain Message Example](https://telegraph-2.gitbook.io/telegraph/examples-and-tutorials/evm-chains/cross-chain-message-example.md): Minimal example: send a cross-chain message via the Diamond and receive it in a destination contract.
+- [Subnet Inference Example](https://telegraph-2.gitbook.io/telegraph/examples-and-tutorials/evm-chains/subnet-inference-example.md): Minimal example: send a subnet request via the Diamond and handle the response in a callback contract.
+- [Hello World!](https://telegraph-2.gitbook.io/telegraph/examples-and-tutorials/evm-chains/hello-world.md): Getting started with Telegraph is as simple as saying "Hello World"
+- [ERC20 Transfers](https://telegraph-2.gitbook.io/telegraph/examples-and-tutorials/evm-chains/erc20-transfers.md): Fungibility Everywhere!
+- [Securing Your Smart Contract](https://telegraph-2.gitbook.io/telegraph/examples-and-tutorials/evm-chains/securing-your-smart-contract.md): Shield up with modifiers
+- [Integrating with the Diamond (Port)](https://telegraph-2.gitbook.io/telegraph/dapp-examples/dapp-examples.md): Interface and implementation guide for integrating with Telegraph’s Diamond (Port): cross-chain and subnet flows, interfaces, and where to find code.
+- [Bridge TX Test – Quick Guide](https://telegraph-2.gitbook.io/telegraph/dapp-examples/dapp-examples/bridge-tx-test-quick-guide.md): One-page guide to run a Fuji to Sepolia bridge test using BridgeSender, BridgeReceiver, and Telegraph Diamonds.
+- [Subnet Inference Test – Quick Guide](https://telegraph-2.gitbook.io/telegraph/dapp-examples/dapp-examples/subnet-inference-test-quick-guide.md): One-page guide to run Bitmind and Zeus subnet tests using SubnetSender, SubnetCallback, and the Telegraph Diamond on Fuji.
+- [Port Contract](https://telegraph-2.gitbook.io/telegraph/contract-documentation/port-contract.md)
+- [Telegraph Port Addresses](https://telegraph-2.gitbook.io/telegraph/contract-documentation/telegraph-port-addresses.md): Contract addresses for Telegraph Diamond (Port) contracts on each network.
+- [Overview](https://telegraph-2.gitbook.io/telegraph/miner-registry/miner-registry.md)
+- [Miner Registry Contract & Listener](https://telegraph-2.gitbook.io/telegraph/miner-registry/miner-registry-facet.md)
+- [YAML Standard](https://telegraph-2.gitbook.io/telegraph/miner-registry/yaml-standard.md)
+- [x402 Payment](https://telegraph-2.gitbook.io/telegraph/miner-registry/x402-payment.md)
+- [ChatGPT Plugin](https://telegraph-2.gitbook.io/telegraph/llm-integration/chatgpt-plugin.md): Supercharge ChatGPT with access to the blockchain (Coming Soon)
+- [Agentic Framework Integration](https://telegraph-2.gitbook.io/telegraph/llm-integration/agentic-framework-integration.md)
+

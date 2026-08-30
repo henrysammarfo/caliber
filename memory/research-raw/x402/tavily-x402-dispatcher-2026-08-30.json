@@ -1,0 +1,91 @@
+{
+  "status": 200,
+  "query": "Telegraph Protocol miner-dispatcher x402 Base Sepolia subnet-dispatcher integrate.telegraphprotocol.com servers URL",
+  "follow_up_questions": null,
+  "answer": "The Telegraph Protocol miner-dispatcher x402 operates on Base Sepolia testnet, with deployed contracts and TACEO-hosted endpoints available for integration. The protocol uses the 402 Payment Required status code for stablecoin transfers. The public facilitator endpoint supports only Base Sepolia.",
+  "images": [],
+  "results": [
+    {
+      "url": "https://docs.taceo.io/docs/finance-solutions/x402/network-and-contracts",
+      "title": "Network & contracts | TACEO Documentation",
+      "content": "# Network & contracts\n\nAll Confidential x402 infrastructure is currently deployed on Base Sepolia (chain ID 84532). This is a testnet environment intended for development and integration testing.\n\nTestnet only\n\nThe current deployment uses test tokens with no real-world value. Do not use mainnet private keys or real funds.\n\n## Deployed contracts​\n\n| Contract | Address |\n --- |\n| Merces Contract | `0x2A07183Ec9cFFCED639C9Cb33BE106FD81d59E16` |\n| Confidential USDC token | `0x4Ee80fFA1332525A8Cd100E1edf72Fe066f01c10` |\n\nContract source code is available in the merces1-x402 GitHub repository.\n\n## TACEO-hosted endpoints​\n\n| Service | URL |\n --- |\n| Faucet | ` |\n| Facilitator | ` |\n| Resource server (test) | ` |\n| MPC node 0 | ` |\n| MPC node 1 | ` |\n| MPC node 2 | ` |\n\n## Chain details​ [...] ## Chain details​\n\n| Parameter | Value |\n --- |\n| Network name | Base Sepolia |\n| Chain ID | `84532` |\n| CAIP-2 identifier | `eip155:84532` |\n| Block explorer |  |\n| Public RPC | ` |\n\n## Faucet API​\n\nThe faucet funds a new Merces wallet with 1,000 test tokens. Each address is limited to one claim per 24 hours.\n\nEndpoint: `POST /claim/{address}`\n\n```\n\ncurl -X POST \n\n```\n\nResponses:\n\n| Status | Meaning |\n --- |\n| `200 OK` | Tokens deposited successfully |\n| `429 Too Many Requests` | Address already claimed within the last 24 hours |\n| `500 Internal Server Error` | Faucet encountered an error, try again shortly |\n\n## MPC public keys​ [...] ## MPC public keys​\n\nThe BabyJubJub public keys of the three MPC operators are published by the facilitator's `/supported` endpoint and injected into every `PaymentRequired` response automatically. You do not need to configure them manually.\n\nTo fetch them directly:\n\n```\n\ncurl \n\n```\n\nThe response includes the current MPC public keys alongside the supported scheme, network, and contract address.\n\n## Support​\n\nFor questions, issues, or integration help:\n\n Discord: taceo.io/discord\n GitHub: github.com/TaceoLabs/merces1-x402\n Email: (/cdn-cgi/l/email-protection#f8909d949497b88c999b9d97d69197)\n\n Deployed contracts\n TACEO-hosted endpoints\n Chain details\n Faucet API\n MPC public keys\n Support",
+      "score": 0.43496582,
+      "raw_content": null,
+      "id": "2f22b3-00"
+    },
+    {
+      "url": "https://github.com/x402-foundation/x402/issues/2591",
+      "title": "docs/bug: public x402.org/facilitator only supports Sepolia ...",
+      "content": "The public facilitator endpoint is only configured to validate receipts on Base Sepolia ( eip155:84532 ). Base Mainnet chains are not supported.",
+      "score": 0.41591915,
+      "raw_content": null,
+      "id": "52f3d5-01"
+    },
+    {
+      "url": "https://docs.cdp.coinbase.com/x402/seller/quickstart",
+      "title": "Quickstart: charge for an endpoint - x402",
+      "content": "from x402.server import  x402ResourceServer NETWORK = \"eip155:84532\" # Base Sepolia NETWORK = \"eip155:84532\"  # Base Sepolia async def resolve_pay_to() -> str: async  def  resolve_pay_to() -> str: \"\"\"Provision the CDP wallet that receives payments.\"\"\" \"\"\"Provision the CDP wallet that receives payments.\"\"\" async with CdpClient() as cdp:  async  with CdpClient() as cdp: account = await cdp.evm.get_or_create_account(name=\"x402-receiver-wallet-1\")  account =  await cdp.evm.get_or_create_account(name =\"x402-receiver-wallet-1\") return account.address  return account.address PAY_TO = asyncio.run(resolve_pay_to()) PAY_TO = asyncio.run(resolve_pay_to()) # create_facilitator_config() reads your CDP API key and authenticates verify# create_facilitator_config() reads your CDP API key and [...] ``` [...] ```",
+      "score": 0.4040141,
+      "raw_content": null,
+      "id": "a09f02-02"
+    },
+    {
+      "url": "https://docs.x402.org/core-concepts/network-and-token-support",
+      "title": "Networks & Token Support - x402",
+      "content": "| Chain | CAIP-2 | Token Address | EIP-712 Name | Decimals | Transfer Method |\n ---  ---  --- |\n| Base | `eip155:8453` | `0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913` | USD Coin | 6 | EIP-3009 |\n| Base Sepolia | `eip155:84532` | `0x036CbD53842c5426634e7929541eC2318f3dCF7e` | USDC | 6 | EIP-3009 |\n| Polygon | `eip155:137` | `0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359` | USD Coin | 6 | EIP-3009 |\n| Arbitrum One | `eip155:42161` | `0xaf88d065e77c8cC2239327C5EDb3A432268e5831` | USD Coin | 6 | EIP-3009 |\n| Arbitrum Sepolia | `eip155:421614` | `0x75faf114eafb1BDbe2F0316DF893fd58CE46AA4d` | USD Coin | 6 | EIP-3009 |\n| Monad | `eip155:143` | `0x754704Bc059F8C67012fEd69BC8A327a5aafb603` | USD Coin | 6 | EIP-3009 | [...] ``` [...] ```",
+      "score": 0.3985943,
+      "raw_content": null,
+      "id": "858a81-03"
+    },
+    {
+      "url": "https://eco.com/support/en/articles/14839402-x402-protocol-explained",
+      "title": "x402 Protocol Explained | Support - Eco",
+      "content": "The x402 stack splits across three operational layers: a facilitator that handles signature verification and onchain submission, a foundation that owns the protocol specification, and a chain layer that holds the stablecoin balances. Each layer is swappable, and merchants can run their own facilitators or bypass them entirely with self-managed RPC infrastructure.  \n​\n\nx402 is a thin protocol that delegates most heavy lifting to three external pieces: the facilitator that handles chain submission, the foundation that owns the spec, and the chain itself that holds the stablecoin balances. Each layer has a specific shape worth understanding before integrating.  \n​ [...] CoinGecko x402 endpoints. CoinGecko activated x402 across a set of high-leverage market-data endpoints (token prices, DEX liquidity, trending activity) on the same window as the Stripe launch. Pricing is a flat $0.01 USDC per request, with payment accepted on Base or Solana. The integration eliminates the API-key onboarding that previously required a CoinGecko account and a paid subscription tier. An agent that needs a single price quote pays a cent and gets the data; an agent that polls heavily pays in proportion. Coinbase's launch page for the integration documents both the pricing and the supported networks.  \n​ [...] # What Is x402?\n\nx402 is an open HTTP payment protocol that uses the 402 Payment Required status code to negotiate and settle stablecoin transfers between a client and a server. The status code itself was reserved in the original HTTP/1.0 specification in 1991 but never standardized for any specific payment system; for thirty-five years it sat in the spec as a placeholder. x402 fills that placeholder with a concrete schema: a JSON envelope in the response header for what payment is required, and a signed payload in the request header for the response.  \n​",
+      "score": 0.39110413,
+      "raw_content": null,
+      "id": "82ce49-04"
+    },
+    {
+      "url": "https://www.agentmail.to/docs/integrations/x402",
+      "title": "x402 | AgentMail | Documentation",
+      "content": "Polygon: an EVM-compatible network offering high throughput and low gas fees.\n Base: an Ethereum Layer 2 network incubated by Coinbase.\n Solana: a high-throughput, low-fee non-EVM network.\n\nEVM chains (Polygon and Base) share the same client setup, while Solana uses the Solana-specific setup shown below.\n\n### Base URLs\n\nTo authenticate with x402 instead of an API key, you must use the x402-specific base URLs below. These replace the default AgentMail base URLs and route requests through the x402 payment layer.\n\n| Protocol | URL |\n --- |\n| HTTP | `x402.api.agentmail.to` |\n| WebSocket | `x402.ws.agentmail.to` |\n\n### Prerequisites\n\n A crypto wallet with USDC funds (EVM-compatible wallet on Polygon or Base, or a Solana wallet)\n Node.js installed [...] For AI agents: a documentation index is available at the root level at /llms.txt. Append /llms.txt to any URL for a page-level index, or .md for the markdown version of any page.\n\nLogoLogo\n\nDocumentationAPI ReferenceKnowledge BaseChangelog\n\nIntegrations\n\n# x402\n\nPay-per-use AgentMail with the x402 payment protocol\n\n## Getting started\n\nx402 is an open payment protocol that enables HTTP-native payments. By integrating x402 with AgentMail, your agents can pay for API usage directly over HTTP without managing API keys or subscriptions.\n\n### Supported chains\n\nAgents can pay for API usage directly over HTTP via x402 on any of the following chains:",
+      "score": 0.38041422,
+      "raw_content": null,
+      "id": "c665e1-05"
+    },
+    {
+      "url": "https://telegraphprotocol.com",
+      "title": "Telegraph — A machine intelligence protocol for autonomous systems",
+      "content": "01\n\nREQUEST\n\nSet your intent and your price.\n\n02\n\nROUTE\n\nThe protocol broadcasts the task to the network.\n\n03\n\nINFER\n\nCompeting Miners compute the answer.\n\n04\n\nVALIDATE\n\nValidators verify the output against ground truth.\n\n05\n\nPUBLISH\n\nThe signal is delivered on-chain with a cryptographic receipt.\n\n06\n\nSETTLE\n\nPayment is settled instantly on-chain.\n\n01\n\nREQUEST\n\nSet your intent and your price.\n\n02\n\nROUTE\n\nThe protocol broadcasts the task to the network.\n\n03\n\nINFER\n\nCompeting Miners compute the answer.\n\n04\n\nVALIDATE\n\nValidators verify the output against ground truth.\n\n05\n\nPUBLISH\n\nThe signal is delivered on-chain with a cryptographic receipt.\n\n06\n\nSETTLE\n\nPayment is settled instantly on-chain.\n\n## Integrate Once. Access Everything. [...] ## Integrate Once. Access Everything.\n\nWith a single integration, developers and agents gain access to a global network of competing providers, verified on-chain intelligence, and built-in payments. No need to source vendors or manage integrations one by one.\n\nFor miners, Telegraph is the distribution layer for any service behind an API. Plug in once with a simple YAML config, get access to real agent demand, and earn per request. Better performance receives more traffic and more revenue.\n\nStart BuildingBecome a Miner\n\n## \\_\n\nBitcoin gave the world a real currency. Bittensor gave the world an open network for intelligence. Telegraph gives the world a trusted market for verified machine decisions. [...] The protocol is secured by Machina — a hard-capped, 21-million fixed supply token with fair-launch emissions and regular halving cycles. Machina is the settlement layer for verified work, not a reward for pointless GPU burning.\n\n21M Machina\n\n7200 Machina emitted per day\n\nHalving schedule follows BTC\n\nRoadmap\n\n## \\_\n\n### Q2 2026\n\nLaunch of the Global Demand Ledger and Miner Onboarding. We are bootstrapping the network by activating our Tender Board, allowing the first wave of global miners to plug in and capture immediate yield.\n\n### Q3 2026\n\nUp Next\n\nFull Public Launch of the On-chain Intelligence + Payment Terminal. The protocol goes fully live, enabling agents and human developers to buy and sell verified intelligence seamlessly via our x402 payment rail.\n\n### Q4 2026",
+      "score": 0.37113717,
+      "raw_content": null,
+      "id": "1d590e-06"
+    },
+    {
+      "url": "https://github.com/telegraphprotocol/telegraph-usecases",
+      "title": "GitHub - telegraphprotocol/telegraph-usecases · GitHub",
+      "content": "## About Telegraph\n\nTelegraph routes inference requests to a network of independently operated nodes. Each call is metered and paid on-chain via the x402 protocol — a payment standard embedded in the HTTP layer. When an application makes a request to a subnet, the server automatically handles the `402 Payment Required` challenge, settles a micro-fee on-chain, and retries — making AI inference as simple as calling any REST API.\n\nUse cases in this repository pay via Solana (USDC on devnet) or Polygon (USDC on EVM), depending on the project.\n\n## Subnets used [...] ## Repository files navigation\n\n# Telegraph Use Cases\n\nThis repository contains a collection of use cases built on the Telegraph platform — a decentralised AI inference network that exposes specialised machine-learning subnets as HTTP APIs. Each subnet performs a specific task (text analysis, image detection, news retrieval, LLM inference) and is accessible to any application via standard HTTP POST requests.\n\n## About Telegraph [...] ### ReviewRadar\n\nPaste an Amazon product URL — ReviewRadar fetches up to three recent reviews via SerpAPI, runs each review through ItsAI (subnet 32) for AI-text detection, and displays an AI-vs-human signal summary with per-review verdicts and Solana transaction proofs.\n\nSubnets: ItsAI (32) — Payment: Solana USDC\n\n### Polymarket Sniper Bot\n\nConnect an EVM wallet, activate a subscription, and enable automated prediction market trading. Every two hours the bot fetches active Polymarket markets by keyword, retrieves relevant news via DeSearch (subnet 101), and passes the context to the Groq LLM (subnet 102) for a trade decision (YES / NO / HOLD). All inference calls are paid on-chain via Polygon USDC.\n\nSubnets: DeSearch (101), Groq LLM (102) — Payment: Polygon USDC (EVM)\n\n### AdGuard",
+      "score": 0.34594497,
+      "raw_content": null,
+      "id": "54ea9b-07"
+    },
+    {
+      "url": "https://medium.com/@gwrx2005/x402-an-ai-native-payment-protocol-for-the-web-419358450936",
+      "title": "x402: An AI-Native Payment Protocol for the Web",
+      "content": "## Background and Related Work [...] standard addresses how an AI agent can prove a user’s intent and authorization to complete a payment on their behalf, developed by a team of ex-Stripe engineers, which allows AI services (sometimes called MCP servers in agent frameworks) to advertise pricing for tool/API calls and request payment per call and an internet infrastructure provider (Cloudflare) lends credibility and signals an intent to standardize rather than silo the technology on fast blockchains (e.g. Coinbase’s Base layer-2 network), due to their low fees and quick finality: [...] To illustrate, consider a concrete scenario: an AI assistant tries to read a premium news article online. The assistant’s HTTP GET to the article URL is met with a 402 response: “Payment Required: 0.01 USD”, along with a pointer to pay via USDC on Base to participate. This could be a wallet controlled by the user but accessible via secure APIs to the AI, or even a smart contract wallet (with spending policies) that the AI can call. For example, a user might give their AI assistant a daily allowance in USDC to spend on information or services. The x402 standard then provides the language that the AI and external services speak to exchange payments for those services. x402 doesn’t change how ERC-20 tokens work; it simply automates the invocation of those transfers in response to HTTP",
+      "score": 0.3399377,
+      "raw_content": null,
+      "id": "3f704c-08"
+    },
+    {
+      "url": "https://simplescraper.io/blog/x402-payment-protocol",
+      "title": "How to x402: The Complete Guide to the AI Agent Payment Protocol | Simplescraper Blog",
+      "content": "Next, fund the wallet with test USDC:\n\n Go to faucet.circle.com\n Select Base Sepolia as the network\n Paste your wallet address and request USDC\n The faucet gives ~10 test USDC, enough for hundreds of test requests\n Verify the balance at `\n\nFor reference, the USDC contract on Base Sepolia is `0x036CbD53842c5426634e7929541eC2318f3dCF7e`.\n\nFinally, create a `.env` file in your project root:\n\n```\nPRIVATE_KEY=0xabc123...your_private_keyPRIVATE_KEY=0xabc123...your_private_key\n```\n\nIn the server code below, replace `0xYOUR_WALLET_ADDRESS` with this same wallet address - it's where payments get sent.\n\n### Adding x402 to an Express Server ​ [...] ## Part 2: Building Your First Paid Endpoint ​\n\nNow that you understand the protocol, let's build something. By the end of this section you'll have a running Express server that charges per request and a client that pays automatically.\n\n### Wallet Setup ​\n\nYou'll need an Ethereum-compatible wallet on Base Sepolia (the testnet) and some test USDC to pay with. The private key never leaves your machine; it's only used to sign payments locally.\n\nThere are a few ways to get a wallet:\n\nOption A: MetaMask\n\n Install the MetaMask browser extension\n Create a new wallet and save the recovery phrase\n Click the account icon > Account details > Show private key\n Copy the private key (starts with `0x`)\n Copy your wallet address from the top of MetaMask\n\nOption B: Generate one from the command line: [...] 1. Generate or use a production wallet. Hardware wallets or secure key management (AWS KMS, GCP Cloud KMS) are recommended - the private key controls where payments are received\n2. Switch the network from `eip155:84532` (Base Sepolia) to `eip155:8453` (Base mainnet) in your route config\n3. Switch to a production-capable facilitator like CDP: `\n4. Set real pricing based on your compute costs. The testnet `$0.001` was for testing - price to cover your actual cost per request\n5. The USDC contract changes automatically with the network. The SDK resolves the correct contract address for mainnet (`0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913`) when you set the network to `eip155:8453`",
+      "score": 0.31232855,
+      "raw_content": null,
+      "id": "ad78b8-09"
+    }
+  ],
+  "response_time": 3.46,
+  "request_id": "d7a4536c-dd03-45c8-8d3b-e5f242525581"
+}

@@ -1,0 +1,76 @@
+﻿{
+    "query":  "proper scoring Brier peer prediction evaluation gaming WASM",
+    "follow_up_questions":  null,
+    "answer":  "The Brier score is a proper scoring rule for evaluating probabilistic predictions, minimizing it encourages well-calibrated forecasts. It measures accuracy by comparing predicted probabilities to actual outcomes. The best score is 0, indicating perfect calibration.",
+    "images":  [
+
+               ],
+    "results":  [
+                    {
+                        "url":  "https://tracyrenee61.medium.com/research-paper-review-from-classification-accuracy-to-proper-scoring-rules-elicitability-of-67450c53ab0b",
+                        "title":  "From Classification Accuracy to Proper Scoring ... - Crystal X",
+                        "content":  "The Brier score is a proper scoring rule, which means that minimising the Brier score encourages models to produce well-calibrated and accurate",
+                        "score":  0.62303346,
+                        "raw_content":  null,
+                        "id":  "4d16da-00"
+                    },
+                    {
+                        "url":  "https://en.wikipedia.org/wiki/Brier_score",
+                        "title":  "Brier score - Wikipedia",
+                        "content":  "In other projects\n\n Wikidata item\n\nAppearance\n\nFrom Wikipedia, the free encyclopedia\n\nMeasure of the accuracy of probabilistic predictions\n\nThe Brier score is a strictly proper scoring rule that measures the accuracy of probabilistic predictions. For unidimensional predictions, it is strictly equivalent to the mean squared error as applied to predicted probabilities.\n\nThe Brier score is applicable to tasks in which predictions must assign probabilities to a set of mutually exclusive discrete outcomes or classes. The set of possible outcomes can be either binary or categorical in nature, and the probabilities assigned to this set of outcomes must sum to one (where each individual probability is in the range of 0 to 1). It was proposed by Glenn W. Brier in 1950. [...] The Brier skill score can be more interpretable than the Brier score because the BSS is simply the percentage improvement in the BS compared to the reference model, and a negative BSS means you are doing even worse than the reference model, which may not be obvious from looking at the Brier score itself. However, a BSS near 100% should not typically be expected because this would require that every probability prediction was nearly 0 or 1 (and was correct of course).\n\nEven if the Brier score is a strictly proper scoring rule, the BSS is not strictly proper: indeed, skill scores are generally non-proper even if the underlying scoring rule is proper. Still, Murphy (1973) proved that the BSS is asymptotically proper with a large number of samples. [...] [edit]\n\nThe most common formulation of the Brier score is\n\n:   {\\displaystyle BS={\\frac {1}{N}}\\sum \\limits _{t=1}^{N}(f_{t}-o_{t})^{2}\\,\\!}\n\nin which {\\displaystyle f_{t}} is the probability that was forecast, {\\displaystyle o_{t}} the actual outcome of the event at instance {\\displaystyle t} ({\\displaystyle 0} if it does not happen and {\\displaystyle 1} if it does happen) and {\\displaystyle N} is the number of forecasting instances. In effect, it is the mean squared error of the forecast. This formulation is mostly used for binary events (for example \"rain\" or \"no rain\"). The above equation is a proper scoring rule only for binary events; if a multi-category forecast is to be evaluated, then the original definition given by Brier below should be used.\n\n### Example\n\n[edit]",
+                        "score":  0.5631623,
+                        "raw_content":  null,
+                        "id":  "14c8a6-01"
+                    },
+                    {
+                        "url":  "https://huiwenn.github.io/predictive-distributions",
+                        "title":  "Evaluating Probabilistic Predictions: Proper Scoring Rules",
+                        "content":  "#### Negative Log Likelihood (NLL)\n\nYou probably know what NLL is. In addition to being a proper scoring rule, it also have optimal discrimination power.\n\n\\[NLL = -\\sum\\_{i=1}^{n} \\left[ y\\_i \\log(p(y\\_i)) + (1 - y\\_i) \\log(1 - p(y\\_i)) \\right]\\]\n\n#### Brier/Quadratic Score\n\nBrier score is a PSR for classification tasks. It is sometimes preferred over NLL because it is bounded within \\([0,1]\\) and hence more stable.\n\nIn the binary setting, we can calculate it as:\n\n\\[BS = \\frac{1}{n} \\sum\\_{i=1}^{n} (p\\_i - o\\_i)^2\\]\n\n \\(n\\) is the total number of observations or data points. â\n \\(p\\_i\\) represents the predicted probability of the positive class for the i-th observation.\n \\(o\\_i\\) is an indicator variable that equals 1 if the event occurred and 0 if it did not for the i-th observation. [...] Keep in mind that this is a specialized metric for evaluating prediction intervals, and it may not be as commonly used as metrics like Brier score or log-likelihood in all contexts.\n\nIn a prediction interval, a model not only predicts a point estimate but also provides a range of values within which the actual outcome is expected to fall with a certain confidence level.\n\nThe Mean Interval Score is defined as follows:\n\n\\[MIS = \\frac{1}{n} \\sum\\_{i=1}^{n} (U\\_i - L\\_i) + \\frac{2}{\\alpha} \\sum\\_{i=1}^{n} (L\\_i - y\\_i)1\\_{y\\_i \u003c L\\_i} + \\frac{2}{\\alpha} \\sum\\_{i=1}^{n} (y\\_i - U\\_i)1\\_{y\\_i \u003e U\\_i}\\]\n\nWhere: [...] Probabilistic Predictions / Predictive Distributions\n  + Calibration and Accuracy\n Proper Scoring Rules (PSR)\n  + Definition\n  + Common Scoring Rules\n    - Negative Log Likelihood (NLL)\n    - Brier/Quadratic Score\n    - Continuous Ranked Probability Score (CRPS)\n    - Energy Score\n    - Interval specific: Mean Interval Score\n    - Interval specific: Winkler Score\n    - tangent: Is KL divergence a proper scoring rule?\n Discussion\n\n## Probabilistic Predictions / Predictive Distributions",
+                        "score":  0.55391616,
+                        "raw_content":  null,
+                        "id":  "4d0f89-02"
+                    },
+                    {
+                        "url":  "https://www.emergentmind.com/topics/brier-score",
+                        "title":  "Brier Score in Probabilistic Forecasting",
+                        "content":  "The Brier score is a fundamental metric for evaluating the quality of probabilistic predictions on finite-outcome spaces, with particular prominence in binary and multiclass classification, risk prediction, and survival analysis. As a strictly proper scoring rule, it uniquely incentivizes calibrated forecasting, decomposes into interpretable components, and supports diverse extensions, including adaptations for censoring, multiclass structure, and explicit incorporation of clinical utility considerations.\n\n## 1. Formal Definition and Core Properties",
+                        "score":  0.52612424,
+                        "raw_content":  null,
+                        "id":  "4de42f-03"
+                    },
+                    {
+                        "url":  "https://www.gjopen.com/faq",
+                        "title":  "Good JudgmentÂ® Open",
+                        "content":  "possible Brier score is 0, and the worst (highest) possible Brier score is 2. [...] The Brier score is the squared error of a probabilistic forecast. To calculate it, we divide your forecast by 100 so that your probabilities range between 0 (0%) and 1 (100%). Then, we code reality as either 0 (if the event did not happen) or 1 (if the event did happen). For each answer option, we take the difference between your forecast and the correct answer, square the differences, and add them all together. For a yes/no question where you forecasted 70% and the event happened, your score would be (1 â 0.7)2 + (0 â 0.3)2 = 0.18. For a question with three possible outcomes (A, B, C) where you forecasted A = 60%, B = 10%, C = 30% and A occurred, your score would be (1 â 0.6)2 + (0 â 0.1)2 + (0 â 0.3)2 = 0.26. The best (lowest) possible Brier score is 0, and the worst (highest) possible",
+                        "score":  0.5221784,
+                        "raw_content":  null,
+                        "id":  "91d9ba-04"
+                    },
+                    {
+                        "url":  "https://easystats.github.io/performance/reference/performance_score.html",
+                        "title":  "Proper Scoring Rules â performance_score â¢ performance",
+                        "content":  "Proper scoring rules can be used to evaluate the quality of model predictions and model fit. performance_score() calculates the logarithmic, quadratic/Brier",
+                        "score":  0.51383984,
+                        "raw_content":  null,
+                        "id":  "654483-05"
+                    },
+                    {
+                        "url":  "https://scores.readthedocs.io/en/1.3.0/tutorials/Brier_Score.html",
+                        "title":  "Brier score â scores 1.3.0 documentation",
+                        "content":  "scores 1.3.0 documentation\n\n .ipynb\n\n# Brier score\n\n## Contents\n\nInteractive online version: Binder badge. Download notebook.\n\n# Brier score#\n\nThe Brier score is the most commonly used verification metric for evaluating a probability of a binary outcome forecast, such as a âchance of rainfallâ forecast.\n\nProbabilistic forecasts of binary events are expressed as values between 0 and 1, and observations are exactly 0 (event did not occur), or 1 (event occured).\n\nThe metric is then calculated the same way as MSE. The Brier score is a strictly proper scoring rule where lower values are better (it is negatively oriented) where a perfect score is 0 and the worst score is 1.",
+                        "score":  0.511644,
+                        "raw_content":  null,
+                        "id":  "3fe7f9-06"
+                    },
+                    {
+                        "url":  "https://pmc.ncbi.nlm.nih.gov/articles/PMC12818272",
+                        "title":  "On misconceptions about the Brier score in binary prediction modelsâ",
+                        "content":  "Brier scores offer a comprehensive evaluation of probabilistic predictions and are strictly proper ( meaning that in expectation it is minimised if and only if the predictions are the true probabilities ( Note the distinction between accurate probabilistic predictions and clinical usefulness: while clinicians may prefer binary classifications, the quality of a probability prediction is judged by how closely its probabilities reflect the true risks. The Brier score is an evaluation measure that quantifies this closeness of predictions to true risks. If desired, predicted probabilities can be assessed for clinical impact, e.g., via net benefit ( or used to derive a classification ( [...] ##  is a measure to quantify the accuracy of probabilistic predictions, taking values between 0 and 1 with lower values indicating better performance. As the $y_{i}$ are realisations of random variables, the Brier score is a random variable. Hence any evaluation of the Brier score has a random component. It is strictly proper, meaning in expectations the perfect prediction uniquely minimises the Brier score of (1). We can further quantify the expected behavior when slightly perturbing the predicted probabilities away from the true values by $\\varepsilon$. This results in an expected Brier score increase of $\\varepsilon^{2}$. To be more specific, if, say, the predicted probabilities are 0.1 more off, the expected Brier score will be $0 . 1^{2} = 0 . 01$ bigger. In contrast, changes in the",
+                        "score":  0.49904844,
+                        "raw_content":  null,
+                        "id":  "216165-07"
+                    }
+                ],
+    "response_time":  3.34,
+    "request_id":  "cd889ffd-c8ea-442e-a851-8370a6e37140"
+}

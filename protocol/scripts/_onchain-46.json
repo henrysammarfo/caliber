@@ -1,0 +1,36 @@
+{
+  "asOf": "2026-08-30T14:19:52.201Z",
+  "rpcHost": "sepolia.base.org",
+  "attempts": [
+    {
+      "fn": "getMiner",
+      "ok": false,
+      "error": "Number \"884113980897478750608585675715261199569843428576n\" is not in safe integer range (-9007199254740991 to 9007199254740991)"
+    },
+    {
+      "fn": "getRegistration",
+      "ok": false,
+      "error": "The contract function \"getRegistration\" reverted with the following reason:\nDiamond: Function does not exist"
+    },
+    {
+      "fn": "registrations",
+      "ok": false,
+      "error": "The contract function \"registrations\" reverted with the following reason:\nDiamond: Function does not exist"
+    },
+    {
+      "fn": "miners",
+      "ok": false,
+      "error": "The contract function \"miners\" reverted with the following reason:\nDiamond: Function does not exist"
+    },
+    {
+      "fn": "getRegistrationCount",
+      "ok": false,
+      "error": "The contract function \"getRegistrationCount\" reverted with the following reason:\nDiamond: Function does not exist"
+    },
+    {
+      "fn": "registrationCount",
+      "ok": false,
+      "error": "The contract function \"registrationCount\" reverted with the following reason:\nDiamond: Function does not exist"
+    }
+  ]
+}

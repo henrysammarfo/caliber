@@ -1,0 +1,268 @@
+﻿> ## Documentation Index
+> Fetch the complete documentation index at: https://docs.tinyfish.ai/llms.txt
+> Use this file to discover all available pages before exploring further.
+
+# Authentication
+
+> How to authenticate with the TinyFish API
+
+TinyFish uses different authentication methods depending on how you're accessing the API:
+
+| Access Method   | Auth Type | When to Use                         |
+| --------------- | --------- | ----------------------------------- |
+| REST API        | API Key   | Direct HTTP requests from your code |
+| MCP Integration | OAuth 2.1 | AI assistants (Claude, Cursor)      |
+
+***
+
+## REST API Authentication
+
+All REST API requests require an API key passed in the `X-API-Key` header.
+
+### Getting Your API Key
+
+<Steps>
+  <Step title="Go to the API Keys page">
+    Visit [agent.tinyfish.ai/api-keys](https://agent.tinyfish.ai/api-keys)
+  </Step>
+
+  <Step title="Create a new key">
+    Click "Create API Key"
+  </Step>
+
+  <Step title="Copy and store your key">
+    Copy and store your key securely
+  </Step>
+</Steps>
+
+<Warning>
+  API keys are shown only once. Store them securely and never commit them to version control.
+</Warning>
+
+### Using Your API Key
+
+Pass your API key when making requests. The Python SDK reads `TINYFISH_API_KEY` from your environment automatically:
+
+<CodeGroup>
+  ```python Python theme={null}
+  from tinyfish import TinyFish
+
+  client = TinyFish()  # Reads TINYFISH_API_KEY from environment
+
+  result = client.agent.run(
+      url="https://example.com",
+      goal="Extract the page title",
+  )
+  ```
+
+  ```typescript TypeScript theme={null}
+  import { TinyFish } from "@tiny-fish/sdk";
+
+  const client = new TinyFish();  // Reads TINYFISH_API_KEY from environment
+
+  const response = await client.agent.run({
+    url: "https://example.com",
+    goal: "Extract the page title",
+  });
+  ```
+
+  ```bash cURL theme={null}
+  curl -X POST https://agent.tinyfish.ai/v1/automation/run \
+    -H "X-API-Key: $TINYFISH_API_KEY" \
+    -H "Content-Type: application/json" \
+    -d '{"url": "https://example.com", "goal": "Extract the page title"}'
+  ```
+</CodeGroup>
+
+### Environment Variables
+
+Store your API key in an environment variable:
+
+```bash theme={null}
+# Add to your shell profile (.bashrc, .zshrc, etc.)
+export TINYFISH_API_KEY="your_api_key_here"
+```
+
+For Node.js projects, use a `.env` file:
+
+```bash theme={null}
+# .env
+TINYFISH_API_KEY=your_api_key_here
+```
+
+<Warning>
+  Add `.env` to your `.gitignore` to prevent accidental commits.
+</Warning>
+
+***
+
+## MCP Authentication
+
+The MCP endpoint uses OAuth 2.1 for secure authentication with AI assistants.
+
+### How It Works
+
+<Steps>
+  <Step title="Add the TinyFish MCP server">
+    Add the TinyFish MCP server to your AI client configuration. See the [MCP Integration guide](/mcp-integration) for setup instructions.
+  </Step>
+
+  <Step title="Authenticate in browser">
+    When you first use the tool, a browser window opens for authentication
+  </Step>
+
+  <Step title="Log in">
+    Log in with your TinyFish account
+  </Step>
+
+  <Step title="Start using TinyFish Web Agent">
+    Authorization is cached for future sessions
+  </Step>
+</Steps>
+
+<Note>
+  You need a TinyFish account. Search and Fetch are free; Agent and Browser draw from your wallet (plan credits on legacy accounts). [Sign up here](https://agent.tinyfish.ai/api-keys).
+</Note>
+
+***
+
+## Error Responses
+
+Authentication errors return standard HTTP status codes with a JSON error body. See [Error Codes](/error-codes) for the full reference.
+
+<AccordionGroup>
+  <Accordion title="401 Unauthorized — Missing API Key" icon="key">
+    The request is missing the `X-API-Key` header.
+
+    ```json theme={null}
+    {
+      "error": {
+        "code": "MISSING_API_KEY",
+        "message": "X-API-Key header is required"
+      }
+    }
+    ```
+
+    **How to fix:**
+
+    * Add the `X-API-Key` header to your request
+    * Check the header name is exactly `X-API-Key` (case-sensitive)
+  </Accordion>
+
+  <Accordion title="401 Unauthorized — Invalid API Key" icon="xmark">
+    The API key in the request is not valid.
+
+    ```json theme={null}
+    {
+      "error": {
+        "code": "INVALID_API_KEY",
+        "message": "The provided API key is invalid"
+      }
+    }
+    ```
+
+    **How to fix:**
+
+    * Verify your API key is correct
+    * Ensure no extra whitespace around the key
+    * Check if the key has been revoked or regenerated
+
+    ```bash theme={null}
+    # Debug: Check your key is set
+    echo $TINYFISH_API_KEY
+
+    # Debug: Test authentication
+    curl -I -X POST https://agent.tinyfish.ai/v1/automation/run \
+      -H "X-API-Key: $TINYFISH_API_KEY" \
+      -H "Content-Type: application/json" \
+      -d '{"url": "https://example.com", "goal": "test"}'
+    ```
+  </Accordion>
+
+  <Accordion title="403 Forbidden — Insufficient Credits (legacy accounts)" icon="credit-card">
+    Authentication succeeded, but you lack credits or an active subscription. This applies to legacy credit/subscription accounts — wallet accounts get a 402 instead, see below.
+
+    ```json theme={null}
+    {
+      "error": {
+        "code": "FORBIDDEN",
+        "message": "Insufficient credits or no active subscription"
+      }
+    }
+    ```
+
+    **How to fix:**
+
+    * Check your account at [agent.tinyfish.ai/api-keys](https://agent.tinyfish.ai/api-keys)
+    * Add credits to your account
+  </Accordion>
+
+  <Accordion title="402 Payment Required — Insufficient Credits (wallet accounts)" icon="wallet">
+    Your TinyFish wallet balance is too low to start this run. Non-retryable until money is added.
+
+    ```json theme={null}
+    {
+      "error": {
+        "code": "INSUFFICIENT_CREDITS",
+        "message": "Run not started: the user's TinyFish wallet balance is too low ($-2.50). This is not retryable and will keep failing until money is added. Tell the user to add money at https://agent.tinyfish.ai/wallet (minimum top-up $10), then try again.",
+        "details": {
+          "status": "failed",
+          "error": "Run not started: the user's TinyFish wallet balance is too low ($-2.50). This is not retryable and will keep failing until money is added. Tell the user to add money at https://agent.tinyfish.ai/wallet (minimum top-up $10), then try again.",
+          "reason": "wallet_out_of_funds",
+          "non_retryable": true,
+          "balance": "-2.50",
+          "currency": "usd",
+          "wallet_url": "https://agent.tinyfish.ai/wallet",
+          "minimum_top_up": "10.00",
+          "auto_reload_needs_payment_fix": false
+        }
+      }
+    }
+    ```
+
+    **How to fix:**
+
+    * Check your balance with `GET /v1/wallet` (or `client.wallet.get()`, `tinyfish wallet status`)
+    * Add money at [agent.tinyfish.ai/wallet](https://agent.tinyfish.ai/wallet) — minimum top-up is \$10
+    * If `auto_reload_needs_payment_fix` is `true`, auto-reload is also paused on a declined payment method — update it on the same page
+
+    Not sure whether your account is on wallet or legacy billing? `GET /v1/wallet` returns 404 with `error.code: "FEATURE_NOT_AVAILABLE"` for legacy accounts — see [Error Codes](/error-codes#feature-not-available) for the full discriminator.
+  </Accordion>
+</AccordionGroup>
+
+***
+
+## Security Best Practices
+
+<CardGroup cols={2}>
+  <Card title="Use Environment Variables" icon="key">
+    Never hardcode API keys in source code
+  </Card>
+
+  <Card title="Rotate Keys Regularly" icon="rotate">
+    Regenerate keys periodically and after team changes
+  </Card>
+
+  <Card title="Limit Exposure" icon="shield">
+    Use separate keys for development and production
+  </Card>
+
+  <Card title="Monitor Usage" icon="chart-line">
+    Review API usage in your dashboard for anomalies
+  </Card>
+</CardGroup>
+
+***
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="Quick Start" icon="rocket" href="/quick-start">
+    Run your first automation
+  </Card>
+
+  <Card title="Error Codes" icon="triangle-exclamation" href="/error-codes">
+    Full error code reference
+  </Card>
+</CardGroup>
+

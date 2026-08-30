@@ -1,0 +1,107 @@
+﻿URL: https://telegraph-2.gitbook.io/telegraph/miner-registry
+STATUS: 200
+---
+Overview | Telegraph
+Telegraph
+⌘
+Ctrl
+k
+Telegraph
+Getting Started
+What is Telegraph
+Core Concepts
+Bridging Fees
+ode Overview
+What's in a node
+Transactions
+etworks
+Validators
+Telegraph Miners: The Earnings Model
+Registering a Telegraph Node
+Setup
+Local Setup
+Testnet & Production Setup
+Docker Setup
+Dapp Integration
+Inference Sources
+Overview
+Integration for Developers
+Examples & Tutorials
+EVM Chains
+Dapp Examples
+Integrating with the Diamond (Port)
+Contract Documentation
+Port Contract
+Telegraph Port Addresses
+Miner Registry
+Overview
+Miner Registry Contract & Listener
+YAML Standard
+x402 Payment
+LLM Integration
+ChatGPT Plugin
+Agentic Framework Integration
+Powered by GitBook
+On this page
+For the complete documentation index, see
+llms.txt
+. This page is also available as
+Markdown
+.
+Copy
+On this page
+Miner Registry
+Overview
+The Miner Registry is Telegraph's on-chain registration system that binds off-chain YAML configurations to on-chain miner identities. Miners declare the intents they serve, their payout address, and minimum signal price via an on-chain transaction. Telegraph nodes listen for these registrations, validate the YAML, and hot-load miners into the dispatcher at each epoch boundary — no restarts needed.
+What it does
+Miners register on-chain with a YAML file, permissionlessly. Nodes discover them automatically — no code changes, no PRs, no redeploys. The full YAML schema handles routing, authentication, signal types, and on-chain data transformation declaratively.
+Architecture
+Copy
+Miner publishes YAML → registers on-chain
+↓
+Node detects registration event
+↓
+Fetches YAML from declared URL
+↓
+Validates hash and schema
+↓
+Staged as pending
+↓
+At next epoch boundary → activates
+↓
+Live in routing engine (no restart)
+On-chain contract
+MinerRegistryFacet
+is deployed as a Diamond facet on Base. It supports:
+Register
+— Submit a new miner with YAML URL, hash, fee address, floor price, and supported intents
+Deregister
+— Deactivate a miner by registration ID (only the original registrant)
+Query
+— Look up registration details, total count, and canonical intent IDs
+See the
+Miner Registry Contract
+for full details.
+YAML standard
+Every miner publishes a YAML file at an off-chain URL. The YAML defines endpoints, authentication, on-chain data layout, and supported intents.
+See the
+YAML Standard
+for the full schema specification.
+x402 payment
+All miner API calls are gated behind x402 HTTP 402 Payment Required semantics. The price per call is determined by the miner's on-chain committed
+minPriceUsdc
+, enforced at registration time with a protocol minimum of 0.01 USDC.
+See
+x402 Payment
+for the payment flow and configuration.
+Previous
+Telegraph Port Addresses
+ext
+Miner Registry Contract & Listener
+Last updated
+3 months ago
+What it does
+Architecture
+On-chain contract
+YAML standard
+x402 payment

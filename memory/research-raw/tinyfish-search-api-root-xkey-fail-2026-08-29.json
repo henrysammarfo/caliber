@@ -1,0 +1,7 @@
+﻿{
+    "status":  400,
+    "url":  "https://api.search.tinyfish.ai/",
+    "auth":  "xkey",
+    "error":  "The remote server returned an error: (400) Bad Request.",
+    "body":  ""
+}

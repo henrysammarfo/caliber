@@ -1,0 +1,3 @@
+﻿URL: https://telegraph-2.gitbook.io/telegraph/miner-registry/overview
+STATUS: 
+ERROR: The request was aborted: The connection was closed unexpectedly.

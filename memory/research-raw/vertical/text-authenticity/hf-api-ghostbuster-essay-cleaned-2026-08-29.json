@@ -1,0 +1,66 @@
+﻿{
+    "_id":  "67de1b305c0bd58dffa032ae",
+    "id":  "polsci/ghostbuster-essay-cleaned",
+    "author":  "polsci",
+    "sha":  "953b44b7b1d8278a5c955ba0649846900cab4285",
+    "lastModified":  "2025-03-22T02:07:27.000Z",
+    "private":  false,
+    "gated":  false,
+    "disabled":  false,
+    "tags":  [
+                 "task_categories:text-classification",
+                 "language:en",
+                 "license:cc-by-3.0",
+                 "size_categories:1K\u003cn\u003c10K",
+                 "format:parquet",
+                 "modality:text",
+                 "library:datasets",
+                 "library:pandas",
+                 "library:mlcroissant",
+                 "library:polars",
+                 "arxiv:2305.15047",
+                 "region:us",
+                 "text-classification",
+                 "nlp",
+                 "essays",
+                 "generated text"
+             ],
+    "description":  "\n\t\n\t\t\n\t\n\t\n\t\tGhostbuster Essay Dataset (human-authored vs LLM-authored essays, cleaned)\n\t\n\n\n\t\n\t\t\n\t\n\t\n\t\tDataset Description\n\t\n\nEssay dataset used in the paper \"Ghostbuster: Detecting Text Ghostwritten by Large Language Models\" (see citation below). Empty or very short texts removed. The original data was txt files in folders for each label. The filenames allow you to match generated texts across the various prompts. I have included the prompt corresponding to each text, but see the paper for an… See the full description on the dataset page: https://huggingface.co/datasets/polsci/ghostbuster-essay-cleaned.",
+    "downloads":  159,
+    "likes":  0,
+    "cardData":  {
+                     "dataset_name":  "Ghostbuster Essay Dataset (human-authored vs LLM-authored essays, cleaned)",
+                     "language":  [
+                                      "en"
+                                  ],
+                     "license":  "cc-by-3.0",
+                     "tags":  [
+                                  "text-classification",
+                                  "nlp",
+                                  "essays",
+                                  "generated text"
+                              ],
+                     "size_categories":  [
+                                             "0\u003cn\u003c10K"
+                                         ],
+                     "task_categories":  [
+                                             "text-classification"
+                                         ]
+                 },
+    "siblings":  [
+                     {
+                         "rfilename":  ".gitattributes"
+                     },
+                     {
+                         "rfilename":  "README.md"
+                     },
+                     {
+                         "rfilename":  "data/test-00000-of-00001.parquet"
+                     },
+                     {
+                         "rfilename":  "data/train-00000-of-00001.parquet"
+                     }
+                 ],
+    "createdAt":  "2025-03-22T02:06:40.000Z",
+    "usedStorage":  12863797
+}

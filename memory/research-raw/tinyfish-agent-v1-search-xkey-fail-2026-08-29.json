@@ -1,0 +1,7 @@
+﻿{
+    "status":  405,
+    "url":  "https://agent.tinyfish.ai/v1/search",
+    "method":  "POST",
+    "error":  "The remote server returned an error: (405) Method Not Allowed.",
+    "body":  ""
+}

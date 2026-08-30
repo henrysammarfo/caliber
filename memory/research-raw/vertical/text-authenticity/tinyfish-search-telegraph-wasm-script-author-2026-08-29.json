@@ -1,0 +1,67 @@
+﻿{
+    "query":  "Telegraph Protocol WASM evaluation script author",
+    "results":  [
+                    {
+                        "date":  "Script Authors",
+                        "position":  1,
+                        "site_name":  "telegraphprotocol.com",
+                        "snippet":  "These WASM evaluation scripts define how answers are scored against ground truth. Script Authors earn rewards when Validators run their scripts ...",
+                        "title":  "Telegraph â A machine intelligence protocol for autonomous ...",
+                        "url":  "https://telegraphprotocol.com/"
+                    },
+                    {
+                        "date":  "Aug 28, 2025",
+                        "position":  2,
+                        "site_name":  "arxiv.org",
+                        "snippet":  "This paper presents the first systematic evaluation of how such WASM-based obfuscation impacts the robustness of modern fingerprinting defenses.",
+                        "title":  "The WASM Cloak: Evaluating Browser Fingerprinting ...",
+                        "url":  "https://arxiv.org/html/2508.21219v1"
+                    },
+                    {
+                        "date":  "Jun 8, 2026",
+                        "position":  3,
+                        "site_name":  "www.theopensourcepress.com",
+                        "snippet":  "Script Authors: They write the scoring logic that determines whose model is the best. Validators run these evaluation scripts to grade miner ...",
+                        "title":  "Telegraph Wants to Be the Visa of Machine Intelligence",
+                        "url":  "https://www.theopensourcepress.com/p/telegraph-wants-to-be-the-visa-of-machine-intelligence"
+                    },
+                    {
+                        "date":  "Aug 17, 2026",
+                        "position":  4,
+                        "site_name":  "github.com",
+                        "snippet":  "Validate a Telegraph scoring module before you spend gas registering it. Runs the published Stage 1 gates, Stage 2 behavioural probes, ...",
+                        "title":  "README.md - neromtoobad/telegraph-wasm-check",
+                        "url":  "https://github.com/neromtoobad/telegraph-wasm-check/blob/main/README.md"
+                    },
+                    {
+                        "position":  5,
+                        "site_name":  "www.linkedin.com",
+                        "snippet":  "Telegraph defines four non-overlapping roles: Miners serve inference via registered Intents, Script Authors write WASM intent evaluation scripts, Validators run ...",
+                        "title":  "Panther DAO Proposal PIP-37 Passes",
+                        "url":  "https://www.linkedin.com/posts/zkpanther_panthers-latest-dao-proposal-pip-37-has-activity-7465742315618217985-YrIu"
+                    },
+                    {
+                        "position":  6,
+                        "site_name":  "www.researchgate.net",
+                        "snippet":  "This paper presents the first systematic evaluation of how such WASM-based obfuscation impacts the robustness of modern fingerprinting defenses.",
+                        "title":  "(PDF) The WASM Cloak: Evaluating Browser ...",
+                        "url":  "https://www.researchgate.net/publication/395124912_The_WASM_Cloak_Evaluating_Browser_Fingerprinting_Defenses_Under_WebAssembly_based_Obfuscation"
+                    },
+                    {
+                        "position":  7,
+                        "site_name":  "www.utdallas.edu",
+                        "snippet":  "by W Wang Â· Cited by 123 â Our system is orthogonal to these prior defense mechanisms, in that it profiles Wasm execution and helps users detect unauthorized in-browser.",
+                        "title":  "SEcure In-lined Script Monitors for Interrupting Cryptojacks",
+                        "url":  "https://www.utdallas.edu/~hamlen/wang18esorics.pdf"
+                    },
+                    {
+                        "position":  8,
+                        "site_name":  "ui.adsabs.harvard.edu",
+                        "snippet":  "by AHM Nazmus Sakib Â· 2025 Â· Cited by 1 â This paper presents the first systematic evaluation of how such WASM-based obfuscation impacts the robustness of modern fingerprinting defenses. We develop an ...",
+                        "title":  "The WASM Cloak: Evaluating Browser Fingerprinting ...",
+                        "url":  "https://ui.adsabs.harvard.edu/abs/2025arXiv250821219N/abstract"
+                    }
+                ],
+    "total_results":  8,
+    "page":  0
+}

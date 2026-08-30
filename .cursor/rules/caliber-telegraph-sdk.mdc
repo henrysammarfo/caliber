@@ -1,0 +1,35 @@
+---
+description: Telegraph miner YAML, registry, and x402 integration conventions for CALIBER
+globs: "**/*.{yaml,yml,wasm,rs,go,ts}"
+alwaysApply: false
+---
+
+# Telegraph integration rules
+
+## YAML
+
+- Schema `version: "1"` only.
+- Required: `kind`, `id`, `slug`, `name`, `base_url`, `auth`, `endpoints`.
+- `semantics.signal_mapping.type` must be a documented enum value.
+- `semantics.supported_intents` must be from the canonical 27 intents.
+- Secrets: `auth.env_var` name only — never raw keys.
+- Prefer `on_chain.transform: direct` for determinism.
+- `on_chain.min_price_usdc` is informational; on-chain registration is source of truth (min $0.01).
+
+## Registry
+
+- Re-read GitBook Diamond address before any tx (Base Sepolia historically `0x122396E8602BEed349434AA6E83123E7dD97F5A0`).
+- Hash = SHA-256 of raw YAML bytes, `0x`-prefixed.
+- After register, document explorer URL + epoch activation expectation.
+
+## x402
+
+- Expect 402 → pay → retry with `PAYMENT-SIGNATURE`.
+- Save receipt / `PAYMENT-RESPONSE` evidence in submit package.
+- Facilitator trust is residual risk — document it.
+
+## GRADELOCK
+
+- Proper scoring (e.g. Brier); publish formula.
+- Adversarial miners with measured rank deltas in CI + README.
+- No substring/string-match graders.

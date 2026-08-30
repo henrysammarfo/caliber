@@ -1,0 +1,49 @@
+{
+  "gate": "C",
+  "protocol": "x402",
+  "network": "eip155:84532",
+  "payerAddress": "0x9ADd0ac311e9E528800afc3F4A04e9cDe52C9cE0",
+  "feeAddress": "0x9ADd0ac311e9E528800afc3F4A04e9cDe52C9cE0",
+  "dispatcherBase": "http://13.237.89.59:7044/miner-dispatcher",
+  "pathUsed": "http://13.237.89.59:7044/miner-dispatcher/v1/x402-test",
+  "httpStatus": 200,
+  "startedAt": "2026-08-30T01:49:14.730Z",
+  "finishedAt": "2026-08-30T01:49:18.762Z",
+  "success": true,
+  "paymentResponse": {
+    "success": true,
+    "payer": "0x9add0ac311e9e528800afc3f4a04e9cde52c9ce0",
+    "transaction": "0xde146c9da2983692932fd7f787035e1063f6b3506a7badb9313a8286190493cf",
+    "network": "eip155:84532"
+  },
+  "txExplorer": "https://sepolia.basescan.org/tx/0xde146c9da2983692932fd7f787035e1063f6b3506a7badb9313a8286190493cf",
+  "responseBody": {
+    "endpoint": "/v1/x402-test",
+    "message": "Payment verified",
+    "status": "ok",
+    "x402_test": true
+  },
+  "usdc": {
+    "before": "20.000000",
+    "after": "19.990000",
+    "spentApprox": "0.010000"
+  },
+  "minerProxyNotes": {
+    "caliber-truthport-text-auth/detect": "HTTP 404 after gate — YAML not in dispatcher integrations yet",
+    "91001/detect": "HTTP 502 — subnet id 91001 already owned by sarzops-transaction-risk (collision)",
+    "44/detect": "HTTP 404 — registrationId 44 is on-chain id, not dispatcher YAML id"
+  },
+  "client": "protocol/scripts/x402-paid-detect.mjs (@x402/fetch + ExactEvmScheme)",
+  "attempts": [
+    {
+      "url": "http://13.237.89.59:7044/miner-dispatcher/v1/x402-test",
+      "status": 200,
+      "paymentResponse": {
+        "success": true,
+        "payer": "0x9add0ac311e9e528800afc3f4a04e9cde52c9ce0",
+        "transaction": "0xde146c9da2983692932fd7f787035e1063f6b3506a7badb9313a8286190493cf",
+        "network": "eip155:84532"
+      }
+    }
+  ]
+}

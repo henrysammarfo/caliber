@@ -1,0 +1,108 @@
+﻿{
+    "query":  "Telegraph Protocol WASM evaluation script author API how to write graders GitBook",
+    "follow_up_questions":  null,
+    "answer":  "To write graders for Telegraph Protocol WASM, use Emscripten APIs and validate modules on GitHub. GitBook documentation provides essential grading guidelines.",
+    "images":  [
+
+               ],
+    "results":  [
+                    {
+                        "url":  "https://telegraphprotocol.com",
+                        "title":  "Telegraph â A machine intelligence protocol for autonomous systems",
+                        "content":  "These WASM evaluation scripts define how answers are scored against ground truth. Script Authors earn rewards when Validators run their scripts.",
+                        "score":  0.45449692,
+                        "raw_content":  null,
+                        "id":  "6d90c9-00"
+                    },
+                    {
+                        "url":  "https://emscripten.org/docs/api_reference/index.html",
+                        "title":  "API Reference - Emscripten 6.0.7-git (dev) documentation",
+                        "content":  "emscripten.h: APIs for integrating with the browser environment.\n html5.h: Low level glue bindings for interfacing with HTML5 APIs from native code.\n console.h: Functions for writing to the console and stdout/stderr.\n preamble.js: APIs for working with compiled code from JavaScript.\n File System API (library\\_fs.js): APIs for managing file systems and synchronous file operations.\n Fetch API: API for managing accesses to network XHR and IndexedDB.\n Wasm Workers API: Enables writing multithreaded programs using a web-like API.\n Wasm Audio Worklets API: Allows programs to implement audio processing nodes that run in a dedicated real-time audio processing thread context.\n Module object: Global JavaScript object that can be used to control code execution and access exported methods.",
+                        "score":  0.22286116,
+                        "raw_content":  null,
+                        "id":  "d0d026-01"
+                    },
+                    {
+                        "url":  "https://github.com/neromtoobad/telegraph-wasm-check",
+                        "title":  "neromtoobad/telegraph-wasm-check: Validate a ...",
+                        "content":  "Validate a Telegraph scoring module before you spend gas registering it. Runs the published Stage 1 gates, Stage 2 behavioural probes, determinism checks,",
+                        "score":  0.18754931,
+                        "raw_content":  null,
+                        "id":  "9e6526-02"
+                    },
+                    {
+                        "url":  "https://arxiv.org/html/2508.21219v1",
+                        "title":  "The WASM Cloak: Evaluating Browser Fingerprinting Defenses Under WebAssembly based Obfuscation",
+                        "content":  "Each script was normalized (UTF-8, LF line endings) to ensure consistent parsing and to eliminate platform-dependent differences, deduplicated (SHA-256), and stored in chunked JSONs with rich metadata (origin, capture time, MIME [...] Root Cause Evaluation. We analyze the detection outcomes of WASM-converted scripts to uncover the factors underlying successful or failed evasion of existing fingerprinting detectors. [...] and display a fingerprint derived using the SHA-256 hashing algorithm, allowing us to directly compare the output before and after conversion. This enables a precise evaluation of whether the fingerprinting functionality remains the same before and after WASM-conversion.",
+                        "score":  0.15823969,
+                        "raw_content":  null,
+                        "id":  "0230a5-03"
+                    },
+                    {
+                        "url":  "https://telegraph-2.gitbook.io",
+                        "title":  "What is Telegraph | Telegraph",
+                        "content":  "`âCtrl``k`\n\nFor the complete documentation index, see llms.txt. This page is also available as Markdown.\n\n# What is Telegraph\n\nTelegraph is a permissionless messaging protocol that commoditizes AI inference and delivers intelligent signals to global markets on-chain.\n\nTelegraph is a machine intelligence protocol â a permissionless marketplace where autonomous agents buy verified intelligence and miners compete to supply it. Telegraph transforms raw AI outputs from any source (Bittensor subnets, open-source models, APIs, humans, or autonomous systems) into standardized, tradeable on-chain signals you can trust. [...] When an agent needs intelligence â a prediction, a classification, a probability score, an alert â it pays in USDC. Telegraph routes the request to the most capable miner. The miner fulfills it. The protocol uses that USDC to buy Machina tokens from the open market and sends them to the miner. Every transaction creates demand for Machina, directly linking miner compensation to real agent usage. This is Machines Improving Machines â intelligence serving intelligence, at competitive market prices.\n\n#### The 4 Core Pillars of Telegraph\n\nTelegraph is a unified system composed of the Rail, the Signal, the Commodity, and the Interface.\n\n1. The Rail: Universal Message Transport\n\nTelegraph is the decentralized infrastructure that powers both Cross-Chain Messaging and Intelligence Requests. [...] The Function: It creates Tradeable Intelligence Credits â standardized tokens representing verified answers from any intelligence provider. Every request creates a permanent buy signal for Machina (the protocol\u0027s native token), directly linking supply-side value to demand.\n The Asset: Instead of just being a \"voucher\" for data, these credits are liquid commodities that fluctuate in value based on the performance and reputation of their underlying providers. If a specific mining team, subnet, or model becomes more valuable and trusted, certificates pointing to their intelligence increase in value. This allows markets to price, hedge, and trade the capacity and quality of intelligence itself.\n\n4. The Interface: The Launch Terminal",
+                        "score":  0.13800836,
+                        "raw_content":  null,
+                        "id":  "4dc743-04"
+                    },
+                    {
+                        "url":  "https://github.com/deploykit/telegraph-api",
+                        "title":  "deploykit/telegraph-api: Telegra.ph API",
+                        "content":  "This package lets you work with telegra.ph API. All methods in Telegraph Client class correspond to API methods that are described in Telegraph API",
+                        "score":  0.13599934,
+                        "raw_content":  null,
+                        "id":  "aa51fd-05"
+                    },
+                    {
+                        "url":  "https://telegraph.p3k.io/api",
+                        "title":  "Telegraph API Documentation",
+                        "content":  "```\nHTTP/1.1 200 OK Content-Type: application/json { \"status\": \"success\", \"type\": \"webmention\", \"endpoint\": \"summary\": \"The webmention request was accepted.\", \"location\": \" } \n```\n\nThe possible fields that are returned are as follows:\n\n `status` - One of the status codes listed below\n `type` - optional - \"webmention\" or \"pingback\", depending on what was discovered at the target\n `endpoint` - optional - The webmention or pingback endpoint that was discovered\n `http_code` - optional - The HTTP code that the webmention or pingback endpoint returned\n `summary` - optional - A human-readable summary of the status\n `location` - optional - If present, you can continue checking this URL for status updates. If not present, no further information will be available about this request. [...] #### Errors\n\n `authentication_required` - the token parameter was missing\n `invalid_token` - the token was invalid or expired\n `missing_parameters` - one or more of the three parameters were not in the request\n `invalid_parameter` - one or more of the parameters were invalid, e.g. the target was not a valid URL\n `source_not_html` - the source document could not be parsed as HTML (only in extreme cases, most of the time it just accepts whatever)\n `no_link_found` - the link to the target URL was not found on the source document\n `not_supported` - the target URL is known to not accept webmentions, so the request is rejected before even queuing it. If you believe this is in error, please file an issue at github.com/aaronpk/Telegraph/issues [...] An error response in this case will be returned with an HTTP 400 status code an a JSON body:\n\n```\nHTTP/1.1 400 Bad Request Content-type: application/json { \"error\": \"missing_parameters\", \"error_description\": \"The source or target parameters were missing\" } \n```\n\n#### Success\n\nIf the initial validation succeeds, Telegraph will queue the webmention for sending and return a success response, including a URL you can check for status updates. This URL will be returned even if you also provide a callback URL. The URL will be available in both the `Location` header as well as in the JSON response.\n\n```\nHTTP/1.1 201 Created Content-type: application/json Location:  { \"status\": \"queued\", \"location\": \" } \n```",
+                        "score":  0.13118461,
+                        "raw_content":  null,
+                        "id":  "1b5d15-06"
+                    },
+                    {
+                        "url":  "https://openpolicyagent.org/docs/wasm",
+                        "title":  "WebAssembly | Open Policy Agent",
+                        "content":  "```\n\nopa build -t wasm -e example/allow example.rego\n\n```\n\nThe output of a Wasm module built this way contain the `result` of evaluating the entrypoint rule. For example:\n\n```\n\n[\n\n{\n\n\"result\":\n\n}\n\n]\n\n```\n\nThe output of policy evaluation is a set of variable assignments. The variable assignments specify values that satisfy the expressions in the policy query (i.e., if the variables in the query are replaced with the values from the assignments, all of the expressions in the query would be defined and not false.) [...] byte_buffer,\n\n/ import object /\n\n);\n\nconst addr = policy_module.instance.exports.builtins();\n\nconst str_addr = policy_module.instance.exports.opa_json_dump(addr);\n\nconst builtin_map = deserialize_null_terminated_JSON_string(memory, str_addr);\n\n```\n\nThe built-in function mapping will contain all of the built-in functions that may be required during evaluation. For example, the following query refers to the `http.send` built-in function which is not included in the policy module:\n\n```\n\nresult := http.send({\"method\": \"get\", \"url\": \"\n\n```\n\nIf this query was compiled to Wasm the built-in map would contain a single element:\n\n```\n\n{\n\n\"http.send\": 0\n\n}\n\n```\n\nWhen the evaluation runs, the `opa_builtin1` callback would invoked with `builtin_id` set to `0`.\n\n#### Evaluationâ [...] ### From Scratchâ\n\nIf you want to integrate Wasm compiled policies into a language or runtime that does not have SDK support, read this section.\n\n#### Instantiating the Wasm Moduleâ\n\nBefore you can evaluate Wasm compiled policies you need to instantiate the Wasm module produced by the compilation process described earlier on this page.\n\nTo load the compiled Wasm module refer the documentation for the Wasm runtime that you are using. At a high-level you must provide a memory buffer and a set of import functions. The memory buffer is a contiguous, mutable byte-array that allows you to pass data to the policy and receive output from the policy. The import functions are dependencies of the compiled policies.\n\n#### ABI Versionsâ",
+                        "score":  0.10437707,
+                        "raw_content":  null,
+                        "id":  "d08d39-07"
+                    },
+                    {
+                        "url":  "https://gitbook.com/docs/developers/gitbook-api/quickstart",
+                        "title":  "Quickstart | Developers | GitBook Documentation",
+                        "content":  "import json import json import requests import requests   ORGANIZATION_ID = \"\" ORGANIZATION_ID = \"\" SITE_ID = \"\" SITE_ID = \"\" API_TOKEN = \"\" API_TOKEN = \"\"   response = requests.post( response = requests.post(  f\"  f\"  headers={  headers={  \"Authorization\": f\"Bearer {API_TOKEN}\",  \"Authorization\": f\"Bearer {API_TOKEN}\",  \"Content-Type\": \"application/json\"  \"Content-Type\": \"application/json\"  },  },  json={  json={  \"question\": \"How do I get started?\",  \"question\": \"How do I get started?\",  \"scope\": {\"mode\": \"default\"}  \"scope\": {\"mode\": \"default\"}  },  },  stream=True  stream=True ) )   # Get the last response before \"done\" # Get the last response before \"done\" final = None final = None for line in response.iter_lines(): for line in response.iter_lines():  if line:  if line:  line = [...] line in response.iter_lines():  if line:  if line:  line = line.decode(\u0027utf-8\u0027)  line = line.decode(\u0027utf-8\u0027)  if line.startswith(\u0027data: \u0027) and line[6:] != \u0027done\u0027:  if line.startswith(\u0027data: \u0027) and line[6:] != \u0027done\u0027:  final = json.loads(line[6:])  final = json.loads(line[6:])   print(final)print(final) [...] You can use the GitBook API to:\n\n Create, update, and delete organizations, spaces, collections, and published docs sites\n Manage users, teams, and access permissions at both the space and organization level\n Import and export content (pages, files, and reusable content)\n Create, list, review, merge, and update change requests\n Post, retrieve, update, and delete comments (and comment replies)\n Configure custom hostnames, URLs, and search settings\n Monitor content performance with analytics endpoints\n Manage integrations and OpenAPI documentation\n\nâ¦and much more, all via simple REST calls.\n\n1\n\n### Getting started\n\nYouâll need a GitBook account to start using the developer platform. If you donât already have an account, you can sign up for free here.\n\n2\n\n### Create a personal access token",
+                        "score":  0.09819187,
+                        "raw_content":  null,
+                        "id":  "5fa644-08"
+                    },
+                    {
+                        "url":  "https://gitbook.com/docs/gitbook-agent/overview",
+                        "title":  "Overview | GitBook Documentation",
+                        "content":  "Write docs based on a prompt: Ask GitBook Agent to update a page, rename a product, or make any other change you need.\n Import content into GitBook: Attach files like PDFs and Microsoft Word documents in the GitBook Agent chat sidebar. GitBook Agent extracts and formats the content into pages in your section.\n Plan and implement bigger changes: Describe what you need. GitBook Agent opens a change request, explains its edits, responds to feedback, and implements the plan you create together.\n Follow your styleguide: Define your team\u0027s writing rules in a styleguide, and GitBook Agent treats it as the source of truth when writing or reviewing content. [...] Was this helpful?\n\n```\nYou are a technical writer at Stripe. Use clear, direct language and prioritize accuracy over flourish. For guides, always introduce the concept with a one-sentence summary and break content into well-structured sections. For quickstarts, always use a stepper and keep every step action-first and concise.You are a technical writer at Stripe. Use clear, direct language and prioritize accuracy over flourish. For guides, always introduce the concept with a one-sentence summary and break content into well-structured sections. For quickstarts, always use a stepper and keep every step action-first and concise.\n```",
+                        "score":  0.08819807,
+                        "raw_content":  null,
+                        "id":  "1878c7-09"
+                    },
+                    {
+                        "url":  "https://github.com/influxdata/telegraf",
+                        "title":  "GitHub - influxdata/telegraf: Agent for collecting, processing, aggregating, and writing metrics, logs, and other arbitrary data. Â· GitHub",
+                        "content":  "| Name | Name | Last commit message | Last commit date |\n ---  --- |\n| .circleci | .circleci |  |  |\n| .github | .github |  |  |\n| agent | agent |  |  |\n| assets | assets |  |  |\n| cmd/telegraf | cmd/telegraf |  |  |\n| config | config |  |  |\n| docs | docs |  |  |\n| etc/logrotate.d | etc/logrotate.d |  |  |\n| filter | filter |  |  |\n| internal | internal |  |  |\n| logger | logger |  |  |\n| metric | metric |  |  |\n| migrations | migrations |  |  |\n| models | models |  |  |\n| persister | persister |  |  |\n| plugins | plugins |  |  |\n| scripts | scripts |  |  |\n| selfstat | selfstat |  |  |\n| testutil | testutil |  |  |\n| tools | tools |  |  |\n| .gitattributes | .gitattributes |  |  |\n| .gitignore | .gitignore |  |  |\n| .golangci.yml | .golangci.yml |  |  | [...] | logger.go | logger.go |  |  |\n| metric.go | metric.go |  |  |\n| output.go | output.go |  |  |\n| parser.go | parser.go |  |  |\n| plugin.go | plugin.go |  |  |\n| processor.go | processor.go |  |  |\n| secretstore.go | secretstore.go |  |  |\n| serializer.go | serializer.go |  |  |\n|  | [...] Users can choose plugins from a wide range of topics, including but not limited to:\n\n Devices: OPC UA, Modbus\n Logs: File, Tail, Directory Monitor\n Messaging: AMQP, Kafka, MQTT\n Monitoring: OpenTelemetry, Prometheus\n Networking: Cisco TelemetryMDT, gNMI\n System monitoring: CPU, Memory, Disk, Network, SMART, Docker, Nvidia SMI, etc.\n Universal: Exec, HTTP, HTTP Listener, SNMP, SQL\n Windows: Event Log, Management Instrumentation, Performance Counters\n\n## ð¨ Installation\n\nFor binary builds, Docker images, RPM \u0026 DEB packages, and other builds of Telegraf, please see the install guide.\n\nSee the releases documentation for details on versioning and when releases are made.\n\n## ð» Usage",
+                        "score":  0.0865164,
+                        "raw_content":  null,
+                        "id":  "2c41d5-10"
+                    },
+                    {
+                        "url":  "https://www.linkedin.com/posts/surajsharma14_telegraph-protocol-is-launching-hackathon-activity-7489571945450180608-WuVs",
+                        "title":  "Telegraph Protocol Launches Hackathon Season I with ... - LinkedIn",
+                        "content":  "Linked below is the github repo for project submission, including the code, any documentation associated with planning the project,",
+                        "score":  0.08477284,
+                        "raw_content":  null,
+                        "id":  "77e112-11"
+                    }
+                ],
+    "response_time":  2.28,
+    "request_id":  "c5162ed3-21ad-4d43-86c3-e670573b2262"
+}

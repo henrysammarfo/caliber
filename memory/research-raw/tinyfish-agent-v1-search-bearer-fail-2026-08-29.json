@@ -1,0 +1,7 @@
+﻿{
+    "status":  401,
+    "url":  "https://agent.tinyfish.ai/v1/search",
+    "method":  "POST",
+    "error":  "The remote server returned an error: (401) Unauthorized.",
+    "body":  "{\"error\":{\"code\":\"MISSING_API_KEY\",\"message\":\"X-API-Key header is required\"},\"request_id\":\"56d90405-271d-4180-92c5-cce57a353ae4\"}"
+}

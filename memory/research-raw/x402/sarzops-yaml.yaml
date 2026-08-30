@@ -1,0 +1,106 @@
+version: "1"
+kind: miner
+id: 91001
+slug: sarzops-transaction-risk
+protocol: generic
+name: SarzOps Fraud Intelligence
+description: >
+  Retrieval-first fraud intelligence for agents. Answers natural-language
+  questions about frauds, scams, schemes, actors, mechanisms, incidents, and
+  enforcement outcomes with concise, sourced factual prose, and abstains rather
+  than fabricating. Serves FRAUD_DETECTION and RESEARCH_QUERY.
+
+base_url: https://telegraph-intelligence-stack-production.up.railway.app
+
+auth:
+  type: none
+
+rate_limit_per_sec: 1
+cache_ttl_sec: 0
+circuit_threshold: 3
+circuit_cooldown_seconds: 30
+
+limitations:
+  - code: MAX_BODY_SIZE
+    message: Request bodies must not exceed 64 KiB.
+    property: size_bytes
+    value_num: 65536
+    operator: lte
+
+endpoints:
+  - path: /fraud
+    external_path: /v1/fraud-intelligence
+    method: POST
+    description: >
+      Assess a fraud question: given a natural-language question about a fraud,
+      scam, scheme, malicious actor, mechanism, incident, or enforcement outcome,
+      return a concise, sourced factual answer (FRAUD_DETECTION).
+    content_type: application/json
+    intents: [FRAUD_DETECTION]
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ["*"]
+            description: The natural-language fraud question to answer.
+            example: What characterized the BitConnect cryptocurrency Ponzi scheme that collapsed in January 2018?
+
+  - path: /research
+    external_path: /v1/fraud-intelligence
+    method: POST
+    description: >
+      Answer a research question about a fraud, scam, scheme, actor, incident, or
+      enforcement outcome (who, what, when, how much, what happened) with a
+      concise, sourced factual answer (RESEARCH_QUERY).
+    content_type: application/json
+    intents: [RESEARCH_QUERY]
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ["*"]
+            description: The natural-language research question to answer.
+            example: What was the OneCoin fraud and who ran it?
+
+input_schema:
+  type: object
+  required: [query]
+  properties:
+    query:
+      type: string
+      description: >
+        Natural-language fraud or research question, e.g. "What characterized the
+        BitConnect Ponzi scheme?" or "Was OneCoin a scam?".
+      example: What characterized the BitConnect cryptocurrency Ponzi scheme?
+
+output_schema:
+  type: object
+  required: [signal, source]
+  additionalProperties: true
+  properties:
+    signal:
+      type: string
+      description: Concise, sourced factual answer to the fraud/research question.
+    source:
+      type: string
+      description: The intelligence provider used (verified corpus or model).
+
+semantics:
+  signal_mapping:
+    label_field: signal
+    reason_field: source
+  supported_intents:
+    - FRAUD_DETECTION
+    - RESEARCH_QUERY
+
+on_chain:
+  transform: direct
+  min_price_usdc: 0.01
+  fields:
+    strings:
+      - index: 0
+        name: fraud_answer
+        description: Concise natural-language fraud/research answer returned by SarzOps.
+        source_path: signal

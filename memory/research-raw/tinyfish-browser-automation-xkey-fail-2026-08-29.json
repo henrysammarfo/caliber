@@ -1,0 +1,7 @@
+﻿{
+    "status":  404,
+    "url":  "https://api.browser.tinyfish.ai/v1/automation",
+    "auth":  "xkey",
+    "error":  "The remote server returned an error: (404) Not Found.",
+    "body":  ""
+}

@@ -1,0 +1,17 @@
+﻿PORTAL DEADLINE (authoritative = raw HTML from https://hackathon.telegraphprotocol.com/)
+
+Exact string: Sep 7, 2026 · 23:59 UTC · Submissions Close
+No 12:00 UTC string in raw HTML. TinyFish Fetch markdown incorrectly showed 12:00; Agent automation agreed with HTML on 23:59 UTC.
+
+H1: $5K USD (Aug 17 - Sep 7, 2026)
+H2: $10K USD (Mid October 2026)
+H3: Mainnet TBD (December 2026 onwards)
+Hero total badge: $15,000 USD
+
+Dual miner+script quote: Submit a Miner (any API, model, dataset, or tool), an evaluation script, or both
+
+TinyFish working endpoints (X-API-Key header):
+- GET https://api.search.tinyfish.ai?query=... -> 200
+- POST https://api.fetch.tinyfish.ai/ body {urls:[...]} -> 200
+- POST https://agent.tinyfish.ai/v1/automation/run -> 200
+api.tinyfish.ai does not resolve. Bearer often 401 on Agent/Search.

@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "lib": ["ES2022"],
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "outDir": "dist",
+    "rootDir": ".",
+    "types": ["node", "vitest/globals"],
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": false
+  },
+  "include": [
+    "shared/**/*.ts",
+    "truthport/**/*.ts",
+    "gradelock/**/*.ts",
+    "eval/**/*.ts",
+    "tests/**/*.ts"
+  ],
+  "exclude": ["node_modules", "dist", "gradelock/assembly", "gradelock/build"]
+}

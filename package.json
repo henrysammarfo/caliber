@@ -9,7 +9,11 @@
     "build:dev": "vite build --mode development",
     "preview": "vite preview",
     "lint": "eslint .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "protocol:test": "npm --prefix protocol test",
+    "protocol:smoke": "npm --prefix protocol run smoke",
+    "protocol:miner": "npm --prefix protocol run miner",
+    "protocol:hash-yaml": "npm --prefix protocol run hash-yaml"
   },
   "overrides": {
     "rolldown": "1.2.1"

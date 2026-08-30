@@ -1,0 +1,5 @@
+﻿- [Testnet & Production Setup](https://telegraph-2.gitbook.io/telegraph/setup/testnet-production-setup.md): Set up a Telegraph validator node for testnet or production using the standalone script: one script, no repo required, interactive config.
+- [Overview](https://telegraph-2.gitbook.io/telegraph/miner-registry/miner-registry.md)
+- [Miner Registry Contract & Listener](https://telegraph-2.gitbook.io/telegraph/miner-registry/miner-registry-facet.md)
+- [YAML Standard](https://telegraph-2.gitbook.io/telegraph/miner-registry/yaml-standard.md)
+- [x402 Payment](https://telegraph-2.gitbook.io/telegraph/miner-registry/x402-payment.md)

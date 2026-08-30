@@ -3,6 +3,7 @@ import { Crosshair, ShieldAlert, Sigma, TestTube2 } from "lucide-react";
 import { DashHeader, DataTable, Panel, StatCard } from "@/components/dash/DashKit";
 import { usePageView } from "@/lib/use-analytics";
 import { trackCta } from "@/lib/analytics";
+import { PROTOCOL_STATUS } from "@/lib/protocol-status";
 
 export const Route = createFileRoute("/_authenticated/dashboard/grader")({
   head: () => ({
@@ -10,56 +11,76 @@ export const Route = createFileRoute("/_authenticated/dashboard/grader")({
       { title: "Grader — CALIBER Console" },
       {
         name: "description",
-        content: "GRADELOCK WASM grader status: Brier score, calibration bins and adversarial test results.",
+        content: "GRADELOCK status from protocol smoke: Brier, WASM build, and adversarial rank drops.",
       },
       { property: "og:title", content: "Grader — CALIBER Console" },
-      { property: "og:description", content: "Brier, calibration bins and adversarial suite results." },
+      { property: "og:description", content: "Honest CI grader metrics — not live mainnet." },
     ],
   }),
   component: GraderConsole,
 });
 
-const BINS = [
-  ["0.0 – 0.2", "0.07", "0.09"],
-  ["0.2 – 0.4", "0.29", "0.31"],
-  ["0.4 – 0.6", "0.51", "0.49"],
-  ["0.6 – 0.8", "0.72", "0.70"],
-  ["0.8 – 1.0", "0.93", "0.91"],
-];
-
 function GraderConsole() {
   usePageView("Grader");
+  const passed = PROTOCOL_STATUS.smoke.adversarial.filter((a) => a.passed).length;
   return (
     <>
       <DashHeader
         title="Grader"
-        subtitle="GRADELOCK · gradelock.wasm · deterministic build 0x7c4e"
-        action={<button className="btn-base btn-solid" onClick={() => trackCta("Console · Run adversarial suite")}>Run adversarial suite</button>}
+        subtitle={`GRADELOCK · ${PROTOCOL_STATUS.wasm.path} · ABI ${PROTOCOL_STATUS.wasm.abi}`}
+        action={
+          <button className="btn-base btn-solid" onClick={() => trackCta("Console · Run adversarial suite")}>
+            See protocol smoke
+          </button>
+        }
       />
 
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        <StatCard icon={Sigma} label="Brier score" value="0.081" delta="Lower is better" delay={0.1} />
-        <StatCard icon={Crosshair} label="Calibration error" value="0.019" delta="Expected calibration error" delay={0.2} />
-        <StatCard icon={ShieldAlert} label="Attacks blocked" value="4 / 4" delta="Last run 2h ago" delay={0.3} />
-        <StatCard icon={TestTube2} label="Agreement" value="0.912" delta="vs caliber-gold-v3" delay={0.4} />
+        <StatCard
+          icon={Sigma}
+          label="Honest mean Brier"
+          value={PROTOCOL_STATUS.smoke.honestMeanBrier.toFixed(3)}
+          delta="Lower is better · synthetic-ci"
+          delay={0.1}
+        />
+        <StatCard
+          icon={Crosshair}
+          label="Holdout rows"
+          value={String(PROTOCOL_STATUS.holdout.holdoutPartitionRows)}
+          delta={`${PROTOCOL_STATUS.holdout.rows} total fixture · RAID not imported`}
+          delay={0.2}
+        />
+        <StatCard
+          icon={ShieldAlert}
+          label="Attacks worse than honest"
+          value={`${passed} / ${PROTOCOL_STATUS.smoke.adversarial.length}`}
+          delta={`Smoke ${PROTOCOL_STATUS.smoke.asOf}`}
+          delay={0.3}
+        />
+        <StatCard
+          icon={TestTube2}
+          label="WASM"
+          value={PROTOCOL_STATUS.wasm.built ? "Built" : "Missing"}
+          delta={PROTOCOL_STATUS.wasm.abiNote}
+          delay={0.4}
+        />
       </div>
 
       <div className="mt-5 grid gap-4 xl:grid-cols-2">
-        <Panel title="Reliability bins">
-          <DataTable
-            head={["Confidence", "Predicted", "Observed"]}
-            rows={BINS}
-          />
+        <Panel title="Holdout provenance">
+          <p className="text-[13.5px] leading-relaxed text-muted-ink">{PROTOCOL_STATUS.holdout.note}</p>
+          <p className="mt-3 text-[13.5px] text-muted-ink">
+            Run locally: <code className="text-stat">cd protocol && npm run smoke</code>
+          </p>
         </Panel>
         <Panel title="Adversarial suite">
           <DataTable
-            head={["Attack", "Result", "Rank delta"]}
-            rows={[
-              ["Confidence inflation", "Blocked", "-38"],
-              ["Hedge spam", "Blocked", "-21"],
-              ["Label echo", "Blocked", "-64"],
-              ["Volume flood", "Blocked", "-12"],
-            ]}
+            head={["Attack", "Result", "Rank drop"]}
+            rows={PROTOCOL_STATUS.smoke.adversarial.map((a) => [
+              a.name,
+              a.passed ? "Pass" : "Fail",
+              `-${a.rankDrop}`,
+            ])}
           />
         </Panel>
       </div>

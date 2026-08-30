@@ -1,0 +1,7 @@
+﻿{
+    "status":  null,
+    "url":  "https://api.tinyfish.ai/v1/scrape",
+    "method":  "POST",
+    "error":  "The remote name could not be resolved: \u0027api.tinyfish.ai\u0027",
+    "body":  ""
+}

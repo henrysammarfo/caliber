@@ -1,0 +1,7 @@
+﻿{
+    "status":  405,
+    "url":  "https://api.browser.tinyfish.ai/",
+    "auth":  "xkey",
+    "error":  "The remote server returned an error: (405) Method Not Allowed.",
+    "body":  ""
+}
