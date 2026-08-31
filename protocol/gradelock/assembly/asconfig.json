@@ -18,6 +18,8 @@
     "bindings": "raw",
     "exportRuntime": false,
     "runtime": "stub",
-    "exportStart": false
+    "exportStart": false,
+    "use": ["abort=abort"],
+    "noAssert": true
   }
 }

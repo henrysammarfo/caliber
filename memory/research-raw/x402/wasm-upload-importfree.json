@@ -1,0 +1,22 @@
+﻿{
+  "asOf": "2026-08-31T00:30:00Z",
+  "note": "import-free GRADELOCK (no env.abort); replaces QmWVPg / keccak 0x8d295d46 / reg 2126",
+  "keccak256": "0x3a03494271e366684382ecdea0b037c1f02eb7463ffa639e368565a2fbb1dfdb",
+  "pinata": {
+    "hash": "QmWxjGDseqgfmMwCX1x6REANA6f1vvFpo6uJe6vsQsBDff",
+    "url": "ipfs://QmWxjGDseqgfmMwCX1x6REANA6f1vvFpo6uJe6vsQsBDff",
+    "gateway": "https://gateway.pinata.cloud/ipfs/QmWxjGDseqgfmMwCX1x6REANA6f1vvFpo6uJe6vsQsBDff"
+  },
+  "hosted": "https://caliber-teamtitanlink.vercel.app/gradelock.wasm",
+  "githubBlob": "https://github.com/henrysammarfo/caliber/blob/main/public/gradelock.wasm",
+  "registerWasm": {
+    "registrationId": 2256,
+    "txHash": "0xc33226e6243daa5aa6aa38141765796320fa4f4196383c1a29dac2a89accc44d",
+    "block": 46183998,
+    "diamond": "0x5a2324aA18613FAD4e44bDF0d6c73Ec1f6D87ff8",
+    "intent": "AI_TEXT_DETECTION",
+    "intentId": "0xaeee3c31e4d6c6dad8f7c261f862f42117f17633f8984fbad74a7bc7b833abf8"
+  },
+  "imports": [],
+  "curl": "curl -X POST https://integrate.telegraphprotocol.com/api/upload-wasm -F file=@protocol/gradelock/build/gradelock.wasm"
+}

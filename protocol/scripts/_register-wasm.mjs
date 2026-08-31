@@ -23,9 +23,9 @@ const DIAMOND = process.env.WASM_DIAMOND || "0x5a2324aA18613FAD4e44bDF0d6c73Ec1f
 const MINER_DIAMOND_DOCS = "0x122396E8602BEed349434AA6E83123E7dD97F5A0"; // registerMiner; no registerWasm facet
 const INTENT = "AI_TEXT_DETECTION";
 const PRIOR_HASH =
-  "0x8d295d467f4002271feb29bc089471453972419b0d02b15da3c3c737b36bb416";
+  "0x3a03494271e366684382ecdea0b037c1f02eb7463ffa639e368565a2fbb1dfdb";
 const PINATA_URL =
-  "https://gateway.pinata.cloud/ipfs/QmWVPgXS5FNWUP48JBb2P6prGn8w4qe5zvF9GcNHiWBsWX";
+  "https://gateway.pinata.cloud/ipfs/QmWxjGDseqgfmMwCX1x6REANA6f1vvFpo6uJe6vsQsBDff";
 const VERCEL_URL =
   "https://caliber-teamtitanlink.vercel.app/gradelock.wasm";
 

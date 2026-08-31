@@ -342,3 +342,18 @@ Discord activation for Reg 55; Stage 1/2 WASM eval; X after lock.
 
 - Score poll (~10m, 5 successful samples + final): still `scored:false`, `scores:null`; listed active id 20260830. Poll 5 hit EHOSTUNREACH briefly; final fetch ok.
 
+## 2026-08-31 — GRADELOCK import-free WASM (fix env.abort reject)
+
+### Problem
+Telegraph rejected reg **2126** with `module[env] not instantiated` — AS module imported `env.abort`.
+
+### Fix
+- `assembly/index.ts`: `@global abort` no-op; byte-scan `"label"` / `"confidence"` via `load<u8>` (no `String.UTF8`); fixed breakdown buffer; bump `alloc`.
+- `asconfig.json`: `runtime: stub`, `exportRuntime: false`, `use: ["abort=abort"]`, `noAssert: true`.
+- Build: **ZERO imports** (`WebAssembly.Module.imports` → `[]`).
+- Keccak `0x3a03494271e366684382ecdea0b037c1f02eb7463ffa639e368565a2fbb1dfdb`; sha256 `1038058b…`.
+- Pinata upload CID `QmWxjGDseqgfmMwCX1x6REANA6f1vvFpo6uJe6vsQsBDff`.
+- `registerWasm` console Diamond → registrationId **2256**, tx `0xc33226e6243daa5aa6aa38141765796320fa4f4196383c1a29dac2a89accc44d`, block 46183998.
+- Form blob URL: `https://github.com/henrysammarfo/caliber/blob/main/public/gradelock.wasm`
+- telegraph-wasm-check skipped (no `go` on host).
+
