@@ -51,6 +51,9 @@ export interface IntelResult {
   x402Tx?: string | undefined;
   costUsdc?: number | undefined;
   latencyMs: number;
+  /** Wall time for the paid fetch (payment + miner upstream). */
+  paymentMs?: number | undefined;
+  minerMs?: number | undefined;
   error?: string | undefined;
 }
 
@@ -120,11 +123,14 @@ export async function queryTelegraph(q: IntelQuery): Promise<IntelResult> {
           }).toString()}`
         : urlBase;
 
+    const payStart = Date.now();
     const res = await paidFetch(url, {
       method: route.method,
       headers: { "Content-Type": "application/json", Accept: "application/json" },
       ...(route.method === "POST" ? { body: JSON.stringify(payload) } : {}),
     });
+    const paymentMs = Date.now() - payStart;
+    const totalMs = Date.now() - start;
 
     const payment = decodePaymentHeader(
       res.headers.get("PAYMENT-RESPONSE") || res.headers.get("X-PAYMENT-RESPONSE"),
@@ -139,7 +145,9 @@ export async function queryTelegraph(q: IntelQuery): Promise<IntelResult> {
         minerSlug: route.slug,
         minerId,
         response: null,
-        latencyMs: Date.now() - start,
+        latencyMs: totalMs,
+        paymentMs,
+        minerMs: paymentMs,
         error: `HTTP ${res.status} ${url}: ${text.slice(0, 500)}`,
       };
     }
@@ -156,9 +164,12 @@ export async function queryTelegraph(q: IntelQuery): Promise<IntelResult> {
       response: data,
       x402Tx: payment.txHash,
       costUsdc: payment.amount ?? 0.01,
-      latencyMs: Date.now() - start,
+      latencyMs: totalMs,
+      paymentMs,
+      minerMs: paymentMs,
     };
   } catch (e) {
+    const totalMs = Date.now() - start;
     return {
       ok: false,
       intent: q.intent,
@@ -166,7 +177,9 @@ export async function queryTelegraph(q: IntelQuery): Promise<IntelResult> {
       minerSlug: route.slug,
       minerId,
       response: null,
-      latencyMs: Date.now() - start,
+      latencyMs: totalMs,
+      paymentMs: totalMs,
+      minerMs: totalMs,
       error: e instanceof Error ? e.message : "Unknown error",
     };
   }

@@ -8,17 +8,17 @@ Do not claim #1 as frozen. Last catalog poll 2026-09-03: TRUTHPORT rank **#1** A
 ```
 Track 3 is live.
 
-CALIBER now consumes real @Telegraphprotoc miners via x402 — not mocks.
+CALIBER consumes real @Telegraphprotoc miners via x402 — not mocks.
 
-Public AI-text checker + multi-intent console:
-weather · crypto · fraud · news · AI_TEXT
+Public checker = free local TRUTHPORT /detect.
+Signed-in console = paid multi-intent (weather · crypto · fraud · news · AI_TEXT).
 
-https://caliber-teamtitanlink.vercel.app/demand-app
+https://caliber-smoky.vercel.app/demand-app
 ```
 
 **2/6**
 ```
-The product that only works by paying a miner:
+Paid path (sign in → Intelligence console):
 
 Paste text → Telegraph dispatcher → TRUTHPORT (AI_TEXT_DETECTION) → verdict + confidence + receipt.
 
@@ -64,8 +64,9 @@ Artifact in-repo. Not a demo stub.
 **6/6**
 ```
 Repo: https://github.com/henrysammarfo/caliber
-Console: https://caliber-teamtitanlink.vercel.app/dashboard/intel
-Checker: https://caliber-teamtitanlink.vercel.app/demand-app
+App: https://caliber-smoky.vercel.app
+Console: https://caliber-smoky.vercel.app/dashboard/intel
+Checker: https://caliber-smoky.vercel.app/demand-app
 
 @Telegraphprotoc #Telegraph #x402 #Track3
 ```
@@ -76,5 +77,5 @@ Shipped Track 3 on @Telegraphprotoc:
 
 CALIBER demand app — live AI-text checks + 5-intent console, all x402-paid to real miners.
 
-https://caliber-teamtitanlink.vercel.app/demand-app
+https://caliber-smoky.vercel.app
 ```

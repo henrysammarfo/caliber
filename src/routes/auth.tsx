@@ -57,8 +57,8 @@ function AuthPage() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data }) => {
-      if (data.session) navigate({ to: destination, replace: true });
+    void supabase.auth.getUser().then(({ data }) => {
+      if (data.user) navigate({ to: destination, replace: true });
     });
   }, [navigate, destination]);
 

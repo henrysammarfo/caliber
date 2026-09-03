@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Brain, CheckCircle2, XCircle, Loader2, ArrowRight } from "lucide-react";
 import { PageShell, Section } from "@/components/site/Page";
 import { trackCta } from "@/lib/analytics";
@@ -11,12 +11,12 @@ export const Route = createFileRoute("/demand-app")({
       {
         name: "description",
         content:
-          "Check if text is AI-generated using Telegraph's ranked miners via x402. Free to try, powered by real verified intelligence.",
+          "Free local TRUTHPORT AI-text check. Sign in for paid multi-intent Telegraph x402 queries.",
       },
       { property: "og:title", content: "AI Text Checker — CALIBER" },
       {
         property: "og:description",
-        content: "Paste text and get a verified AI detection verdict from Telegraph's top-ranked miners.",
+        content: "Paste text for a fast local AI detection verdict from CALIBER TRUTHPORT.",
       },
     ],
   }),
@@ -28,8 +28,6 @@ interface CheckResult {
   minerSlug?: string;
   confidence?: number;
   response: Record<string, unknown> | null;
-  x402Tx?: string;
-  costUsdc?: number;
   latencyMs: number;
   error?: string;
 }
@@ -38,35 +36,50 @@ function DemandAppPage() {
   const [text, setText] = useState("");
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<CheckResult | null>(null);
+  const abortRef = useRef<AbortController | null>(null);
 
   async function handleCheck() {
     if (!text.trim() || loading) return;
+    abortRef.current?.abort();
+    const ac = new AbortController();
+    abortRef.current = ac;
     setLoading(true);
     setResult(null);
-    trackCta("Public checker · Check");
+    trackCta("Public checker · Local detect");
 
+    const started = Date.now();
     try {
-      const res = await fetch("/intel", {
+      const res = await fetch("/detect", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ intent: "AI_TEXT_DETECTION", query: text.trim() }),
+        body: JSON.stringify({ text: text.trim() }),
+        signal: ac.signal,
+        credentials: "same-origin",
       });
-      const data = await res.json();
+      const data = (await res.json()) as Record<string, unknown>;
+      if (!res.ok) {
+        setResult({
+          ok: false,
+          response: null,
+          latencyMs: Date.now() - started,
+          error: String(data["error"] ?? `HTTP ${res.status}`),
+        });
+        return;
+      }
+      const confidence = typeof data["confidence"] === "number" ? data["confidence"] : undefined;
       setResult({
-        ok: data.ok ?? false,
-        minerSlug: data.minerSlug,
-        confidence: data.confidence,
-        response: data.response,
-        x402Tx: data.x402Tx,
-        costUsdc: data.costUsdc,
-        latencyMs: data.latencyMs ?? 0,
-        error: data.error,
+        ok: true,
+        minerSlug: String(data["model"] ?? "caliber-truthport-v2"),
+        ...(confidence !== undefined ? { confidence } : {}),
+        response: data,
+        latencyMs: Date.now() - started,
       });
     } catch (e) {
+      if (e instanceof DOMException && e.name === "AbortError") return;
       setResult({
         ok: false,
         response: null,
-        latencyMs: 0,
+        latencyMs: Date.now() - started,
         error: e instanceof Error ? e.message : "Request failed",
       });
     } finally {
@@ -85,13 +98,13 @@ function DemandAppPage() {
             </span>
           </h1>
           <p className="appear appear--soft mx-auto mt-5 max-w-[520px] text-[15.5px] leading-[1.55] tracking-[-0.015em] text-muted-ink [--d:0.6s]">
-            Paste any text below. Telegraph routes your query to the highest-ranked AI text detection
-            miner and returns a verified verdict — paid via x402.
+            Free local check via CALIBER TRUTHPORT (in-process stylometry). Sign in for paid Telegraph-routed
+            multi-intent queries via x402.
           </p>
         </div>
       </section>
 
-      <Section kicker="Live" title="Check text now">
+      <Section kicker="Local · free" title="Check text now">
         <div className="mx-auto max-w-2xl space-y-4">
           <textarea
             value={text}
@@ -101,9 +114,9 @@ function DemandAppPage() {
             className="w-full rounded-md border border-hair-soft bg-black/20 px-4 py-3 text-[14px] text-foreground placeholder:text-muted-ink/50 focus:outline-none focus:ring-1 focus:ring-stat resize-none backdrop-blur-sm"
           />
 
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between gap-3">
             <p className="text-[12px] text-muted-ink">
-              Powered by Telegraph x402 · ~$0.01/query · No sign-in required
+              Local TRUTHPORT · no x402 · residual detector error remains
             </p>
             <button
               type="button"
@@ -116,7 +129,6 @@ function DemandAppPage() {
             </button>
           </div>
 
-          {/* Result display */}
           {result && (
             <div className="panel p-6 mt-4">
               <div className="flex items-center gap-3 mb-4">
@@ -125,9 +137,7 @@ function DemandAppPage() {
                 ) : (
                   <XCircle className="h-5 w-5 text-red-500" />
                 )}
-                <h3 className="text-[16px] font-medium">
-                  {result.ok ? "Verdict" : "Error"}
-                </h3>
+                <h3 className="text-[16px] font-medium">{result.ok ? "Verdict" : "Error"}</h3>
                 <span className="text-[12px] text-muted-ink ml-auto">{result.latencyMs}ms</span>
               </div>
 
@@ -135,7 +145,6 @@ function DemandAppPage() {
 
               {result.ok && result.response && (
                 <div className="space-y-3">
-                  {/* Main verdict */}
                   <div className="flex flex-wrap gap-4">
                     {result.confidence != null && (
                       <div>
@@ -145,44 +154,35 @@ function DemandAppPage() {
                         </p>
                       </div>
                     )}
-                    {Boolean((result.response as Record<string, unknown>)["label"]) && (
+                    {Boolean(result.response["label"]) && (
                       <div>
                         <p className="text-[11.5px] tracking-[0.05em] text-muted-ink uppercase">Label</p>
                         <p className="text-[24px] font-medium tracking-[-0.04em]">
-                          {String((result.response as Record<string, unknown>)["label"])}
+                          {String(result.response["label"])}
                         </p>
                       </div>
                     )}
-                    {Boolean((result.response as Record<string, unknown>)["verdict"]) && (
+                    {Boolean(result.response["verdict"]) && (
                       <div>
                         <p className="text-[11.5px] tracking-[0.05em] text-muted-ink uppercase">Verdict</p>
                         <p className="text-[24px] font-medium tracking-[-0.04em]">
-                          {String((result.response as Record<string, unknown>)["verdict"])}
+                          {String(result.response["verdict"])}
                         </p>
                       </div>
                     )}
                   </div>
 
-                  {/* Meta */}
                   <div className="flex flex-wrap gap-4 text-[12px] text-muted-ink border-t border-hair-soft pt-3">
-                    {result.minerSlug && <span>Miner: <span className="text-foreground">{result.minerSlug}</span></span>}
-                    {result.costUsdc != null && <span>Cost: <span className="text-foreground">${result.costUsdc.toFixed(4)}</span></span>}
-                    {result.x402Tx && (
+                    {result.minerSlug && (
                       <span>
-                        x402:{" "}
-                        <a
-                          href={`https://sepolia.basescan.org/tx/${result.x402Tx}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-stat hover:underline"
-                        >
-                          {result.x402Tx.slice(0, 12)}...
-                        </a>
+                        Model: <span className="text-foreground">{result.minerSlug}</span>
                       </span>
                     )}
+                    <span>
+                      Path: <span className="text-foreground">local /detect</span>
+                    </span>
                   </div>
 
-                  {/* Raw response toggle */}
                   <details className="text-[12px]">
                     <summary className="text-stat cursor-pointer hover:underline">Raw response</summary>
                     <pre className="mt-2 overflow-x-auto rounded-md bg-black/30 p-3 text-[11.5px] text-muted-ink max-h-48 overflow-y-auto">
@@ -194,18 +194,17 @@ function DemandAppPage() {
             </div>
           )}
 
-          {/* CTA to full console */}
-          <div className="panel p-5 flex items-center justify-between mt-6">
+          <div className="panel p-5 flex items-center justify-between mt-6 gap-4">
             <div>
-              <p className="text-[14px] font-medium">Want more intents?</p>
+              <p className="text-[14px] font-medium">Paid Telegraph multi-intent</p>
               <p className="text-[12.5px] text-muted-ink mt-1">
-                Weather, crypto, fraud, news — sign in for the full multi-intent console.
+                Weather, crypto, fraud, news + dispatcher-routed AI text — requires sign-in (cookie session).
               </p>
             </div>
             <Link
               to="/auth"
               onClick={() => trackCta("Public checker · Sign in CTA")}
-              className="btn-base btn-solid inline-flex items-center gap-2"
+              className="btn-base btn-solid inline-flex items-center gap-2 shrink-0"
             >
               Console <ArrowRight className="h-4 w-4" />
             </Link>

@@ -67,6 +67,11 @@ function AuthenticatedLayout() {
     // Proactive token refresh: renew shortly before expiry, and end the
     // session with a clear reason when the refresh token is no longer valid.
     async function ensureFreshToken() {
+      const { data: userData, error: userError } = await supabase.auth.getUser();
+      if (userError || !userData.user) {
+        void endSession("expired");
+        return;
+      }
       const { data, error } = await supabase.auth.getSession();
       if (error || !data.session) {
         void endSession("expired");

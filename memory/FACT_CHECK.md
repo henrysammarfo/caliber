@@ -260,3 +260,6 @@
 | Port 8080 is generic Engine `/engine/ask` | **FALSE** | 2026-09-03: OpenAPI title "Telegraph Chatbot Miner"; only `/v1/chat/completions` + `/health` |
 | Track 3 paid dispatcher 5 intents | **VERIFIED** | `memory/artifacts/track3-intel-smoke.json` all HTTP 200 |
 | AI_TEXT rank #1 as of 2026-09-03 | **VERIFIED then** | catalog dump epoch 305; rank can move |
+| Public `/demand-app` hits paid `/intel` | **STALE (2026-09-03)** | Now local `POST /detect` only; paid path is signed-in `/intel` |
+| `POST /intel` requires cookie session | **IMPLEMENTED in repo** | Re-verify on prod after deploy: unsigned → 401 |
+| Per-user RLS migration applied on hosted Supabase | **UNVERIFIED** | SQL in `20260903190000_per_user_tenant_rls.sql`; apply in dashboard |

@@ -388,4 +388,14 @@ Telegraph rejected reg **2126** with `module[env] not instantiated` — AS modul
 - Submit package: `memory/TRACK3_SUBMIT_PACKAGE.md`.
 - Still open: Henry applies `query_log` SQL in Supabase; posts Track 3 X; portal form.
 
+## 2026-09-03 — Safe sessions / per-user tenants / fast intel
+
+- Cookie auth via `@supabase/ssr` on production hosts; Lovable preview keeps brokered localStorage.
+- `POST /intel` requires cookie `getUser()`; same-origin CORS; in-memory rate limit 30/min + 200/day per `user_id`; deferred `query_log`.
+- Public `/demand-app` → free local `POST /detect` (honest label); paid multi-intent only in signed-in console.
+- Migration `20260903190000_per_user_tenant_rls.sql` — own-row RLS on `query_log` / `analytics_events` / `profiles`; service_role-only full access.
+- Docs: `CURRENT_STATE.md` + `TRACK3_SUBMIT_PACKAGE.md` updated for public-local vs paid-authed split.
+- Residual: XSS, shared wallet key, in-memory limits — not unhackable.
+- Ops remaining: apply RLS SQL on hosted Supabase; re-smoke 401/200; Track 3 X + portal form.
+
 

@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef } from "react";
 import {
   Brain,
   CloudSun,
@@ -14,7 +14,6 @@ import {
 } from "lucide-react";
 import { DashHeader, Panel, StatCard } from "@/components/dash/DashKit";
 import { usePageView } from "@/lib/use-analytics";
-import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/_authenticated/dashboard/intel")({
   head: () => ({
@@ -92,40 +91,73 @@ function IntelPage() {
   const [results, setResults] = useState<QueryResult[]>([]);
   const [totalQueries, setTotalQueries] = useState(0);
   const [totalCost, setTotalCost] = useState(0);
+  const abortRef = useRef<AbortController | null>(null);
 
   const config = INTENT_CONFIG.find((c) => c.id === activeIntent)!;
 
   const runQuery = useCallback(async () => {
     if (!query.trim() || loading) return;
+    abortRef.current?.abort();
+    const ac = new AbortController();
+    abortRef.current = ac;
     setLoading(true);
 
     try {
-      const session = await supabase.auth.getSession();
-      const token = session.data.session?.access_token;
-
       const res = await fetch("/intel", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          ...(token ? { Authorization: `Bearer ${token}` } : {}),
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ intent: activeIntent, query: query.trim() }),
+        credentials: "same-origin",
+        signal: ac.signal,
       });
 
       const data = await res.json();
+      if (res.status === 401) {
+        setResults((prev) => [
+          {
+            id: crypto.randomUUID(),
+            intent: activeIntent,
+            query: query.trim(),
+            ok: false,
+            response: null,
+            latencyMs: 0,
+            error: "Session required — sign in again",
+            timestamp: new Date(),
+          },
+          ...prev,
+        ]);
+        return;
+      }
+      if (res.status === 429) {
+        setResults((prev) => [
+          {
+            id: crypto.randomUUID(),
+            intent: activeIntent,
+            query: query.trim(),
+            ok: false,
+            response: null,
+            latencyMs: 0,
+            error: data.error ?? "Rate limit exceeded",
+            timestamp: new Date(),
+          },
+          ...prev,
+        ]);
+        return;
+      }
+
       const result: QueryResult = {
         id: crypto.randomUUID(),
         intent: activeIntent,
         query: query.trim(),
         ok: data.ok ?? false,
-        minerSlug: data.minerSlug,
-        confidence: data.confidence,
-        response: data.response,
-        x402Tx: data.x402Tx,
-        costUsdc: data.costUsdc,
-        latencyMs: data.latencyMs ?? 0,
-        error: data.error,
+        response: data.response ?? null,
+        latencyMs: data.totalMs ?? data.latencyMs ?? 0,
         timestamp: new Date(),
+        ...(typeof data.minerSlug === "string" ? { minerSlug: data.minerSlug } : {}),
+        ...(typeof data.confidence === "number" ? { confidence: data.confidence } : {}),
+        ...(typeof data.x402Tx === "string" ? { x402Tx: data.x402Tx } : {}),
+        ...(typeof data.costUsdc === "number" ? { costUsdc: data.costUsdc } : {}),
+        ...(typeof data.error === "string" ? { error: data.error } : {}),
       };
 
       setResults((prev) => [result, ...prev]);
@@ -133,17 +165,20 @@ function IntelPage() {
       if (result.costUsdc) setTotalCost((n) => n + result.costUsdc!);
       setQuery("");
     } catch (e) {
-      const result: QueryResult = {
-        id: crypto.randomUUID(),
-        intent: activeIntent,
-        query: query.trim(),
-        ok: false,
-        response: null,
-        latencyMs: 0,
-        error: e instanceof Error ? e.message : "Request failed",
-        timestamp: new Date(),
-      };
-      setResults((prev) => [result, ...prev]);
+      if (e instanceof DOMException && e.name === "AbortError") return;
+      setResults((prev) => [
+        {
+          id: crypto.randomUUID(),
+          intent: activeIntent,
+          query: query.trim(),
+          ok: false,
+          response: null,
+          latencyMs: 0,
+          error: e instanceof Error ? e.message : "Request failed",
+          timestamp: new Date(),
+        },
+        ...prev,
+      ]);
     } finally {
       setLoading(false);
     }
@@ -153,7 +188,7 @@ function IntelPage() {
     <>
       <DashHeader
         title="Intelligence Console"
-        subtitle="Query real Telegraph miners via x402 — every call is a paid, verified request"
+        subtitle="Paid Telegraph miners via x402 — cookie session required · rate-limited per user"
       />
 
       {/* Stats row */}

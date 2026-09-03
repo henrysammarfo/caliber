@@ -1,27 +1,28 @@
 import { supabase } from "@/integrations/supabase/client";
 
-const VISITOR_KEY = "caliber.visitor";
 const SESSION_KEY = "caliber.session";
+let memoryVisitor: string | null = null;
 
+/** Ephemeral visitor id — in-memory only (no localStorage). */
 function visitorId(): string {
   if (typeof window === "undefined") return "ssr";
-  let id = window.localStorage.getItem(VISITOR_KEY);
-  if (!id) {
-    id = crypto.randomUUID();
-    window.localStorage.setItem(VISITOR_KEY, id);
-  }
-  return id;
+  if (!memoryVisitor) memoryVisitor = crypto.randomUUID();
+  return memoryVisitor;
 }
 
-/** Per-tab-session id: rotates whenever the browser session ends. */
+/** Per-tab analytics session via sessionStorage (non-auth). */
 export function sessionId(): string {
   if (typeof window === "undefined") return "ssr";
-  let id = window.sessionStorage.getItem(SESSION_KEY);
-  if (!id) {
-    id = crypto.randomUUID();
-    window.sessionStorage.setItem(SESSION_KEY, id);
+  try {
+    let id = window.sessionStorage.getItem(SESSION_KEY);
+    if (!id) {
+      id = crypto.randomUUID();
+      window.sessionStorage.setItem(SESSION_KEY, id);
+    }
+    return id;
+  } catch {
+    return visitorId();
   }
-  return id;
 }
 
 export type AnalyticsEvent =
@@ -40,13 +41,13 @@ export async function track(
 ) {
   if (typeof window === "undefined") return;
   try {
-    const { data } = await supabase.auth.getSession();
-    const userId = data.session?.user.id ?? null;
+    const { data } = await supabase.auth.getUser();
+    const userId = data.user?.id ?? null;
     await supabase.from("analytics_events").insert({
       event_name: event,
       label: options.label ?? null,
       path: options.path ?? window.location.pathname,
-      visitor_id: visitorId(),
+      visitor_id: userId ?? visitorId(),
       user_id: userId,
       metadata: {
         ...(options.metadata ?? {}),

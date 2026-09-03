@@ -18,7 +18,7 @@ export function SiteHeader() {
   const [signedIn, setSignedIn] = useState(false);
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data }) => setSignedIn(!!data.session));
+    supabase.auth.getUser().then(({ data }) => setSignedIn(!!data.user));
     const { data } = supabase.auth.onAuthStateChange((_e, session) => setSignedIn(!!session));
     return () => data.subscription.unsubscribe();
   }, []);
