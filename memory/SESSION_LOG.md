@@ -357,3 +357,27 @@ Telegraph rejected reg **2126** with `module[env] not instantiated` — AS modul
 - Form blob URL: `https://github.com/henrysammarfo/caliber/blob/main/public/gradelock.wasm`
 - telegraph-wasm-check skipped (no `go` on host).
 
+
+## 2026-08-31 — Hackathon My Submissions VERIFIED
+
+- Miner registrationId **387** VERIFIED
+- WASM registrationId **2256** VERIFIED
+- X handle: `@henrysammarfo_2`
+- Wallet: `0x9ADd0ac311e9E528800afc3F4A04e9cDe52C9cE0`
+
+## 2026-08-31 — Leaderboard + X drafts
+
+- Dispatcher poll: CALIBER AI_TEXT **#2** epoch 297 (scored true); livecert #1, veritarach #3, itsai #4.
+- Drafted X thread for `@henrysammarfo_2` tagging `@Telegraphprotoc` (honest #2 / dual-track / no unhackable claims).
+- Henry confirmed **thread posted** (through 7/7 close).
+
+## 2026-09-03 — Track 3 Multi-Intent Intelligence Console
+
+- Built public AI checker `/demand-app`, console `/dashboard/intel`, analytics `/dashboard/demand`, proxy `POST /intel`.
+- Consumption path: miner-dispatcher `:7044` (port 8080 is a chatbot miner, not Engine).
+- Paid smoke 5/5 HTTP 200 — `memory/artifacts/track3-intel-smoke.json` (AI_TEXT = TRUTHPORT).
+- Catalog poll: TRUTHPORT AI_TEXT **#1** epoch 305.
+- X drafts: `memory/TRACK3_X_DRAFTS.md` — Henry to post from `@henrysammarfo_2`.
+- Ops remaining: Vercel `PRIVATE_KEY`, apply `query_log` migration on hosted Supabase.
+
+

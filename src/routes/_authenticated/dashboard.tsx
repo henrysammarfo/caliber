@@ -3,12 +3,14 @@ import { useQueryClient } from "@tanstack/react-query";
 import {
   Activity,
   BarChart3,
+  Brain,
   Gauge,
   LayoutDashboard,
   Link2,
   LogOut,
   Radar,
   Settings,
+  TrendingUp,
   Wallet,
 } from "lucide-react";
 import { Logo } from "@/components/brand/Logo";
@@ -22,6 +24,8 @@ export const Route = createFileRoute("/_authenticated/dashboard")({
 
 const NAV = [
   { to: "/dashboard", label: "Overview", icon: LayoutDashboard, exact: true },
+  { to: "/dashboard/intel", label: "Intelligence", icon: Brain },
+  { to: "/dashboard/demand", label: "Demand", icon: TrendingUp },
   { to: "/dashboard/miner", label: "Miner", icon: Radar },
   { to: "/dashboard/grader", label: "Grader", icon: Gauge },
   { to: "/dashboard/registry", label: "Registry", icon: Link2 },

@@ -72,7 +72,7 @@ export const PROTOCOL_STATUS = {
     yamlKind: "miner",
     slug: "caliber-truthport-text-auth",
     activationStatus: "active",
-    scored: false,
+    scored: true,
     integrationsCountAsOf: 126,
     listedAsOf: "2026-08-30T21:56:22Z",
     deregisterTxHash: "0xf561ebff84883e827f8b7c79bd4abd44c48a77ca7d388c91fd8e82d6263bf165",
@@ -83,7 +83,7 @@ export const PROTOCOL_STATUS = {
       "0x5f332267ccecf9f3476d77779c305dcd6b415c30b89feb3d11e41035b9019e08",
       "0xda07a1289a54d075e4051686aa2180d6530b4b2c1ad56547bc7667ee7d07af29",
     ],
-    note: "LISTED: console Diamond registerMiner 387 activated dispatcher slug caliber-truthport-text-auth id 20260830 (active, unscored as of paid-detect session). Docs Diamond reg 55 retained for history.",
+    note: "LISTED+SCORED: console Diamond registerMiner 387; slug caliber-truthport-text-auth id 20260830. AI_TEXT rank #1 as of 2026-09-03 catalog poll (epoch 305). Rank moves.",
   },
   x402: {
     exercised: true,
@@ -137,7 +137,8 @@ export const PROTOCOL_STATUS = {
     { id: "raid", label: "Import RAID holdout sample", done: false },
     { id: "host", label: "Public HTTPS base_url for YAML", done: true },
     { id: "wasmReg", label: "registerWasm on Base Sepolia", done: true },
-    { id: "x", label: "Public build posts on X", done: false },
+    { id: "x", label: "Public build posts on X", done: true },
+    { id: "track3", label: "Track 3 demand app consuming real miners", done: true },
   ] as const,
 } as const;
 

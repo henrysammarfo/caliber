@@ -18,6 +18,7 @@ import { Route as DetectRouteImport } from './routes/detect'
 import { Route as DocsRouteImport } from './routes/docs'
 import { Route as FaqsRouteImport } from './routes/faqs'
 import { Route as GraderRouteImport } from './routes/grader'
+import { Route as IntelRouteImport } from './routes/intel'
 import { Route as MerchRouteImport } from './routes/merch'
 import { Route as MinerRouteImport } from './routes/miner'
 import { Route as PredictRouteImport } from './routes/predict'
@@ -28,8 +29,10 @@ import { Route as AuthenticatedDashboardRouteImport } from './routes/_authentica
 import { Route as MinerYamlRouteImport } from './routes/miner.yaml'
 import { Route as AuthenticatedDashboardIndexRouteImport } from './routes/_authenticated/dashboard.index'
 import { Route as AuthenticatedDashboardActivityRouteImport } from './routes/_authenticated/dashboard.activity'
+import { Route as AuthenticatedDashboardDemandRouteImport } from './routes/_authenticated/dashboard.demand'
 import { Route as AuthenticatedDashboardEngagementRouteImport } from './routes/_authenticated/dashboard.engagement'
 import { Route as AuthenticatedDashboardGraderRouteImport } from './routes/_authenticated/dashboard.grader'
+import { Route as AuthenticatedDashboardIntelRouteImport } from './routes/_authenticated/dashboard.intel'
 import { Route as AuthenticatedDashboardMinerRouteImport } from './routes/_authenticated/dashboard.miner'
 import { Route as AuthenticatedDashboardPaymentsRouteImport } from './routes/_authenticated/dashboard.payments'
 import { Route as AuthenticatedDashboardRegistryRouteImport } from './routes/_authenticated/dashboard.registry'
@@ -77,6 +80,11 @@ const FaqsRoute = FaqsRouteImport.update({
 const GraderRoute = GraderRouteImport.update({
   id: '/grader',
   path: '/grader',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IntelRoute = IntelRouteImport.update({
+  id: '/intel',
+  path: '/intel',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MerchRoute = MerchRouteImport.update({
@@ -131,6 +139,12 @@ const AuthenticatedDashboardActivityRoute =
     path: '/activity',
     getParentRoute: () => AuthenticatedDashboardRoute,
   } as any)
+const AuthenticatedDashboardDemandRoute =
+  AuthenticatedDashboardDemandRouteImport.update({
+    id: '/demand',
+    path: '/demand',
+    getParentRoute: () => AuthenticatedDashboardRoute,
+  } as any)
 const AuthenticatedDashboardEngagementRoute =
   AuthenticatedDashboardEngagementRouteImport.update({
     id: '/engagement',
@@ -141,6 +155,12 @@ const AuthenticatedDashboardGraderRoute =
   AuthenticatedDashboardGraderRouteImport.update({
     id: '/grader',
     path: '/grader',
+    getParentRoute: () => AuthenticatedDashboardRoute,
+  } as any)
+const AuthenticatedDashboardIntelRoute =
+  AuthenticatedDashboardIntelRouteImport.update({
+    id: '/intel',
+    path: '/intel',
     getParentRoute: () => AuthenticatedDashboardRoute,
   } as any)
 const AuthenticatedDashboardMinerRoute =
@@ -177,6 +197,7 @@ export interface FileRoutesByFullPath {
   '/docs': typeof DocsRoute
   '/faqs': typeof FaqsRoute
   '/grader': typeof GraderRoute
+  '/intel': typeof IntelRoute
   '/merch': typeof MerchRoute
   '/miner': typeof MinerRouteWithChildren
   '/predict': typeof PredictRoute
@@ -186,8 +207,10 @@ export interface FileRoutesByFullPath {
   '/dashboard': typeof AuthenticatedDashboardRouteWithChildren
   '/miner/yaml': typeof MinerYamlRoute
   '/dashboard/activity': typeof AuthenticatedDashboardActivityRoute
+  '/dashboard/demand': typeof AuthenticatedDashboardDemandRoute
   '/dashboard/engagement': typeof AuthenticatedDashboardEngagementRoute
   '/dashboard/grader': typeof AuthenticatedDashboardGraderRoute
+  '/dashboard/intel': typeof AuthenticatedDashboardIntelRoute
   '/dashboard/miner': typeof AuthenticatedDashboardMinerRoute
   '/dashboard/payments': typeof AuthenticatedDashboardPaymentsRoute
   '/dashboard/registry': typeof AuthenticatedDashboardRegistryRoute
@@ -203,6 +226,7 @@ export interface FileRoutesByTo {
   '/docs': typeof DocsRoute
   '/faqs': typeof FaqsRoute
   '/grader': typeof GraderRoute
+  '/intel': typeof IntelRoute
   '/merch': typeof MerchRoute
   '/miner': typeof MinerRouteWithChildren
   '/predict': typeof PredictRoute
@@ -211,8 +235,10 @@ export interface FileRoutesByTo {
   '/roadmap': typeof RoadmapRoute
   '/miner/yaml': typeof MinerYamlRoute
   '/dashboard/activity': typeof AuthenticatedDashboardActivityRoute
+  '/dashboard/demand': typeof AuthenticatedDashboardDemandRoute
   '/dashboard/engagement': typeof AuthenticatedDashboardEngagementRoute
   '/dashboard/grader': typeof AuthenticatedDashboardGraderRoute
+  '/dashboard/intel': typeof AuthenticatedDashboardIntelRoute
   '/dashboard/miner': typeof AuthenticatedDashboardMinerRoute
   '/dashboard/payments': typeof AuthenticatedDashboardPaymentsRoute
   '/dashboard/registry': typeof AuthenticatedDashboardRegistryRoute
@@ -230,6 +256,7 @@ export interface FileRoutesById {
   '/docs': typeof DocsRoute
   '/faqs': typeof FaqsRoute
   '/grader': typeof GraderRoute
+  '/intel': typeof IntelRoute
   '/merch': typeof MerchRoute
   '/miner': typeof MinerRouteWithChildren
   '/predict': typeof PredictRoute
@@ -239,8 +266,10 @@ export interface FileRoutesById {
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRouteWithChildren
   '/miner/yaml': typeof MinerYamlRoute
   '/_authenticated/dashboard/activity': typeof AuthenticatedDashboardActivityRoute
+  '/_authenticated/dashboard/demand': typeof AuthenticatedDashboardDemandRoute
   '/_authenticated/dashboard/engagement': typeof AuthenticatedDashboardEngagementRoute
   '/_authenticated/dashboard/grader': typeof AuthenticatedDashboardGraderRoute
+  '/_authenticated/dashboard/intel': typeof AuthenticatedDashboardIntelRoute
   '/_authenticated/dashboard/miner': typeof AuthenticatedDashboardMinerRoute
   '/_authenticated/dashboard/payments': typeof AuthenticatedDashboardPaymentsRoute
   '/_authenticated/dashboard/registry': typeof AuthenticatedDashboardRegistryRoute
@@ -258,6 +287,7 @@ export interface FileRouteTypes {
     | '/docs'
     | '/faqs'
     | '/grader'
+    | '/intel'
     | '/merch'
     | '/miner'
     | '/predict'
@@ -267,8 +297,10 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/miner/yaml'
     | '/dashboard/activity'
+    | '/dashboard/demand'
     | '/dashboard/engagement'
     | '/dashboard/grader'
+    | '/dashboard/intel'
     | '/dashboard/miner'
     | '/dashboard/payments'
     | '/dashboard/registry'
@@ -284,6 +316,7 @@ export interface FileRouteTypes {
     | '/docs'
     | '/faqs'
     | '/grader'
+    | '/intel'
     | '/merch'
     | '/miner'
     | '/predict'
@@ -292,8 +325,10 @@ export interface FileRouteTypes {
     | '/roadmap'
     | '/miner/yaml'
     | '/dashboard/activity'
+    | '/dashboard/demand'
     | '/dashboard/engagement'
     | '/dashboard/grader'
+    | '/dashboard/intel'
     | '/dashboard/miner'
     | '/dashboard/payments'
     | '/dashboard/registry'
@@ -310,6 +345,7 @@ export interface FileRouteTypes {
     | '/docs'
     | '/faqs'
     | '/grader'
+    | '/intel'
     | '/merch'
     | '/miner'
     | '/predict'
@@ -319,8 +355,10 @@ export interface FileRouteTypes {
     | '/_authenticated/dashboard'
     | '/miner/yaml'
     | '/_authenticated/dashboard/activity'
+    | '/_authenticated/dashboard/demand'
     | '/_authenticated/dashboard/engagement'
     | '/_authenticated/dashboard/grader'
+    | '/_authenticated/dashboard/intel'
     | '/_authenticated/dashboard/miner'
     | '/_authenticated/dashboard/payments'
     | '/_authenticated/dashboard/registry'
@@ -338,6 +376,7 @@ export interface RootRouteChildren {
   DocsRoute: typeof DocsRoute
   FaqsRoute: typeof FaqsRoute
   GraderRoute: typeof GraderRoute
+  IntelRoute: typeof IntelRoute
   MerchRoute: typeof MerchRoute
   MinerRoute: typeof MinerRouteWithChildren
   PredictRoute: typeof PredictRoute
@@ -411,6 +450,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GraderRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/intel': {
+      id: '/intel'
+      path: '/intel'
+      fullPath: '/intel'
+      preLoaderRoute: typeof IntelRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/merch': {
       id: '/merch'
       path: '/merch'
@@ -481,6 +527,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDashboardActivityRouteImport
       parentRoute: typeof AuthenticatedDashboardRoute
     }
+    '/_authenticated/dashboard/demand': {
+      id: '/_authenticated/dashboard/demand'
+      path: '/demand'
+      fullPath: '/dashboard/demand'
+      preLoaderRoute: typeof AuthenticatedDashboardDemandRouteImport
+      parentRoute: typeof AuthenticatedDashboardRoute
+    }
     '/_authenticated/dashboard/engagement': {
       id: '/_authenticated/dashboard/engagement'
       path: '/engagement'
@@ -493,6 +546,13 @@ declare module '@tanstack/react-router' {
       path: '/grader'
       fullPath: '/dashboard/grader'
       preLoaderRoute: typeof AuthenticatedDashboardGraderRouteImport
+      parentRoute: typeof AuthenticatedDashboardRoute
+    }
+    '/_authenticated/dashboard/intel': {
+      id: '/_authenticated/dashboard/intel'
+      path: '/intel'
+      fullPath: '/dashboard/intel'
+      preLoaderRoute: typeof AuthenticatedDashboardIntelRouteImport
       parentRoute: typeof AuthenticatedDashboardRoute
     }
     '/_authenticated/dashboard/miner': {
@@ -528,8 +588,10 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedDashboardRouteChildren {
   AuthenticatedDashboardActivityRoute: typeof AuthenticatedDashboardActivityRoute
+  AuthenticatedDashboardDemandRoute: typeof AuthenticatedDashboardDemandRoute
   AuthenticatedDashboardEngagementRoute: typeof AuthenticatedDashboardEngagementRoute
   AuthenticatedDashboardGraderRoute: typeof AuthenticatedDashboardGraderRoute
+  AuthenticatedDashboardIntelRoute: typeof AuthenticatedDashboardIntelRoute
   AuthenticatedDashboardMinerRoute: typeof AuthenticatedDashboardMinerRoute
   AuthenticatedDashboardPaymentsRoute: typeof AuthenticatedDashboardPaymentsRoute
   AuthenticatedDashboardRegistryRoute: typeof AuthenticatedDashboardRegistryRoute
@@ -540,9 +602,11 @@ interface AuthenticatedDashboardRouteChildren {
 const AuthenticatedDashboardRouteChildren: AuthenticatedDashboardRouteChildren =
   {
     AuthenticatedDashboardActivityRoute: AuthenticatedDashboardActivityRoute,
+    AuthenticatedDashboardDemandRoute: AuthenticatedDashboardDemandRoute,
     AuthenticatedDashboardEngagementRoute:
       AuthenticatedDashboardEngagementRoute,
     AuthenticatedDashboardGraderRoute: AuthenticatedDashboardGraderRoute,
+    AuthenticatedDashboardIntelRoute: AuthenticatedDashboardIntelRoute,
     AuthenticatedDashboardMinerRoute: AuthenticatedDashboardMinerRoute,
     AuthenticatedDashboardPaymentsRoute: AuthenticatedDashboardPaymentsRoute,
     AuthenticatedDashboardRegistryRoute: AuthenticatedDashboardRegistryRoute,
@@ -586,6 +650,7 @@ const rootRouteChildren: RootRouteChildren = {
   DocsRoute: DocsRoute,
   FaqsRoute: FaqsRoute,
   GraderRoute: GraderRoute,
+  IntelRoute: IntelRoute,
   MerchRoute: MerchRoute,
   MinerRoute: MinerRouteWithChildren,
   PredictRoute: PredictRoute,

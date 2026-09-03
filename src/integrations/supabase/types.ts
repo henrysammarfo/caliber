@@ -47,6 +47,48 @@ export type Database = {
         }
         Relationships: []
       }
+      query_log: {
+        Row: {
+          id: string
+          user_id: string | null
+          intent: string
+          query_text: string | null
+          miner_slug: string | null
+          miner_id: number | null
+          response: Json | null
+          confidence: number | null
+          x402_tx: string | null
+          cost_usdc: number | null
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          user_id?: string | null
+          intent: string
+          query_text?: string | null
+          miner_slug?: string | null
+          miner_id?: number | null
+          response?: Json | null
+          confidence?: number | null
+          x402_tx?: string | null
+          cost_usdc?: number | null
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          user_id?: string | null
+          intent?: string
+          query_text?: string | null
+          miner_slug?: string | null
+          miner_id?: number | null
+          response?: Json | null
+          confidence?: number | null
+          x402_tx?: string | null
+          cost_usdc?: number | null
+          created_at?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           avatar_url: string | null

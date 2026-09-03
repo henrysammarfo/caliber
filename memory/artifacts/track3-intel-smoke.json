@@ -1,0 +1,35 @@
+{
+  "at": "2026-09-03T16:41:58.420Z",
+  "results": [
+    {
+      "intent": "AI_TEXT_DETECTION",
+      "status": 200,
+      "ms": 4205,
+      "snippet": "{\"confidence\":0.381542,\"isAI\":false,\"label\":\"human_written\",\"model\":\"caliber-truthport-v2\",\"reason\":\"human_written p(AI)=0.382; low sentence-length burstiness; high hapax (lexical diversity); short passage — confidence shrunk toward chance."
+    },
+    {
+      "intent": "WEATHER_FORECAST",
+      "status": 200,
+      "ms": 3306,
+      "snippet": "{\"answer\":\"Weather forecast for New York, United States over the requested 72-hour period: temperature from 18.1 C to 28.7 C, maximum precipitation probability 20 percent, total precipitation 5.4 mm, expected condition rain, maximum sustain"
+    },
+    {
+      "intent": "CRYPTO_PRICE",
+      "status": 200,
+      "ms": 2231,
+      "snippet": "[{\"ath\":293.31,\"ath_change_percentage\":-64.43862,\"ath_date\":\"2025-01-19T03:15:27.000Z\",\"atl\":0.500801,\"atl_change_percentage\":20727.77997,\"atl_date\":\"2020-05-11T11:35:23.000Z\",\"circulating_supply\":585274710.8291123,\"current_price\":104.31,\"f"
+    },
+    {
+      "intent": "FRAUD_DETECTION",
+      "status": 200,
+      "ms": 3081,
+      "snippet": "{\"confidence\":0.6,\"explanation\":\"I can’t evaluate the risk of a specific Ethereum transfer pattern without seeing the transaction details (addresses, amounts, timing, counterparties, and any associated smart‑contract code). In fraud investi"
+    },
+    {
+      "intent": "NEWS_SEARCH",
+      "status": 200,
+      "ms": 2516,
+      "snippet": "{\"answer\":\"US urges hands-off approach to AI regulation at G20 tech meeting - reuters.com — reuters.com (Tue, 01 Sep 2026 19:24:36 GMT). Readings: 1. US urges hands-off approach to AI regulation at G20 tech meeting - reuters.com — reuters.c"
+    }
+  ]
+}

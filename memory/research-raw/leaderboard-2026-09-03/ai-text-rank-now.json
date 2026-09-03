@@ -1,0 +1,45 @@
+{
+  "at": "2026-09-03T16:47:26.340Z",
+  "ai_text": [
+    {
+      "id": "20260830",
+      "slug": "caliber-truthport-text-auth",
+      "scored": true,
+      "activation": "active",
+      "rank": 1,
+      "score": 2.403846e-10,
+      "epoch": 305,
+      "scored_at": "2026-09-03T13:05:59.115692Z"
+    },
+    {
+      "id": "4433",
+      "slug": "livecert",
+      "scored": true,
+      "activation": "active",
+      "rank": 2,
+      "score": 2.1145374e-10,
+      "epoch": 305,
+      "scored_at": "2026-09-03T13:05:59.115692Z"
+    },
+    {
+      "id": "708425",
+      "slug": "veritarach-ai-text-detector",
+      "scored": true,
+      "activation": "active",
+      "rank": 3,
+      "score": 1.341853e-10,
+      "epoch": 305,
+      "scored_at": "2026-09-03T13:05:59.115692Z"
+    },
+    {
+      "id": "32",
+      "slug": "bittensor-sn32-itsai",
+      "scored": true,
+      "activation": "active",
+      "rank": 4,
+      "score": 1.3333333e-10,
+      "epoch": 305,
+      "scored_at": "2026-09-03T13:05:59.115692Z"
+    }
+  ]
+}

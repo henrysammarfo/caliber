@@ -1,0 +1,502 @@
+{
+  "at": "2026-09-03T16:49:10.467Z",
+  "method": "avg_normalized_score_within_intent (75% judging proxy; X not included)",
+  "caliber": {
+    "id": "20260830",
+    "slug": "caliber-truthport-text-auth",
+    "intents": 1,
+    "avgNorm": 1,
+    "sumNorm": 1,
+    "ranks": [
+      {
+        "intent": "AI_TEXT_DETECTION",
+        "rank": 1,
+        "score": 2.403846e-10,
+        "norm": 1
+      }
+    ]
+  },
+  "caliberOverallRank": 6,
+  "scoredMiners": 129,
+  "top20": [
+    {
+      "overall": 1,
+      "id": "7306",
+      "slug": "skywire-storm-alert",
+      "intents": 1,
+      "avgNorm": 1,
+      "sumNorm": 1,
+      "ranks": [
+        "STORM_ALERT:#1"
+      ]
+    },
+    {
+      "overall": 2,
+      "id": "9004",
+      "slug": "verity-news-search",
+      "intents": 1,
+      "avgNorm": 1,
+      "sumNorm": 1,
+      "ranks": [
+        "NEWS_SEARCH:#1"
+      ]
+    },
+    {
+      "overall": 3,
+      "id": "101",
+      "slug": "bayern-elo-miner-v1",
+      "intents": 1,
+      "avgNorm": 1,
+      "sumNorm": 1,
+      "ranks": [
+        "TASK_COMPLETION:#9"
+      ]
+    },
+    {
+      "overall": 4,
+      "id": "717190",
+      "slug": "qarinah-proofpack",
+      "intents": 2,
+      "avgNorm": 1,
+      "sumNorm": 2,
+      "ranks": [
+        "FACT_CHECK:#1",
+        "RESEARCH_SYNTHESIS:#1"
+      ]
+    },
+    {
+      "overall": 5,
+      "id": "7331",
+      "slug": "sportwire-game-result",
+      "intents": 1,
+      "avgNorm": 1,
+      "sumNorm": 1,
+      "ranks": [
+        "GAME_RESULT:#1"
+      ]
+    },
+    {
+      "overall": 6,
+      "id": "20260830",
+      "slug": "caliber-truthport-text-auth",
+      "intents": 1,
+      "avgNorm": 1,
+      "sumNorm": 1,
+      "ranks": [
+        "AI_TEXT_DETECTION:#1"
+      ]
+    },
+    {
+      "overall": 7,
+      "id": "7330",
+      "slug": "sportwire-score",
+      "intents": 1,
+      "avgNorm": 1,
+      "sumNorm": 1,
+      "ranks": [
+        "SPORTS_SCORE:#1"
+      ]
+    },
+    {
+      "overall": 8,
+      "id": "7333",
+      "slug": "netwire-ip-geolocation",
+      "intents": 1,
+      "avgNorm": 0.9987595861274184,
+      "sumNorm": 0.9987595861274184,
+      "ranks": [
+        "IP_GEOLOCATION:#2"
+      ]
+    },
+    {
+      "overall": 9,
+      "id": "7325",
+      "slug": "scholarwire-academic-search",
+      "intents": 1,
+      "avgNorm": 0.973171839573798,
+      "sumNorm": 0.973171839573798,
+      "ranks": [
+        "ACADEMIC_SEARCH:#3"
+      ]
+    },
+    {
+      "overall": 10,
+      "id": "7334",
+      "slug": "netwire-url-scan",
+      "intents": 1,
+      "avgNorm": 0.9719831890195132,
+      "sumNorm": 0.9719831890195132,
+      "ranks": [
+        "URL_SCAN:#2"
+      ]
+    },
+    {
+      "overall": 11,
+      "id": "4383",
+      "slug": "patchsignal-cve",
+      "intents": 1,
+      "avgNorm": 0.9636502380090677,
+      "sumNorm": 0.9636502380090677,
+      "ranks": [
+        "CVE_LOOKUP:#2"
+      ]
+    },
+    {
+      "overall": 12,
+      "id": "7337",
+      "slug": "langwire-translation",
+      "intents": 1,
+      "avgNorm": 0.9621344608874475,
+      "sumNorm": 0.9621344608874475,
+      "ranks": [
+        "LANGUAGE_TRANSLATION:#2"
+      ]
+    },
+    {
+      "overall": 13,
+      "id": "147117",
+      "slug": "pricepulse-crypto-consensus",
+      "intents": 1,
+      "avgNorm": 0.9576084257578423,
+      "sumNorm": 0.9576084257578423,
+      "ranks": [
+        "CRYPTO_PRICE:#2"
+      ]
+    },
+    {
+      "overall": 14,
+      "id": "7328",
+      "slug": "newswire-headlines",
+      "intents": 1,
+      "avgNorm": 0.9380724556965422,
+      "sumNorm": 0.9380724556965422,
+      "ranks": [
+        "NEWS_HEADLINES:#2"
+      ]
+    },
+    {
+      "overall": 15,
+      "id": "7336",
+      "slug": "secwire-cve-lookup",
+      "intents": 1,
+      "avgNorm": 0.9362459821018689,
+      "sumNorm": 0.9362459821018689,
+      "ranks": [
+        "CVE_LOOKUP:#3"
+      ]
+    },
+    {
+      "overall": 16,
+      "id": "7302",
+      "slug": "chainwire-holder-count",
+      "intents": 1,
+      "avgNorm": 0.9309032568664305,
+      "sumNorm": 0.9309032568664305,
+      "ranks": [
+        "TOKEN_HOLDER_COUNT:#2"
+      ]
+    },
+    {
+      "overall": 17,
+      "id": "7402",
+      "slug": "proofgate-url-intelligence",
+      "intents": 1,
+      "avgNorm": 0.9296926472174666,
+      "sumNorm": 0.9296926472174666,
+      "ranks": [
+        "URL_SCAN:#3"
+      ]
+    },
+    {
+      "overall": 18,
+      "id": "7304",
+      "slug": "skywire-weather-check",
+      "intents": 1,
+      "avgNorm": 0.9161949018649217,
+      "sumNorm": 0.9161949018649217,
+      "ranks": [
+        "WEATHER_CHECK:#3"
+      ]
+    },
+    {
+      "overall": 19,
+      "id": "147116",
+      "slug": "balancepulse-evm-balance",
+      "intents": 1,
+      "avgNorm": 0.906044791799904,
+      "sumNorm": 0.906044791799904,
+      "ranks": [
+        "WALLET_BALANCE_CHECK:#3"
+      ]
+    },
+    {
+      "overall": 20,
+      "id": "5893375",
+      "slug": "weerakorn-miner",
+      "intents": 4,
+      "avgNorm": 0.8577763239223843,
+      "sumNorm": 3.4311052956895374,
+      "ranks": [
+        "RESEARCH_SYNTHESIS:#2",
+        "WEB_SEARCH:#2",
+        "TEXT_GENERATION:#4",
+        "LANGUAGE_GENERATION:#10"
+      ]
+    }
+  ],
+  "intentLeaders": [
+    {
+      "intent": "ACADEMIC_SEARCH",
+      "leader": "livecert",
+      "score": 0.011950018,
+      "rank": 1
+    },
+    {
+      "intent": "AI_TEXT_DETECTION",
+      "leader": "caliber-truthport-text-auth",
+      "score": 2.403846e-10,
+      "rank": 1
+    },
+    {
+      "intent": "CHAT_COMPLETION",
+      "leader": "bedrock-nova-2-lite",
+      "score": 0.9992959,
+      "rank": 1
+    },
+    {
+      "intent": "CONTENT_EXTRACTION",
+      "leader": "livecert",
+      "score": 1,
+      "rank": 1
+    },
+    {
+      "intent": "CONTENT_MODERATION",
+      "leader": "elcaro-ipi-detection",
+      "score": 3.0231234e-12,
+      "rank": 1
+    },
+    {
+      "intent": "CONTENT_VERIFICATION",
+      "leader": "faceplus",
+      "score": 0,
+      "rank": 1
+    },
+    {
+      "intent": "CRYPTO_PRICE",
+      "leader": "onchain-intel-miner",
+      "score": 4.7989796e-21,
+      "rank": 1
+    },
+    {
+      "intent": "CURRENCY_EXCHANGE",
+      "leader": "chainsight-oracle",
+      "score": 3.1539096e-7,
+      "rank": 1
+    },
+    {
+      "intent": "CVE_LOOKUP",
+      "leader": "preflight-ssl-verification",
+      "score": 9.551947e-12,
+      "rank": 1
+    },
+    {
+      "intent": "DEEPFAKE_DETECTION",
+      "leader": "bittensor-sn34-bitmind",
+      "score": 0,
+      "rank": 1
+    },
+    {
+      "intent": "FACT_CHECK",
+      "leader": "qarinah-proofpack",
+      "score": 6.666667e-10,
+      "rank": 1
+    },
+    {
+      "intent": "FINANCIAL_DATA",
+      "leader": "kriterion-pramagraph",
+      "score": 1.730225e-16,
+      "rank": 1
+    },
+    {
+      "intent": "FRAUD_DETECTION",
+      "leader": "sarzops-transaction-risk",
+      "score": 7.0236324e-14,
+      "rank": 1
+    },
+    {
+      "intent": "GAME_RESULT",
+      "leader": "sportwire-game-result",
+      "score": 0.990255,
+      "rank": 1
+    },
+    {
+      "intent": "GAS_PRICE",
+      "leader": "kriterion-pramagraph",
+      "score": 1.6093913e-11,
+      "rank": 1
+    },
+    {
+      "intent": "IMAGE_VERIFICATION",
+      "leader": "bittensor-sn34-bitmind",
+      "score": 5.96714e-12,
+      "rank": 1
+    },
+    {
+      "intent": "IP_GEOLOCATION",
+      "leader": "txlens",
+      "score": 0.99611914,
+      "rank": 1
+    },
+    {
+      "intent": "LANGUAGE_GENERATION",
+      "leader": "groq-llama31-instant-miner",
+      "score": 0.99892193,
+      "rank": 1
+    },
+    {
+      "intent": "LANGUAGE_TRANSLATION",
+      "leader": "livecert",
+      "score": 2.6967634e-10,
+      "rank": 1
+    },
+    {
+      "intent": "MEDIA_AUTHENTICITY_CHECK",
+      "leader": "bittensor-sn34-bitmind",
+      "score": 1.1189941e-11,
+      "rank": 1
+    },
+    {
+      "intent": "NEWS_HEADLINES",
+      "leader": "livecert",
+      "score": 0.0031147061,
+      "rank": 1
+    },
+    {
+      "intent": "NEWS_SEARCH",
+      "leader": "verity-news-search",
+      "score": 0.02123495,
+      "rank": 1
+    },
+    {
+      "intent": "ONCHAIN_TX_LOOKUP",
+      "leader": "chainsight-oracle",
+      "score": 0.014556984,
+      "rank": 1
+    },
+    {
+      "intent": "RESEARCH_QUERY",
+      "leader": "tavily",
+      "score": 0.01626342,
+      "rank": 1
+    },
+    {
+      "intent": "RESEARCH_SYNTHESIS",
+      "leader": "qarinah-proofpack",
+      "score": 0.009826709,
+      "rank": 1
+    },
+    {
+      "intent": "SENTIMENT_ANALYSIS",
+      "leader": "textprocessing-sentiment",
+      "score": 0,
+      "rank": 1
+    },
+    {
+      "intent": "SPORTS_SCORE",
+      "leader": "sportwire-score",
+      "score": 7.440304e-12,
+      "rank": 1
+    },
+    {
+      "intent": "SSL_VERIFICATION",
+      "leader": "txlens",
+      "score": 0.99144614,
+      "rank": 1
+    },
+    {
+      "intent": "STOCK_PRICE",
+      "leader": "txlens",
+      "score": 8.620383e-13,
+      "rank": 1
+    },
+    {
+      "intent": "STORM_ALERT",
+      "leader": "skywire-storm-alert",
+      "score": 0.99412715,
+      "rank": 1
+    },
+    {
+      "intent": "TASK_COMPLETION",
+      "leader": "bayern-elo-miner-v1",
+      "score": 1.2402494e-7,
+      "rank": 9
+    },
+    {
+      "intent": "TELEGRAPH_KNOWLEDGE",
+      "leader": "livecert",
+      "score": 1.20328495e-11,
+      "rank": 1
+    },
+    {
+      "intent": "TEXT_CLASSIFICATION",
+      "leader": "elcaro-ipi-detection",
+      "score": 0,
+      "rank": 1
+    },
+    {
+      "intent": "TEXT_GENERATION",
+      "leader": "groq-llama31-instant-miner",
+      "score": 1.5133228e-11,
+      "rank": 1
+    },
+    {
+      "intent": "TOKEN_HOLDER_COUNT",
+      "leader": "chainsight-oracle",
+      "score": 6.603249e-12,
+      "rank": 1
+    },
+    {
+      "intent": "TVL_LOOKUP",
+      "leader": "sentinel-risk-oracle",
+      "score": 0.03648985,
+      "rank": 1
+    },
+    {
+      "intent": "URL_SCAN",
+      "leader": "preflight-ssl-verification",
+      "score": 0.9844518,
+      "rank": 1
+    },
+    {
+      "intent": "VIDEO_VERIFICATION",
+      "leader": "bittensor-sn34-bitmind",
+      "score": 0,
+      "rank": 1
+    },
+    {
+      "intent": "WALLET_BALANCE_CHECK",
+      "leader": "chainsight-oracle",
+      "score": 2.2649101e-13,
+      "rank": 1
+    },
+    {
+      "intent": "WEATHER_CHECK",
+      "leader": "weatherapi",
+      "score": 0.016584182,
+      "rank": 1
+    },
+    {
+      "intent": "WEATHER_FORECAST",
+      "leader": "livecert",
+      "score": 0.99997056,
+      "rank": 1
+    },
+    {
+      "intent": "WEB_SEARCH",
+      "leader": "telegraph-ai-miner-node",
+      "score": 4.205623e-10,
+      "rank": 1
+    }
+  ],
+  "epochSample": 305
+}

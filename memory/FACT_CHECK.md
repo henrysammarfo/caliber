@@ -255,3 +255,8 @@
 | Miner-specific x402 paid /v1/20260830/detect | **VERIFIED** | HTTP 200; payment tx 0x6d7db1bd…; receipt `memory/artifacts/x402-receipt-truthport.json`; body confidence 0.37291 / human_written |
 | Free (unauth) dispatcher predict/detect | **VERIFIED none** | All four URLs HTTP 402 Payment Required amount 10000 |
 | protocol-status listed/reg387/wasm2256/x402 miner | **UPDATED** | `src/lib/protocol-status.ts` 2026-08-31 import-free WASM |
+| Track 3 window Aug 31 – Sep 7 | **VERIFIED** | https://hackathon.telegraphprotocol.com/rules |
+| Track 3 must use real miners (no mocks) | **VERIFIED** | Same rules page |
+| Port 8080 is generic Engine `/engine/ask` | **FALSE** | 2026-09-03: OpenAPI title "Telegraph Chatbot Miner"; only `/v1/chat/completions` + `/health` |
+| Track 3 paid dispatcher 5 intents | **VERIFIED** | `memory/artifacts/track3-intel-smoke.json` all HTTP 200 |
+| AI_TEXT rank #1 as of 2026-09-03 | **VERIFIED then** | catalog dump epoch 305; rank can move |
