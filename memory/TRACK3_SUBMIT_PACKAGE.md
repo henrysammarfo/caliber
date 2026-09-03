@@ -74,7 +74,7 @@ Related miner: caliber-truthport-text-auth (registrationId 387)
 - [x] `SUPABASE_URL` + publishable keys on Vercel Production/Preview
 - [x] Prod smoke: `POST /intel` AI_TEXT → **HTTP 200** (TRUTHPORT) on both `caliber-teamtitanlink` and `caliber-smoky`
 - [x] Public checker UI live at `/demand-app`
-- [ ] `query_log` migration applied on Supabase (SQL below — no access token in local env)
+- [x] `query_log` migration applied on Supabase (table reachable 2026-09-03; Lovable/git sync)
 - [ ] Track 3 X thread posted (`memory/TRACK3_X_DRAFTS.md`)
 - [ ] Portal Track 3 form submitted before Sep 7 23:59 UTC
 
