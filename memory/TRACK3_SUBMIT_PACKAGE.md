@@ -69,11 +69,20 @@ Related miner: caliber-truthport-text-auth (registrationId 387)
 
 ## Ops checklist (production)
 
-- [ ] `PRIVATE_KEY` set on Vercel Production (same Base Sepolia payer as H1)
-- [ ] `query_log` migration applied on Supabase
-- [ ] Prod smoke: `POST /intel` AI_TEXT returns 200
-- [ ] Track 3 X thread posted
-- [ ] Portal Track 3 submission submitted before Sep 7 23:59 UTC
+- [x] Code on `main` (`aa5a28d`) — GitHub Production deploy **success** 2026-09-03
+- [x] `PRIVATE_KEY` + `EVM_PRIVATE_KEY` on Vercel Production/Preview
+- [x] `SUPABASE_URL` + publishable keys on Vercel Production/Preview
+- [x] Prod smoke: `POST /intel` AI_TEXT → **HTTP 200** (TRUTHPORT) on both `caliber-teamtitanlink` and `caliber-smoky`
+- [x] Public checker UI live at `/demand-app`
+- [ ] `query_log` migration applied on Supabase (SQL below — no access token in local env)
+- [ ] Track 3 X thread posted (`memory/TRACK3_X_DRAFTS.md`)
+- [ ] Portal Track 3 form submitted before Sep 7 23:59 UTC
+
+### Apply query_log (one-time)
+
+Supabase dashboard → SQL editor → run `supabase/migrations/20260903160000_create_query_log.sql`
+
+Or set `SUPABASE_ACCESS_TOKEN` and run: `node protocol/scripts/apply-query-log.mjs`
 
 ## Residual risk
 

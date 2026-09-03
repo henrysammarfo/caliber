@@ -59,7 +59,7 @@ Intent routes (dispatcher, smoke HTTP 200 — `memory/artifacts/track3-intel-smo
 | FRAUD_DETECTION | sarzops-transaction-risk `91001` | POST `/fraud` |
 | NEWS_SEARCH | verity-news-search `9004` | GET `/news` |
 
-**Ops:** set `PRIVATE_KEY` or `EVM_PRIVATE_KEY` on Vercel production so `/intel` can pay x402. Apply `supabase/migrations/20260903160000_create_query_log.sql` for analytics persistence. Do not commit keys.
+**Ops:** Vercel Production has `PRIVATE_KEY` / `EVM_PRIVATE_KEY` + Supabase URL/keys (set 2026-09-03). Deploy `aa5a28d` live — prod `POST /intel` AI_TEXT **200**. Apply `supabase/migrations/20260903160000_create_query_log.sql` in Supabase SQL editor for Demand analytics persistence. Do not commit keys.
 
 Port `8080` is **not** a generic Engine — it is a chatbot miner (`/v1/chat/completions`). Consumption uses miner-dispatcher `:7044`.
 
@@ -69,7 +69,7 @@ Hackathon My Submissions: miner **387** + WASM **2256** VERIFIED (2026-08-31).
 
 ## Blocker
 
-None on miner listing. Track 3 live path needs Vercel env key + query_log migration applied on hosted Supabase. Keep miner up through Sep 7.
+None for paid intel path — **prod `/intel` live**. Remaining: apply `query_log` SQL in Supabase dashboard; post Track 3 X; portal form by Sep 7. Keep miner up through Sep 7.
 
 ## Leaderboard history
 

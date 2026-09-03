@@ -380,4 +380,12 @@ Telegraph rejected reg **2126** with `module[env] not instantiated` — AS modul
 - X drafts: `memory/TRACK3_X_DRAFTS.md` — Henry to post from `@henrysammarfo_2`.
 - Ops remaining: Vercel `PRIVATE_KEY`, apply `query_log` migration on hosted Supabase.
 
+## 2026-09-03 — Track 3 production setup
+
+- Vercel env: `PRIVATE_KEY`, `EVM_PRIVATE_KEY`, Supabase URL/keys on Production + Preview.
+- Pushed `aa5a28d`; GitHub Production deploy **success**.
+- Prod smoke: `POST https://caliber-teamtitanlink.vercel.app/intel` AI_TEXT → **200** (TRUTHPORT).
+- Submit package: `memory/TRACK3_SUBMIT_PACKAGE.md`.
+- Still open: Henry applies `query_log` SQL in Supabase; posts Track 3 X; portal form.
+
 
